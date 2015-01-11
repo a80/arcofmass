@@ -1,6 +1,6 @@
-Router.route('/home/', function() {
+/*Router.route('/', function() {
   this.render('login');
-});
+});*/
 
 /*Router.map(function() {
   this.route('login');

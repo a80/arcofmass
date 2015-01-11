@@ -1,5 +1,4 @@
 //routing logic 
-
 Router.configure({
   layoutTemplate: 'layout'
 });
