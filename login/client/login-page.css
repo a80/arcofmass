@@ -1,1 +1,38 @@
 /* CSS declarations go here */
+
+#slogan {
+	/*position: fixed;
+	top: 45%;
+	left: 35%;*/
+
+	/* fix. 
+	top: 50%;
+	left: 50%;*/
+	font-size: 500%;
+	position: relative;
+	right: 5%;
+	bottom: 6px;
+}
+
+.colorify {
+	color: orange;
+}
+
+.form-control {
+	outline: none;
+  	border: none !important;
+  	-webkit-box-shadow: none !important;
+  	-moz-box-shadow: none !important;
+  	box-shadow: none !important;
+  	font-size: 500%;
+  	height: 100px;
+  	max-width: 500px;
+  	background: transparent;
+  	text-align: right;
+}
+
+.form-inline {
+	position: fixed;
+	top: 40%;
+	left: 10%;
+}

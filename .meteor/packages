@@ -10,3 +10,5 @@ insecure
 iron:router
 d3
 twbs:bootstrap
+accounts-ui
+accounts-password
