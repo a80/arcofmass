@@ -1,0 +1,19 @@
+if (Meteor.IsClient){
+	Template.body.event({
+		"submit .name-enter": function(event) {
+
+		var text = event.target.text.value;
+
+		Tasks.insert({
+			text: text,
+			ccreatedAt: new Date()
+		});
+
+		//Clears the form
+		event.target.text.value = "";
+	
+		//prevent default form submit
+		return false;
+		}
+	});
+}
