@@ -40,20 +40,79 @@
 	left: 10%;
 }
 
+#username-field {
+	text-decoration: underline;
+}
+
+#username-field::-webkit-input-placeholder {
+	text-decoration: underline;
+   	animation: pulse 5s alternate infinite;
+	-webkit-animation: pulse 5s alternate infinite;
+}
+
+#username-field:-moz-placeholder { /* Firefox 18- */
+	text-decoration: underline;
+   animation: pulse 5s alternate infinite;
+	-webkit-animation: pulse 5s alternate infinite; 
+}
+
+@keyframes pulse {
+  from {color: black}
+  to {color:orange}
+}
+@-webkit-keyframes pulse {
+  from {color: black}
+  to {color:orange}
+}
+
 #password-field {
+	text-decoration: underline;
 	position: fixed;
 	top: 50%;
 	left: 10%;
-	/*visibility: hidden;*/
+	visibility: hidden;
 }
 
+#password-field {
+	text-decoration: underline;
+}
+
+#password-field::-webkit-input-placeholder {
+	text-decoration: underline;
+   	animation: pulse 5s alternate infinite;
+	-webkit-animation: pulse 5s alternate infinite;
+}
+
+#password-field:-moz-placeholder { /* Firefox 18- */
+	text-decoration: underline;
+   animation: pulse 5s alternate infinite;
+	-webkit-animation: pulse 5s alternate infinite; 
+}
+
+
 #login-button {
+	font-size: 60px;
+	/*position: relative;
+	right: 25px;*/
+	outline: none;
+  	border: none !important;
+  	animation: pulse 5s alternate infinite;
+  	-webkit-animation: pulse 5s alternate infinite;
+}
+
+
+
+#new-user-button {
+	font-size: 60px;
+	/*position: relative;
+	right: 25px;*/
 	outline: none;
   	border: none !important;
 }
 
-#login-button {
-	font-size: 70px;
-	position: relative;
-	right: 25px;
+.button-group {
+	position: fixed;
+	top: 70%;
+	left: 44%;
+	display: inline;
 }

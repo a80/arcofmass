@@ -1,23 +1,15 @@
-/*if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault("counter", 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get("counter");
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set("counter", Session.get("counter") + 1);
-    }
-  });
-}
-
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}*/
+Template.profileHome.helpers({
+  loggedIn: function() {
+    //verify if user logged in. 
+    if (Meteor.userId() === null) {
+      console.log('executed, result is false'); 
+      return false; 
+    } else {
+      console.log('executed, result is true'); 
+      return true; 
+    } 
+  }, 
+  returnUserId: function() {
+    return Meteor.user().username; 
+  }
+});

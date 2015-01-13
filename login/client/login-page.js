@@ -1,33 +1,89 @@
-/*Template.login.events({
-  'click': function() {
-    $("#password-field").style.visibility = "hidden";
-  }
-});*/
+//old code
+Template.login.events({
+  'focus #username-field': function() {
+    var passwordField = document.getElementById('password-field');
+    /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
+    passwordField.style.visibility = "visible";
+  },
 
+  'click #login-button': function(event, template) {
+    event.preventDefault();
+    var username = template.find("#username-field").value;
+    var password = template.find("#password-field").value;
+    //var usernameField = document.getElementById('username-field');
+    //var username = usernameField.value; 
+
+    //console.log(username + "; " + password);
+    //console.log('executed');
+
+    Meteor.loginWithPassword(username, password, function(error) {
+      if (error) {
+        console.log('login failed');
+      } else {
+        console.log('login-succeeded');
+        Router.go('/profile');
+      }
+    });
+
+
+    return false; 
+  },
+
+    'click #new-user-button': function(event, template) {
+    event.preventDefault();
+    var username = template.find("#username-field").value;
+    var password = template.find("#password-field").value;
+    //var usernameField = document.getElementById('username-field');
+    //var username = usernameField.value; 
+
+    //console.log(username + "; " + password);
+    //console.log('executed');
+    Accounts.createUser({username: username, password: password}, function(error) {
+      if (error) {
+        console.log('Failed to create new user.');
+      } else {
+        console.log('Succesfully created new user.');
+      }
+    });
+    return false; 
+  }
+
+});
 
 /*Router.route('/', function() {
   this.render('login');
-});*/
+});
 
-/*Router.map(function() {
+Router.map(function() {
   this.route('login');
-});*/
+});
 
-/*if (Meteor.isClient) {
+if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault("counter", 0);
 
-  Template.hello.helpers({
+  Template.login.helpers({
     counter: function () {
       return Session.get("counter");
     }
   });
 
-  Template.hello.events({
+  Template.login.events({
     'click button': function () {
       // increment the counter when button is clicked
       Session.set("counter", Session.get("counter") + 1);
-    }
+    },
+
+    'submit #login-button' : function(e, t) {
+		e.preventDefault();
+		var username = t.find('#user-field').value;
+		var password = t.find('#password-field').value;
+		Meteor.loginWithPassword(username, password, function(err) {
+			if(err)
+				//user was not found
+				//inform user that login attempt has failed
+		});
+	}
   });
 }
 
