@@ -1,3 +1,10 @@
+/*Template.login.events({
+  'click': function() {
+    $("#password-field").style.visibility = "hidden";
+  }
+});*/
+
+
 /*Router.route('/', function() {
   this.render('login');
 });*/

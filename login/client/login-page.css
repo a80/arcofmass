@@ -32,7 +32,28 @@
 }
 
 .form-inline {
+	/*width:50%;
+	position: relative;
+	margin: 0 auto;*/
 	position: fixed;
 	top: 40%;
 	left: 10%;
+}
+
+#password-field {
+	position: fixed;
+	top: 50%;
+	left: 10%;
+	/*visibility: hidden;*/
+}
+
+#login-button {
+	outline: none;
+  	border: none !important;
+}
+
+#login-button {
+	font-size: 70px;
+	position: relative;
+	right: 25px;
 }
