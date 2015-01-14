@@ -1,6 +1,26 @@
 //old code
 Template.login.events({
-  'focus #username-field': function() {
+  //define event for making text transition
+  'mouseenter #username-field': function() {
+    var usernameField = document.getElementById('username-field');
+    /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
+    usernameField.placeholder = "username:";
+
+  },
+
+  'mouseleave #username-field': function() {
+    var usernameField = document.getElementById('username-field');
+    /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
+    usernameField.placeholder = "you";
+  },
+
+  'click #username-field': function() {
+    var passwordField = document.getElementById('password-field');
+    /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
+    passwordField.style.visibility = "visible";
+  },
+
+  'keypress #username-field': function() {
     var passwordField = document.getElementById('password-field');
     /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
     passwordField.style.visibility = "visible";

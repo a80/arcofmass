@@ -24,7 +24,6 @@
   	-webkit-box-shadow: none !important;
   	-moz-box-shadow: none !important;
   	box-shadow: none !important;
-  	font-size: 500%;
   	height: 100px;
   	max-width: 500px;
   	background: transparent;
@@ -41,19 +40,21 @@
 }
 
 #username-field {
+	font-size: 500%;
 	text-decoration: underline;
+	border-top: 0.5px solid #000;
 }
 
 #username-field::-webkit-input-placeholder {
 	text-decoration: underline;
-   	animation: pulse 5s alternate infinite;
-	-webkit-animation: pulse 5s alternate infinite;
+   	animation: pulse 3s alternate infinite;
+	-webkit-animation: pulse 3s alternate infinite;
 }
 
 #username-field:-moz-placeholder { /* Firefox 18- */
 	text-decoration: underline;
-   animation: pulse 5s alternate infinite;
-	-webkit-animation: pulse 5s alternate infinite; 
+   	animation: pulse 3s alternate infinite;
+	-webkit-animation: pulse 3s alternate infinite; 
 }
 
 @keyframes pulse {
@@ -65,10 +66,13 @@
   to {color:orange}
 }
 
+
+
 #password-field {
+	font-size: 300%;
 	text-decoration: underline;
 	position: fixed;
-	top: 50%;
+	top: 52%;
 	left: 10%;
 	visibility: hidden;
 }
@@ -79,14 +83,14 @@
 
 #password-field::-webkit-input-placeholder {
 	text-decoration: underline;
-   	animation: pulse 5s alternate infinite;
-	-webkit-animation: pulse 5s alternate infinite;
+   	animation: pulse 3s alternate infinite;
+	-webkit-animation: pulse 3s alternate infinite;
 }
 
 #password-field:-moz-placeholder { /* Firefox 18- */
 	text-decoration: underline;
-   animation: pulse 5s alternate infinite;
-	-webkit-animation: pulse 5s alternate infinite; 
+   animation: pulse 3s alternate infinite;
+	-webkit-animation: pulse 3s alternate infinite; 
 }
 
 
@@ -96,8 +100,8 @@
 	right: 25px;*/
 	outline: none;
   	border: none !important;
-  	animation: pulse 5s alternate infinite;
-  	-webkit-animation: pulse 5s alternate infinite;
+  	animation: pulse 3s alternate infinite;
+  	-webkit-animation: pulse 3s alternate infinite;
 }
 
 
