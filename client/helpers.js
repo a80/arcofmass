@@ -1,7 +1,7 @@
 Meteor.methods({
-  getUserIssues: function(user) {
+  getUserIssues: function() {
 	//Returns the names of the users issues
-	return user.issues;
+	return Meteor.user.issues;
   }, 
   increaseIssueCount: function(issue) {
 	//Increases issue count by one
