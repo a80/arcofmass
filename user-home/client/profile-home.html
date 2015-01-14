@@ -31,4 +31,10 @@
 
 <template name = "progressBar">
 	
+</template> 
+	
+</template>
+	<h1 id = "name-header">My Profile</h1>
+	<p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
+	<p>{{#if loggedIn}}My issues: {{getUserIssues}}{{/if}}</p>
 </template>
