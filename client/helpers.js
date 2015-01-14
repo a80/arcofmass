@@ -28,6 +28,18 @@ Meteor.methods({
 	//When the issue radio button is clicked, the issue boolean is updated
 	var toUpdate = issues.find({name: myName});
 	issues.update({name: name}, {$set: {important: !toUpdate.important}});
+  },
+  returnToDos: function(issue) {
+	//Returns the issue's action items
+	myActions = [];
+	for each (item in issue.actionItems) {
+		if (item.important)
+			myActions.push(item);
+	}
+	return myActions;
+  },
+  returnIssueName: function(issue) {
+	return issue.name;
   }
   //put comma after above function
 });
