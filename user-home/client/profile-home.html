@@ -1,35 +1,18 @@
 <template name="profileHome">
-	<div class="row">
+	
 		<!--make the following two columns a generic element, a generic template.-->
-  		<div class="col-md-8">
-  			<h1 id = "name-header">Progress toward issue 1</h1>
-			<p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
-
-			<!-- progress bar for bar graph - not sure why constant region doesn't work.-->
-			<!-- {{<div>
-				{{#constant}}
-				{{/constant}}
-			</div>}} --> 
-
-			{{> progressBar}}
-  		</div>
   		
-  		<div class="col-md-4">
-  			<h1 id = "name-header">To Do.</h1>
-  			<ol>
-  				<li>Sign petition.</li>
-  				<li>Attend rally.</li>
-  				<li>Call Representatitve Crenshaw.</li>
-  			</ol>
-  		</div>
-	</div>
+  		{{#each getUserIssues}}
+  			{{> issuePanel}}
+  		{{/each}}
+
 	<!-- <h1 id = "name-header">My Profile</h1>
 	<p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p> --> 
 </template>
 
 <!-- TODO: define additional template here, and pull data from the backend accordingly --> 
 
-<template name = "progressBar">
+<template name = "progressBarPanel">
 
 </template> 
 
@@ -38,7 +21,37 @@
 </template> 
 	
 <template name = "issuesPanel">
-	<h1 id = "name-header">My Profile</h1>
+	<div class="row">
+		<div class="col-md-8">
+  			<h1 id = "name-header">Progress toward issue: {{returnIssueName}}</h1>
+			
+			<p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
+
+			<!-- progress bar for bar graph - not sure why constant region doesn't work.-->
+			<!-- {{<div>
+				{{#constant}}
+				{{/constant}}
+			</div>}} --> 
+
+			{{> progressBarPanel}}
+  		</div>
+  		
+  		<div class="col-md-4">
+  			<!-- eliminate dummy code --> 
+  			<!-- <h1 id = "name-header">To Do.</h1>
+  			<ol>
+  				<li>Sign petition.</li>
+  				<li>Attend rally.</li>
+  				<li>Call Representatitve Crenshaw.</li>
+  			</ol> --> 
+
+  			<h1>To Dos: Display {{returnToDos}}</h1> 
+
+  			{{> toDoPanel}}
+  		</div>
+	</div>
+
+	<!-- <h1 id = "name-header">My Profile</h1>
 	<p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
-	<p>{{#if loggedIn}}My issues: {{getUserIssues}}{{/if}}</p>
+	<p>{{#if loggedIn}}My issues: {{getUserIssues}}{{/if}}</p> -->
 </template>
