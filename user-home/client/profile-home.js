@@ -12,4 +12,6 @@ Template.profileHome.helpers({
   returnUserId: function() {
     return Meteor.user().username; 
   }
-});
+ });
+ 
+ 
