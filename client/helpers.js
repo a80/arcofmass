@@ -1,8 +1,11 @@
 Meteor.methods({
   getUserIssues: function() {
 	//Returns the names of the users issues
-	return Meteor.user.issues;
-  }, 
+    return Meteor.user.issues.sort(function(a, b) {
+        var x = a[count]; var y = b[count];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}, 
   increaseIssueCount: function(issue) {
 	//Increases issue count by one
 	//For use when a user adds an issue that they now care about
@@ -25,6 +28,18 @@ Meteor.methods({
 	//When the issue radio button is clicked, the issue boolean is updated
 	var toUpdate = issues.find({name: myName});
 	issues.update({name: name}, {$set: {important: !toUpdate.important}});
+  },
+  returnToDos: function(issue) {
+	//Returns the issue's action items
+	myActions = [];
+	for each (item in issue.actionItems) {
+		if (item.important)
+			myActions.push(item);
+	}
+	return myActions;
+  },
+  returnIssueName: function(issue) {
+	return issue.name;
   }
   //put comma after above function
 });
