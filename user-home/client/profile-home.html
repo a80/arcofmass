@@ -30,10 +30,14 @@
 <!-- TODO: define additional template here, and pull data from the backend accordingly --> 
 
 <template name = "progressBar">
-	
+
+</template> 
+
+<template name = "toDoPanel">
+
 </template> 
 	
-</template>
+<template name = "issuesPanel">
 	<h1 id = "name-header">My Profile</h1>
 	<p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
 	<p>{{#if loggedIn}}My issues: {{getUserIssues}}{{/if}}</p>
