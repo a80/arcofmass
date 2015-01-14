@@ -1,4 +1,13 @@
-/*
-CSS work to go here
+.input-group-addon{
+	padding: 50px;
+	
 
-*/
+}
+
+.form-control {
+
+	border: 1px;
+	border-style: solid;
+	border-color:  #000000;
+
+}
