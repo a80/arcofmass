@@ -1,7 +1,12 @@
 Meteor.methods({
   getUserIssues: function() {
-	//Returns the names of the users issues
-    return Meteor.user.issues.sort(function(a, b) {
+	//Returns the objects for the users issues sorted by how many users care
+	valIssues = Meteor.user.issues;
+	refIssues = [];
+	for (int i = 0; i < valIssues.length; i++) {
+		refIssues.push(issues.find({name: valIssues[i]});
+	}
+    return refIssues.sort(function(a, b) {
         var x = a[count]; var y = b[count];
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
