@@ -28,17 +28,16 @@
 	<div class="row">
 		<div class="col-md-8">
 
-      <body>
-  		
+      
 
         <h1 id = "name-header">Progress toward issue: {{returnIssueName}}</h1>
 			  <p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
 
 
+        <div><svg id = "bar"><circle cx="1" cy="1" r="10000" fill="red"></circle></svg></div> 
+        
 
-        {{progressBar}}
-
-      </body>
+      
 
 			<!-- progress bar for bar graph - not sure why constant region doesn't work.-->
 			<!-- {{<div>

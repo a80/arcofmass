@@ -28,7 +28,7 @@ Template.issuePanel.helpers({
   returnUserId: function() {
     return Meteor.user().username; 
   },
-})
+});
 
 Template.issuePanel.progressBar = function() {
   /*d3.select("body")
@@ -53,10 +53,10 @@ Template.issuePanel.progressBar = function() {
                 .ticks(5)
                 .scale(widthScale); 
 
-  var canvas = d3.select("body")
+  var canvas = d3.select("#bar")
                 .append("svg")
                 .attr("width", 500)
-                .attr("height", 500)
+                .attr("height", 1000)
                 .attr("transform", "translate(50, 50)");
                 //.call(axis);
 
@@ -70,17 +70,19 @@ Template.issuePanel.progressBar = function() {
                     .attr("width", 10)
                     .attr("height", 20); */
 
-  var dataArray = [20, 40, 50, 60]; 
+  //var dataArray = [20, 40, 50, 60]; 
+
+  var dataArray = [50]; 
 
   var bars = canvas.selectAll("rect")
                 .data(dataArray)
                 .enter()
                   .append("rect")
-                  .attr("width", function(d) {
+                  .attr("height", function(d) {
                     //return d;
                     return widthScale(d);  
                   })
-                  .attr("height", 50)
+                  .attr("width", 500)
                   .attr("fill", function(d) { return color(d) })
                   .attr("y", function(d, i) { return i*100}); 
 
