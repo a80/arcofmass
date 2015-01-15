@@ -16,12 +16,14 @@ Template.profileHome.helpers({
 Template.toDoPanel.helpers({
 	returnToDos: function(issue) {
 		//Returns the issue's action items
-		myActions = [];
+		/*myActions = [];
 		for (item in issue.actionItems) {
 			if (item.important)
 				myActions.push(item);
 		}
 		return myActions;
+		*/
+		return ["First todo", "Second todo", "Third todo"];
 	  }
 });
 
