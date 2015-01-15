@@ -12,6 +12,20 @@ Template.profileHome.helpers({
     return ["first issue", "second issue", "third issue"]; 
   }
  });
+ 
+Template.toDoPanel.helpers({
+	returnToDos: function(issue) {
+		//Returns the issue's action items
+		/*myActions = [];
+		for (item in issue.actionItems) {
+			if (item.important)
+				myActions.push(item);
+		}
+		return myActions;
+		*/
+		return ["First todo", "Second todo", "Third todo"];
+	  }
+});
 
 Template.issuePanel.helpers({
   loggedIn: function() {
