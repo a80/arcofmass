@@ -1,3 +1,15 @@
+Template.adminHome.helpers({
+  getUserIssues: function() {
+    //Meteor.call("getUserIssues");
+    //var userIssues =  
+    //console.log("function entered: " + userIssues); 
+    //console.log("getUserIssues entered, accessing: " + issues.find({}));
+    //return issues.find({}); 
+    return ["first issue", "second issue", "third issue"]; 
+  }
+ });
+
+
 /*if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault("counter", 0);
