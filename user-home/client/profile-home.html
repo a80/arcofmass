@@ -1,10 +1,14 @@
 <template name="profileHome">
 	
 		<!--make the following two columns a generic element, a generic template.-->
-  		
+  		<!-- {{getUserIssues}} -->
+
+  	<ul>
   		{{#each getUserIssues}}
   			{{> issuePanel}}
   		{{/each}}
+  	</ul>
+
 
 	<!-- <h1 id = "name-header">My Profile</h1>
 	<p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p> --> 
@@ -20,12 +24,21 @@
 
 </template> 
 	
-<template name = "issuesPanel">
+<template name = "issuePanel">
 	<div class="row">
 		<div class="col-md-8">
-  			<h1 id = "name-header">Progress toward issue: {{returnIssueName}}</h1>
-			
-			<p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
+
+      <body>
+  		
+
+        <h1 id = "name-header">Progress toward issue: {{returnIssueName}}</h1>
+			  <p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
+
+
+
+        {{progressBar}}
+
+      </body>
 
 			<!-- progress bar for bar graph - not sure why constant region doesn't work.-->
 			<!-- {{<div>
@@ -34,9 +47,9 @@
 			</div>}} --> 
 
 			{{> progressBarPanel}}
-  		</div>
+  	</div>
   		
-  		<div class="col-md-4">
+  	<div class="col-md-4">
   			<!-- eliminate dummy code --> 
   			<!-- <h1 id = "name-header">To Do.</h1>
   			<ol>
@@ -48,7 +61,7 @@
   			<h1>To Dos: Display {{returnToDos}}</h1> 
 
   			{{> toDoPanel}}
-  		</div>
+  	</div>
 	</div>
 
 	<!-- <h1 id = "name-header">My Profile</h1>

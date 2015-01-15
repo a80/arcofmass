@@ -65,6 +65,15 @@ Template.login.events({
         console.log('Succesfully created new user.');
       }
     });
+
+    /*//customize user creation - delete for now. 
+    Accounts.onCreateUser(function(options, user) {
+      user.issues = [];
+      if (options.profile) 
+        user.profile = options.profile;  
+      return user; 
+    }); */
+
     return false; 
   }
 
