@@ -1,15 +1,15 @@
 //Meteor.subscribe("userIssues");
 
-issues = new Mongo.Collection("issues"); //changed from Meteor
+//issues = new Mongo.Collection("issues"); //changed from Meteor
 
 Template.profileHome.helpers({
   getUserIssues: function() {
     //Meteor.call("getUserIssues");
     //var userIssues =  
     //console.log("function entered: " + userIssues); 
-    //console.log("getUserIssues entered, accessing: " + issues.find({}));
-    //return issues.find({}); 
-    return ["first issue", "second issue", "third issue"]; 
+    console.log(issues.find({}).fetch());
+    return issues.find({}).fetch(); 
+    //return ["first issue", "second issue", "third issue"]; 
   }
  });
  
