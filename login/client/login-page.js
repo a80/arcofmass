@@ -49,7 +49,7 @@ Template.login.events({
     return false; 
   },
 
-    'click #new-user-button': function(event, template) {
+  'click #new-user-button': function(event, template) {
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
@@ -65,6 +65,8 @@ Template.login.events({
         console.log('Succesfully created new user.');
       }
     });
+    return false; 
+  },
 
 	//ADDING AN ADMIN BUTTON
 	//TAKE THIS OUT LATER
@@ -80,9 +82,9 @@ Template.login.events({
     //console.log('executed');
     Accounts.createUser({username: username, password: password, roles: ['admin']}, function(error) {
       if (error) {
-        console.log('Failed to create new user.');
+        console.log('Failed to create new admin.');
       } else {
-        console.log('Succesfully created new user.');
+        console.log('Succesfully created new admin.');
       }
     });
 	
@@ -95,7 +97,29 @@ Template.login.events({
     }); */
 
     return false; 
-  }
+  },
+
+  'click #admin-login-button': function(event, template) {
+    event.preventDefault();
+    var username = template.find("#username-field").value;
+    var password = template.find("#password-field").value;
+    //var usernameField = document.getElementById('username-field');
+    //var username = usernameField.value; 
+
+    //console.log(username + "; " + password);
+    //console.log('executed');
+
+    Meteor.loginWithPassword(username, password, function(error) {
+      if (error) {
+        console.log('admin login failed');
+      } else {
+        console.log('admin login-succeeded');
+        Router.go('/admin');
+      }
+    });
+
+    return false; 
+  },
 
 });
 
