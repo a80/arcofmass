@@ -66,6 +66,26 @@ Template.login.events({
       }
     });
 
+	//ADDING AN ADMIN BUTTON
+	//TAKE THIS OUT LATER
+	
+	'click #new-admin-button': function(event, template) {
+    event.preventDefault();
+    var username = template.find("#username-field").value;
+    var password = template.find("#password-field").value;
+    //var usernameField = document.getElementById('username-field');
+    //var username = usernameField.value; 
+
+    //console.log(username + "; " + password);
+    //console.log('executed');
+    Accounts.createUser({username: username, password: password, roles: ['admin']}, function(error) {
+      if (error) {
+        console.log('Failed to create new user.');
+      } else {
+        console.log('Succesfully created new user.');
+      }
+    });
+	
     /*//customize user creation - delete for now. 
     Accounts.onCreateUser(function(options, user) {
       user.issues = [];
