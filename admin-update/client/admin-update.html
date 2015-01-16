@@ -1,4 +1,14 @@
-<template name="adminUpdate">
+<template name = "adminUpdate">
+  
+  {{#if isInRole 'admin'}}
+    {{> adminUpdateBody}}
+  {{else}}
+    {{> customErrorPage }}
+  {{/if}}
+</template>
+
+
+<template name="adminUpdateBody">
 
 	<head>
 		<link rel="stylesheet" type="text/css" href="/adminUpdate.css">
@@ -145,5 +155,7 @@
 		</div>
 </template> 
 
-
+<template name = "customErrorPage"> 
+  <h1>You're not an admin.</h1> 
+</template> 
 

@@ -1,4 +1,4 @@
-if (Roles.userIsInRole(Meteor.user(), ['admin']) {
+if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
 	Template.adminHome.helpers({
 	  getUserIssues: function() {
 		//Meteor.call("getUserIssues");
@@ -45,5 +45,6 @@ if (Roles.userIsInRole(Meteor.user(), ['admin']) {
 	}*/
 }
 else {
-    $('body').html('<div class="error">You must be logged in as an admin to use this application!</div>');
+    //$('body').html('<div class="error">You must be logged in as an admin to use this application!</div>');
+    throw new Meteor.Error(403, 'Permission denied');
 }
