@@ -78,6 +78,9 @@ Meteor.methods({
   },
   setArea: function(zipcode) {
 	
+  },
+  modifyUser: function(myName, myZip, myStory) {
+	Meteor.user.profile = {name: myName, zip: myZip, story: myStory};
   }
   //put comma after above function
 });
