@@ -32,7 +32,7 @@ Meteor.methods({
 	//For use when a user removes an issue that they no longer care about
 	issues.find({name: issueName}).count -= 1;
   },
-  getIssuePopularityArray: function() {
+  getIssueCountArray: function() {
 	//Returns an array of the issues in decreasing order of number of users that care about the issue
 	return issues.find({"count", "desc"});
   },
@@ -46,7 +46,8 @@ Meteor.methods({
 	//Decreases the todo count by one
 	actionItems.find({name: todoName}).count -= 1;
   },
-  getIssueCount: function(issueName) {
+  getIssueCount: function(issueName) 
+	//TAKES THE NAME OF THE ISSUE
 	//Returns the popularity count of the given issue
 	return issues.find({name: issueName}).count;
   },
