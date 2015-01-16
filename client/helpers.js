@@ -35,6 +35,7 @@ Meteor.methods({
   getIssueCountArray: function() {
 	//Returns an array of the issues in decreasing order of number of users that care about the issue
 	//return issues.find({"count", "desc"});
+	return issues.find({count: "desc"});
   },
   increaseToDoCount: function(todoName) {
 	//TAKES THE NAME OF THE TODO

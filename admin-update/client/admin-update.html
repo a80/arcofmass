@@ -3,18 +3,32 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="/adminUpdate.css">
 	</head>
-	<div class="btn-group">
-	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	    Action <span class="caret"></span>
+
+	<div class="dropdown">
+	  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
+	    Select Issue <span class="caret"></span>
 	  </button>
-	  <ul class="dropdown-menu" role="menu">
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 	    <!-- List of all issues -->
-	    <li>{{#each getAllIssues}}
+
+	    {{#each getUserIssues}}
+	    	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{returnIssueName}}</a></li>
+	    {{/each}}
+	    <!-- <li>
+	    {{#each getAllIssues}}
   			{{> issuePanel}}
   		{{/each}}
-  		</li>
+  		</li> --> 
 	  </ul>
 	</div>
+	
+	
+
+
+</template>
+
+
+<template name = "updateFormField"> 
 	<div>
 		<h3> Issue X</h3>
 
@@ -129,6 +143,7 @@
 			<button type= "button" id= "addLegislator"> Add To Do
 			</button>
 		</div>
+</template> 
 
 
-</template>
+
