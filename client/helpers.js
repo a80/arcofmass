@@ -20,19 +20,36 @@ Meteor.methods({
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   },*/ 
-  increaseIssueCount: function(issue) {
+  increaseIssueCount: function(issueName) {
+	//TAKES THE NAME OF THE ISSUE
 	//Increases issue count by one
 	//For use when a user adds an issue that they now care about
-	issue.count += 1;
+	issues.find({name: issueName}).count += 1;
   },
-  decreaseIssueCount: function(issue) {
+  decreaseIssueCount: function(issueName) {
+	//TAKES THE NAME OF THE ISSUE
 	//Decreases issue count by one
 	//For use when a user removes an issue that they no longer care about
-	issue.count -= 1;
+	issues.find({name: issueName}).count -= 1;
   },
-  getIssuePopularityArray: function() {
+  getIssueCountArray: function() {
 	//Returns an array of the issues in decreasing order of number of users that care about the issue
-	return issues.find(["count", "desc"]);
+	return issues.find({"count", "desc"});
+  },
+  increaseToDoCount: function(todoName) {
+	//TAKES THE NAME OF THE TODO
+	//Increases the todo count by one
+	actionItems.find({name: todoName}).count += 1;
+  },
+  decreaseToDoCount: function(todoName) {
+	//TAKES THE NAME OF THE TODO
+	//Decreases the todo count by one
+	actionItems.find({name: todoName}).count -= 1;
+  },
+  getIssueCount: function(issueName) 
+	//TAKES THE NAME OF THE ISSUE
+	//Returns the popularity count of the given issue
+	return issues.find({name: issueName}).count;
   },
   insertNewIssue: function(name) {
 	//When a new issue has been added, insert it into the issues collection
@@ -54,6 +71,12 @@ Meteor.methods({
   },
   returnIssueName: function(issue) {
 	return issue.name;
+  },
+  getIssuesArea: function(districtName) {
+	return issues.find({"district": districtname});
+  },
+  setArea: function(zipcode) {
+	
   }
   //put comma after above function
 });
