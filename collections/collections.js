@@ -7,5 +7,5 @@ issues = new Meteor.Collection("issues"); //redefined in profile-home.js
 });*/
 
 Meteor.publish('userIssues', function() {
-	return Posts.find();
+	return issues.find();
 });
