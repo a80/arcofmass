@@ -1,13 +1,3 @@
-Meteor.publish('userIssues', function() {
-	return issues.find();
-});
-Meteor.publish('legislatorsColl', function() {
-	return legislators.find();
-});
-Meteor.publish('actionsColl', function() {
-	return actionItems.find();
-});
-
 Meteor.methods({
   /*getUserIssues: function() {
 	//Returns the names of the users issues
