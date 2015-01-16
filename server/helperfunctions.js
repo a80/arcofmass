@@ -1,3 +1,13 @@
+Meteor.publish('userIssues', function() {
+	return issues.find();
+});
+Meteor.publish('legislatorsColl', function() {
+	return legislators.find();
+});
+Meteor.publish('actionsColl', function() {
+	return actionItems.find();
+});
+
 Meteor.methods({
   /*getUserIssues: function() {
 	//Returns the names of the users issues
@@ -80,7 +90,9 @@ Meteor.methods({
 	
   },
   modifyUser: function(myName, myZip, myStory) {
-	Meteor.user.profile = {name: myName, zip: myZip, story: myStory};
+  	console.log("run");
+  	Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.name":myName}});
+	//Meteor.user().profile = {name: myName, zip: myZip, story: myStory};
   }
   //put comma after above function
 });

@@ -1,10 +1,12 @@
-Template.body.event({
-	"submit .btn btn-default": function(event) {
-		myZip = document.getElementById("inputZipCode").value;
-		myStory = document.getElementById("inputStory").value;
-		myName = document.getElementById("inputName").value;
+Template.userSettings.events({
+	"click .btn": function(event) {
+		var myZip = document.getElementById("inputZipCode").value;
+		var myStory = document.getElementById("inputStory").value;
+		var myName = document.getElementById("inputName").value;
 		
-		Meteor.call("modifyUser", {myName, myZip, myStory});
+		console.log("submitted.");
+
+		Meteor.call("modifyUser", myName, myZip, myStory);
 	}
 });
 
