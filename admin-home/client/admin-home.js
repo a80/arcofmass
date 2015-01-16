@@ -3,11 +3,20 @@ Template.adminHome.helpers({
     //Meteor.call("getUserIssues");
     //var userIssues =  
     //console.log("function entered: " + userIssues); 
-    //console.log("getUserIssues entered, accessing: " + issues.find({}));
-    //return issues.find({}); 
-    return ["first issue", "second issue", "third issue"]; 
+    console.log(issues.find({}).fetch());
+    return issues.find({}); 
+    //return ["first issue", "second issue", "third issue"]; 
   }
  });
+
+Template.adminIssuePanel.helpers({
+  returnIssueName: function() {
+    return this.name;
+  }, 
+  returnIssueCount: function() {
+    return this.count; 
+  }
+});
 
 
 /*if (Meteor.isClient) {

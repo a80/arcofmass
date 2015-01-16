@@ -8,7 +8,7 @@ Template.profileHome.helpers({
     //var userIssues =  
     //console.log("function entered: " + userIssues); 
     console.log(issues.find({}).fetch());
-    return issues.find({}).fetch(); 
+    return issues.find({}); 
     //return ["first issue", "second issue", "third issue"]; 
   }
  });
@@ -23,8 +23,35 @@ Template.toDoPanel.helpers({
 		}
 		return myActions;
 		*/
-		return ["First todo", "Second todo", "Third todo"];
-	  }
+		//return ["First todo", "Second todo", "Third todo"];
+
+    var issueName = this.name;
+    console.log("within returnToDos, issueName" + issueName); 
+    var actionItemsForIssue = [];
+    console.log(actionItems.find({}).fetch()[0]);
+
+    actionItemsData = actionItems.find({}).fetch();
+
+    console.log(actionItemsData.length);  
+    console.log(actionItemsData[0]);
+
+    for (var i = 0; i < actionItemsData.length; i++) {
+      console.log("entered if loop"); 
+      if (actionItemsData[i].issue === issueName) {
+        actionItemsForIssue.push(actionItemsData[i]); 
+      }
+    }
+
+    console.log(actionItemsForIssue);
+
+    return actionItemsForIssue;  
+
+	}, 
+
+  returnToDoName: function() {
+    return this.text; 
+    //console.log(this.text); 
+  }
 });
 
 Template.issuePanel.helpers({
@@ -38,10 +65,12 @@ Template.issuePanel.helpers({
       return true; 
     } 
   }, 
-
   returnUserId: function() {
     return Meteor.user().username; 
   },
+  returnIssueName: function() {
+    return this.name;
+  }
 });
 
 Template.issuePanel.progressBar = function() {
@@ -67,7 +96,7 @@ Template.issuePanel.progressBar = function() {
                 .ticks(5)
                 .scale(widthScale); 
 
-  var canvas = d3.select("#bar")
+  /*var canvas = d3.select("#bar")
                 .append("svg")
                 .attr("width", 500)
                 .attr("height", 1000)

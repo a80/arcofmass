@@ -24,7 +24,7 @@
 
   <ul>
     {{#each returnToDos}}
-      <li>Some toDo.</li> 
+      <li>{{returnToDoName}}</li> 
     {{/each}}
   </ul> 
 </template> 
@@ -39,7 +39,7 @@
 			  <p>{{# if loggedIn}}Logged in as {{returnUserId}}{{/if}}</p>
 
 
-        <div><svg id = "bar"><circle cx="1" cy="1" r="10000" fill="red"></circle></svg></div> 
+        <div><svg id = "bar"><circle cx="1" cy="1" r="100" fill="red"></circle></svg></div> 
         
 
       
