@@ -32,7 +32,11 @@ Meteor.methods({
   },
   getIssuePopularityArray: function() {
 	//Returns an array of the issues in decreasing order of number of users that care about the issue
-	return issues.find(["count", "desc"]);
+	return issues.find({"count", "desc"});
+  },
+  getIssueCount: function(issueName) {
+	//Returns the popularity count of the given issue
+	return issues.find({name: issueName}).count;
   },
   insertNewIssue: function(name) {
 	//When a new issue has been added, insert it into the issues collection
@@ -54,6 +58,12 @@ Meteor.methods({
   },
   returnIssueName: function(issue) {
 	return issue.name;
+  },
+  getIssuesArea: function(districtName) {
+	return issues.find({"district": districtname});
+  },
+  setArea: function(zipcode) {
+	
   }
   //put comma after above function
 });
