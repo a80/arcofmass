@@ -58,7 +58,7 @@ Template.login.events({
 
     //console.log(username + "; " + password);
     //console.log('executed');
-    Accounts.createUser({username: username, password: password}, function(error) {
+    Accounts.createUser({username: username, password: password, roles: []}, function(error) {
       if (error) {
         console.log('Failed to create new user.');
       } else {
