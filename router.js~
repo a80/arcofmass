@@ -8,5 +8,4 @@ Router.map(function() {
   this.route('profileHome', {path: '/profile'}); //insert User ID
   this.route('adminHome', {path: '/admin'}); //insert Admin ID
   this.route('user-settings', {path: '/user-settings'}); //insert Admin ID
-  this.route('adminUpdate', {path: '/update'}); //insert Admin ID
 });

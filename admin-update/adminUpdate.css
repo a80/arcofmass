@@ -1,0 +1,23 @@
+.checkbox, .todo, .goal, .message {
+	display: inline; 
+	padding: 3px
+}
+
+.row {
+	text-align: center;	
+}
+
+#contactList{
+	text-align: center;
+}
+
+#todoList{
+	text-align: center;
+	padding: 10px
+}
+
+.contactName, .contactEmail, .contactAddress {
+	display: inline;
+	padding: 3px;
+}
+
