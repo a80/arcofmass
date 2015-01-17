@@ -1,13 +1,30 @@
-.input-group-addon{
-	padding: 50px;
-	
+.label, .input {
+	display: inline;
+}
+
+.formPage, .image {
+	padding: 75px;
+	display: inline;
+	}
+
+.btn-group{
+	padding-top: 10px;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 10px;}
+
+.each {
+	padding: 5px;
+	padding-left: 20px;
+}
+
+#inputName, #inputUsername, #inputEmail, #inputPassword,#inputZipcode {
+	width: 200px;
+	height: 25px;
+
 
 }
 
-.form-control {
-
-	border: 1px;
-	border-style: solid;
-	border-color:  #000000;
-
+.title {
+	padding: 10px;
 }
