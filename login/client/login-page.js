@@ -49,15 +49,11 @@ Template.login.events({
     return false; 
   },
 
-  'click #new-user-button': function(event, template) {
+  /*'click #new-user-button': function(event, template) {
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
-    //var usernameField = document.getElementById('username-field');
-    //var username = usernameField.value; 
-
-    //console.log(username + "; " + password);
-    //console.log('executed');
+    
     Accounts.createUser({username: username, password: password, roles: []}, function(error) {
       if (error) {
         console.log('Failed to create new user.');
@@ -65,6 +61,25 @@ Template.login.events({
         console.log('Succesfully created new user.');
       }
     });
+    return false; 
+  },*/
+
+  'click #new-user-button': function(event, template) {
+    event.preventDefault();
+    var username = template.find("#username-field").value;
+    var password = template.find("#password-field").value;
+    
+    Accounts.createUser({username: username, password: password});
+
+    /*, function(error) {
+      if (error) {
+        console.log('Failed to create new user.');
+      } else {
+        console.log('Succesfully created new user.');
+      }
+    });*/
+
+    Meteor.call("addNewRegularUser", username); 
     return false; 
   },
 
@@ -75,21 +90,37 @@ Template.login.events({
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
+
+    
     //var usernameField = document.getElementById('username-field');
     //var username = usernameField.value; 
 
     //console.log(username + "; " + password);
     //console.log('executed');
-    id = Accounts.createUser({username: username, password: password}, function(error) {
+    Accounts.createUser({username: username, password: password}); 
+
+
+
+      /*, function(error) {
       if (error) {
+        console.log(error);
         console.log('Failed to create new admin.');
       } else {
         console.log('Succesfully created new admin.');
-        
       }
-    });
+    });*/
+
+    Meteor.call("addNewAdmin", username); 
+
+    //var id = Meteor.users.find(); 
+
+    /*console.log("should get to here"); 
+
+    console.log(id); 
 
     Roles.addUsersToRoles(id, ['admin']);
+
+    console.log("got here.");*/
 	
     /*//customize user creation - delete for now. 
     Accounts.onCreateUser(function(options, user) {
@@ -117,9 +148,14 @@ Template.login.events({
         console.log('admin login failed');
       } else {
         console.log('admin login-succeeded');
-        Router.go('/admin');
+        //Router.go('/admin');
+        //this.redirect('/admin'); 
       }
     });
+
+    Router.go('/admin');
+
+    //this.redirect("/admin"); 
 
     return false; 
   },

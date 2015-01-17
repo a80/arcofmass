@@ -83,6 +83,83 @@ Meteor.methods({
   	console.log("run");
   	Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.name":myName}});
 	//Meteor.user().profile = {name: myName, zip: myZip, story: myStory};
-  }
+  },
+  addNewAdmin: function(username) {
+  	console.log('addNewAdmin accessed');
+
+  	
+    //var username = template.find("#username-field").value;
+    //var password = template.find("#password-field").value;
+    //var usernameField = document.getElementById('username-field');
+    //var username = usernameField.value; 
+
+    //console.log(username + "; " + password);
+    //console.log('executed');
+    //var id = Accounts.createUser({username: username, password: password}); 
+
+      /*, function(error) {
+      if (error) {
+        console.log(error);
+        console.log('Failed to create new admin.');
+      } else {
+        console.log('Succesfully created new admin.');
+      }
+    });*/
+
+    var id = Meteor.users.findOne({username: username})._id; 
+
+    //console.log("should get to here"); 
+
+    //console.log(id); 
+
+    Roles.addUsersToRoles(id, ['admin']);
+
+    //console.log("got here.");
+	
+    /*//customize user creation - delete for now. 
+    Accounts.onCreateUser(function(options, user) {
+      user.issues = [];
+      if (options.profile) 
+        user.profile = options.profile;  
+      return user; 
+    }); */
+
+    //return false; 
+
+  },
+
+  addNewRegularUser: function(username) {
+
+  	console.log('addNewRegularUser accessed');
+
+  	
+    //var username = template.find("#username-field").value;
+    //var password = template.find("#password-field").value;
+    //var usernameField = document.getElementById('username-field');
+    //var username = usernameField.value; 
+
+    //console.log(username + "; " + password);
+    //console.log('executed');
+    //var id = Accounts.createUser({username: username, password: password}); 
+
+      /*, function(error) {
+      if (error) {
+        console.log(error);
+        console.log('Failed to create new admin.');
+      } else {
+        console.log('Succesfully created new admin.');
+      }
+    });*/
+
+    var id = Meteor.users.findOne({username: username})._id; 
+
+    //console.log("should get to here"); 
+
+    //console.log(id); 
+
+    Roles.addUsersToRoles(id, ['regular']);
+
+
+  },
   //put comma after above function
 });

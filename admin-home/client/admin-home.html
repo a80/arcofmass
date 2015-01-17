@@ -8,7 +8,7 @@
   {{> hello}}
 </body> -->
 
-<template name = "adminHome">
+<template name = "adminHomeBody">
   
   {{#if isInRole 'admin'}}
     {{> adminHomeBody}}
@@ -17,8 +17,13 @@
   {{/if}}
 </template>
 
-<template name="adminHomeBody">
+<template name="adminHome">
 	<h1>Administrator Home</h1>
+
+    <button type="button" class="btn btn-default" id = "updates-button"> Go to updates</button>
+
+
+
   	<h2>Trending Issues</h2>
   	<ol>
   		{{#each getUserIssues}}

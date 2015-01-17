@@ -1,9 +1,4 @@
-//Meteor.subscribe("userIssues");
-
-//issues = new Mongo.Collection("issues"); //changed from Meteor
-if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
-
-	Template.profileHome.helpers({
+Template.profileHome.helpers({
 	  getUserIssues: function() {
 		//Meteor.call("getUserIssues");
 		//var userIssues =  
@@ -134,6 +129,19 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 		.attr("transform", "translate(0, 400)")
 		.call(axis);
 	}
+
+
+
+
+//Meteor.subscribe("userIssues");
+
+
+
+
+//issues = new Mongo.Collection("issues"); //changed from Meteor
+/*if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
+
+	
 } else {
 	throw new Meteor.Error('403', 'permission denied');
-}
+}*/
