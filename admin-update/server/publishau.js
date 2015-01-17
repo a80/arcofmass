@@ -3,7 +3,7 @@ Meteor.publish("adminUpdateIssues", function() {
 		return issues.find({});
 	}
 });
-Meteor.publish("adminUpdateActions", function() 
+Meteor.publish("adminUpdateActions", function() {
 	if (Roles.userIsInRole(this.userId, ['admin'])) {
 		return actionItems.find({});
 	}
