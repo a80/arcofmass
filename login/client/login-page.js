@@ -80,13 +80,16 @@ Template.login.events({
 
     //console.log(username + "; " + password);
     //console.log('executed');
-    Accounts.createUser({username: username, password: password, roles: ['admin']}, function(error) {
+    id = Accounts.createUser({username: username, password: password}, function(error) {
       if (error) {
         console.log('Failed to create new admin.');
       } else {
         console.log('Succesfully created new admin.');
+        
       }
     });
+
+    Roles.addUsersToRoles(id, ['admin']);
 	
     /*//customize user creation - delete for now. 
     Accounts.onCreateUser(function(options, user) {

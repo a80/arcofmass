@@ -3,7 +3,7 @@
   {{#if isInRole 'admin'}}
     {{> adminUpdateBody}}
   {{else}}
-    {{> customErrorPage }}
+    {{> customErrorPageAdminUpdate }}
   {{/if}}
 </template>
 
@@ -155,7 +155,7 @@
 		</div>
 </template> 
 
-<template name = "customErrorPage"> 
+<template name = "customErrorPageAdminUpdate"> 
   <h1>You're not an admin.</h1> 
 </template> 
 

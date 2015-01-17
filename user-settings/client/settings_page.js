@@ -1,4 +1,4 @@
-if (!Role.userIsInRole(Meteor.user(), ['admin']) {
+if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 	Template.userSettings.events({
 		"click .btn": function(event) {
 			var myZip = document.getElementById("inputZipCode").value;

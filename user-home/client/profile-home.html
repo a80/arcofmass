@@ -1,4 +1,15 @@
-<template name="profileHome">
+<template name = "profileHome">
+
+  <h1> entered new block. </h1>
+  
+  {{#if isInRole 'admin'}}
+    {{> profileError}}
+  {{else}}
+    {{> profileHomeBody}}
+  {{/if}}
+</template>
+
+<template name="profileHomeBody">
 	
 		<!--make the following two columns a generic element, a generic template.-->
   		<!-- {{getUserIssues}} -->
@@ -73,3 +84,6 @@
 <<<<<<< HEAD
 	<p>{{#if loggedIn}}My issues: {{getUserIssues}}{{/if}}</p> -->
 
+<template name = "profileError"> 
+  <h1>You're not a user.</h1> 
+</template> 

@@ -2,6 +2,7 @@
 
 //issues = new Mongo.Collection("issues"); //changed from Meteor
 if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
+
 	Template.profileHome.helpers({
 	  getUserIssues: function() {
 		//Meteor.call("getUserIssues");
@@ -132,7 +133,6 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 	  canvas.append("g")
 		.attr("transform", "translate(0, 400)")
 		.call(axis);
-
 	}
 } else {
 	throw new Meteor.Error('403', 'permission denied');

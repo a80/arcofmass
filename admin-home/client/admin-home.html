@@ -13,7 +13,7 @@
   {{#if isInRole 'admin'}}
     {{> adminHomeBody}}
   {{else}}
-    {{> customErrorPage }}
+    {{> customErrorPageAdminHome }}
   {{/if}}
 </template>
 
@@ -42,6 +42,6 @@
 
 </template>
 
-<template name = "customErrorPage"> 
+<template name = "customErrorPageAdminHome"> 
   <h1>You're not an admin.</h1> 
 </template> 
