@@ -1,16 +1,10 @@
-/*Meteor.publish("adminHomeIssues", function() {
-	return issues.find({});
-});
-
-Meteor.publish("adminHomeActions", function() {
-	return actionItems.find({});
-});*/
-
-/*if (Roles.userIsInRole(this.user, ['admin'])) {
-	Meteor.publish("adminHomeIssues", function() {
+Meteor.publish("adminHomeIssues", function() {
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
 		return issues.find({});
-	});
-	Meteor.publish("adminHomeActions", function() {
+	}
+});
+Meteor.publish("adminHomeActions", function() {
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
 		return actionItems.find({});
-	});
-}*/
+	}
+});

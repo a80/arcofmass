@@ -1,8 +1,10 @@
-if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
-	Meteor.publish("adminUpdateIssues", function() {
+Meteor.publish("adminUpdateIssues", function() {
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
 		return issues.find({});
-	});
-	Meteor.publish("adminUpdateActions", function() {
+	}
+});
+Meteor.publish("adminUpdateActions", function() 
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
 		return actionItems.find({});
-	});
-}
+	}
+});
