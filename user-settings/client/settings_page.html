@@ -6,53 +6,62 @@
 </head>
 <body>
 	
-	<div>
+	<div class = 'title'>
 		<h1 id="theTitle"> Your Settings </h1>
 	</div>
 
-	<div>
-		<form class="form-horizontal">
-		  <div class="form-group">
-		    <label for="inputName" class="col-sm-2 control-label">Name</label>
-		    <div class="col-sm-10">
-		      <input type="name" class="form-control" id="inputName" placeholder="Enter name">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="inputUsername" class="col-sm-2 control-label">Username</label>
-		    <div class="col-sm-10">
-		      <input type="username" class="form-control" id="inputUsername" placeholder="Enter username">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-		    <div class="col-sm-10">
-		      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-		    <div class="col-sm-10">
-		      <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="inputZipCode" class="col-sm-2 control-label">Zip Code</label>
-		    <div class="col-sm-10">
-		      <input type="zipcode" class="form-control" id="inputZipCode" placeholder="Enter your Story">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="inputStory" class="col-sm-2 control-label">Story</label>
-		    <div class="col-sm-10">
-		      <input type="story" class="form-control" id="inputStory" placeholder="Email">
-		    </div>
-		  </div>
-		  
-		  
-		</form>
-	</div>
+	
+	<div class = 'wholePage' >
+		<div class = "formPage">
+			<form class = "form">
+				<div class = "each">
+					<h5>Name</h5>
+					<div class = "name">
+						<div><input type="name" class="input" id="inputName" placeholder="Enter Name"></div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Username</h5>
+					<div class = "username">
+						<div><input type="username" class="input" id="inputUsername" placeholder="Enter Username"></div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Password</h5>
+					<div class = "password">
+						<div><input type="password" class="input" id="inputPassword" placeholder="Password"></div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Email</h5>
+					<div class = "email">
+						<div><input type="email" class="input" id="inputEmail" placeholder="Email"></div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Zip Code</h5>
+					<div class = "zipcode">
+						<div><input type="zipcode" class="input" id="inputZipcode" placeholder="Enter Zip Code"></div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Story</h5>
+					<div class = "story">
+						<div>
+							<textarea rows="10" cols="21" placeholder="Enter Your Story"></textarea>
+						</div>
+					</div>
+				</div>
+			
+			</form>
+		</div>
+		<div class = "image">
+			<div class = "inner">
+				<img class="mainImage" src="http://arcofmass.wpengine.com/wp-content/uploads/2014/06/LittleGirlThumbsUp231-1024x356.png" style="width: 400px; height: 398px;">
+			</div>
 
+		</div>
+	</div>
 	<div class="btn-group" role="group" >
 		<button type="button" class="btn btn-default"> Save</button>
 		
