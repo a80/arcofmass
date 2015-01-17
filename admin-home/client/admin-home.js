@@ -1,4 +1,5 @@
 if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
+	Meteor.subscribe("adminHomeData");
 	Template.adminHome.helpers({
 	  getUserIssues: function() {
 		//Meteor.call("getUserIssues");

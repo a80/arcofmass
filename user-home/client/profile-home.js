@@ -2,6 +2,7 @@
 
 //issues = new Mongo.Collection("issues"); //changed from Meteor
 if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
+	Meteor.subscribe("userHomeData");
 
 	Template.profileHome.helpers({
 	  getUserIssues: function() {
