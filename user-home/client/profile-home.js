@@ -1,4 +1,15 @@
+//<<<<<<< HEAD
 Template.profileHome.helpers({
+/*=======
+//Meteor.subscribe("userIssues");
+
+//issues = new Mongo.Collection("issues"); //changed from Meteor
+if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
+	Meteor.subscribe("userHomeIssues");
+	Meteor.subscribe("userHomeActions");
+
+	Template.profileHome.helpers({
+>>>>>>> 2c343a9573a36d97e0b1269cd795c61c0276640b*/
 	  getUserIssues: function() {
 		//Meteor.call("getUserIssues");
 		//var userIssues =  

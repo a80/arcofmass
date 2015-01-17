@@ -1,4 +1,6 @@
 if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
+	Meteor.subscribe("adminUpdateIssues");
+	Meteor.subscribe("adminUpdateActions");
 	var selectedUserIssue = "none"; 
 
 	Template.adminUpdate.helpers({
