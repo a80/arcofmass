@@ -2,6 +2,13 @@ actionItems = new Meteor.Collection("actionItems");
 legislators = new Meteor.Collection("legislators");
 issues = new Meteor.Collection("issues"); //redefined in profile-home.js
 
+
+
+/* REMOVE THESE: */
+/*Things = new Meteor.Collection("things");
+Links = new Meteor.Collection("links");*/
+
+
 //Roles.createRole("admin");
 
 

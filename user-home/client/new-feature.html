@@ -1,0 +1,19 @@
+<template name = "newFeature">
+	<body>
+
+
+		{{#each simpleArray}}
+		<p>There should be 3 of these.</p>
+			{{currentElement}} 
+			{{> chartStuff}}
+		{{/each}}
+
+
+
+	</body>
+</template> 
+
+<template name="chartStuff">
+    <div id="barChart"></div>
+</template>
+

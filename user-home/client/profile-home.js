@@ -1,37 +1,14 @@
-//<<<<<<< HEAD
+
 Template.profileHome.helpers({
-/*=======
-//Meteor.subscribe("userIssues");
-
-//issues = new Mongo.Collection("issues"); //changed from Meteor
-if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
-	Meteor.subscribe("userHomeIssues");
-	Meteor.subscribe("userHomeActions");
-
-	Template.profileHome.helpers({
->>>>>>> 2c343a9573a36d97e0b1269cd795c61c0276640b*/
-	  getUserIssues: function() {
-		//Meteor.call("getUserIssues");
-		//var userIssues =  
-		//console.log("function entered: " + userIssues); 
+	getUserIssues: function() {
 		console.log(issues.find({}).fetch());
 		return issues.find({}); 
-		//return ["first issue", "second issue", "third issue"]; 
-	  }
-	 });
-	 
-	Template.toDoPanel.helpers({
-		returnToDos: function(issue) {
-			//Returns the issue's action items
-			/*myActions = [];
-			for (item in issue.actionItems) {
-				if (item.important)
-					myActions.push(item);
-			}
-			return myActions;
-			*/
-			//return ["First todo", "Second todo", "Third todo"];
 
+	}
+});
+	 
+Template.toDoPanel.helpers({
+	returnToDos: function(issue) {
 		var issueName = this.name;
 		console.log("within returnToDos, issueName" + issueName); 
 		var actionItemsForIssue = [];
@@ -53,16 +30,16 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 
 		return actionItemsForIssue;  
 
-		}, 
+	}, 
 
-	  returnToDoName: function() {
+	returnToDoName: function() {
 		return this.text; 
 		//console.log(this.text); 
-	  }
-	});
+	}
+});
 
-	Template.issuePanel.helpers({
-	  loggedIn: function() {
+Template.issuePanel.helpers({
+	loggedIn: function() {
 		//verify if user logged in. 
 		if (Meteor.userId() === null) {
 		  console.log('executed, result is false'); 
@@ -71,17 +48,21 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 		  console.log('executed, result is true'); 
 		  return true; 
 		} 
-	  }, 
-	  returnUserId: function() {
+	}, 
+	
+	returnUserId: function() {
 		return Meteor.user().username; 
-	  },
-	  returnIssueName: function() {
+	},
+	
+	returnIssueName: function() {
 		return this.name;
-	  }
-	});
+	}
+});
 
-	Template.issuePanel.progressBar = function() {
-	  d3.select("body")
+
+
+Template.issuePanel.progressBar = function() {
+	d3.select("body")
 		.append("p")
 		.style("color", "red")
 		.text("hi, what's up?");
@@ -89,44 +70,44 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 
 	  //order seems to matter in d3. 
 
-	  console.log('executing');
+	console.log('executing');
 
-	  var widthScale = d3.scale.linear()
-						  .domain([0, 60])
-						  .range([0, 500]);
+	var widthScale = d3.scale.linear()
+						.domain([0, 60])
+						.range([0, 500]);
 
-	  var color = d3.scale.linear()
+	var color = d3.scale.linear()
 					.domain([0, 60])
 					.range(["red", "blue"]);
 
-	  var axis = d3.svg.axis()
+	var axis = d3.svg.axis()
 					.ticks(5)
 					.scale(widthScale); 
 
-	  var canvas = d3.select("body")
+	var canvas = d3.select("body")
 					.append("svg")
 					.attr("width", 50)
 					.attr("height", 10000)
 					.attr("transform", "translate(0, 0)");
 					//.call(axis);
 
-	  /*var circle = canvas.append("circle")
+	/*var circle = canvas.append("circle")
 					.attr("cx", 250)
 					.attr("cy", 250)
 					.attr("r", 50)
 					.attr("fill", "red");*/
 
-	  var rectangle = canvas.append("rect")
+	var rectangle = canvas.append("rect")
 						.attr("width", 10)
 						.attr("height", 20);
 
-	 console.log('here');
+	console.log('here');
 
-	  //var dataArray = [20, 40, 50, 60]; 
+	//var dataArray = [20, 40, 50, 60]; 
 
-	  var dataArray = [50]; 
+	var dataArray = [50]; 
 
-	  var bars = canvas.selectAll("rect")
+	var bars = canvas.selectAll("rect")
 					.data(dataArray)
 					.enter()
 					  .append("rect")
@@ -138,23 +119,7 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 					  .attr("fill", function(d) { return color(d) })
 					  .attr("y", function(d, i) { return i*100}); 
 
-	  canvas.append("g")
+	canvas.append("g")
 		.attr("transform", "translate(400, 100)")
 		.call(axis);
-	}
-
-
-
-
-//Meteor.subscribe("userIssues");
-
-
-
-
-//issues = new Mongo.Collection("issues"); //changed from Meteor
-/*if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
-
-	
-} else {
-	throw new Meteor.Error('403', 'permission denied');
-}*/
+}
