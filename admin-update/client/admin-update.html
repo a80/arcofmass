@@ -16,35 +16,33 @@
 			
 
 			function toEdit(){
-				document.getElementById("save").style.visibility = "hidden";
-				document.getElementById("edit").style.visibility = "visible";
-				document.getElementById("save").value = "edit";
-				document.getElementById("todo").readOnly = true;
-				document.getElementById("goal").readOnly = true;
-				document.getElementById("message").readOnly = true;
+				document.getElementById("saveToDo").style.visibility = "hidden";
+				document.getElementById("editToDo").style.visibility = "visible";
+				document.getElementById("todoInput").readOnly = true;
+				document.getElementById("goalInput").readOnly = true;
+				document.getElementById("messageInput").readOnly = true;
 			}
 
 			function toSave(){
-				document.getElementById("edit").style.visibility = "hidden";
-				document.getElementById("save").style.visibility = "visible";
-				document.getElementById("save").value = "save";
-				document.getElementById("todo").readOnly = false;
-				document.getElementById("goal").readOnly = false;
-				document.getElementById("message").readOnly = false;
+				document.getElementById("editToDo").style.visibility = "hidden";
+				document.getElementById("saveToDo").style.visibility = "visible";
+				document.getElementById("todoInput").readOnly = false;
+				document.getElementById("goalInput").readOnly = false;
+				document.getElementById("messageInput").readOnly = false;
 			}
 			function toEditLegislator(){
 				document.getElementById("saveLeg").style.visibility = "hidden";
 				document.getElementById("editLeg").style.visibility = "visible";
-				document.getElementById("rep").readOnly = true;
-				document.getElementById("em").readOnly = true;
+				document.getElementById("nameInput").readOnly = true;
+				document.getElementById("emailInput").readOnly = true;
 				document.getElementById("address").readOnly = true;
 			}
 
 			function toSaveLegislator(){
 				document.getElementById("editLeg").style.visibility = "hidden";
 				document.getElementById("saveLeg").style.visibility = "visible";
-				document.getElementById("rep").readOnly = false;
-				document.getElementById("em").readOnly = false;
+				document.getElementById("nameInput").readOnly = false;
+				document.getElementById("emailInput").readOnly = false;
 				document.getElementById("address").readOnly = false;
 			}
 			</script>
@@ -113,20 +111,17 @@
 			<h5>Contact for Issue X</h5>
 			<div class = 'contactName'>
 				 <span class ='box'>
-<<<<<<< HEAD
-				 	<input id="rep" type= 'text' aria-label="..." placeholder = "Representative">
-=======
+
+				 	
 				 	<input type= 'text' id="nameInput" aria-label="..." placeholder = "Representative">
->>>>>>> 1cdcf485e6f6f92cb27c6b42c0aaa1a52f9830fc
 				 </span>
 			</div>
 			<div class = 'contactEmail'>
 				 <span class ='box'>
-<<<<<<< HEAD
-				 	<input id="em" type= 'text' aria-label="..." placeholder = "Email">
-=======
+
+				
 				 	<input type= 'text' id="emailInput" aria-label="..." placeholder = "Email">
->>>>>>> 1cdcf485e6f6f92cb27c6b42c0aaa1a52f9830fc
+
 				 </span>
 			</div>
 			<div class = 'contactAddress'>
@@ -134,7 +129,7 @@
 				 	<input id="address" type= 'text' aria-label="..." placeholder = "Address">
 				 </span>
 			</div>
-<<<<<<< HEAD
+
 			<div id = 'saveLeg'>
 
 				 <button onclick="toEditLegislator()">
@@ -147,15 +142,11 @@
 		 			Edit
 		 		</button>
 		 	</div>
-			<div class = 'deleteLegislator'>
-=======
-			<div class = 'confirmLegislator' id="saveLegislatorButton">
-				 <button>
-				 	Save
-				 </button>
-			</div>
+			
+
+		
 			<div class = 'deleteLegislator' id="deleteLegislatorButton">
->>>>>>> 1cdcf485e6f6f92cb27c6b42c0aaa1a52f9830fc
+
 				 <button>
 				 	Delete
 				 </button>
@@ -177,53 +168,40 @@
 				 	</div>
 				 	<div class = 'todo'>
 				 		<span class ='box'>
-<<<<<<< HEAD
-				 			<input id="todo" type= 'text' aria-label="..." placeholder = "To Do #1" >
-=======
+
 				 			<input type= 'text' id="todoInput" aria-label="..." placeholder = "To Do #1" >
->>>>>>> 1cdcf485e6f6f92cb27c6b42c0aaa1a52f9830fc
+
 				 		</span>
 				 	</div>
 				 	<div class = 'goal' >
 				 		<span class ='box'>
-<<<<<<< HEAD
-				 			<input id="goal" type= 'text' aria-label="..." placeholder = "Goal #1">
-=======
+
+				 			
 				 			<input type= 'text' id="goalInput" aria-label="..." placeholder = "Goal #1">
->>>>>>> 1cdcf485e6f6f92cb27c6b42c0aaa1a52f9830fc
 				 		</span>
 				 	</div>
 				 	<div class = 'message' >
 				 		<span class ='box'>
-<<<<<<< HEAD
-				 			<input id="message" type= 'text' aria-label="..." placeholder = "Message">
-=======
+
+				 			
+
 				 			<input type= 'text' id="messageInput" aria-label="..." placeholder = "Message">
->>>>>>> 1cdcf485e6f6f92cb27c6b42c0aaa1a52f9830fc
+
 				 		</span>
 				 	</div>
 				 	
-				 	<div id = 'save'>
+				 
+				 	<div class = 'save' id="saveToDo">
 
-<<<<<<< HEAD
-				 		<button onclick="toEdit()">
-=======
-				 	<div class = 'save'>
+				 		<button onclick="toEdit()" id="saveTodoButton">
 
-				 		<button onclick="toEdit" id="saveTodoButton">
->>>>>>> 1cdcf485e6f6f92cb27c6b42c0aaa1a52f9830fc
 				 			Save
 				 		</button>
 				 	</div>
-				 	<div id = 'edit'>
+				 	<div class = 'edit' id="editToDo">
 
-<<<<<<< HEAD
-				 		<button onclick="toSave()">
+				 		<button onclick="toSave()" id="editButton">
 				 			Edit
-=======
-				 		<button onclick="toSave" id="editButton">
-				 			edit
->>>>>>> 1cdcf485e6f6f92cb27c6b42c0aaa1a52f9830fc
 				 		</button>
 				 	</div>
 				 	<div class = 'deleteToDo' id="deleteTodoButton">
@@ -290,7 +268,8 @@
 			<button type= "button" id= "addToDo"> Add To Do
 			</button>
 		</div>
-		</div>
+		
+	</div>
 		
 </template> 
 

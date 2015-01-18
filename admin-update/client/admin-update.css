@@ -1,4 +1,8 @@
-.checkbox, .todo, .goal, .message, #save,#edit, .deleteToDo {
+.edit, #editLeg {
+	visibility: hidden;
+}
+
+.checkbox, .todo, .goal, .message, .save,.edit, .deleteToDo {
 	display: inline; 
 	padding: 3px
 }
@@ -34,7 +38,7 @@
 }
 
 .newIssueField {
-	padding: 25px
+	padding: 25px;
 }
 
 #save, #edit {
@@ -42,23 +46,9 @@
 	/*position: absolute;*/
 }
 
-}
+
 #editLeg, #saveLeg {
 	display: inline;
 	/*position: absolute;*/
 }
-#save{
-	visibility: visible;
-}
 
-#edit {
-	visibility: hidden;
-}
-
-#saveLeg{
-	visibility: visible;
-}
-
-#editLeg {
-	visibility: hidden;
-}
