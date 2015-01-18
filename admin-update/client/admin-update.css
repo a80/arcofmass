@@ -1,4 +1,4 @@
-.checkbox, .todo, .goal, .message, .saveEdit, .deleteToDo, .box {
+.checkbox, .todo, .goal, .message, #save,#edit, .deleteToDo {
 	display: inline; 
 	padding: 3px
 }
@@ -16,7 +16,7 @@
 	padding: 10px
 }
 
-.contactName, .contactEmail, .contactAddress, .confirmLegislator, .deleteLegislator {
+.contactName, .contactEmail, .contactAddress, #saveLeg, #editLeg, .deleteLegislator {
 	display: inline;
 	padding: 3px;
 }
@@ -35,4 +35,30 @@
 
 .newIssueField {
 	padding: 25px
+}
+
+#save, #edit {
+	display: inline;
+	/*position: absolute;*/
+}
+
+}
+#editLeg, #saveLeg {
+	display: inline;
+	/*position: absolute;*/
+}
+#save{
+	visibility: visible;
+}
+
+#edit {
+	visibility: hidden;
+}
+
+#saveLeg{
+	visibility: visible;
+}
+
+#editLeg {
+	visibility: hidden;
 }

@@ -20,7 +20,6 @@ if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
 	  },
 	});
 
-	if ()
 }
 else {
     //$('body').html('<div class="error">You must be logged in to use this application!</div>');
