@@ -171,5 +171,18 @@ Meteor.methods({
 
 
   },
+  
+  addNewLegislator: function(myName, myEmail, myAddress, myIssue) {
+	legislators.upsert({name: myName}, {name: myName, email: myEmail, address: myAddress, issue: myIssue});
+  },
+  addNewTodo: function(myName, myGoal, myMessage, myIssue, isImportant) {
+	actionItems.upsert({name: myName}, {name: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant});	
+  },
+  deleteTodo: function(myName) {
+	actionItems.remove({name: myName});
+  },
+  deleteLegislator: function(myName) {
+	legislators.remove({name: myName});
+  }
   //put comma after above function
 });
