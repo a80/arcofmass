@@ -1,4 +1,4 @@
-.checkbox, .todo, .goal, .message {
+.checkbox, .todo, .goal, .message, .saveEdit, .deleteToDo, .box {
 	display: inline; 
 	padding: 3px
 }
@@ -16,8 +16,23 @@
 	padding: 10px
 }
 
-.contactName, .contactEmail, .contactAddress {
+.contactName, .contactEmail, .contactAddress, .confirmLegislator, .deleteLegislator {
 	display: inline;
 	padding: 3px;
 }
 
+#addToDo{
+	text-align: center;
+}
+
+.newIssueField, .dropdown, .deleteIssueField {
+	display: inline;
+}
+
+#issueButton, #newIssue{
+	display: inline;
+}
+
+.newIssueField {
+	padding: 25px
+}
