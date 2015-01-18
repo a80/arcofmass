@@ -5,10 +5,13 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 			var myZip = document.getElementById("inputZipCode").value;
 			var myStory = document.getElementById("inputStory").value;
 			var myName = document.getElementById("inputName").value;
+			var myEmail = document.getElementById("inputEmail").value;
+			var myOPassword = document.getElementById("inputOPassword").value;
+			var myNPassword = document.getElementBYId("inputNPassword").value;
 			
 			console.log("submitted.");
 
-			Meteor.call("modifyUser", myName, myZip, myStory);
+			Meteor.call("modifyUser", myName, myZip, myStory, myEmail, myOPassword, myNPassword);
 		}
 	});
 

@@ -79,10 +79,20 @@ Meteor.methods({
   setArea: function(zipcode) {
 	
   },
-  modifyUser: function(myName, myZip, myStory) {
+  modifyUser: function(myName, myZip, myStory, myEmail, myOPassword, myNPassword) {
   	console.log("run");
-  	Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.name":myName}});
+  	Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.name":myName, "profile.zip":myZip, "profile.story":myStory, "email":myEmail}});
 	//Meteor.user().profile = {name: myName, zip: myZip, story: myStory};
+	Accounts.changePassword(myOPassword, myNPassword, function(error) {
+		if (error) {
+			console.log(error);
+			console.log("Failed to change password.");
+			//Tell user that they entered their old password incorrectly?
+		}
+		else {
+			console.log("Successfully changed password.");
+		}
+	}); 
   },
   addNewAdmin: function(username) {
   	console.log('addNewAdmin accessed');
