@@ -4,7 +4,7 @@ if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
 	var selectedUserIssue = "none";
 	
 	Template.updateFormField.events({
-		"click #addLegislator": function(event) {
+		"click #saveLegislatorButton": function(event) {
 			var legName = document.getElementById("nameInput").value;
 			var legEmail = document.getElementById("emailInput").value;
 			var legAddress = document.getElementById("addressInput").value;
@@ -15,8 +15,25 @@ if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
 			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
 		}
 		
-		"click #addToDo": function(event) {
+		"click #saveTodoButton": function(event) {
+			var name = document.getElementById("todoInput").value;
+			var goal = document.getElementById("goalInput").value;
+			var message = document.getElementById("messageInput").value;
+			var dropdown = document.getElementById("dropdownMenu1");
+			var issue = dropdown.options[dropdown.selectedIndex].text;
+			var c = document.getElementById("checkInput");
+			var important = false;
+			if (c.checked) important = true;
 			
+			Meteor.call("addNewTodo", name, goal, message, issue, important);
+		}
+		"click #deleteTodoButton": function(event) {
+			var name = document.getElementById("todoInput").value;
+			Meteor.call("deleteTodo", name);
+		}
+		"click #deleteLegislatorButton": function(event) {
+			var name = document.getElementById("nameInput").value;
+			Meteor.call("deleteLegislator", name);
 		}
 	});
 

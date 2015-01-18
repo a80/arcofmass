@@ -99,12 +99,12 @@
 				 	<input type= 'text' aria-label="..." placeholder = "Address">
 				 </span>
 			</div>
-			<div class = 'confirmLegislator'>
+			<div class = 'confirmLegislator' id="saveLegislatorButton">
 				 <button>
 				 	Save
 				 </button>
 			</div>
-			<div class = 'deleteLegislator'>
+			<div class = 'deleteLegislator' id="deleteLegislatorButton">
 				 <button>
 				 	Delete
 				 </button>
@@ -121,38 +121,38 @@
 				 <div class = 'row'>
 				 	<div class = 'checkbox'>
 				 		<span class ='box'>
-				 			<input type= 'checkbox' aria-label="..." >
+				 			<input type= 'checkbox' id="checkInput" aria-label="..." >
 				 		</span>
 				 	</div>
 				 	<div class = 'todo'>
 				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "To Do #1" >
+				 			<input type= 'text' id="todoInput" aria-label="..." placeholder = "To Do #1" >
 				 		</span>
 				 	</div>
 				 	<div class = 'goal'>
 				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "Goal #1">
+				 			<input type= 'text' id="goalInput" aria-label="..." placeholder = "Goal #1">
 				 		</span>
 				 	</div>
 				 	<div class = 'message'>
 				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "Message">
+				 			<input type= 'text' id="messageInput" aria-label="..." placeholder = "Message">
 				 		</span>
 				 	</div>
 
 				 	<div class = 'save'>
 
-				 		<button onclick="toEdit">
+				 		<button onclick="toEdit" id="saveTodoButton">
 				 			Save
 				 		</button>
 				 	</div>
 				 	<div class = 'edit'>
 
-				 		<button onclick="toSave">
+				 		<button onclick="toSave" id="editButton">
 				 			edit
 				 		</button>
 				 	</div>
-				 	<div class = 'deleteToDo'>
+				 	<div class = 'deleteToDo' id="deleteTodoButton">
 				 		<button>
 				 			Delete
 				 		</button>
