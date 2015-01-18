@@ -1,1 +1,7 @@
 /* CSS declarations go here */
+
+/* Note: CSS file is linked in one overall issue block element.*/
+
+#barChart {
+	position: relative;
+}

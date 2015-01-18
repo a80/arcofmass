@@ -81,15 +81,15 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 	});
 
 	Template.issuePanel.progressBar = function() {
-	  /*d3.select("body")
+	  d3.select("body")
 		.append("p")
 		.style("color", "red")
-		.text("hi, what's up?");*/
+		.text("hi, what's up?");
 
 
 	  //order seems to matter in d3. 
 
-	   
+	  console.log('executing');
 
 	  var widthScale = d3.scale.linear()
 						  .domain([0, 60])
@@ -103,22 +103,24 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 					.ticks(5)
 					.scale(widthScale); 
 
-	  /*var canvas = d3.select("#bar")
+	  var canvas = d3.select("body")
 					.append("svg")
-					.attr("width", 500)
-					.attr("height", 1000)
-					.attr("transform", "translate(50, 50)");
+					.attr("width", 50)
+					.attr("height", 10000)
+					.attr("transform", "translate(0, 0)");
 					//.call(axis);
 
 	  /*var circle = canvas.append("circle")
 					.attr("cx", 250)
 					.attr("cy", 250)
 					.attr("r", 50)
-					.attr("fill", "red");
+					.attr("fill", "red");*/
 
 	  var rectangle = canvas.append("rect")
 						.attr("width", 10)
-						.attr("height", 20); */
+						.attr("height", 20);
+
+	 console.log('here');
 
 	  //var dataArray = [20, 40, 50, 60]; 
 
@@ -137,7 +139,7 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 					  .attr("y", function(d, i) { return i*100}); 
 
 	  canvas.append("g")
-		.attr("transform", "translate(0, 400)")
+		.attr("transform", "translate(400, 100)")
 		.call(axis);
 	}
 
