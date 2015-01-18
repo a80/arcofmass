@@ -1,107 +1,99 @@
-<!-- 
-
-<html>
+<template name="adminRegion">
 	<head>
-		<title> Name - Admin</title>
+		<link rel="stylesheet" type="text/css" href="/arcofmass/admin_region.css">
+		<!--<script type="text/javascript" href="/arcofmass/admin_region.js"></script>-->
 	</head>
 
 	<body>
-		<div class = "admintabs">
-			<table>
+		<div class ="firstHalf">
+			<div class="title">
+				<h4>Show Results for Region A</h4>
 
-			<tr>
-				<td>home</td>
-			</tr>
-
-			<tr>
-				<td><strong>by region</strong></td>
-			</tr>
-
-			<tr>
-				<td>by issue</td>
-			</tr>
-
-		</table>
-
-		<div>
-			
-			<div>
-				<table>
-					<thead>
-						<th> US Congressional Districts</th>
-					</thead>
-
-					<tbody>
-						<tr>
-							<td>District 1</td>
-							<td>District 2</td>
-							<td>District 3</td>
-							<td>District 4</td>
-							<td>District 5</td>
-							<td>District 6</td>
-							<td>District 7</td>
-							<td>District 8</td>
-						</tr>
-					</tbody>
-
-				</table>
 
 			</div>
 
-			<div>
-				<table>
-					<thead>
-						<th> Massachusetts Senate Districts</th>
-					</thead>
+			<div class = "secondHalf">
+				<div class = "listGroup">
+					<div class = "list">
+						<a href="#" class ="Region active"> Region A</a>
+						<a href="#" class ="Region"> Region B</a>
+						<a href="#" class ="Region"> Region C</a>
+						<a href="#" class ="Region"> Region D</a>
 
-					<tbody>
-						<tr>
-							<td>District 1</td>
-							<td>District 2</td>
-							<td>District 3</td>
-							<td>District 4</td>
-							<td>District 5</td>
-							<td>District 6</td>
-							<td>District 7</td>
-							<td>District 8</td>
-						</tr>
-					</tbody>
+					</div>
+				</div>
 
-				</table>
+				<div class = "visualGroup"> 
+					<div class = "chart" id="bacon">
+						<!--<svg width="200" height = "200">
+							<circle cx="100" cy="100" r="25"></circle>
+							<circle></circle>
+						
+						 </svg>-->
+					</div>
+					<script>
+					console.log("here");
+
+					var svgContainer = d3.select("#bacon")
+											.append("svg")
+											.attr("width", 100000)
+											.attr("height", 100000);
+
+
+					var widthScale = d3.scale.linear()
+										  .domain([0, 60])
+										  .range([0, 500]);
+
+					var color = d3.scale.linear()
+									.domain([0, 60])
+									.range(["red", "blue"]);
+
+					var axis = d3.svg.axis()
+									.ticks(5)
+									.scale(widthScale); 
+
+					var data = [10,20,30,40]
+
+					d3.select(".chart")
+					  .selectAll("div")
+					.data(data)
+					  .enter().append("div")
+					  .style("width", function(d) { return d * 10 + "px"; })
+					  .text(function(d) { return d; });
+					  .attr("transform", "translate(700,100)");
+					  
+					</script>
+
+					<div class = "table">
+						<table>
+							<thead>
+								Region
+							</thead>
+
+							<tbody>
+								<tr>
+									<td>Issue1</td>
+									<td>Number</td>
+								</tr>
+								<tr>
+									<td>Issue2</td>
+									<td>Number</td>
+								</tr>
+
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
 
 			</div>
-
-			<div>
-				<thead>
-						<th> Massachusetts House of Representative Districts</th>
-					</thead>
-
-					<tbody>
-						<tr>
-							<td>Barnstable, Dukes, and Nantucket</td>
-							<td>Berkshires</td>
-							<td>Bristol</td>
-							<td>Essex</td>
-							<td>Franklin</td>
-							<td>Hampden</td>
-							<td>Hampshire</td>
-							<td>Middlesex</td>
-							<td>Norfolk</td>
-							<td>Plymouth</td>
-							<td>Suffolk</td>
-							<td>Worcester</td>
-						</tr>
-					</tbody>
-
-			</div>
-
-
 
 		</div>
+	
 
-		<div>
-			
-			<h2> Results for * District</h2>
-		</div>
 	</body>
-</html> --> 
+
+
+
+</template>

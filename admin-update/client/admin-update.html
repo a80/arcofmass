@@ -12,33 +12,90 @@
 
 	<head>
 		<link rel="stylesheet" type="text/css" href="/adminUpdate.css">
+		<script type="text/javascript">
+			
+
+			function toEdit(){
+				document.getElementById("saveToDo").style.visibility = "hidden";
+				document.getElementById("editToDo").style.visibility = "visible";
+				document.getElementById("todoInput").readOnly = true;
+				document.getElementById("goalInput").readOnly = true;
+				document.getElementById("messageInput").readOnly = true;
+			}
+
+			function toSave(){
+				document.getElementById("editToDo").style.visibility = "hidden";
+				document.getElementById("saveToDo").style.visibility = "visible";
+				document.getElementById("todoInput").readOnly = false;
+				document.getElementById("goalInput").readOnly = false;
+				document.getElementById("messageInput").readOnly = false;
+			}
+			function toEditLegislator(){
+				document.getElementById("saveLeg").style.visibility = "hidden";
+				document.getElementById("editLeg").style.visibility = "visible";
+				document.getElementById("nameInput").readOnly = true;
+				document.getElementById("emailInput").readOnly = true;
+				document.getElementById("address").readOnly = true;
+			}
+
+			function toSaveLegislator(){
+				document.getElementById("editLeg").style.visibility = "hidden";
+				document.getElementById("saveLeg").style.visibility = "visible";
+				document.getElementById("nameInput").readOnly = false;
+				document.getElementById("emailInput").readOnly = false;
+				document.getElementById("address").readOnly = false;
+			}
+			</script>
 	</head>
+	<div>
+		<div class="dropdown">
+		  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
+		    Select Issue <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		    <!-- List of all issues -->
 
-	<div class="dropdown">
-	  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
-	    Select Issue <span class="caret"></span>
-	  </button>
-	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-	    <!-- List of all issues -->
+		    {{#each getUserIssues}}
+		    	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{returnIssueName}}</a></li>
+		    {{/each}}
 
-	    {{#each getUserIssues}}
-	    	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{returnIssueName}}</a></li>
-	    {{/each}}
-	    <!-- <li>
-	    {{#each getAllIssues}}
-  			{{> issuePanel}}
-  		{{/each}}
-  		</li> --> 
-	  </ul>
+		    <!-- <li>
+		    {{#each getAllIssues}}
+	  			{{> issuePanel}}
+	  		{{/each}}
+	  		</li> --> 
+		  </ul>
+		</div>
+		<div class="newIssueField">
+			<div id="issueButton"> 
+				<button type="button" id ="addIssue">
+					Add Issue
+				</button>
+			</div>
+			<div id= "newIssue">
+				<span class ='box'>
+					 <input type= 'text' aria-label="..." placeholder = "New Issue">
+				</span>
+			</div>
+
+
+		</div>
+		<div class="deleteIssueField">
+			<button type= "button" id="deleteIssue"> Delete Current Issue
+			</button>
+
+		</div>
 	</div>
 	
-	
+	{{>updateFormField}}
 
 
 </template>
 
 
 <template name = "updateFormField"> 
+
+
 	<div>
 		<h3> Issue X</h3>
 
@@ -54,18 +111,45 @@
 			<h5>Contact for Issue X</h5>
 			<div class = 'contactName'>
 				 <span class ='box'>
-				 	<input type= 'text' aria-label="..." placeholder = "Representative">
+
+				 	
+				 	<input type= 'text' id="nameInput" aria-label="..." placeholder = "Representative">
 				 </span>
 			</div>
 			<div class = 'contactEmail'>
 				 <span class ='box'>
-				 	<input type= 'text' aria-label="..." placeholder = "Email">
+
+				
+				 	<input type= 'text' id="emailInput" aria-label="..." placeholder = "Email">
+
 				 </span>
 			</div>
 			<div class = 'contactAddress'>
 				 <span class ='box'>
-				 	<input type= 'text' aria-label="..." placeholder = "Address">
+				 	<input id="address" type= 'text' aria-label="..." placeholder = "Address">
 				 </span>
+			</div>
+
+			<div id = 'saveLeg'>
+
+				 <button onclick="toEditLegislator()">
+				 	Save
+				</button>
+		 	</div>
+		 	<div id = 'editLeg'>
+
+		 		<button onclick="toSaveLegislator()">
+		 			Edit
+		 		</button>
+		 	</div>
+			
+
+		
+			<div class = 'deleteLegislator' id="deleteLegislatorButton">
+
+				 <button>
+				 	Delete
+				 </button>
 			</div>
 			<div>
 				<button type= "button" id= "addLegislator"> Add Legislator
@@ -79,80 +163,114 @@
 				 <div class = 'row'>
 				 	<div class = 'checkbox'>
 				 		<span class ='box'>
-				 			<input type= 'checkbox' aria-label="..." >
+				 			<input type= 'checkbox' id="checkInput" aria-label="..." >
 				 		</span>
 				 	</div>
 				 	<div class = 'todo'>
 				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "To Do #1">
+
+				 			<input type= 'text' id="todoInput" aria-label="..." placeholder = "To Do #1" >
+
+				 		</span>
+				 	</div>
+				 	<div class = 'goal' >
+				 		<span class ='box'>
+
+				 			
+				 			<input type= 'text' id="goalInput" aria-label="..." placeholder = "Goal #1">
+				 		</span>
+				 	</div>
+				 	<div class = 'message' >
+				 		<span class ='box'>
+
+				 			
+
+				 			<input type= 'text' id="messageInput" aria-label="..." placeholder = "Message">
+
+				 		</span>
+				 	</div>
+				 	
+				 
+				 	<div class = 'save' id="saveToDo">
+
+				 		<button onclick="toEdit()" id="saveTodoButton">
+
+				 			Save
+				 		</button>
+				 	</div>
+				 	<div class = 'edit' id="editToDo">
+
+				 		<button onclick="toSave()" id="editButton">
+				 			Edit
+				 		</button>
+				 	</div>
+				 	<div class = 'deleteToDo' id="deleteTodoButton">
+				 		<button>
+				 			Delete
+				 		</button>
+				 	</div>
+				 </div>
+			</div>
+			<!--
+			<div id = 'secondRow'>
+				<div class = 'row'>
+				 	<div class = 'checkbox'>
+				 		<span class ='box'>
+				 			<input type= 'checkbox' aria-label="...">
+				 		</span>
+				 	</div>
+				 	<div class = 'todo'>
+				 		<span class ='box'>
+				 			<input type= 'text' aria-label="..." placeholder = "To Do #2">
+				 			
 				 		</span>
 				 	</div>
 				 	<div class = 'goal'>
 				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "Goal #1">
+				 			<input type= 'text' aria-label="..." placeholder = "Goal #2">
+				 			
 				 		</span>
 				 	</div>
 				 	<div class = 'message'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "Message">
-				 		</span>
-				 	</div>
+						 <span class ='box'>
+						 	<input type= 'text' aria-label="..." placeholder = "Message">
+						 	
+						 </span>
+					</div>
 				 </div>
 			</div>
-		</div>
-		<div id = 'secondRow'>
-			<div class = 'row'>
-			 	<div class = 'checkbox'>
-			 		<span class ='box'>
-			 			<input type= 'checkbox' aria-label="...">
-			 		</span>
-			 	</div>
-			 	<div class = 'todo'>
-			 		<span class ='box'>
-			 			<input type= 'text' aria-label="..." placeholder = "To Do #2">
-			 		</span>
-			 	</div>
-			 	<div class = 'goal'>
-			 		<span class ='box'>
-			 			<input type= 'text' aria-label="..." placeholder = "Goal #2">
-			 		</span>
-			 	</div>
-			 	<div class = 'message'>
-					 <span class ='box'>
-					 	<input type= 'text' aria-label="..." placeholder = "Message">
-					 </span>
-				</div>
-			 </div>
-		</div>
-
-		<div id = 'thirdRow'>
-			<div class = 'row'>
-			 	<div class = 'checkbox'>
-			 		<span class ='box'>
-			 			<input type= 'checkbox' aria-label="...">
-			 		</span>
-			 	</div>
-			 	<div class = 'todo'>
-			 		<span class ='box'>
-			 			<input type= 'text' aria-label="..." placeholder = "To Do #3">
-			 		</span>
-			 	</div>
-			 	<div class = 'goal'>
-			 		<span class ='box'>
-			 			<input type= 'text' aria-label="..." placeholder = "Goal #3">
-			 		</span>
-			 	</div>
-			 	<div class = 'message'>
-					<span class ='box'>
-					 	<input type= 'text' aria-label="..." placeholder = "Message">
-					 </span>
-				</div>
-			 </div>
-		</div>
-		<div>
-			<button type= "button" id= "addLegislator"> Add To Do
+			
+			<div id = 'thirdRow'>
+				<div class = 'row'>
+				 	<div class = 'checkbox'>
+				 		<span class ='box'>
+				 			<input type= 'checkbox' aria-label="...">
+				 		</span>
+				 	</div>
+				 	<div class = 'todo'>
+				 		<span class ='box'>
+				 			<input type= 'text' aria-label="..." placeholder = "To Do #3">
+				 		</span>
+				 	</div>
+				 	<div class = 'goal'>
+				 		<span class ='box'>
+				 			<input type= 'text' aria-label="..." placeholder = "Goal #3">
+				 		</span>
+				 	</div>
+				 	<div class = 'message'>
+						<span class ='box'>
+						 	<input type= 'text' aria-label="..." placeholder = "Message">
+						 </span>
+					</div>
+				 </div>
+			</div> -->
+			<div>
+			<button type= "button" id= "addToDo"> Add To Do
 			</button>
 		</div>
+		
+	</div>
+		
 </template> 
 
 <template name = "customErrorPageAdminUpdate"> 
