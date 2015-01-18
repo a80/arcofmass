@@ -171,5 +171,9 @@ Meteor.methods({
 
 
   },
+  
+  addNewLegislator: function(myName, myEmail, myAddress, myIssue) {
+	legislators.insert({name: myName, email: myEmail, address: myAddress, issue: myIssue});
+  }
   //put comma after above function
 });
