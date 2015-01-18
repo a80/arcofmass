@@ -24,6 +24,7 @@
 	    {{#each getUserIssues}}
 	    	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{returnIssueName}}</a></li>
 	    {{/each}}
+
 	    <!-- <li>
 	    {{#each getAllIssues}}
   			{{> issuePanel}}
@@ -32,13 +33,15 @@
 	  </ul>
 	</div>
 	
-	
+	{{>updateFormField}}
 
 
 </template>
 
 
 <template name = "updateFormField"> 
+
+
 	<div>
 		<h3> Issue X</h3>
 
@@ -150,7 +153,7 @@
 			 </div>
 		</div>
 		<div>
-			<button type= "button" id= "addLegislator"> Add To Do
+			<button type= "button" id= "addToDo"> Add To Do
 			</button>
 		</div>
 </template> 
