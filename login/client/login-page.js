@@ -1,4 +1,5 @@
 //old code
+
 Template.login.events({
   //define event for making text transition
   'mouseenter #username-field': function() {

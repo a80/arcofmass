@@ -29,7 +29,12 @@ Template.adminIssuePanel.helpers({
 
 
 Template.adminHome.events({
-	"click .btn": function(event) {
+	"click #update-button": function(event) {
 		Router.go("/update"); 
+	},
+
+	"click #region-button": function(event) {
+		Router.go("/region"); 
 	}
 });
+

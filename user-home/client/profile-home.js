@@ -1,3 +1,8 @@
+Template.profileHome.events({
+	'click #user-settings-button': function() {
+    Router.go('/user-settings');
+  },
+});
 
 Template.profileHome.helpers({
 	getUserIssues: function() {

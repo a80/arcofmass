@@ -1,3 +1,5 @@
+
+
 if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 	Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
@@ -12,7 +14,11 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 			console.log("submitted.");
 
 			Meteor.call("modifyUser", myName, myZip, myStory, myEmail, myOPassword, myNPassword);
-		}
+		},
+		
+		'click #user-home-button': function() {
+    		Router.go('/profile');
+  		},
 	});
 
 

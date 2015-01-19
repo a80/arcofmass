@@ -1,3 +1,14 @@
+Template.adminRegion.events({
+	"click #admin-home-button": function(event) {
+		Router.go("/admin"); 
+	},
+
+	"click #update-button": function(event) {
+		Router.go("/update"); 
+	}
+});
+
+
 /*
 Template.adminRegion.barChart = function() {
 
