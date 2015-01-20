@@ -24,7 +24,29 @@ Template.adminIssuePanel.helpers({
 	}, 
 	returnIssueCount: function() {
 		return this.count; 
-	}
+	}, 
+
+	returnToDos: function(issue) {
+		var issueName = this.name;
+		var actionItemsForIssue = [];
+
+		actionItemsData = actionItems.find({}).fetch();
+
+		for (var i = 0; i < actionItemsData.length; i++) {
+		  //console.log("entered if loop"); 
+		  if (actionItemsData[i].issue === issueName) {
+			actionItemsForIssue.push(actionItemsData[i]); 
+		  }
+		}
+
+      	return actionItemsForIssue; 
+	}, 
+
+	returnToDoName: function() {
+		return this.text; 
+	}, 
+
+
 });
 
 

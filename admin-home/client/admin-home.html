@@ -70,6 +70,19 @@
 
     		<p>Number of associated constituents: {{returnIssueCount}}</p> 
 
+
+        <!-- return the todos --> 
+
+        <ul> 
+
+        {{#each returnToDos}}
+          <li>
+            <p>{{returnToDoName}}</p> 
+          </li> 
+        {{/each}}
+
+      </ul> 
+
     		
   		</div>
 	</div>
