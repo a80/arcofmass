@@ -2,7 +2,20 @@
 <template name="userSettings">
 <head>
 	<title> Settings </title>
-	<!--<link rel="stylesheet" type="text/css" href="/settings_page.css">-->
+	<link rel="stylesheet" type="text/css" href="/settings_page.css">
+	<script type="text/javascript">
+		function clickSave(){
+
+		document.getElementById("saveButton").visibility = "hidden";
+		document.getElementById('editButton').visibility= "visible";
+	}
+
+		function clickEdit(){
+			document.getElementById("saveButton").visibility = "visible";
+			document.getElementById('editButton').visibility = "hidden";
+		}
+
+	</script>
 </head>
 <body>
 
@@ -40,40 +53,64 @@
 				<div class = "each">
 					<h5>Name</h5>
 					<div class = "name">
-						<div><input type="name" class="input" id="inputName" placeholder="Enter Name"></div>
+						<div><input type="name" class="input" id="inputName" placeholder="Enter Name">
+							<button id="saveButton" onclick = "clickSave()">Save</button>
+							<button id= "editButton" onclick = "clickEdit()">Edit</button></div>
+						
 					</div>
 				</div>
 				<div class = "each">
 					<h5>Password</h5>
 					<div class = "password">
-						<div><input type="password" class="input" id="inputOPassword" placeholder="Old Password"></div>
+						<div><input type="password" class="input" id="inputOPassword" placeholder="Old Password">
+						<button id="saveButton" onclick = "clickSave()">Save</button>
+						<button id= "editButton" onclick = "clickEdit()">Edit</button></div>
 					</div>
 				</div>
 				<div class = "each">
 					<h5>Password</h5>
 					<div class = "password">
-						<div><input type="password" class="input" id="inputNPassword" placeholder="New Password"></div>
+						<div><input type="password" class="input" id="inputNPassword" placeholder="New Password">
+						<button id="saveButton" onclick = "clickSave()">Save</button>
+						<button id= "editButton" onclick = "clickEdit()">Edit</button></div>
 					</div>
 				</div>
 				<div class = "each">
 					<h5>Email</h5>
 					<div class = "email">
-						<div><input type="email" class="input" id="inputEmail" placeholder="Email"></div>
+						<div><input type="email" class="input" id="inputEmail" placeholder="Email">
+						<button id="saveButton" onclick = "clickSave()">Save</button>
+						<button id= "editButton" onclick = "clickEdit()">Edit</button></div>
 					</div>
 				</div>
 				<div class = "each">
 					<h5>Zip Code</h5>
 					<div class = "zipcode">
-						<div><input type="zipcode" class="input" id="inputZipcode" placeholder="Enter Zip Code"></div>
+						<div><input type="zipcode" class="input" id="inputZipcode" placeholder="Enter Zip Code">
+						<button id="saveButton" onclick = "clickSave()">Save</button>
+						<button id= "editButton" onclick = "clickEdit()">Edit</button></div>
 					</div>
 				</div>
 				<div class = "each">
 					<h5>Story</h5>
 					<div class = "story">
 						<div>
-							<textarea rows="10" cols="34" id="inputStory" placeholder="Enter Your Story"></textarea>
+							<textarea class = "input" rows="10" cols="34" id="inputStory" placeholder="Enter Your Story"></textarea>
+							<button id="saveButton" onclick = "clickSave()">Save</button>
+							<button id= "editButton" onclick = "clickEdit()">Edit</button>
 						</div>
 					</div>
+				</div>
+				<div class = "each">
+					
+						<h3> Issues of the Arc</h3>
+						<div class = 'checkbox'><input type= 'checkbox' id="checkInput" aria-label="..." ></div>
+						<div class = 'issue'><h5>Issue1</h5></div>
+						<div class = 'checkbox'><input type= 'checkbox' id="checkInput" aria-label="..." ></div>
+						<div class = 'issue'><h5>Issue2</h5></div>
+						<div class = 'checkbox'><input type= 'checkbox' id="checkInput" aria-label="..." ></div>
+						<div class = 'issue'><h5>Issue3</h5></div>
+					
 				</div>
 			
 			</form>
@@ -86,7 +123,7 @@
 		</div>
 	</div>
 	<div class="btn-group" role="group" >
-		<button type="button" class="btn btn-default"> Save</button>
+		<button type="button" class="btn btn-default" id="saveButton"> Save</button>
 		
 	</div>
 

@@ -84,7 +84,7 @@ Meteor.methods({
   },
   modifyUser: function(myName, myZip, myStory, myEmail, myOPassword, myNPassword) {
   	console.log("run");
-  	Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.name":myName, "profile.zip":myZip, "profile.story":myStory, "email":myEmail}});
+  	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.name":myName, "profile.zip":myZip, "profile.story":myStory, "email":myEmail}});
 	//Meteor.user().profile = {name: myName, zip: myZip, story: myStory};
 	 Accounts.changePassword(myOPassword, myNPassword, function(error) {
 		if (error) {
