@@ -6,12 +6,14 @@ Template.profileHome.events({
 
 Template.profileHome.helpers({
 	getUserIssues: function() {
-		console.log(issues.find({}).fetch());
+		//console.log(issues.find({}).fetch());
     var list = issues.find({}).fetch();
-		return _.map(list, function(l) {
-      _.extend(l, {graphID: l.name.replace(/\s*/g, '')});
-      return l;
-    }); 
+	
+	return _.map(list, function(l) {
+    	_.extend(l, {graphID: l.name.replace(/\s*/g, '')});
+      	return l;
+    	}); 
+	
 	},
 
 	returnUserId: function() {
@@ -22,31 +24,33 @@ Template.profileHome.helpers({
 Template.toDoPanel.helpers({
 	returnToDos: function(issue) {
 		var issueName = this.name;
-		console.log("within returnToDos, issueName" + issueName); 
 		var actionItemsForIssue = [];
-		console.log(actionItems.find({}).fetch()[0]);
 
 		actionItemsData = actionItems.find({}).fetch();
 
-		console.log(actionItemsData.length);  
-		console.log(actionItemsData[0]);
-
 		for (var i = 0; i < actionItemsData.length; i++) {
-		  console.log("entered if loop"); 
+		  //console.log("entered if loop"); 
 		  if (actionItemsData[i].issue === issueName) {
 			actionItemsForIssue.push(actionItemsData[i]); 
 		  }
 		}
 
-		console.log(actionItemsForIssue);
+		_.map(actionItemsForIssue, function(a) {
+      		_.extend(a, {toDoID: a._id}); });
 
-		return actionItemsForIssue;  
+      	_.map(actionItemsForIssue, function(a) {
+      		_.extend(a, {toDoCheckID: a.message}); }); 
 
+      	return actionItemsForIssue; 
+
+		/*return _.map(actionItemsForIssue, function(a) {
+      		_.extend(a, {toDoID: a._id}); 
+      		return actionItemsForIssue;  
+		});*/
 	}, 
 
 	returnToDoName: function() {
 		return this.text; 
-		//console.log(this.text); 
 	}, 
 
 });
@@ -69,182 +73,116 @@ Template.issuePanel.helpers({
 	}
 });
 
-//delete this. 
+
 Template.toDoPanel.events({
-	"click .toggle-checked": function () {
-      //set the checked property to the opposite of its current value
-      //Tasks.update(this._id, {$set: {checked: ! this.checked}}); 
+	"click .toggle-checked": function (event) {
+      	//get the relevant id associated with this checkbox
+      	var issueName = this.issue; 
+      	//Meteor.call("increaseIssueCount", issueName); 
 
-      //replace with: 
-      //dataArray[0] += 20; 
-      var issue = issues.findOne({name: "Mafirstissue"});
+      	//retrieve parent id. 
+    	var checkID = event.currentTarget.id; //this corresponds to the actionItem ID.
+    	
+    	console.log(checkID);
+    	//console.log(actionItems.findOne({_id: checkID}));
 
-      var prevCount = issue.count;
 
-      //issue.count += 1;
-      Meteor.call("increaseIssueCount", "Mafirstissue"); 
-
-      var newCount = issues.findOne({name: "Mafirstissue"}).count;
-
-      console.log("incremented from: " + prevCount + "to " + newCount);
+    	var toDoName = actionItems.findOne({_id: checkID}).text; //change 
 
 
 
-      //re-render the graph. this is automatically taken care of when dependencies change?
 
+
+    	Meteor.call("increaseToDoCount", toDoName); 
+
+    	var toDoOfInterest = actionItems.findOne({_id: checkID}); 
+
+    	//console.log(toDoOfInterest.goal); 
+
+    	//get the graph id to change. 
+
+    	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
+    	console.log(graphIDtoChange);
+
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count);
+
+    },
+
+    //select the link corresponding to the list element, display that issue. 
+
+    "click .toDoListItem": function(event) {
+    	//retrieve parent id. 
+    	var toDoListItemID = event.currentTarget.id; 
+    	//console.log("selected: " + toDoListItemID); 
+
+    	//get the count associated with the todo. 
+    	var toDoOfInterest = actionItems.findOne({_id: toDoListItemID}); 
+
+    	//console.log(toDoOfInterest.goal); 
+
+    	//get the graph id to change. 
+
+    	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
+    	console.log(graphIDtoChange);
+
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count);
     },
 
 });
 
+var graphs = {};
+
 Template.profileHome.rendered = function() {
 
-	/*var width = 500; 
-  	var height = 500;
-
-  	var widthScale = d3.scale.linear()
-                      .domain([0, 10])
-                      .range([0, width]); 
-
-  	var color = d3.scale.linear()
-                .domain([0, 60])
-                .range(["red", "blue"]);
-
-  	var canvas = d3.select("#barChart")
-                  .append("svg")
-                  .attr("width", width)
-                  .attr("height", height); 
-
-  	var bars = canvas.data([2])
-                    .enter()
-                      .append("rect")
-                      .attr("width", width)
-                      .attr("height", function (d) { return widthScale(d); })
-                      .attr("y", function(d, i) {return i*100; })
-                      .attr("fill", function(d) {return color(d)});*/
-
- 	var graph;
-
- 	//var issueList = issues.find({}).fetch();
-	
-	//graph = progressBar("#barChart");
-	 
-
 	Deps.autorun(function() {
-		//var count = issues.findOne({name: "Mafirstissue"}).count;
-		//console.log(count); 
-		//console.log(issueList[0].count); 
-
-
-		//attempting to update the chart automatically. 
-    var graphs = {};
-		var issueList = issues.find({}).fetch();
+    
+	var issueList = issues.find({}).fetch();
+    
     _.each(issueList, function(issue) {
       var graphID = issue.name.replace(/\s*/g, '');
-      graphs[issue._id] = progressBar("#" + graphID, issueList);
-    });
 
-
-		// graph = progressBar("#barChart", issueList);
-
-
-
-		//trying different methods. 
-		/*if (graph) {
-			graph.draw("#barChart", issueList);
-		}*/
-		
-		/*var newCount = issueList[0].count; 
-
-		var widthScale = d3.scale.linear()
-                      .domain([0, 10])
-                      .range([0, width]);
-
-        d3.select("#barChart").select("svg").selectAll("rect").data([newCount])
-        	.enter()
-        	.attr("height", function (d) { return widthScale(d); });*/
-
-        console.log("chart attempting to rerender");
+      //modify the graph shown here with the one relevant to the to-do.
+      //graphs[issue._id] = progressBar("#" + graphID, issue.count);
+      graphs[graphID] = progressBar("#" + graphID, issue.count);
+    }); 
 	});
 
-
+  //how to vary other elements in progressBar based on function arguments. 
 
 }
-
-
-/*var updateChartData = function(data) {
-	var widthScale = d3.scale.linear()
-                      .domain([0, 10])
-                      .range([0, width]); 
-
-	var svg = d3.select("svg").select("rect").data(data)
-				.attr("height", function (d) { return widthScale(d); })
-
-}*/
-
-//var dataArray = [10];
-//Template.issuePanel.progressBar = function() {
-
 
 
 function progressBar(el, data) {
 	var self = this;
 	var canvas; 
 
-  	var width = 500; 
-  	var height = 500;
+  var width = 900; 
+  var height = 500;
 
-  	var widthScale = d3.scale.linear()
-                      .domain([0, 10])
+  var widthScale = d3.scale.linear()
+                      .domain([0, 20])
                       .range([0, width]); 
 
-  	var color = d3.scale.linear()
+  var color = d3.scale.linear()
                 .domain([0, 10])
                 .range(["red", "blue"]);
 
 
-    var createCanvasSvg = function(el) {
-    	d3.select(el).selectAll("svg").remove();
-      canvas = d3.select(el).append("svg").attr("width", width)
-                  .attr("height", height);
-    }
+  var createCanvasSvg = function(el) {
+    d3.select(el).selectAll("svg").remove();
+    canvas = d3.select(el).append("svg").attr("width", width)
+                .attr("height", height);
+  }
 
-    createCanvasSvg(el);
+  createCanvasSvg(el);
 
-
-  	/*var canvas = d3.select(el)
-                  .append("svg")
-                  .attr("width", width)
-                  .attr("height", height); */
-
-    /*self.clear = function(el) {
-    	d3.select('svg').remove(); 
-    	createCanvasSvg(el); 
-    }
-
-    self.draw = function(el, data) {
-    	self.clear(el);
-    	//return; 
-
-    	if (canvas) {
-    		canvas.selectAll("rect")
-                .data([data[0].count])
-                .enter()
+  var bars = canvas.selectAll("rect")
+                  .data([data])
+                  .enter()
                     .append("rect")
                     .attr("width", width)
                     .attr("height", function (d) { return widthScale(d); })
-                    .attr("y", function(d, i) {return i*100; })
-                   	.attr("fill", function(d) {return color(d)});
-    	}
-    }*/
-
-  	var bars = canvas.selectAll("rect")
-                    .data([data[0].count])
-                    .enter()
-                      .append("rect")
-                      .attr("width", width)
-                      .attr("height", function (d) { return widthScale(d); })
-                      .attr("y", function(d, i) {return i*100; })
-                      .attr("fill", function(d) {return color(d)});
-
+                    .attr("y", function(d, i) {return height - widthScale(d) })
+                    .attr("fill", function(d) {return color(d)});
 
 }

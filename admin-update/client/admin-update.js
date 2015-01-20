@@ -2,6 +2,21 @@
 	Meteor.subscribe("adminUpdateActions");
 	var selectedUserIssue = "none";
 	
+	Template.adminUpdate.events({
+		"click #addIssueButton": function(event) {
+			var newIssue = document.getElementById("addIssueField").value;
+			Meteor.call("addNewIssue", newIssue);
+		},
+		"click #deleteIssueButton": function(event) {
+			
+		},
+		"click .list-group-item": function(event){
+			var previous = $(this).closest(".list-group").children(".active");
+			previous.removeClass('active'); // previous list-item
+			$(event.target).addClass('active'); // activated list-item
+		}
+	});
+	
 	Template.updateFormField.events({
 		"click #saveLegislatorButton": function(event) {
 
@@ -20,6 +35,8 @@
 
 			console.log("I have clicked the savelegislator button. submitted.");
 
+			var issue = issues.findOne({name: "Mafirstissue"}).name; 
+
 			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
 		},
 		
@@ -27,11 +44,14 @@
 			var name = Template.instance().find("#todoInput").value;
 			var goal = Template.instance().find("#goalInput").value;
 			var message = Template.instance().find("#messageInput").value;
-			var dropdown = Template.instance().find("#dropdownMenu1");
-			var issue = dropdown.options[dropdown.selectedIndex].text;
+			//var dropdown = Template.instance().find("#dropdownMenu1");
+			//var issue = dropdown.options[dropdown.selectedIndex].text;
 			var c = Template.instance().find("#checkInput");
+			
 			var important = false;
 			if (c.checked) important = true;
+
+			var issue = issues.findOne({name: "Mafirstissue"}).name; 
 			
 			Meteor.call("addNewTodo", name, goal, message, issue, important);
 		},
@@ -40,6 +60,9 @@
 			Meteor.call("deleteTodo", name);
 		},
 		"click #deleteLegislatorButton": function(event) {
+			//console.log(Template.instance);
+			var name = Template.instance().find("#nameInput").value;
+
 			var name = Template.instance().find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
 		},
