@@ -18,7 +18,7 @@
 			previous.removeClass('active'); // previous list-item
 			$(event.target).addClass('active'); // activated list-item
 
-			issue = $(".active").val(); 
+			issue = $(".active").text(); 
 			console.log(issue); 
 		}
 	});
@@ -43,7 +43,7 @@
 
 			//console.log("I have clicked the savelegislator button. submitted.");
 
-			var issue = $(".active").value; 
+			//var issue = $(".active").text; 
 
 			console.log("got here");
 
@@ -63,7 +63,7 @@
 			var important = false;
 			if (c.checked) important = true;
 
-			var issue = $(".active").value;
+			//var issue = $(".active").text;
 			
 			Meteor.call("addNewTodo", name, goal, message, issue, important);
 		},
