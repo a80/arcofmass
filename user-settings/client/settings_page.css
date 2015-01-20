@@ -40,3 +40,7 @@
 #editButton {
 	visibility: hidden;
 }
+
+#alertMessage {
+	visibility: hidden;
+}
