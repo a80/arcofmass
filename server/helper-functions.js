@@ -194,8 +194,15 @@ Meteor.methods({
 	legislators.remove({name: myName});
   },
   addNewIssue: function(myName) {
+<<<<<<< HEAD
+	issues.insert({$set: {name: myName, count: 0}});
+  },
+  delIssue: function(myName) {
+	issues.remove({name: myName});
+=======
     console.log("addNewIssue called"); 
 	  issues.insert({name: myName, count: 0});
+>>>>>>> 9cc6401e6fb5435f7cbf0deea9a5e659358a8ad1
   }
   //put comma after above function
 });
