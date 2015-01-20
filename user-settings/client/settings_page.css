@@ -1,11 +1,11 @@
-.label, .input {
-	display: inline;
+.formPage {
+	padding: 45px;
 }
 
-.formPage, .image {
-	padding: 75px;
-	display: inline;
-	}
+#passwordTitle, #arcIssues, #theTitle{
+	padding: 15px;
+}
+
 
 .btn-group{
 	padding-top: 10px;
@@ -37,6 +37,10 @@
 	display: inline;
 }
 
-#editButton {
+#editNameButton, #editEmailButton, #editStoryButton, #editZipCodeButton {
+	visibility: hidden;
+}
+
+#alertMessage {
 	visibility: hidden;
 }
