@@ -4,12 +4,21 @@
 	
 	Template.updateFormField.events({
 		"click #saveLegislatorButton": function(event) {
-			var legName = Template.instance.findAll("#nameInput").value;
-			var legEmail = Template.instance.findAll("#emailInput").value;
-			var legAddress = Template.instance.findAll("#addressInput").value;
-			var dropdown = Template.instance.findAll("#dropdownMenu1");
-			var issue = dropdown.options[dropdown.selectedIndex].text;
-			console.log("submitted.");
+
+			//
+			console.log(Template.instance().find("#nameInput").value);
+			var legName = Template.instance().find("#nameInput").value;
+			console.log(Template.instance().find("#emailInput").value);
+			var legEmail = Template.instance().find("#emailInput").value;
+			console.log(Template.instance().find("#addressInput").value);
+			var legAddress = Template.instance().find("#addressInput").value;
+			
+			var dropdown = document.getElementById("dropdownMenu1");
+
+			console.log(dropdown);
+			//var issue = dropdown.options[dropdown.selectedIndex].text;
+
+			console.log("I have clicked the savelegislator button. submitted.");
 
 			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
 		},

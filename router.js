@@ -60,27 +60,26 @@ Router.map(function() {
 
   this.route('adminUpdate', {path: '/update', 
   	onBeforeAction: function() {
-  		user = Meteor.user(); 
-  		console.log(user.username);
+  		user = Meteor.user()._id; 
+  		//console.log(user.username);
   		if (!Roles.userIsInRole(user, ['admin'])) {
-  			this.redirect('login');
+  			console.log(user.username);
+        this.redirect('login');
   			this.stop(); 
   		}
   		this.next(); 
-  		return true; 
   	}
   }); //insert Admin ID
 
    this.route('adminRegion', {path: '/region', 
     onBeforeAction: function() {
-      user = Meteor.user(); 
-      console.log(user.username);
+      user = Meteor.user()._id; 
+      //console.log(user.username);
       if (!Roles.userIsInRole(user, ['admin'])) {
         this.redirect('login');
         this.stop(); 
       }
       this.next(); 
-      return true; 
     }
   });
 

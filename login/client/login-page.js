@@ -187,12 +187,13 @@ Template.adminLogin.events({
         console.log('admin login failed');
       } else {
         console.log('admin login-succeeded');
+        Router.go('/admin');
         //Router.go('/admin');
         //this.redirect('/admin'); 
       }
     });
 
-    Router.go('/admin');
+    
 
     //this.redirect("/admin"); 
 

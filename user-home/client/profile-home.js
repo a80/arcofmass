@@ -7,7 +7,11 @@ Template.profileHome.events({
 Template.profileHome.helpers({
 	getUserIssues: function() {
 		console.log(issues.find({}).fetch());
-		return issues.find({}); 
+    var list = issues.find({}).fetch();
+		return _.map(list, function(l) {
+      _.extend(l, {graphID: l.name.replace(/\s*/g, '')});
+      return l;
+    }); 
 	},
 
 	returnUserId: function() {
@@ -132,8 +136,15 @@ Template.profileHome.rendered = function() {
 
 
 		//attempting to update the chart automatically. 
+    var graphs = {};
 		var issueList = issues.find({}).fetch();
-		graph = progressBar("#barChart", issueList);
+    _.each(issueList, function(issue) {
+      var graphID = issue.name.replace(/\s*/g, '');
+      graphs[issue._id] = progressBar("#" + graphID, issueList);
+    });
+
+
+		// graph = progressBar("#barChart", issueList);
 
 
 
