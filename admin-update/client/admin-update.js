@@ -26,26 +26,29 @@
 		},
 		
 		"click #saveTodoButton": function(event) {
-			var name = Template.instance.find("#todoInput").value;
-			var goal = Template.instance.find("#goalInput").value;
-			var message = Template.instance.find("#messageInput").value;
-			var dropdown = Template.instance.find("#dropdownMenu1");
-			var issue = dropdown.options[dropdown.selectedIndex].text;
-			var c = Template.instance.find("#checkInput");
+			var name = Template.instance().find("#todoInput").value;
+			var goal = Template.instance().find("#goalInput").value;
+			var message = Template.instance().find("#messageInput").value;
+			//var dropdown = Template.instance().find("#dropdownMenu1");
+			//var issue = dropdown.options[dropdown.selectedIndex].text;
+			var c = Template.instance().find("#checkInput");
+			
 			var important = false;
 			if (c.checked) important = true;
+
+			var issue = issues.findOne({name: "Mafirstissue"}).name; 
 			
 			Meteor.call("addNewTodo", name, goal, message, issue, important);
 		},
 		"click #deleteTodoButton": function(event) {
-			var name = Template.instance.find("#todoInput").value;
+			var name = Template.instance().find("#todoInput").value;
 			Meteor.call("deleteTodo", name);
 		},
 		"click #deleteLegislatorButton": function(event) {
 			//console.log(Template.instance);
 			var name = Template.instance().find("#nameInput").value;
 
-			//console.log(name);
+			var name = Template.instance().find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
 		},
 	});

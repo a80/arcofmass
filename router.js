@@ -7,11 +7,6 @@ Router.configure({
 
 Router.map(function() {
 
-  //REMOVE:
-
-  this.route('newFeature', {path: '/new'}); 
-  //this.route('removeFeature', {path: '/remove'});
-
   this.route('login', {path: '/'});
 
   this.route('adminLogin', {path: '/admin-login'});
