@@ -3,19 +3,6 @@
 if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 	Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
-		"click #saveButton": function(event) {
-			var myZip = document.getElementById("inputZipCode").value;
-			var myStory = document.getElementById("inputStory").value;
-			var myName = document.getElementById("inputName").value;
-			var myEmail = document.getElementById("inputEmail").value;
-			var myOPassword = document.getElementById("inputOPassword").value;
-			var myNPassword = document.getElementById("inputNPassword").value;
-			
-			console.log("submitted.");
-
-			Meteor.call("modifyUser", myName, myZip, myStory, myEmail, myOPassword, myNPassword);
-		},
-		
 		'click #user-home-button': function() {
     		Router.go('/profile');
   		},
@@ -24,6 +11,9 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 			document.getElementById("saveNameButton").visibility = "hidden";
 			document.getElementById("editNameButton").visibility = "visible";
 			document.getElementById("inputName").readOnly = true;
+			
+			var myName = document.getElementById("inputName").value;
+			Meteor.call("modifyUserName", myName);
 
 		},
 
@@ -37,6 +27,9 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 			document.getElementById("saveEmailButton").visibility = "hidden";
 			document.getElementById("editEmailButton").visibility = "visible";
 			document.getElementById("inputEmail").readOnly = true;
+			
+			var myEmail = document.getElementById("inputEmail").value;
+			Meteor.call("modifyUserEmail", myEmail);
 		},
 
 		"click #editEmailButton" : function(event){
@@ -50,6 +43,9 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 			document.getElementById("saveStoryButton").visibility = "hidden";
 			document.getElementById("editStoryButton").visibility = "visible";
 			document.getElementById("inputStory").readOnly = true;
+			
+			var myStory = document.getElementById("inputStory").value;
+			Meteor.call("modifyUserStory", myStory);
 		},
 
 		"click #editStoryButton" : function(event){
@@ -63,6 +59,9 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 			document.getElementById("saveZipCodeButton").visibility = "hidden";
 			document.getElementById("editZipCodeButton").visibility = "visible";
 			document.getElementById("inputZipcode").readOnly = true;
+			
+			var myZip = document.getElementById("inputZipCode").value;
+			Meteor.call("modifyUserZip", myZip);
 		},
 
 		"click #editZipCodeButton" : function(event){
@@ -73,9 +72,14 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 
 		"click #savePasswordButton" : function(event) {
 			if (document.getElementById("inputNPassword").value === document.getElementById("confirmNPassword").value){
-			document.getElementById("inputOPassword").readOnly = true;
-			document.getElementById("inputNPassword").readOnly = true;
-			document.getElementById("confirmNPassword").readOnly = true;
+				document.getElementById("inputOPassword").readOnly = true;
+				document.getElementById("inputNPassword").readOnly = true;
+				document.getElementById("confirmNPassword").readOnly = true;
+				
+				
+				var myOPassword = document.getElementById("inputOPassword").value;
+				var myNPassword = document.getElementById("inputNPassword").value;
+				Meteor.call("modifyUserPassword", myOPassword, myNPassword);
 			}
 			else{
 				document.getElementById("alertMessage").visibility = "visible";
