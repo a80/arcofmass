@@ -1,6 +1,8 @@
 	Meteor.subscribe("adminUpdateIssues");
 	Meteor.subscribe("adminUpdateActions");
 	var selectedUserIssue = "none";
+
+	var issue; 
 	
 	Template.adminUpdate.events({
 		"click #addIssueButton": function(event) {
@@ -15,8 +17,13 @@
 			var previous = $(this).closest(".list-group").children(".active");
 			previous.removeClass('active'); // previous list-item
 			$(event.target).addClass('active'); // activated list-item
+
+			issue = $(".active").val(); 
+			console.log(issue); 
 		}
 	});
+
+
 	
 	Template.updateFormField.events({
 		"click #saveLegislatorButton": function(event) {
