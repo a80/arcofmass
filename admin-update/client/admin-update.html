@@ -74,6 +74,15 @@
 				document.getElementById("emailInput").readOnly = false;
 				document.getElementById("address").readOnly = false;
 			}
+
+			function addToDo() {
+
+
+			}
+
+			function addLegislator(){
+
+			}
 			</script>
 	</head>
 	<div>
@@ -136,30 +145,43 @@
 		<!-- Contacts -->
 
 	</div>
-		<div id="contactList">
-			<h5>Contact for Issue X</h5>
-			<div class = 'contactName'>
-				 <span class ='box'>
+		
+			<div id="contactList">
+				<h5>Contact for Issue X</h5>
+				<div class = 'contactName'>
+					 <span class ='box'>
 
-				 	
-				 	<input type= 'text' id="nameInput" aria-label="..." placeholder = "Representative">
-				 </span>
-			</div>
-			<div class = 'contactEmail'>
-				 <span class ='box'>
+					 	
+					 	<input type= 'text' id="nameInput" aria-label="..." placeholder = "Representative">
+					 </span>
+				</div>
+				<div class = 'contactEmail'>
+					 <span class ='box'>
 
+					
+					 	<input type= 'text' id="emailInput" aria-label="..." placeholder = "Email">
+
+					 </span>
+				</div>
+				<div class = 'contactAddress'>
+					 <span class ='box'>
+					 	<input id="addressInput" type= 'text' aria-label="..." placeholder = "Address">
+					 </span>
+				</div>
+
+				<div id='saveLeg'>
+
+					 <button onclick="toEditLegislator()" id = "saveLegislatorButton">
+					 	Save
+					</button>
+			 	</div>
+			 	<div id = 'editLeg'>
+
+			 		<button onclick="toSaveLegislator()">
+			 			Edit
+			 		</button>
+			 	</div>
 				
-				 	<input type= 'text' id="emailInput" aria-label="..." placeholder = "Email">
-
-				 </span>
-			</div>
-			<div class = 'contactAddress'>
-				 <span class ='box'>
-				 	<input id="addressInput" type= 'text' aria-label="..." placeholder = "Address">
-				 </span>
-			</div>
-
-			<div id = 'saveLeg'>
 
 				 <!-- <button onclick="toEditLegislator()" id="saveLegislatorButton"> -->
 				 <button onclick="toEditLegislator()" id = "saveLegislatorButton">
@@ -172,75 +194,78 @@
 		 			Edit
 		 		</button>
 		 	</div>
+
 			
+				<div class = 'deleteLegislator' id="deleteLegislatorButton">
 
-		
-			<div class = 'deleteLegislator' >
-
-				 <button id="deleteLegislatorButton">
-				 	Delete
-				 </button>
+					 <button>
+					 	Delete
+					 </button>
+				
 			</div>
+		
 			<div>
-				<button type= "button" id= "addLegislator"> Add Legislator
+				<button type= "button" id= "addLegislator" onclick="addLegislator()"> Add Legislator
 				</button>
 			</div>
-		</div>
+		
 		
 		<div id="todoList">
 			<h5> To Do List </h5>
-			<div id = 'firstRow'>
-				 <div class = 'row'>
-				 	<div class = 'checkbox'>
-				 		<span class ='box'>
-				 			<input type= 'checkbox' id="checkInput" aria-label="..." >
-				 		</span>
-				 	</div>
-				 	<div class = 'todo'>
-				 		<span class ='box'>
+				
+				<div id = 'firstRow'>
+					 <div class = 'row'>
+					 	<div class = 'checkbox'>
+					 		<span class ='box'>
+					 			<input type= 'checkbox' id="checkInput" aria-label="..." >
+					 		</span>
+					 	</div>
+					 	<div class = 'todo'>
+					 		<span class ='box'>
 
-				 			<input type= 'text' id="todoInput" aria-label="..." placeholder = "To Do #1" >
+					 			<input type= 'text' id="todoInput" aria-label="..." placeholder = "To Do #1" >
 
-				 		</span>
-				 	</div>
-				 	<div class = 'goal' >
-				 		<span class ='box'>
+					 		</span>
+					 	</div>
+					 	<div class = 'goal' >
+					 		<span class ='box'>
 
-				 			
-				 			<input type= 'text' id="goalInput" aria-label="..." placeholder = "Goal #1">
-				 		</span>
-				 	</div>
-				 	<div class = 'message' >
-				 		<span class ='box'>
+					 			
+					 			<input type= 'text' id="goalInput" aria-label="..." placeholder = "Goal #1">
+					 		</span>
+					 	</div>
+					 	<div class = 'message' >
+					 		<span class ='box'>
 
-				 			
+					 			
 
-				 			<input type= 'text' id="messageInput" aria-label="..." placeholder = "Message">
+					 			<input type= 'text' id="messageInput" aria-label="..." placeholder = "Message">
 
-				 		</span>
-				 	</div>
-				 	
-				 
-				 	<div class = 'save' id="saveToDo">
+					 		</span>
+					 	</div>
+					 	
+					 
+					 	<div class = 'save' id="saveToDo">
 
-				 		<button onclick="toEdit()" id="saveTodoButton">
+					 		<button onclick="toEdit()" id="saveTodoButton">
 
-				 			Save
-				 		</button>
-				 	</div>
-				 	<div class = 'edit' id="editToDo">
+					 			Save
+					 		</button>
+					 	</div>
+					 	<div class = 'edit' id="editToDo">
 
-				 		<button onclick="toSave()" id="editButton">
-				 			Edit
-				 		</button>
-				 	</div>
-				 	<div class = 'deleteToDo'>
-				 		<button id="deleteTodoButton">
-				 			Delete
-				 		</button>
-				 	</div>
-				 </div>
-			</div>
+					 		<button onclick="toSave()" id="editButton">
+					 			Edit
+					 		</button>
+					 	</div>
+					 	<div class = 'deleteToDo' id="deleteTodoButton">
+					 		<button>
+					 			Delete
+					 		</button>
+					 	</div>
+					 </div>
+				</div>
+			
 			<!--
 			<div id = 'secondRow'>
 				<div class = 'row'>
@@ -295,7 +320,7 @@
 				 </div>
 			</div> -->
 			<div>
-			<button type= "button" id= "addToDo"> Add To Do
+			<button type= "button" id= "addToDo" onclick="addToDo()"> Add To Do
 			</button>
 		</div>
 		
