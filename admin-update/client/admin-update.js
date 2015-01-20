@@ -36,7 +36,7 @@
 
 			//console.log("I have clicked the savelegislator button. submitted.");
 
-			var issue = $document.find(".active").value; 
+			var issue = $(".active").value; 
 
 			console.log("got here");
 
@@ -56,7 +56,7 @@
 			var important = false;
 			if (c.checked) important = true;
 
-			var issue = $document.find(".active").value;
+			var issue = $(".active").value;
 			
 			Meteor.call("addNewTodo", name, goal, message, issue, important);
 		},
