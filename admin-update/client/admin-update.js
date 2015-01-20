@@ -8,7 +8,8 @@
 			Meteor.call("addNewIssue", newIssue);
 		},
 		"click #deleteIssueButton": function(event) {
-			
+			var delIssue = $document.find(".active").value;
+			Meteor.call("delIssue", delIssue);
 		},
 		"click .list-group-item": function(event){
 			var previous = $(this).closest(".list-group").children(".active");
@@ -35,7 +36,7 @@
 
 			console.log("I have clicked the savelegislator button. submitted.");
 
-			var issue = issues.findOne({name: "Mafirstissue"}).name; 
+			var issue = $document.find(".active").value; 
 
 			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
 		},
@@ -51,7 +52,7 @@
 			var important = false;
 			if (c.checked) important = true;
 
-			var issue = issues.findOne({name: "Mafirstissue"}).name; 
+			var issue = $document.find(".active").value;
 			
 			Meteor.call("addNewTodo", name, goal, message, issue, important);
 		},
