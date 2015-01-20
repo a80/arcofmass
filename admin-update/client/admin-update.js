@@ -1,6 +1,8 @@
 	Meteor.subscribe("adminUpdateIssues");
 	Meteor.subscribe("adminUpdateActions");
 	var selectedUserIssue = "none";
+
+	var issue; 
 	
 	Template.adminUpdate.events({
 		"click #logoutButton": function(event) {
@@ -21,8 +23,13 @@
 			var previous = $(this).closest(".list-group").children(".active");
 			previous.removeClass('active'); // previous list-item
 			$(event.target).addClass('active'); // activated list-item
+
+			issue = $(".active").text(); 
+			console.log(issue); 
 		}
 	});
+
+
 	
 	Template.updateFormField.events({
 		"click #saveLegislatorButton": function(event) {
@@ -37,12 +44,16 @@
 			
 			var dropdown = document.getElementById("dropdownMenu1");
 
-			console.log(dropdown);
+			//console.log(dropdown);
 			//var issue = dropdown.options[dropdown.selectedIndex].text;
 
-			console.log("I have clicked the savelegislator button. submitted.");
+			//console.log("I have clicked the savelegislator button. submitted.");
 
-			var issue = $(".active").text; 
+			//var issue = $(".active").text; 
+
+			console.log("got here");
+
+			console.log(issue); 
 
 			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
 		},
@@ -58,7 +69,7 @@
 			var important = false;
 			if (c.checked) important = true;
 
-			var issue = $(".active").text;
+			//var issue = $(".active").text;
 			
 			Meteor.call("addNewTodo", name, goal, message, issue, important);
 		},
