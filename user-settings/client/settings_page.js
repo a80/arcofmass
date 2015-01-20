@@ -1,7 +1,5 @@
 Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
-		
-		
 		'click #user-home-button': function() {
     		Router.go('/profile');
   		},
@@ -10,7 +8,11 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("saveNameButton").visibility = "hidden";
 			document.getElementById("editNameButton").visibility = "visible";
 			document.getElementById("inputName").readOnly = true;
+
 			console.log("saveNameButton pressed");
+			
+			var myName = document.getElementById("inputName").value;
+			Meteor.call("modifyUserName", myName);
 		},
 
 		"click #editNameButton": function(event) {
@@ -23,6 +25,9 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("saveEmailButton").visibility = "hidden";
 			document.getElementById("editEmailButton").visibility = "visible";
 			document.getElementById("inputEmail").readOnly = true;
+			
+			var myEmail = document.getElementById("inputEmail").value;
+			Meteor.call("modifyUserEmail", myEmail);
 		},
 
 		"click #editEmailButton" : function(event){
@@ -36,6 +41,9 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("saveStoryButton").visibility = "hidden";
 			document.getElementById("editStoryButton").visibility = "visible";
 			document.getElementById("inputStory").readOnly = true;
+			
+			var myStory = document.getElementById("inputStory").value;
+			Meteor.call("modifyUserStory", myStory);
 		},
 
 		"click #editStoryButton" : function(event){
@@ -49,6 +57,9 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("saveZipCodeButton").visibility = "hidden";
 			document.getElementById("editZipCodeButton").visibility = "visible";
 			document.getElementById("inputZipcode").readOnly = true;
+			
+			var myZip = document.getElementById("inputZipCode").value;
+			Meteor.call("modifyUserZip", myZip);
 		},
 
 		"click #editZipCodeButton" : function(event){
@@ -59,9 +70,14 @@ Meteor.subscribe("userSettingsData");
 
 		"click #savePasswordButton" : function(event) {
 			if (document.getElementById("inputNPassword").value === document.getElementById("confirmNPassword").value){
-			document.getElementById("inputOPassword").readOnly = true;
-			document.getElementById("inputNPassword").readOnly = true;
-			document.getElementById("confirmNPassword").readOnly = true;
+				document.getElementById("inputOPassword").readOnly = true;
+				document.getElementById("inputNPassword").readOnly = true;
+				document.getElementById("confirmNPassword").readOnly = true;
+				
+				
+				var myOPassword = document.getElementById("inputOPassword").value;
+				var myNPassword = document.getElementById("inputNPassword").value;
+				Meteor.call("modifyUserPassword", myOPassword, myNPassword);
 			}
 			else{
 				document.getElementById("alertMessage").visibility = "visible";
