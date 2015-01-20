@@ -24,23 +24,23 @@
 		},
 		
 		"click #saveTodoButton": function(event) {
-			var name = Template.instance.findAll("#todoInput").value;
-			var goal = Template.instance.findAll("#goalInput").value;
-			var message = Template.instance.findAll("#messageInput").value;
-			var dropdown = Template.instance.findAll("#dropdownMenu1");
+			var name = Template.instance.find("#todoInput").value;
+			var goal = Template.instance.find("#goalInput").value;
+			var message = Template.instance.find("#messageInput").value;
+			var dropdown = Template.instance.find("#dropdownMenu1");
 			var issue = dropdown.options[dropdown.selectedIndex].text;
-			var c = Template.instance.findAll("#checkInput");
+			var c = Template.instance.find("#checkInput");
 			var important = false;
 			if (c.checked) important = true;
 			
 			Meteor.call("addNewTodo", name, goal, message, issue, important);
 		},
 		"click #deleteTodoButton": function(event) {
-			var name = Template.instance.findAll("#todoInput").value;
+			var name = Template.instance.find("#todoInput").value;
 			Meteor.call("deleteTodo", name);
 		},
 		"click #deleteLegislatorButton": function(event) {
-			var name = Template.instance.findAll("#nameInput").value;
+			var name = Template.instance.find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
 		},
 	});
