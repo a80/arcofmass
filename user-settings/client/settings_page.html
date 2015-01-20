@@ -1,11 +1,13 @@
 
 <template name="userSettings">
 <head>
+
+
 	<title> Settings </title>
 	<link rel="stylesheet" type="text/css" href="/settings_page.css">
 </head>
-<body>
 
+<body>
 <!--nav bar-->
   <nav class = "navbar navbar-default">
     <div class = "container">
@@ -41,7 +43,8 @@
 					<h5>Name</h5>
 					<div class = "name">
 						<div><input type="name" class="input" id="inputName" placeholder="Enter Name">
-							<button id="saveNameButton" >Save</button>
+							
+							<button type="button" class="btn btn-default" id="saveNameButton">Save </button>
 							<button id= "editNameButton" >Edit</button>
 						</div>
 						
@@ -106,6 +109,8 @@
 					<div class = "password">
 						<div><input type="password" class="input" id="confirmNPassword" placeholder="Confirm New Password">
 						<button id="saveButton">Save Password</button>
+
+						<button type="button" class="btn btn-default">Save password 2</button>
 						<h5 id="alertMessage" style="color:red;"> Whoops! Your new password and confirmed password need to match. </h5>
 						</div>
 						

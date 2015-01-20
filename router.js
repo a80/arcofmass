@@ -26,13 +26,15 @@ Router.map(function() {
   			this.stop(); 
   		}
   		this.next(); 
-  		return true; 
+  		//return true; 
   	},
 
     
   }); //insert User ID
 
-  this.route('user-settings', {path: '/user-settings',
+  //this.route('userSettings', {path: '/user-settings'}); 
+
+  this.route('userSettings', {path: '/user-settings',
   	onBeforeAction: function() {
   		user = Meteor.user()._id; 
   		if (!Roles.userIsInRole(user, ['regular'])) {
@@ -40,7 +42,7 @@ Router.map(function() {
   			this.stop(); 
   		}
   		this.next(); 
-  		return true; 
+  		//return true; 
   	}
   }); //insert Admin ID
   //this.route('adminUpdate', {path: '/update'}); //insert Admin ID
@@ -54,7 +56,7 @@ Router.map(function() {
   			this.stop(); 
   		}
   		this.next(); 
-  		return true; 
+  		//return true; 
   	}
   }); //insert Admin ID
 
