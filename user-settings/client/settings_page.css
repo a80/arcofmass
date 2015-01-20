@@ -37,7 +37,7 @@
 	display: inline;
 }
 
-#editButton {
+#editNameButton, #editEmailButton, #editStoryButton, #editZipCodeButton {
 	visibility: hidden;
 }
 

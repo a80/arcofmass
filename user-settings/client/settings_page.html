@@ -3,70 +3,7 @@
 <head>
 	<title> Settings </title>
 	<link rel="stylesheet" type="text/css" href="/settings_page.css">
-	<script type="text/javascript">
-		function clickSaveName(){
-			document.getElementById("saveNameButton").visibility = "hidden";
-			document.getElementById("editNameButton").visibility = "visible";
-			document.getElementById("inputName").readOnly = true;
-
-		}
-
-		function clickEditName() {
-			document.getElementById("saveNameButton").visibility = "visible";
-			document.getElementById("editNameButton").visibility = "hidden";
-			document.getElementById("inputName").readOnly = false;
-		}
-
-		function clickSaveEmail() {
-			document.getElementById("saveEmailButton").visibility = "hidden";
-			document.getElementById("editEmailButton").visibility = "visible";
-			document.getElementById("inputEmail").readOnly = true;
-		}
-
-		function clickEditEmail(){
-			document.getElementById("saveEmailButton").visibility = "visible";
-			document.getElementById("editEmailButton").visibility = "hidden";
-			document.getElementById("inputEmail").readOnly = false;
-
-		}
-
-		function clickSaveStory(){
-			document.getElementById("saveStoryButton").visibility = "hidden";
-			document.getElementById("editStoryButton").visibility = "visible";
-			document.getElementById("inputStory").readOnly = true;
-		}
-
-		function clickEditStory(){
-			document.getElementById("saveStoryButton").visibility = "visible";
-			document.getElementById("editStoryButton").visibility = "hidden";
-			document.getElementById("inputStory").readOnly = false;
-
-		}
-
-		function clickSaveZipCode(){
-			document.getElementById("saveZipCodeButton").visibility = "hidden";
-			document.getElementById("editZipCodeButton").visibility = "visible";
-			document.getElementById("inputZipcode").readOnly = true;
-		}
-
-		function clickEditZipCode(){
-			document.getElementById("saveZipCodeButton").visibility = "visible";
-			document.getElementById("editZipCodeButton").visibility = "hidden";
-			document.getElementById("inputZipcode").readOnly = false;
-		}
-
-		function clickSavePassword() {
-			if (document.getElementById("inputNPassword").value === document.getElementById("confirmNPassword").value){
-			document.getElementById("inputOPassword").readOnly = true;
-			document.getElementById("inputNPassword").readOnly = true;
-			document.getElementById("confirmNPassword").readOnly = true;
-			}
-			else{
-				document.getElementById("alertMessage").visibility = "visible";
-			}
-
-		}
-	</script>
+	<script src="/settings_page.js"></script>
 </head>
 <body>
 
