@@ -195,6 +195,9 @@ Meteor.methods({
   },
   addNewIssue: function(myName) {
 	issues.insert({$set: {name: myName, count: 0}});
+  },
+  delIssue: function(myName) {
+	issues.remove({name: myName});
   }
   //put comma after above function
 });
