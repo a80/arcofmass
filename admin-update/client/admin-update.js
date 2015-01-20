@@ -31,12 +31,16 @@
 			
 			var dropdown = document.getElementById("dropdownMenu1");
 
-			console.log(dropdown);
+			//console.log(dropdown);
 			//var issue = dropdown.options[dropdown.selectedIndex].text;
 
-			console.log("I have clicked the savelegislator button. submitted.");
+			//console.log("I have clicked the savelegislator button. submitted.");
 
 			var issue = $document.find(".active").value; 
+
+			console.log("got here");
+
+			console.log(issue); 
 
 			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
 		},
