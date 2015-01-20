@@ -1,7 +1,4 @@
-
-
-if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
-	Meteor.subscribe("userSettingsData");
+Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
 		'click #user-home-button': function() {
     		Router.go('/profile');
@@ -11,10 +8,11 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 			document.getElementById("saveNameButton").visibility = "hidden";
 			document.getElementById("editNameButton").visibility = "visible";
 			document.getElementById("inputName").readOnly = true;
+
+			console.log("saveNameButton pressed");
 			
 			var myName = document.getElementById("inputName").value;
 			Meteor.call("modifyUserName", myName);
-
 		},
 
 		"click #editNameButton": function(event) {
@@ -87,6 +85,9 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 
 		},
 	});
+
+/*if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
+
 
 
 	/*
@@ -183,7 +184,4 @@ if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 		});
 	}
 	*/
-} else {
-	throw new Meteor.Error('403', 'permission denied');
-}
 

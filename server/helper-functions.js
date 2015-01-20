@@ -95,17 +95,15 @@ Meteor.methods({
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"email":myEmail}});
   },
   modifyUserPassword: function(myOPassword, myNPassword) {
-	Accounts.changePassword(myOPassword, myNPassword, function(error) {
-		if (error) {
-			console.log(error);
-			console.log("Failed to change password.");
+	  Accounts.changePassword(myOPassword, myNPassword, function(error) {
+		  if (error) {
+			  console.log(error);
+			  console.log("Failed to change password.");
 			//Tell user that they entered their old password incorrectly?
-		}
-		else {
+		  } else {
 			console.log("Successfully changed password.");
-		}
-	}); 
-  },
+		  }
+	  }); 
   },
   addNewAdmin: function(username) {
   	console.log('addNewAdmin accessed');
