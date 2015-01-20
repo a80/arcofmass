@@ -2,6 +2,21 @@
 	Meteor.subscribe("adminUpdateActions");
 	var selectedUserIssue = "none";
 	
+	Template.adminUpdate.events({
+		"click #addIssueButton": function(event) {
+			var newIssue = document.getElementById("addIssueField").value;
+			Meteor.call("addNewIssue", newIssue);
+		},
+		"click #deleteIssueButton": function(event) {
+			
+		},
+		"click .list-group-item": function(event){
+			var previous = $(this).closest(".list-group").children(".active");
+			previous.removeClass('active'); // previous list-item
+			$(event.target).addClass('active'); // activated list-item
+		}
+	});
+	
 	Template.updateFormField.events({
 		"click #saveLegislatorButton": function(event) {
 
