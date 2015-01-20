@@ -100,6 +100,13 @@ Meteor.subscribe("userSettingsData");
 		},
 	});
 
+Template.userSettings.helpers({
+
+	returnUserId: function() {
+		return Meteor.user().username; 
+	},
+});
+
 /*if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 
 

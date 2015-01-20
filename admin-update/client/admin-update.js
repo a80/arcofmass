@@ -117,6 +117,10 @@
 	  		return legislatorRow.instance()
 	  },
 
+	  returnUserId: function() {
+		return Meteor.user().username; 
+	},
+
 
 	});
 

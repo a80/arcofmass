@@ -125,9 +125,14 @@
   	border: none !important;
 }
 
+#new-user-button-text {
+	font-size: 20px;
+}
+
 .button-group {
 	position: fixed;
 	top: 70%;
 	left: 44%;
 	display: inline;
 }
+

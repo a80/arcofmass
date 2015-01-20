@@ -11,7 +11,11 @@ Template.adminRegion.events({
 	}
 });
 
-
+Template.adminRegion.helpers({
+	returnUserId: function() {
+		return Meteor.user().username; 
+	},
+});
 /*
 Template.adminRegion.barChart = function() {
 

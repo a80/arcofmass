@@ -15,7 +15,11 @@ if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
 		console.log(issues.find({}).fetch());
 		return issues.find({}); 
 		//return ["first issue", "second issue", "third issue"]; 
-	}
+	},
+
+	returnUserId: function() {
+		return Meteor.user().username; 
+	},
 });
 
 Template.adminIssuePanel.helpers({
@@ -60,6 +64,7 @@ Template.adminHome.events({
 	},
 	"click #logoutButton": function(event) {
 		Meteor.logout();
+		Router.go("/"); 
 	}
 });
 
