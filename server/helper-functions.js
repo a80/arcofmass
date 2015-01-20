@@ -24,7 +24,10 @@ Meteor.methods({
 	//TAKES THE NAME OF THE ISSUE
 	//Increases issue count by one
 	//For use when a user adds an issue that they now care about
-	issues.find({name: issueName}).count += 1;
+	  issues.update({name: issueName}, {$inc: {count: 1}});
+
+    //console.log("increaseIssueCount executed"); 
+    //issues.findOne({name: issueName}).count += 1;
   },
   decreaseIssueCount: function(issueName) {
 	//TAKES THE NAME OF THE ISSUE
@@ -83,7 +86,7 @@ Meteor.methods({
   	console.log("run");
   	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.name":myName, "profile.zip":myZip, "profile.story":myStory, "email":myEmail}});
 	//Meteor.user().profile = {name: myName, zip: myZip, story: myStory};
-	Accounts.changePassword(myOPassword, myNPassword, function(error) {
+	 Accounts.changePassword(myOPassword, myNPassword, function(error) {
 		if (error) {
 			console.log(error);
 			console.log("Failed to change password.");
@@ -173,7 +176,8 @@ Meteor.methods({
   },
   
   addNewLegislator: function(myName, myEmail, myAddress, myIssue) {
-	legislators.upsert({name: myName}, {name: myName, email: myEmail, address: myAddress, issue: myIssue});
+	  console.log("in addNewLegislator");
+    legislators.upsert({name: myName}, {$set: {name: myName, email: myEmail, address: myAddress, issue: myIssue}});
   },
   addNewTodo: function(myName, myGoal, myMessage, myIssue, isImportant) {
 	actionItems.upsert({name: myName}, {name: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant});	
