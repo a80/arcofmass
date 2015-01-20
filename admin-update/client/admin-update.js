@@ -20,6 +20,8 @@
 
 			console.log("I have clicked the savelegislator button. submitted.");
 
+			var issue = issues.findOne({name: "Mafirstissue"}).name; 
+
 			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
 		},
 		
@@ -40,7 +42,10 @@
 			Meteor.call("deleteTodo", name);
 		},
 		"click #deleteLegislatorButton": function(event) {
-			var name = Template.instance.find("#nameInput").value;
+			//console.log(Template.instance);
+			var name = Template.instance().find("#nameInput").value;
+
+			//console.log(name);
 			Meteor.call("deleteLegislator", name);
 		},
 	});
