@@ -75,14 +75,7 @@
 				document.getElementById("addressInput").readOnly = false;
 			}
 
-			function addToDo() {
-
-
-			}
-
-			function addLegislator(){
-
-			}
+			
 			</script>
 	</head>
 	<div>
@@ -142,9 +135,23 @@
 		<!-- Contacts -->
 
 	</div>
-		
-			<div id="contactList">
-				
+
+	{{#each getLegislatorInfo}}
+	{{>legislatorRow}}
+	{{/each}}
+
+	{{>legislatorRow}}
+
+	{{#each getToDoInfo}}
+	{{> toDoRow}}
+	{{/each}}
+
+	{{> toDoRow}}
+
+</template>
+
+		<!--	<div id="contactList"> -->
+				<template name="legislatorRow">
 					<h5>Contact for Issue X</h5>
 					<div class = 'contactName'>
 						 <span class ='box'>
@@ -188,18 +195,22 @@
 						 </button>
 					
 					</div>
-				
+				</template>
+				<template name="addLegButton">
 				<div>
 					<button type="button" class="btn btn-default" onclick="addLegislator()"> Add Legislator
 					</button>
 				</div>
 		
-			</div>
 			
-		
+			
+		</template>
+		<template name= "toDoHead">
 		<div id="todoList">
 			<h5> To Do List </h5>
-				
+		</div>
+				</template>
+				<template name="toDoRow">
 				<div id = 'firstRow'>
 					 <div class = 'row'>
 						
@@ -253,8 +264,10 @@
 						 	</div>
 						 
 					 </div>
-				</div>
-			
+					</div>
+
+				
+			</template>
 			<!--
 			<div id = 'secondRow'>
 				<div class = 'row'>
@@ -308,12 +321,13 @@
 					</div>
 				 </div>
 			</div> -->
+			<template name="addToDoButton">
 			<div>
-			<button type= "button" class="btn btn-default" id= "addToDo" onclick="addToDo()"> Add To Do
-			</button>
-		</div>
+				<button type= "button" class="btn btn-default" id= "addToDo" onclick="addToDo()"> Add To Do
+				</button>
+			</div>
 		
-	</div>
+	
 		
 </template> 
 
