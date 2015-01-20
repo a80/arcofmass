@@ -27,7 +27,9 @@ Router.map(function() {
   		}
   		this.next(); 
   		return true; 
-  	}
+  	},
+
+    
   }); //insert User ID
 
   this.route('user-settings', {path: '/user-settings',

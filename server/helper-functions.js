@@ -86,7 +86,7 @@ Meteor.methods({
   	console.log("run");
   	Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.name":myName, "profile.zip":myZip, "profile.story":myStory, "email":myEmail}});
 	//Meteor.user().profile = {name: myName, zip: myZip, story: myStory};
-	Accounts.changePassword(myOPassword, myNPassword, function(error) {
+	 Accounts.changePassword(myOPassword, myNPassword, function(error) {
 		if (error) {
 			console.log(error);
 			console.log("Failed to change password.");
@@ -176,7 +176,8 @@ Meteor.methods({
   },
   
   addNewLegislator: function(myName, myEmail, myAddress, myIssue) {
-	legislators.upsert({name: myName}, {name: myName, email: myEmail, address: myAddress, issue: myIssue});
+	  console.log("in addNewLegislator");
+    legislators.upsert({name: myName}, {$set: {name: myName, email: myEmail, address: myAddress, issue: myIssue}});
   },
   addNewTodo: function(myName, myGoal, myMessage, myIssue, isImportant) {
 	actionItems.upsert({name: myName}, {name: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant});	

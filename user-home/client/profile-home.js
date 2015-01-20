@@ -192,9 +192,8 @@ function progressBar(el, data) {
 
 
     var createCanvasSvg = function(el) {
-    	canvas = d3.select(el)
-                  .append("svg")
-                  .attr("width", width)
+    	d3.select(el).selectAll("svg").remove();
+      canvas = d3.select(el).append("svg").attr("width", width)
                   .attr("height", height);
     }
 
