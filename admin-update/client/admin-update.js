@@ -85,6 +85,22 @@
 	  returnSelectedIssue: function() {
 		//return 
 	  },
+	  getLegislatorInfo: function() {
+
+	  },
+	  getToDoInfo: function() {
+
+	  },
+
+	  addToDo: function() {
+	  		return toDoRow.instance()
+	  },
+
+	  addLegislator: function() {
+	  		return legislatorRow.instance()
+	  },
+
+
 	});
 
 	Template.adminUpdate.events({
