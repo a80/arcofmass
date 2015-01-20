@@ -92,7 +92,7 @@ Meteor.methods({
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.story":myStory}});
   },
   modifyUserEmail: function(myEmail) {
-	Meteor.users.update({_id:Meteor.userId()}, {$set:{"email":myEmail}});
+	Meteor.users.update({_id:Meteor.userId()}, {$set:{"email":{address: myEmail, verified: false}}});
   },
   modifyUserPassword: function(myOPassword, myNPassword) {
 	  Accounts.changePassword(myOPassword, myNPassword, function(error) {
