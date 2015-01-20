@@ -24,6 +24,8 @@ Meteor.methods({
 	//TAKES THE NAME OF THE ISSUE
 	//Increases issue count by one
 	//For use when a user adds an issue that they now care about
+
+    console.log("increaseIssueCount executed"); 
 	  issues.update({name: issueName}, {$inc: {count: 1}});
 
     //console.log("increaseIssueCount executed"); 
@@ -43,12 +45,14 @@ Meteor.methods({
   increaseToDoCount: function(todoName) {
 	//TAKES THE NAME OF THE TODO
 	//Increases the todo count by one
-	actionItems.find({name: todoName}).count += 1;
+	//actionItems.find({text: todoName}).count += 1;
+    console.log("increaseToDoCount called.");
+    actionItems.update({text: todoName}, {$inc: {count: 1}});
   },
   decreaseToDoCount: function(todoName) {
 	//TAKES THE NAME OF THE TODO
 	//Decreases the todo count by one
-	actionItems.find({name: todoName}).count -= 1;
+	actionItems.find({text: todoName}).count -= 1;
   },
   getIssueCount: function(issueName) {
 	//TAKES THE NAME OF THE ISSUE
