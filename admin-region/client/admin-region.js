@@ -1,4 +1,7 @@
 Template.adminRegion.events({
+	"click #logoutButton": function(event) {
+			Meteor.logout();
+		},
 	"click #admin-home-button": function(event) {
 		Router.go("/admin"); 
 	},

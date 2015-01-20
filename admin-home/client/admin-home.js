@@ -35,6 +35,9 @@ Template.adminHome.events({
 
 	"click #region-button": function(event) {
 		Router.go("/region"); 
+	},
+	"click #logoutButton": function(event) {
+		Meteor.logout();
 	}
 });
 

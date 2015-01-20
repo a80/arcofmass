@@ -3,6 +3,12 @@
 	var selectedUserIssue = "none";
 	
 	Template.adminUpdate.events({
+		"click #logoutButton": function(event) {
+			Meteor.logout();
+		},
+		"click #logoutButton": function(event) {
+			Accounts.logout();
+		},
 		"click #addIssueButton": function(event) {
 			var newIssue = document.getElementById("addIssueField").value;
 			Meteor.call("addNewIssue", newIssue);
