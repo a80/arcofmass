@@ -93,11 +93,13 @@
 
 	  addToDo: function() {
 	  		return toDoRow.instance()
-	  }
+	  },
 
 	  addLegislator: function() {
 	  		return legislatorRow.instance()
-	  }
+	  },
+
+
 	});
 
 	Template.adminUpdate.events({

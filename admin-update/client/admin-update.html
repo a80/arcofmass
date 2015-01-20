@@ -140,9 +140,13 @@
 	{{>legislatorRow}}
 	{{/each}}
 
+	{{>legislatorRow}}
+
 	{{#each getToDoInfo}}
 	{{> toDoRow}}
 	{{/each}}
+
+	{{> toDoRow}}
 
 </template>
 
@@ -192,18 +196,19 @@
 					
 					</div>
 				</template>
-				<template>
+				<template name="addLegButton">
 				<div>
 					<button type="button" class="btn btn-default" onclick="addLegislator()"> Add Legislator
 					</button>
 				</div>
 		
-			</div>
+			
 			
 		</template>
-		<template>
+		<template name= "toDoHead">
 		<div id="todoList">
 			<h5> To Do List </h5>
+		</div>
 				</template>
 				<template name="toDoRow">
 				<div id = 'firstRow'>
@@ -259,7 +264,9 @@
 						 	</div>
 						 
 					 </div>
-				</div>
+					</div>
+
+				
 			</template>
 			<!--
 			<div id = 'secondRow'>
@@ -314,13 +321,13 @@
 					</div>
 				 </div>
 			</div> -->
-			<template>
+			<template name="addToDoButton">
 			<div>
-			<button type= "button" class="btn btn-default" id= "addToDo" onclick="addToDo()"> Add To Do
-			</button>
-		</div>
+				<button type= "button" class="btn btn-default" id= "addToDo" onclick="addToDo()"> Add To Do
+				</button>
+			</div>
 		
-	</div>
+	
 		
 </template> 
 
