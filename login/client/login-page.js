@@ -87,7 +87,45 @@ Template.login.events({
 	//ADDING AN ADMIN BUTTON
 	//TAKE THIS OUT LATER
 	
-	'click #new-admin-button': function(event, template) {
+	
+
+  'click #adminLoginLink': function() {
+    Router.go('/admin-login');
+  },
+
+});
+
+
+Template.adminLogin.events({
+  'mouseenter #username-field': function() {
+    var usernameField = document.getElementById('username-field');
+    /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
+    usernameField.placeholder = "username:";
+
+  },
+
+  'mouseleave #username-field': function() {
+    var usernameField = document.getElementById('username-field');
+    /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
+    usernameField.placeholder = "you";
+  },
+
+  'click #username-field': function() {
+    var passwordField = document.getElementById('password-field');
+    /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
+    passwordField.style.visibility = "visible";
+  },
+
+  'keypress #username-field': function() {
+    var passwordField = document.getElementById('password-field');
+    /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
+    passwordField.style.visibility = "visible";
+  },
+  'click #userLoginLink': function() {
+    Router.go('/');
+  },
+
+  'click #new-admin-button': function(event, template) {
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
@@ -122,7 +160,7 @@ Template.login.events({
     Roles.addUsersToRoles(id, ['admin']);
 
     console.log("got here.");*/
-	
+  
     /*//customize user creation - delete for now. 
     Accounts.onCreateUser(function(options, user) {
       user.issues = [];
@@ -160,8 +198,7 @@ Template.login.events({
 
     return false; 
   },
-
-});
+})
 
 /*Router.route('/', function() {
   this.render('login');

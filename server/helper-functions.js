@@ -24,7 +24,10 @@ Meteor.methods({
 	//TAKES THE NAME OF THE ISSUE
 	//Increases issue count by one
 	//For use when a user adds an issue that they now care about
-	issues.find({name: issueName}).count += 1;
+	  issues.update({name: issueName}, {$inc: {count: 1}});
+
+    //console.log("increaseIssueCount executed"); 
+    //issues.findOne({name: issueName}).count += 1;
   },
   decreaseIssueCount: function(issueName) {
 	//TAKES THE NAME OF THE ISSUE

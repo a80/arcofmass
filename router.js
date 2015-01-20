@@ -14,6 +14,8 @@ Router.map(function() {
 
   this.route('login', {path: '/'});
 
+  this.route('adminLogin', {path: '/admin-login'});
+
 
 
   this.route('profileHome', {path: '/profile',
