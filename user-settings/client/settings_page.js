@@ -1,5 +1,8 @@
 Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
+		"click #logoutButton": function(event) {
+			Meteor.logout();
+		},
 		'click #user-home-button': function() {
     		Router.go('/profile');
   		},
