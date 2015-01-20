@@ -58,7 +58,8 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("editZipCodeButton").visibility = "visible";
 			document.getElementById("inputZipcode").readOnly = true;
 			
-			var myZip = document.getElementById("inputZipCode").value;
+			var myZip = document.getElementById("inputZipcode").value;
+			console.log(myZip);
 			Meteor.call("modifyUserZip", myZip);
 		},
 
@@ -77,7 +78,17 @@ Meteor.subscribe("userSettingsData");
 				
 				var myOPassword = document.getElementById("inputOPassword").value;
 				var myNPassword = document.getElementById("inputNPassword").value;
-				Meteor.call("modifyUserPassword", myOPassword, myNPassword);
+
+				Accounts.changePassword(myOPassword, myNPassword, function(error) {
+		  			if (error) {
+			  			console.log(error);
+			  			console.log("Failed to change password.");
+						//Tell user that they entered their old password incorrectly?
+		  			} else {
+						console.log("Successfully changed password.");
+		  			}
+	  			});
+				//Meteor.call("modifyUserPassword", myOPassword, myNPassword);
 			}
 			else{
 				document.getElementById("alertMessage").visibility = "visible";

@@ -95,15 +95,8 @@ Meteor.methods({
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"email":{address: myEmail, verified: false}}});
   },
   modifyUserPassword: function(myOPassword, myNPassword) {
-	  Accounts.changePassword(myOPassword, myNPassword, function(error) {
-		  if (error) {
-			  console.log(error);
-			  console.log("Failed to change password.");
-			//Tell user that they entered their old password incorrectly?
-		  } else {
-			console.log("Successfully changed password.");
-		  }
-	  }); 
+	  console.log("exec");
+     
   },
   addNewAdmin: function(username) {
   	console.log('addNewAdmin accessed');
