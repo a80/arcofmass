@@ -2,7 +2,71 @@
 <template name="userSettings">
 <head>
 	<title> Settings </title>
-	<!--<link rel="stylesheet" type="text/css" href="/settings_page.css">-->
+	<link rel="stylesheet" type="text/css" href="/settings_page.css">
+	<script type="text/javascript">
+		function clickSaveName(){
+			document.getElementById("saveNameButton").visibility = "hidden";
+			document.getElementById("editNameButton").visibility = "visible";
+			document.getElementById("inputName").readOnly = true;
+
+		}
+
+		function clickEditName() {
+			document.getElementById("saveNameButton").visibility = "visible";
+			document.getElementById("editNameButton").visibility = "hidden";
+			document.getElementById("inputName").readOnly = false;
+		}
+
+		function clickSaveEmail() {
+			document.getElementById("saveEmailButton").visibility = "hidden";
+			document.getElementById("editEmailButton").visibility = "visible";
+			document.getElementById("inputEmail").readOnly = true;
+		}
+
+		function clickEditEmail(){
+			document.getElementById("saveEmailButton").visibility = "visible";
+			document.getElementById("editEmailButton").visibility = "hidden";
+			document.getElementById("inputEmail").readOnly = false;
+
+		}
+
+		function clickSaveStory(){
+			document.getElementById("saveStoryButton").visibility = "hidden";
+			document.getElementById("editStoryButton").visibility = "visible";
+			document.getElementById("inputStory").readOnly = true;
+		}
+
+		function clickEditStory(){
+			document.getElementById("saveStoryButton").visibility = "visible";
+			document.getElementById("editStoryButton").visibility = "hidden";
+			document.getElementById("inputStory").readOnly = false;
+
+		}
+
+		function clickSaveZipCode(){
+			document.getElementById("saveZipCodeButton").visibility = "hidden";
+			document.getElementById("editZipCodeButton").visibility = "visible";
+			document.getElementById("inputZipcode").readOnly = true;
+		}
+
+		function clickEditZipCode(){
+			document.getElementById("saveZipCodeButton").visibility = "visible";
+			document.getElementById("editZipCodeButton").visibility = "hidden";
+			document.getElementById("inputZipcode").readOnly = false;
+		}
+
+		function clickSavePassword() {
+			if (document.getElementById("inputNPassword").value === document.getElementById("confirmNPassword").value){
+			document.getElementById("inputOPassword").readOnly = true;
+			document.getElementById("inputNPassword").readOnly = true;
+			document.getElementById("confirmNPassword").readOnly = true;
+			}
+			else{
+				document.getElementById("alertMessage").visibility = "visible";
+			}
+
+		}
+	</script>
 </head>
 <body>
 
@@ -40,39 +104,75 @@
 				<div class = "each">
 					<h5>Name</h5>
 					<div class = "name">
-						<div><input type="name" class="input" id="inputName" placeholder="Enter Name"></div>
+						<div><input type="name" class="input" id="inputName" placeholder="Enter Name">
+							<button id="saveNameButton" onclick = "clickSaveName()">Save</button>
+							<button id= "editNameButton" onclick = "clickEditName()">Edit</button>
+						</div>
+						
 					</div>
 				</div>
-				<div class = "each">
-					<h5>Password</h5>
-					<div class = "password">
-						<div><input type="password" class="input" id="inputOPassword" placeholder="Old Password"></div>
-					</div>
-				</div>
-				<div class = "each">
-					<h5>Password</h5>
-					<div class = "password">
-						<div><input type="password" class="input" id="inputNPassword" placeholder="New Password"></div>
-					</div>
-				</div>
+				
 				<div class = "each">
 					<h5>Email</h5>
 					<div class = "email">
-						<div><input type="email" class="input" id="inputEmail" placeholder="Email"></div>
+						<div><input type="email" class="input" id="inputEmail" placeholder="Email">
+							<button id="saveEmailButton" onclick = "clickSaveEmail()">Save</button>
+							<button id= "editEmailButton" onclick = "clickEditEmail()">Edit</button>
+						</div>
 					</div>
 				</div>
 				<div class = "each">
 					<h5>Zip Code</h5>
 					<div class = "zipcode">
-						<div><input type="zipcode" class="input" id="inputZipcode" placeholder="Enter Zip Code"></div>
+						<div><input type="zipcode" class="input" id="inputZipcode" placeholder="Enter Zip Code">
+							<button id="saveZipCodeButton" onclick = "clickSaveZipCode()">Save</button>
+							<button id= "editZipCodeButton" onclick = "clickEditZipCode()">Edit</button>
+						</div>
 					</div>
 				</div>
 				<div class = "each">
 					<h5>Story</h5>
 					<div class = "story">
 						<div>
-							<textarea rows="10" cols="34" id="inputStory" placeholder="Enter Your Story"></textarea>
+							<textarea class = "input" rows="10" cols="34" id="inputStory" placeholder="Enter Your Story"></textarea>
+							<button id="saveStoryButton" onclick = "clickSaveStory()">Save</button>
+							<button id= "editStoryButton" onclick = "clickEditStory()">Edit</button>
 						</div>
+					</div>
+				</div>
+				<div class = "each">
+					
+						<h3> Issues of the Arc</h3>
+						<div class = 'checkbox'><input type= 'checkbox' id="checkInput" aria-label="..." ></div>
+						<div class = 'issue'><h5>Issue1</h5></div>
+						<div class = 'checkbox'><input type= 'checkbox' id="checkInput" aria-label="..." ></div>
+						<div class = 'issue'><h5>Issue2</h5></div>
+						<div class = 'checkbox'><input type= 'checkbox' id="checkInput" aria-label="..." ></div>
+						<div class = 'issue'><h5>Issue3</h5></div>
+					
+				</div>
+				<div class = "each">
+					<h5>Password</h5>
+					<div class = "password">
+						<div><input type="password" class="input" id="inputOPassword" placeholder="Old Password">
+						</div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Password</h5>
+					<div class = "password">
+						<div><input type="password" class="input" id="inputNPassword" placeholder="New Password">
+						</div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Password</h5>
+					<div class = "password">
+						<div><input type="password" class="input" id="confirmNPassword" placeholder="Confirm New Password">
+						<button id="saveButton" onclick = "clickSavePassword()">Save Password</button>
+						<h5 id="alertMessage" style="color:red;"> Whoops! Your new password and confirmed password need to match. </h5>
+						</div>
+						
 					</div>
 				</div>
 			
@@ -84,10 +184,6 @@
 			</div>
 
 		</div>
-	</div>
-	<div class="btn-group" role="group" >
-		<button type="button" class="btn btn-default" id="saveButton"> Save</button>
-		
 	</div>
 
 </body>

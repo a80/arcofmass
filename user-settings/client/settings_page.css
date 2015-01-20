@@ -28,3 +28,19 @@
 .title {
 	padding: 10px;
 }
+
+.checkbox, .issue {
+	display: inline;
+}
+
+#saveButton, #editButton, .input {
+	display: inline;
+}
+
+#editButton {
+	visibility: hidden;
+}
+
+#alertMessage {
+	visibility: hidden;
+}
