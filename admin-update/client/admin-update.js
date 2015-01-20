@@ -36,7 +36,7 @@
 
 			console.log("I have clicked the savelegislator button. submitted.");
 
-			var issue = $(".active").value; 
+			var issue = $(".active").text; 
 
 			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
 		},
@@ -52,7 +52,7 @@
 			var important = false;
 			if (c.checked) important = true;
 
-			var issue = $(".active").value;
+			var issue = $(".active").text;
 			
 			Meteor.call("addNewTodo", name, goal, message, issue, important);
 		},
