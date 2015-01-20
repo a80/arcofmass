@@ -8,10 +8,12 @@ Template.profileHome.helpers({
 	getUserIssues: function() {
 		//console.log(issues.find({}).fetch());
     var list = issues.find({}).fetch();
-		return _.map(list, function(l) {
-      _.extend(l, {graphID: l.name.replace(/\s*/g, '')});
-      return l;
-    }); 
+	
+	return _.map(list, function(l) {
+    	_.extend(l, {graphID: l.name.replace(/\s*/g, '')});
+      	return l;
+    	}); 
+	
 	},
 
 	returnUserId: function() {
@@ -27,14 +29,21 @@ Template.toDoPanel.helpers({
 		actionItemsData = actionItems.find({}).fetch();
 
 		for (var i = 0; i < actionItemsData.length; i++) {
-		  console.log("entered if loop"); 
+		  //console.log("entered if loop"); 
 		  if (actionItemsData[i].issue === issueName) {
 			actionItemsForIssue.push(actionItemsData[i]); 
 		  }
 		}
 
-		return actionItemsForIssue;  
+		_.map(actionItemsForIssue, function(a) {
+      		_.extend(a, {toDoID: a._id}); }); 
 
+      	return actionItemsForIssue; 
+
+		/*return _.map(actionItemsForIssue, function(a) {
+      		_.extend(a, {toDoID: a._id}); 
+      		return actionItemsForIssue;  
+		});*/
 	}, 
 
 	returnToDoName: function() {
@@ -68,18 +77,43 @@ Template.toDoPanel.events({
       var issueName = this.issue; 
       Meteor.call("increaseIssueCount", issueName); 
     },
+
+    //select the link corresponding to the list element, display that issue. 
+
+    "click .toDoListItem": function(event) {
+    	//retrieve parent id. 
+    	var toDoListItemID = event.currentTarget.id; 
+    	//console.log("selected: " + toDoListItemID); 
+
+    	//get the count associated with the todo. 
+    	var toDoOfInterest = actionItems.findOne({_id: toDoListItemID}); 
+
+    	//console.log(toDoOfInterest.goal); 
+
+    	//get the graph id to change. 
+
+    	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
+    	console.log(graphIDtoChange);
+
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.goal);
+    },
+
 });
 
+var graphs = {};
 
 Template.profileHome.rendered = function() {
 
 	Deps.autorun(function() {
-    var graphs = {};
-		var issueList = issues.find({}).fetch();
+    
+	var issueList = issues.find({}).fetch();
     
     _.each(issueList, function(issue) {
       var graphID = issue.name.replace(/\s*/g, '');
-      graphs[issue._id] = progressBar("#" + graphID, issue.count);
+
+      //modify the graph shown here with the one relevant to the to-do.
+      //graphs[issue._id] = progressBar("#" + graphID, issue.count);
+      graphs[graphID] = progressBar("#" + graphID, issue.count);
     }); 
 	});
 
