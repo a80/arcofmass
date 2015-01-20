@@ -20,7 +20,7 @@ Router.map(function() {
 
   this.route('profileHome', {path: '/profile',
   	onBeforeAction: function() {
-  		user = Meteor.user(); 
+  		user = Meteor.user()._id; 
   		if (!Roles.userIsInRole(user, ['regular'])) {
   			this.redirect('login');
   			this.stop(); 
@@ -34,7 +34,7 @@ Router.map(function() {
 
   this.route('user-settings', {path: '/user-settings',
   	onBeforeAction: function() {
-  		user = Meteor.user(); 
+  		user = Meteor.user()._id; 
   		if (!Roles.userIsInRole(user, ['regular'])) {
   			this.redirect('login');
   			this.stop(); 
@@ -47,7 +47,7 @@ Router.map(function() {
 
   this.route('adminHome', {path: '/admin', 
   	onBeforeAction: function() {
-  		user = Meteor.user(); 
+  		user = Meteor.user()._id; 
   		console.log(user.username);
   		if (!Roles.userIsInRole(user, ['admin'])) {
   			this.redirect('login');
