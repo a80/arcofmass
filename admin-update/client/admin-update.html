@@ -64,7 +64,7 @@
 				document.getElementById("editLeg").style.visibility = "visible";
 				document.getElementById("nameInput").readOnly = true;
 				document.getElementById("emailInput").readOnly = true;
-				document.getElementById("address").readOnly = true;
+				document.getElementById("addressInput").readOnly = true;
 			}
 
 			function toSaveLegislator(){
@@ -72,7 +72,7 @@
 				document.getElementById("saveLeg").style.visibility = "visible";
 				document.getElementById("nameInput").readOnly = false;
 				document.getElementById("emailInput").readOnly = false;
-				document.getElementById("address").readOnly = false;
+				document.getElementById("addressInput").readOnly = false;
 			}
 
 			function addToDo() {
@@ -86,15 +86,12 @@
 			</script>
 	</head>
 	<div>
-		<div class="dropdown">
-		  <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
-		    Select Issue <span class="caret"></span>
-		  </button>
-		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		<div class="listGroup">
+		  
+		  
 		    <!-- List of all issues -->
-
 		    {{#each getUserIssues}}
-		    	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{returnIssueName}}</a></li>
+		    <a href="#" class="list-group-item">{{returnIssueName}}</a>
 		    {{/each}}
 
 		    <!-- <li>
@@ -102,24 +99,24 @@
 	  			{{> issuePanel}}
 	  		{{/each}}
 	  		</li> --> 
-		  </ul>
+		  
 		</div>
 		<div class="newIssueField">
 			<div id="issueButton"> 
-				<button type="button" id ="addIssue">
+				<button type="button" class="btn btn-default" id ="addIssue">
 					Add Issue
 				</button>
 			</div>
 			<div id= "newIssue">
 				<span class ='box'>
-					 <input type= 'text' aria-label="..." placeholder = "New Issue">
+					 <input type="text" class="form-control" aria-label="..." placeholder = "New Issue">
 				</span>
 			</div>
 
 
 		</div>
 		<div class="deleteIssueField">
-			<button type= "button" id="deleteIssue"> Delete Current Issue
+			<button type="button" class="btn btn-default" id="deleteIssue"> Delete Current Issue
 			</button>
 
 		</div>
@@ -152,32 +149,32 @@
 					 <span class ='box'>
 
 					 	
-					 	<input type= 'text' id="nameInput" aria-label="..." placeholder = "Representative">
+					 	<input type="text" class="form-control" id="nameInput" aria-label="..." placeholder = "Representative">
 					 </span>
 				</div>
 				<div class = 'contactEmail'>
 					 <span class ='box'>
 
 					
-					 	<input type= 'text' id="emailInput" aria-label="..." placeholder = "Email">
+					 	<input type="text" class="form-control" id="emailInput" aria-label="..." placeholder = "Email">
 
 					 </span>
 				</div>
 				<div class = 'contactAddress'>
 					 <span class ='box'>
-					 	<input id="addressInput" type= 'text' aria-label="..." placeholder = "Address">
+					 	<input id="addressInput" type="text" class="form-control" aria-label="..." placeholder = "Address">
 					 </span>
 				</div>
 
 				<div id='saveLeg'>
 
-					 <button onclick="toEditLegislator()" id = "saveLegislatorButton">
+					 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "saveLegislatorButton">
 					 	Save
 					</button>
 			 	</div>
 			 	<div id = 'editLeg'>
 
-			 		<button onclick="toSaveLegislator()">
+			 		<button type="button" class="btn btn-default" onclick="toSaveLegislator()">
 			 			Edit
 			 		</button>
 			 	</div>
@@ -185,13 +182,13 @@
 			
 				<div class = 'deleteLegislator' id="deleteLegislatorButton">
 
-					 <button>
+					 <button type="button" class="btn btn-default">
 					 	Delete
 					 </button>
 				
 				</div>
 				<div>
-					<button type= "button" id= "addLegislator" onclick="addLegislator()"> Add Legislator
+					<button type="button" class="btn btn-default" onclick="addLegislator()"> Add Legislator
 					</button>
 				</div>
 		
@@ -211,7 +208,7 @@
 					 	<div class = 'todo'>
 					 		<span class ='box'>
 
-					 			<input type= 'text' id="todoInput" aria-label="..." placeholder = "To Do #1" >
+					 			<input type="text" class="form-control" id="todoInput" aria-label="..." placeholder = "To Do #1" >
 
 					 		</span>
 					 	</div>
@@ -219,7 +216,7 @@
 					 		<span class ='box'>
 
 					 			
-					 			<input type= 'text' id="goalInput" aria-label="..." placeholder = "Goal #1">
+					 			<input type="text" class="form-control" id="goalInput" aria-label="..." placeholder = "Goal #1">
 					 		</span>
 					 	</div>
 					 	<div class = 'message' >
@@ -227,7 +224,7 @@
 
 					 			
 
-					 			<input type= 'text' id="messageInput" aria-label="..." placeholder = "Message">
+					 			<input type="text" class="form-control" id="messageInput" aria-label="..." placeholder = "Message">
 
 					 		</span>
 					 	</div>
@@ -235,19 +232,19 @@
 					 
 					 	<div class = 'save' id="saveToDo">
 
-					 		<button onclick="toEdit()" id="saveTodoButton">
+					 		<button type="button" class="btn btn-default" onclick="toEdit()" id="saveTodoButton">
 
 					 			Save
 					 		</button>
 					 	</div>
 					 	<div class = 'edit' id="editToDo">
 
-					 		<button onclick="toSave()" id="editButton">
+					 		<button type="button" class="btn btn-default" onclick="toSave()" id="editButton">
 					 			Edit
 					 		</button>
 					 	</div>
 					 	<div class = 'deleteToDo' id="deleteTodoButton">
-					 		<button>
+					 		<button type="button" class="btn btn-default">
 					 			Delete
 					 		</button>
 					 	</div>
