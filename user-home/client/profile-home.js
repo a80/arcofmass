@@ -36,7 +36,10 @@ Template.toDoPanel.helpers({
 		}
 
 		_.map(actionItemsForIssue, function(a) {
-      		_.extend(a, {toDoID: a._id}); }); 
+      		_.extend(a, {toDoID: a._id}); });
+
+      	_.map(actionItemsForIssue, function(a) {
+      		_.extend(a, {toDoCheckID: a.message}); }); 
 
       	return actionItemsForIssue; 
 
@@ -72,10 +75,37 @@ Template.issuePanel.helpers({
 
 
 Template.toDoPanel.events({
-	"click .toggle-checked": function () {
-      //get the relevant id associated with this checkbox
-      var issueName = this.issue; 
-      Meteor.call("increaseIssueCount", issueName); 
+	"click .toggle-checked": function (event) {
+      	//get the relevant id associated with this checkbox
+      	var issueName = this.issue; 
+      	//Meteor.call("increaseIssueCount", issueName); 
+
+      	//retrieve parent id. 
+    	var checkID = event.currentTarget.id; //this corresponds to the actionItem ID.
+    	
+    	console.log(checkID);
+    	//console.log(actionItems.findOne({_id: checkID}));
+
+
+    	var toDoName = actionItems.findOne({_id: checkID}).text; //change 
+
+
+
+
+
+    	Meteor.call("increaseToDoCount", toDoName); 
+
+    	var toDoOfInterest = actionItems.findOne({_id: checkID}); 
+
+    	//console.log(toDoOfInterest.goal); 
+
+    	//get the graph id to change. 
+
+    	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
+    	console.log(graphIDtoChange);
+
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count);
+
     },
 
     //select the link corresponding to the list element, display that issue. 
@@ -95,7 +125,7 @@ Template.toDoPanel.events({
     	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
     	console.log(graphIDtoChange);
 
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.goal);
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count);
     },
 
 });
