@@ -82,11 +82,20 @@ Meteor.methods({
   setArea: function(zipcode) {
 	
   },
-  modifyUser: function(myName, myZip, myStory, myEmail, myOPassword, myNPassword) {
-  	console.log("run");
-  	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.name":myName, "profile.zip":myZip, "profile.story":myStory, "email":myEmail}});
-	//Meteor.user().profile = {name: myName, zip: myZip, story: myStory};
-	 Accounts.changePassword(myOPassword, myNPassword, function(error) {
+  modifyUserName: function(myName){
+	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.name":myName}});
+  },
+  modifyUserZip: function(myZip) {
+	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.zip":myZip}});
+  },
+  modifyUserStory: function(myStory) {
+	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.story":myStory}});
+  },
+  modifyUserEmail: function(myEmail) {
+	Meteor.users.update({_id:Meteor.userId()}, {$set:{"email":myEmail}});
+  },
+  modifyUserPassword: function(myOPassword, myNPassword) {
+	Accounts.changePassword(myOPassword, myNPassword, function(error) {
 		if (error) {
 			console.log(error);
 			console.log("Failed to change password.");
@@ -96,6 +105,7 @@ Meteor.methods({
 			console.log("Successfully changed password.");
 		}
 	}); 
+  },
   },
   addNewAdmin: function(username) {
   	console.log('addNewAdmin accessed');
