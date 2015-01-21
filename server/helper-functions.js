@@ -199,6 +199,50 @@ Meteor.methods({
   },
   delIssue: function(myName) {
 	issues.remove({name: myName});
-  }
+  }, 
+
+  addToDoRowFunction: function() {
+    //find stuff.
+    //console.log("object created in server"); 
+    
+
+    toDoRowArray.upsert({name: "toDoRowArrayObject"}, {$push: {arrayList: 1}}); 
+    /*if (toDoRowArray.length === 0) {
+      
+      
+    } else {
+      toDoRowArray.update({name: "toDoRowArray"}, {$push: {arrayList: [1]}}); 
+    }*/
+  }, 
+
+  addLegislatorRowFunction: function() {
+    legislatorRowArray.upsert({name: "legislatorRowArrayObject"}, {$push: {arrayList: 1}}); 
+
+  },
+
+  deleteToDoRowFunction: function() {
+    //find stuff.
+    //console.log("object created in server"); s
+    toDoRowArray.upsert({name: "toDoRowArrayObject"}, {$pop: {arrayList: 1}}); 
+    /*if (toDoRowArray.length === 0) {
+    } else {
+      toDoRowArray.update({name: "toDoRowArray"}, {$push: {arrayList: [1]}}); 
+    }*/
+  }, 
+
+  deleteLegislatorRowFunction: function() {
+    legislatorRowArray.upsert({name: "legislatorRowArrayObject"}, {$pop: {arrayList: 1}}); 
+  },
+
+  adminUpdateSelectIssue: function(issueName) {
+    selectedIssue.upsert({name: "selectedIssueObject"}, {$set: {selectedIssue: issueName}}); 
+  }, 
+
+
+
+
+
+
+
   //put comma after above function
 });
