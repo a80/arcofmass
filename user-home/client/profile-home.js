@@ -16,7 +16,6 @@ Template.profileHome.helpers({
     	_.extend(l, {graphID: l.name.replace(/\s*/g, '')});
       	return l;
     	}); 
-	
 	},
 
 	returnUserId: function() {
