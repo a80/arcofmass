@@ -25,7 +25,7 @@
 			Meteor.call("delIssue", delIssue);
 		},
 		"click .list-group-item": function(event){
-			var previous = $document.find(".active");
+			var previous = $(this).closest(".list-group").children(".active");
 			previous.removeClass('active'); // previous list-item
 			$(event.target).addClass('active'); // activated list-item
 
