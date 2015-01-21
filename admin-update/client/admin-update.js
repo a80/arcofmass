@@ -104,11 +104,11 @@
 	  },
 	  getLegislatorInfo: function() {
 	  	//return leg associated with the issue 
-
+	  	//console.log(legislators.find({issue: issue})); 
+	  	//return legislators.find({issue: issue}); 
 	  },
 	  getToDoInfo: function() {
 	  	//return todo associated with the issue 
-
 	  },
 
 	  addToDo: function() {
