@@ -18,14 +18,19 @@
 		},
 		"click #addIssueButton": function(event) {
 			var newIssue = document.getElementById("addIssueField").value;
-			Meteor.call("addNewIssue", newIssue);
+			if (newIssue == null || newIssue == "") {
+				alert("You must type in the name of an issue.");
+			}
+			else {
+				Meteor.call("addNewIssue", newIssue);
+			}
 		},
 		"click #deleteIssueButton": function(event) {
 			var delIssue = $document.find(".active").value;
 			Meteor.call("delIssue", delIssue);
 		},
 		"click .list-group-item": function(event){
-			var previous = $(this).closest(".list-group").children(".active");
+			var previous = $document.find(".active");
 			previous.removeClass('active'); // previous list-item
 			$(event.target).addClass('active'); // activated list-item
 			
