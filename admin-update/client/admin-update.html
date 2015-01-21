@@ -78,42 +78,30 @@
 			
 			</script>
 	</head>
-	<div>
-		<div class="listGroup">
+	
+		<div id="listGroup">
 		  
 		  
 		    <!-- List of all issues -->
 		    {{#each getUserIssues}}
-		    <a href="#" class="list-group-item">{{returnIssueName}}</a>
+		    <a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
 		    {{/each}}
 
-		    <!-- <li>
-		    {{#each getAllIssues}}
-	  			{{> issuePanel}}
-	  		{{/each}}
-	  		</li> --> 
 		  
 		</div>
-		<div class="newIssueField">
-			<div id="issueButton"> 
+		<div id="newIssueField">
+			 
 				<button type="button" class="btn btn-default" id ="addIssueButton">
 					Add Issue
 				</button>
-			</div>
-			<div id= "newIssue">
-				<span class ='box'>
-					 <input type="text" id="addIssueField" class="form-control" aria-label="..." placeholder = "New Issue">
-				</span>
-			</div>
-
+				
+				<input type="text" id="addIssueField" class="form-control" aria-label="..." placeholder = "New Issue">
+				
+				<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete Current Issue
+				</button>
 
 		</div>
-		<div class="deleteIssueField">
-			<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete Current Issue
-			</button>
-
-		</div>
-	</div>
+	
 	
 	{{>updateFormField}}
 
@@ -162,53 +150,31 @@
 
 		<!--	<div id="contactList"> -->
 				<template name="legislatorRow">
-					<h5>Contact for Issue X</h5>
-					<div class = 'contactName'>
-						 <span class ='box'>
-
-						 	
-						 	<input type="text" class="form-control" id="nameInput" aria-label="..." placeholder = "Representative">
-						 </span>
-					</div>
-					<div class = 'contactEmail'>
-						 <span class ='box'>
-
+					<div class="legRow">
+						<h5>Contact for Issue X</h5>
 						
-						 	<input type="text" class="form-control" id="emailInput" aria-label="..." placeholder = "Email">
-
-						 </span>
-					</div>
-					<div class = 'contactAddress'>
-						 <span class ='box'>
-						 	<input id="addressInput" type="text" class="form-control" aria-label="..." placeholder = "Address">
-						 </span>
-					</div>
-
-					<div id='saveLeg'>
-
+					 	<input type="text" class="form-control" id="nameInput" aria-label="..." placeholder = "Representative">
+					 	<input type="text" class="form-control" id="emailInput" aria-label="..." placeholder = "Email">
+						<input id="addressInput" type="text" class="form-control" aria-label="..." placeholder = "Address">
+							 
 						 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "saveLegislatorButton">
-						 	Save
+							 	Save
 						</button>
-				 	</div>
-				 	<div id = 'editLeg'>
-
-				 		<button type="button" class="btn btn-default" onclick="toSaveLegislator()">
-				 			Edit
-				 		</button>
-				 	</div>
-					
-				
-					<div class = 'deleteLegislator'>
-
-						 <button type="button" class="btn btn-default" id="deleteLegislatorButton">
-						 	Delete
-						 </button>
-					
+					 	
+					 	<button type="button" class="btn btn-default" id="editLegislatorButton" onclick="toSaveLegislator()">
+					 			Edit
+					 	</button>
+					 	
+						<button type="button" class="btn btn-default" id="deleteLegislatorButton">
+							 	Delete
+						</button>
 					</div>
 				</template>
 				<template name="addLegButton">
+
 				<div>
 					<button type="button" class="btn btn-default" id = "addLegislatorRow"> Add Legislator
+
 					</button>
 				</div>
 		
@@ -221,117 +187,37 @@
 		</div>
 				</template>
 				<template name="toDoRow">
-				<div id = 'firstRow'>
+				
 					 <div class = 'row'>
 						
-						 	<div class = 'checkbox'>
-						 		<span class ='box'>
-						 			<input type= 'checkbox' id="checkInput" aria-label="..." >
-						 		</span>
-						 	</div>
-						 	<div class = 'todo'>
-						 		<span class ='box'>
+						 		<input type= 'checkbox' id="checkInput" aria-label="..." >
+						 		
+						 		<input type="text" class="form-control" id="todoInput" aria-label="..." placeholder = "To Do #1" >
 
-						 			<input type="text" class="form-control" id="todoInput" aria-label="..." placeholder = "To Do #1" >
+						 		<input type="text" class="form-control" id="goalInput" aria-label="..." placeholder = "Goal #1">
+						 							 			
+					 			<input type="text" class="form-control" id="messageInput" aria-label="..." placeholder = "Message">
 
-						 		</span>
-						 	</div>
-						 	<div class = 'goal' >
-						 		<span class ='box'>
-
-						 			
-						 			<input type="text" class="form-control" id="goalInput" aria-label="..." placeholder = "Goal #1">
-						 		</span>
-						 	</div>
-						 	<div class = 'message' >
-						 		<span class ='box'>
-
-						 			
-
-						 			<input type="text" class="form-control" id="messageInput" aria-label="..." placeholder = "Message">
-
-						 		</span>
-						 	</div>
-						 	
-						 
-						 	<div class = 'save' id="saveToDo">
-
-						 		<button type="button" class="btn btn-default" onclick="toEdit()" id="saveTodoButton">
-
+						 		<button type="button" class="btn btn-default" onclick="toEdit()" id="saveToDoButton">
 						 			Save
 						 		</button>
-						 	</div>
-						 	<div class = 'edit' id="editToDo">
-
-						 		<button type="button" class="btn btn-default" onclick="toSave()" id="editButton">
+						 	
+						 		<button type="button" class="btn btn-default" onclick="toSave()" id="editToDoButton">
 						 			Edit
 						 		</button>
-						 	</div>
-						 	<div class = 'deleteToDo' id="deleteTodoButton">
-						 		<button type="button" class="btn btn-default">
+						 	
+						 		<button type="button" id="deleteToDoButton" class="btn btn-default">
 						 			Delete
 						 		</button>
-						 	</div>
 						 
 					 </div>
-					</div>
+				
 
 				
 			</template>
-			<!--
-			<div id = 'secondRow'>
-				<div class = 'row'>
-				 	<div class = 'checkbox'>
-				 		<span class ='box'>
-				 			<input type= 'checkbox' aria-label="...">
-				 		</span>
-				 	</div>
-				 	<div class = 'todo'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "To Do #2">
-				 			
-				 		</span>
-				 	</div>
-				 	<div class = 'goal'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "Goal #2">
-				 			
-				 		</span>
-				 	</div>
-				 	<div class = 'message'>
-						 <span class ='box'>
-						 	<input type= 'text' aria-label="..." placeholder = "Message">
-						 	
-						 </span>
-					</div>
-				 </div>
-			</div>
 			
-			<div id = 'thirdRow'>
-				<div class = 'row'>
-				 	<div class = 'checkbox'>
-				 		<span class ='box'>
-				 			<input type= 'checkbox' aria-label="...">
-				 		</span>
-				 	</div>
-				 	<div class = 'todo'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "To Do #3">
-				 		</span>
-				 	</div>
-				 	<div class = 'goal'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "Goal #3">
-				 		</span>
-				 	</div>
-				 	<div class = 'message'>
-						<span class ='box'>
-						 	<input type= 'text' aria-label="..." placeholder = "Message">
-						 </span>
-					</div>
-				 </div>
-			</div> -->
 			<template name="addToDoButton">
+
 			<div>
 				<button type= "button" class="btn btn-default" id= "addToDoRow" > Add To Do
 				</button>

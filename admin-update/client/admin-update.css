@@ -7,8 +7,9 @@
 	padding: 3px
 }
 
-.row {
-	text-align: center;	
+.row,.legRow{
+	text-align: center;
+	padding: 15px;	
 }
 
 #contactList, #addLegislator{
@@ -20,25 +21,39 @@
 	padding: 10px
 }
 
-.contactName, .contactEmail, .contactAddress, #saveLeg, #editLeg, .deleteLegislator {
-	display: inline;
-	padding: 3px;
+#issueSelect {
+	width: 150px;
 }
 
-#addToDo{
+#listGroup, #newIssueField {
+	display: inline;
+}
+
+#nameInput, #emailInput, #addressInput{
+	width: 300px;
+}
+#nameInput, #emailInput, #addressInput, #saveLegislatorButton, #editLegislatorButton, #deleteLegislatorButton {
+	display: inline;
+}
+
+#addLegislatorRow, #addToDoRow{
 	text-align: center;
 }
 
-.newIssueField, .dropdown, .deleteIssueField {
+#checkInput, #todoInput, #goalInput, #messageInput, #saveToDoButton, #editToDoButton, #deleteToDoButton{
 	display: inline;
 }
 
-#issueButton, #newIssue{
+#todoInput, #goalInput, #messageInput{
+	width: 300px;
+}
+
+#addIssueButton, #addIssueField, #deleteIssueButton {
 	display: inline;
 }
 
-.newIssueField {
-	padding: 25px;
+#addIssueField{
+	width: 150px;
 }
 
 #save, #edit {
