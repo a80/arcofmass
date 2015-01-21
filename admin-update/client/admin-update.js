@@ -103,18 +103,20 @@
 		//return 
 	  },
 	  getLegislatorInfo: function() {
+	  	//return leg associated with the issue 
 
 	  },
 	  getToDoInfo: function() {
+	  	//return todo associated with the issue 
 
 	  },
 
 	  addToDo: function() {
-	  		return toDoRow.instance()
+	  		return toDoRow.instance();
 	  },
 
 	  addLegislator: function() {
-	  		return legislatorRow.instance()
+	  		return legislatorRow.instance();
 	  },
 
 	  returnUserId: function() {
