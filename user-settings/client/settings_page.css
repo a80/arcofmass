@@ -2,6 +2,10 @@
 	padding: 45px;
 }
 
+.checkbox, .issue {
+	display: inline;
+}
+
 #passwordTitle, #arcIssues, #theTitle{
 	padding: 15px;
 }
@@ -46,6 +50,6 @@
 	visibility: hidden;
 }
 
-#alertMessage {
+#alertMessage, #savedSuccessfullyMessage {
 	visibility: hidden;
 }
