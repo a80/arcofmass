@@ -18,11 +18,16 @@
 	padding-left: 20px;
 }
 
-#inputName, #inputUsername, #inputEmail, #inputPassword,#inputZipcode {
+#inputName, #inputUsername, #inputEmail, #inputPassword,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
 	width: 305px;
-	height: 25px;
+	height: 30px;
 
 
+}
+
+#inputStory {
+	width: 305px;
+	height: 250px;
 }
 
 .title {
@@ -37,7 +42,7 @@
 	display: inline;
 }
 
-#editNameButton, #editEmailButton, #editStoryButton, #editZipCodeButton {
+#editNameButton, #editEmailButton, #editStoryButton, #editZipCodeButton{
 	visibility: hidden;
 }
 
