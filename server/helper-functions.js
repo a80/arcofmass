@@ -96,12 +96,13 @@ Meteor.methods({
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.story":myStory}});
   },
   modifyUserEmail: function(myEmail) {
-	Meteor.users.update({_id:Meteor.userId()}, {$set:{"email":{address: myEmail, verified: false}}});
+	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.email":{address: myEmail, verified: false}}});
   },
   modifyUserPassword: function(myOPassword, myNPassword) {
 	  console.log("exec");
      
   },
+
   addNewAdmin: function(username) {
   	console.log('addNewAdmin accessed');
 
