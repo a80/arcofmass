@@ -80,14 +80,20 @@ Meteor.subscribe("userSettingsData");
 				
 				var myOPassword = document.getElementById("inputOPassword").value;
 				var myNPassword = document.getElementById("inputNPassword").value;
+				document.getElementById("inputOPassword").value = "";
+		  		document.getElementById("inputNPassword").value = "";
+		  		document.getElementById("confirmNPassword").value = "";	
 
 				Accounts.changePassword(myOPassword, myNPassword, function(error) {
 		  			if (error) {
 			  			console.log(error);
 			  			console.log("Failed to change password.");
+
 						//Tell user that they entered their old password incorrectly?
 		  			} else {
 						console.log("Successfully changed password.");
+						document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
+		  				
 		  			}
 	  			});
 				//Meteor.call("modifyUserPassword", myOPassword, myNPassword);
