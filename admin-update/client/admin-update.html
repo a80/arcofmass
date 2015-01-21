@@ -1,15 +1,3 @@
-<!-- <template name = "adminUpdate">
-  
-  {{#if isInRole 'admin'}}
-    {{> adminUpdateBody}}
-  {{else}}
-    {{> customErrorPageAdminUpdate }}
-  {{/if}}
-</template> -->
-
-
-
-
 <template name="adminUpdate">
 
 	<nav class = "navbar navbar-default">
@@ -34,9 +22,7 @@
     </div>
     
     </div>
-
-
-  </nav>
+    </nav>
 
 
 	<head>
@@ -76,8 +62,12 @@
 			}
 
 			
-			</script>
+		</script>
 	</head>
+
+
+
+
 	<div>
 		<div class="listGroup">
 		  
@@ -153,7 +143,6 @@
 
 </template>
 
-		<!--	<div id="contactList"> -->
 				<template name="legislatorRow">
 					<h5>Contact for Issue X</h5>
 					<div class = 'contactName'>
@@ -201,7 +190,7 @@
 				</template>
 				<template name="addLegButton">
 				<div>
-					<button type="button" class="btn btn-default" onclick="addLegislator()"> Add Legislator
+					<button type="button" class="btn btn-default"> Add Legislator
 					</button>
 				</div>
 		
@@ -271,70 +260,11 @@
 
 				
 			</template>
-			<!--
-			<div id = 'secondRow'>
-				<div class = 'row'>
-				 	<div class = 'checkbox'>
-				 		<span class ='box'>
-				 			<input type= 'checkbox' aria-label="...">
-				 		</span>
-				 	</div>
-				 	<div class = 'todo'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "To Do #2">
-				 			
-				 		</span>
-				 	</div>
-				 	<div class = 'goal'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "Goal #2">
-				 			
-				 		</span>
-				 	</div>
-				 	<div class = 'message'>
-						 <span class ='box'>
-						 	<input type= 'text' aria-label="..." placeholder = "Message">
-						 	
-						 </span>
-					</div>
-				 </div>
-			</div>
-			
-			<div id = 'thirdRow'>
-				<div class = 'row'>
-				 	<div class = 'checkbox'>
-				 		<span class ='box'>
-				 			<input type= 'checkbox' aria-label="...">
-				 		</span>
-				 	</div>
-				 	<div class = 'todo'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "To Do #3">
-				 		</span>
-				 	</div>
-				 	<div class = 'goal'>
-				 		<span class ='box'>
-				 			<input type= 'text' aria-label="..." placeholder = "Goal #3">
-				 		</span>
-				 	</div>
-				 	<div class = 'message'>
-						<span class ='box'>
-						 	<input type= 'text' aria-label="..." placeholder = "Message">
-						 </span>
-					</div>
-				 </div>
-			</div> -->
 			<template name="addToDoButton">
 			<div>
-				<button type= "button" class="btn btn-default" id= "addToDo" onclick="addToDo()"> Add To Do
+				<button type= "button" class="btn btn-default" id= "addToDo"> Add To Do
 				</button>
 			</div>
 		
-	
-		
-</template> 
-
-<template name = "customErrorPageAdminUpdate"> 
-  <h1>You're not an admin.</h1> 
 </template> 
 
