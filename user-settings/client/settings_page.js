@@ -8,8 +8,9 @@ Meteor.subscribe("userSettingsData");
   		},
 
   		"click #saveNameButton": function(event){
-			document.getElementById("saveNameButton").visibility = "hidden";
-			document.getElementById("editNameButton").visibility = "visible";
+			document.getElementById("saveNameButton").style.visibility = "hidden";
+			document.getElementById("editNameButton").style.visibility = "visible";
+
 			document.getElementById("inputName").readOnly = true;
 
 			console.log("saveNameButton pressed");
@@ -19,14 +20,14 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #editNameButton": function(event) {
-			document.getElementById("saveNameButton").visibility = "visible";
-			document.getElementById("editNameButton").visibility = "hidden";
+			document.getElementById("saveNameButton").style.visibility = "visible";
+			document.getElementById("editNameButton").style.visibility = "hidden";
 			document.getElementById("inputName").readOnly = false;
 		},
 
 		"click #saveEmailButton" : function(event) {
-			document.getElementById("saveEmailButton").visibility = "hidden";
-			document.getElementById("editEmailButton").visibility = "visible";
+			document.getElementById("saveEmailButton").style.visibility = "hidden";
+			document.getElementById("editEmailButton").style.visibility = "visible";
 			document.getElementById("inputEmail").readOnly = true;
 			
 			var myEmail = document.getElementById("inputEmail").value;
@@ -34,15 +35,15 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #editEmailButton" : function(event){
-			document.getElementById("saveEmailButton").visibility = "visible";
-			document.getElementById("editEmailButton").visibility = "hidden";
+			document.getElementById("saveEmailButton").style.visibility = "visible";
+			document.getElementById("editEmailButton").style.visibility = "hidden";
 			document.getElementById("inputEmail").readOnly = false;
 
 		},
 
 		"click #saveStoryButton" : function(event){
-			document.getElementById("saveStoryButton").visibility = "hidden";
-			document.getElementById("editStoryButton").visibility = "visible";
+			document.getElementById("saveStoryButton").style.visibility = "hidden";
+			document.getElementById("editStoryButton").style.visibility = "visible";
 			document.getElementById("inputStory").readOnly = true;
 			
 			var myStory = document.getElementById("inputStory").value;
@@ -50,15 +51,15 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #editStoryButton" : function(event){
-			document.getElementById("saveStoryButton").visibility = "visible";
-			document.getElementById("editStoryButton").visibility = "hidden";
+			document.getElementById("saveStoryButton").style.visibility = "visible";
+			document.getElementById("editStoryButton").style.visibility = "hidden";
 			document.getElementById("inputStory").readOnly = false;
 
 		},
 
 		"click #saveZipCodeButton" : function(event){
-			document.getElementById("saveZipCodeButton").visibility = "hidden";
-			document.getElementById("editZipCodeButton").visibility = "visible";
+			document.getElementById("saveZipCodeButton").style.visibility = "hidden";
+			document.getElementById("editZipCodeButton").style.visibility = "visible";
 			document.getElementById("inputZipcode").readOnly = true;
 			
 			var myZip = document.getElementById("inputZipcode").value;
@@ -67,8 +68,8 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #editZipCodeButton" : function(event){
-			document.getElementById("saveZipCodeButton").visibility = "visible";
-			document.getElementById("editZipCodeButton").visibility = "hidden";
+			document.getElementById("saveZipCodeButton").style.visibility = "visible";
+			document.getElementById("editZipCodeButton").style.visibility = "hidden";
 			document.getElementById("inputZipcode").readOnly = false;
 		},
 
