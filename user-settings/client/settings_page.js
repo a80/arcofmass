@@ -95,7 +95,7 @@ Meteor.subscribe("userSettingsData");
 				//Meteor.call("modifyUserPassword", myOPassword, myNPassword);
 			}
 			else{
-				document.getElementById("alertMessage").visibility = "visible";
+				document.getElementById("alertMessage").style.visibility = "visible";
 			}
 
 		},
