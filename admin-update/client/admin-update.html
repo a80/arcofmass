@@ -137,18 +137,26 @@
 	</div>
 
 	{{#each getLegislatorInfo}}
-	{{>legislatorRow}}
+		{{>legislatorRow}}
 	{{/each}}
 
-	{{>legislatorRow}}
+	{{#each getlegislatorRowArray}}
+		{{>legislatorRow}}
+	{{/each}}
+	
 	{{> addLegButton}}
 
 	{{#each getToDoInfo}}
-	{{> toDoRow}}
+		{{> toDoRow}}
 	{{/each}}
 
-	{{> toDoRow}}
+	{{#each getToDoRowArray}}
+		{{> toDoRow}}
+	{{/each}}
+
 	{{> addToDoButton}}
+
+	<!-- pass in a parameter that indicates the id to put in. --> 
 
 </template>
 

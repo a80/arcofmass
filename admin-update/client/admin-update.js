@@ -2,7 +2,11 @@
 	Meteor.subscribe("adminUpdateActions");
 	var selectedUserIssue = "none";
 
-	var issue; 
+	var issue = null; 
+
+	var legislatorRowArray = [];
+
+	var toDoRowArray = []; 
 	
 	Template.adminUpdate.events({
 		"click #logoutButton": function(event) {
@@ -86,6 +90,45 @@
 		},
 	});
 
+	Template.updateFormField.helpers({
+	    getLegislatorInfo: function() {
+	  	//return leg associated with the issue 
+	  	console.log("getLegInfo accessed, the issue is: " + issue);
+	  	console.log(legislators.find({issue: issue}).fetch()); 
+	  	return legislators.find({issue: issue}); 
+	    },
+
+	    getToDoInfo: function() {
+	  	//return todo associated with the issue 
+	  	//var issueName = issue; 
+
+	  	console.log("getToDoInfo accessed, the issue is: " + issue);
+
+	  	var actionItemsForIssue = [];
+
+		actionItemsData = actionItems.find({}).fetch();
+
+		for (var i = 0; i < actionItemsData.length; i++) {
+		  //console.log("entered if loop"); 
+		  if (actionItemsData[i].issue === issue) {
+			actionItemsForIssue.push(actionItemsData[i]); 
+		  }
+		}
+
+		//need to map according to a new layout schema
+		/*_.map(actionItemsForIssue, function(a) {
+      		_.extend(a, {toDoID: a._id}); });
+
+      	_.map(actionItemsForIssue, function(a) {
+      		_.extend(a, {toDoCheckID: a.message}); });*/ 
+
+      	return actionItemsForIssue; 
+	    },
+
+
+
+	}); 
+
 
 	Template.adminUpdate.helpers({
 	  getUserIssues: function() {
@@ -102,22 +145,16 @@
 	  returnSelectedIssue: function() {
 		//return 
 	  },
-	  getLegislatorInfo: function() {
-	  	//return leg associated with the issue 
-	  	//console.log(legislators.find({issue: issue})); 
-	  	//return legislators.find({issue: issue}); 
-	  },
-	  getToDoInfo: function() {
-	  	//return todo associated with the issue 
-	  },
+	  
+	  
 
-	  addToDo: function() {
+	  /*addToDo: function() {
 	  		return toDoRow.instance();
 	  },
 
 	  addLegislator: function() {
 	  		return legislatorRow.instance();
-	  },
+	  },*/
 
 	  returnUserId: function() {
 		return Meteor.user().username; 
@@ -135,6 +172,19 @@
 			Router.go("/region"); 
 		}
 	});
+
+
+Template.addLegButton.events({
+	"click #addToDoRow": function(event) {
+		console.log("pushed"); 
+		toDoRowArray.push(1); //arbitrary push function to add row.
+		Router.go("/update"); //refresh the page or make it fully reactive.  
+	},
+});
+
+Template.addToDo.events({
+
+});
 
 
 /*if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
