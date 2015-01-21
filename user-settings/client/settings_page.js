@@ -78,7 +78,7 @@ Meteor.subscribe("userSettingsData");
 				document.getElementById("inputOPassword").readOnly = true;
 				document.getElementById("inputNPassword").readOnly = true;
 				document.getElementById("confirmNPassword").readOnly = true;
-				
+				document.getElementById("alertMessage").style.visibility = "hidden";
 				
 				var myOPassword = document.getElementById("inputOPassword").value;
 				var myNPassword = document.getElementById("inputNPassword").value;
