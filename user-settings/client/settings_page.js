@@ -47,6 +47,7 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("inputStory").readOnly = true;
 			
 			var myStory = document.getElementById("inputStory").value;
+
 			Meteor.call("modifyUserStory", myStory);
 		},
 
@@ -109,6 +110,66 @@ Template.userSettings.helpers({
 
 	returnUserId: function() {
 		return Meteor.user().username; 
+	},
+
+	getUserName: function() {
+		var name = Meteor.user().profile.name;
+		/*
+		if (name.length == 0){
+			//nothing in database
+			
+			document.getElementById("inputName").readOnly = false;
+			document.getElementById("editNameButton").style.visibility = "hidden";
+			document.getElementById("saveNameButton").style.visibility = "visible";
+			
+		}
+		else{
+			
+			document.getElementById("inputName").readOnly = true;
+			document.getElementById("editNameButton").style.visibility = "visible";
+			document.getElementById("saveNameButton").style.visibility = "hidden";
+			
+			
+		}
+		*/
+		
+		return name;
+	},
+
+	getStyle: function() {
+		var name = Meteor.user().profile.name;
+		if (name.length == 0){
+			//nothing in database
+			
+			document.getElementById("inputName").readOnly = false;
+			document.getElementById("editNameButton").style.visibility = "hidden";
+			document.getElementById("saveNameButton").style.visibility = "visible";
+			
+		}
+		else{
+			
+			document.getElementById("inputName").readOnly = true;
+			document.getElementById("editNameButton").style.visibility = "visible";
+			document.getElementById("saveNameButton").style.visibility = "hidden";
+			
+			
+		}
+	},
+
+	getUserEmail: function() {
+
+		
+		return Meteor.user().profile.email.address;
+
+	},
+
+	getUserZipCode: function() {
+		return Meteor.user().profile.zip;
+
+	},
+
+	getUserStory: function() {
+		return Meteor.user().profile.story;
 	},
 });
 
