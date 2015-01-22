@@ -29,14 +29,7 @@
 		},
 		"click #deleteIssueButton": function(event) {
 			var delIssue = $document.find(".active").value;
-			Meteor.call("cleanInput", delIssue, function(error, delIssue) {
-				if (delIssue != false) {
-					Meteor.call("delIssue", delIssue);
-				}
-				else {
-					alert("There was a problem with the input");
-				}
-			});
+			Meteor.call("delIssue", delIssue);
 		},
 
 		"click .list-group-item": function(event, template){
