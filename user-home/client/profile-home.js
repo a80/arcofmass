@@ -1,3 +1,5 @@
+Meteor.subscribe("userHomeIssues");
+
 Template.profileHome.events({
 	"click #logoutButton": function(event) {
 			Meteor.logout();
