@@ -267,6 +267,28 @@ Template.userSettings.helpers({
 		return this.name;
 	},
 
+	isActive: function() {
+		var activeClass = ""; 
+
+		issuesForUser = Meteor.user().profile.issues;
+		console.log("issues for user"); 
+		console.log(issuesForUser); 
+
+		for (var i = 0; i < issuesForUser.length; i++) {
+			if (this.name === issuesForUser[i]) {
+				activeClass = "active"; 
+			} 
+		}
+
+		/*if (Meteor.users.findOne({_id: this.userId}).profile.issues) {
+			r
+		}*/
+
+		return activeClass;
+
+		//return "" 
+	},
+
 });
 
 

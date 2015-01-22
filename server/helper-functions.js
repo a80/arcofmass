@@ -274,7 +274,7 @@ Meteor.methods({
    Meteor.users.upsert({_id:Meteor.userId()}, {$push :{"profile.issues": issueName}});
   },
   deleteUserIssueItem: function(issueName) {
-    Meteor.users.upsert({_id:Meteor.userId()}, {$pop :{"profile.issues": issueName}});
+    Meteor.users.upsert({_id:Meteor.userId()}, {$pull :{"profile.issues": issueName}});
 
   },
 
