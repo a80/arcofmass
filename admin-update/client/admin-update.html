@@ -93,11 +93,16 @@
 		<a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
 		{{/each}}
 
-		
-	</div>	
+		</div>
+
+	
 	<div class= "col-md-9">
-	{{>updateFormField}}
-	</div>
+		{{#if issueSelected}}
+			{{> updateFormField }}
+		{{/if}}
+	</div>	
+	
+
 
 </template>
 
@@ -136,6 +141,8 @@
 		<template name="legHead">
 			<h3 class="col-md-8" style="text-align:center">Contacts for {{returnIssueName}}</h3>
 		</template>
+				
+
 				<template name="legislatorRow">
 					<div class="legRow" id="{{getLegID}}">
 						

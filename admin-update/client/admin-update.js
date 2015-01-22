@@ -1,9 +1,7 @@
 	Meteor.subscribe("adminUpdateIssues");
 	Meteor.subscribe("adminUpdateActions");
-	Meteor.subscribe("adminLegislatorRowArray"); 
-	Meteor.subscribe("adminToDoRowArray"); 
-	
-
+	//Meteor.subscribe("adminLegislatorRowArray"); 
+	//Meteor.subscribe("adminToDoRowArray"); 
 	//var selectedUserIssue = "none";
 	//var issue = null; 
 	//var legislatorRowArray = [];
@@ -28,8 +26,15 @@
 			});
 		},
 		"click #deleteIssueButton": function(event, template) {
-			var delIssue = template.find(".active").value;
-			Meteor.call("delIssue", delIssue);
+			//var delIssue = template.find(".active").value;
+			var delIssue; 
+
+			if (Session.get("adminSelectedIssue") != undefined) {
+				delIssue = Session.get("adminSelectedIssue");
+				Meteor.call("delIssue", delIssue);
+			}
+			
+			
 		},
 
 		"click .list-group-item": function(event, template){
@@ -60,7 +65,10 @@
 			selectedIssueInList = $(".active").text();
 			//selectedIssueInList = template.find(".active").text();
 
-			Meteor.call("adminUpdateSelectIssue", selectedIssueInList); 
+			Session.set("adminSelectedIssue", selectedIssueInList); 
+			//console.log(Session.get("adminSelectedIssue")); 
+
+			//Meteor.call("adminUpdateSelectIssue", selectedIssueInList); 
 
 			//console.log("clicked"); 
 
@@ -169,7 +177,10 @@
 			//console.log(Template.instance);
 			var name = Template.instance().find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
+<<<<<<< HEAD
 			
+=======
+>>>>>>> 0f6c70315ec3ae850793e90fb6d7652f00b7eb10
 		},
 	});
 
@@ -178,8 +189,19 @@
 	  	//return leg associated with the issue 
 	  	//console.log("getLegInfo accessed, the issue is: " + issue);
 	  	//console.log(legislators.find({issue: issue}).fetch()); 
-	  		issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
-	  		return legislators.find({issue: issueName}); 
+	  		//issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
+
+	  		var relevantLegislators; 
+
+	  		issueName = Session.get("adminSelectedIssue"); 
+
+	  		if (issueName != undefined) {
+	  			relevantLegislators = legislators.find({issue: issueName}); 
+	  		} else {
+	  			relevantLegislators = []; 
+	  		}
+
+	  		return relevantLegislators; 
 	    },
 
 	    getToDoInfo: function() {
@@ -188,18 +210,27 @@
 
 	  		//console.log("getToDoInfo accessed, the issue is: " + issue);
 
-	  		issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
+	  		//issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
 
 	  		var actionItemsForIssue = [];
+	  		issueName = Session.get("adminSelectedIssue"); 
 
-			actionItemsData = actionItems.find({}).fetch();
+	  		if (issueName != undefined) {
+	  			actionItemsForIssue = actionItems.find({issue: issueName}); 
+	  		} else {
+	  			actionItemsForIssue = []; 
+	  		}
+
+	  		return actionItemsForIssue; 
+
+			/*actionItemsData = actionItems.find({}).fetch();
 
 			for (var i = 0; i < actionItemsData.length; i++) {
 		  //console.log("entered if loop"); 
 		  		if (actionItemsData[i].issue === issueName) {
 				actionItemsForIssue.push(actionItemsData[i]); 
 		  		}	
-			}
+			}*/
 
 		//need to map according to a new layout schema
 		/*_.map(actionItemsForIssue, function(a) {
@@ -377,9 +408,34 @@
 		//return 
 	  },
 	  
-	  returnUserId: function() {
-		return Meteor.user().username; 
-	},
+	  
+
+	  /*addToDo: function() {
+	  		return toDoRow.instance();
+	  },
+
+	  addLegislator: function() {
+	  		return legislatorRow.instance();
+	  },*/
+
+	    returnUserId: function() {
+			return Meteor.user().username; 
+		},
+
+		issueSelected: function() {
+			var issueSel = false; 
+			if (Session.get("adminSelectedIssue") != undefined) {
+				issueSel = true; 
+			}
+			return issueSel; 
+		}, 
+
+		getSelectedIssueName: function() {
+			console.log("template should now appear, issue is "); 
+			return Session.get("adminSelectedIssue"); 
+
+		}, 
+
 
 
 	});

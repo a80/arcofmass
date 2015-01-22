@@ -221,11 +221,11 @@ Meteor.methods({
 
   deleteLegislatorRowFunction: function() {
     legislatorRowArray.upsert({name: "legislatorRowArrayObject"}, {$pop: {arrayList: 1}}); 
-  },*/
+  },
 
   adminUpdateSelectIssue: function(issueName) {
     selectedIssue.upsert({name: "selectedIssueObject"}, {$set: {selectedIssue: issueName}}); 
-  },
+  },*/
   cleanInput: function(str) {
 	newstr = str.replace(/[^a-z0-9@ '\.,_-]/gim,"");
 	if (newstr != "" && newstr != null && str == newstr) {
