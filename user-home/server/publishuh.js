@@ -1,4 +1,5 @@
 Meteor.publish("userHomeIssues", function() {
+	console.log("RIGHT HERE"); 
 	return issues.find({name: {$in: Meteor.user().profile.issues}});
 });
 Meteor.publish("userHomeActions", function() {

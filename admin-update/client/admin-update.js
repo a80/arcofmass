@@ -26,8 +26,15 @@
 			});
 		},
 		"click #deleteIssueButton": function(event, template) {
-			var delIssue = template.find(".active").value;
-			Meteor.call("delIssue", delIssue);
+			//var delIssue = template.find(".active").value;
+			var delIssue; 
+
+			if (Session.get("adminSelectedIssue") != undefined) {
+				delIssue = Session.get("adminSelectedIssue");
+				Meteor.call("delIssue", delIssue);
+			}
+			
+			
 		},
 
 		"click .list-group-item": function(event, template){
