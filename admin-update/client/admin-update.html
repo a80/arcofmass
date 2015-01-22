@@ -78,32 +78,30 @@
 			
 			</script>
 	</head>
-	
-		<div class="col-md-2" id="listGroup">
-		  
+	<div class = "col-md-3">
+		<button type="button" class="btn btn-default" id ="addIssueButton">
+			Add Issue
+		</button>
+				
+		<input type="text" id="addIssueField" class="form-control" aria-label="..." placeholder = "New Issue">
+				
+		<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete Current Issue
+		</button>
 		  
 		    <!-- List of all issues -->
-		    {{#each getUserIssues}}
-		    <a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
-		    {{/each}}
+		{{#each getUserIssues}}
+		<a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
+		{{/each}}
 
-		  
 		</div>
-		<div class = "col-md-10">
-			 
-				<button type="button" class="btn btn-default" id ="addIssueButton">
-					Add Issue
-				</button>
-				
-				<input type="text" id="addIssueField" class="form-control" aria-label="..." placeholder = "New Issue">
-				
-				<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete Current Issue
-				</button>
-		</div>
-		
-	{{#if issueSelected}}
-		{{> updateFormField }}
-	{{/if}}
+
+	
+	<div class= "col-md-9">
+		{{#if issueSelected}}
+			{{> updateFormField }}
+		{{/if}}
+	</div>	
+	
 
 
 </template>
@@ -112,7 +110,7 @@
 <template name = "updateFormField"> 
 
 
-
+	{{>legHead}}
 	{{#each getLegislatorInfo}}
 		{{>legislatorRow}}
 	{{/each}}
@@ -123,6 +121,8 @@
 	
 	{{> addLegButton}}
 
+	
+	{{>toDoHead}}
 	{{#each getToDoInfo}}
 		{{> toDoRow}}
 	{{/each}}
@@ -138,9 +138,12 @@
 </template>
 
 		<!--	<div id="contactList"> -->
+		<template name="legHead">
+			<h3 class="col-md-8" style="text-align:center">Contacts for {{returnIssueName}}</h3>
+		</template>
 				<template name="legislatorRow">
 					<div class="legRow" id="{{getLegID}}">
-						<h5>Contact for Issue X</h5>
+						
 						
 					 	<input type="text" class="form-control" id="{{getNameID}}" aria-label="..." placeholder = "Representative" value="{{getLegislatorName}}">
 					 	<input type="text" class="form-control" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}">
@@ -162,7 +165,7 @@
 				
 				<template name="legislatorRowNew">
 					<div class="legRow">
-						<h5>Contact for Issue X</h5>
+						
 						
 					 	<input type="text" class="form-control" id="nameInput" aria-label="..." placeholder = "Representative" >
 					 	<input type="text" class="form-control" id="emailInput" aria-label="..." placeholder = "Email">
@@ -192,7 +195,7 @@
 
 				<template name="addLegButton">
 
-				<div class= "col-md-2 col-md-offset-5" style="padding:15px; padding-left:125px">
+				<div class= "col-md-2 col-md-offset-5" id="addLegislatorButtonDiv">
 					<button type="button" class="btn btn-default" id = "addLegislatorRow"> Add Legislator
 
 					</button>
@@ -203,9 +206,10 @@
 		</template>
 		<template name= "toDoHead">
 		<div id="todoList">
-			<h5> To Do List </h5>
+			<h3 class="col-md-8" style="text-align:center">To Do's for {{returnIssueName}}</h3> 
 		</div>
 				</template>
+				
 				<template name="toDoRow">
 				
 					 <div class = 'row' id="{{getRowID}}">
@@ -273,7 +277,7 @@
 			
 			<template name="addToDoButton">
 
-			<div class = "col-md-2 col-md-offset-5" style="padding:15px; padding-left:135px">
+			<div class = "col-md-2 col-md-offset-5" id="addToDoButtonDiv">
 				<button type= "button" class="btn btn-default" id= "addToDoRow" > Add To Do
 				</button>
 			</div>
