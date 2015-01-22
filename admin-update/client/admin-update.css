@@ -7,9 +7,12 @@
 	padding: 3px
 }
 
+
+
 .row,.legRow{
 	text-align: center;
-	padding: 15px;	
+	padding-top: 100px;
+	padding-left: 150px;	
 }
 
 #contactList, #addLegislator{
@@ -25,7 +28,7 @@
 	width: 150px;
 }
 
-#listGroup, #newIssueField {
+#list-group, #newIssueField {
 	display: inline;
 }
 
@@ -48,7 +51,7 @@
 	width: 300px;
 }
 
-#addIssueButton, #addIssueField, #deleteIssueButton {
+#addIssueButton, #addIssueField, #deleteIssueButton, #listGroup {
 	display: inline;
 }
 

@@ -90,7 +90,7 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("inputZipcode").readOnly = true;
 			
 			var myZip = document.getElementById("inputZipcode").value;
-			Meteor.call("cleanInput", myZip function(error, myZip) {
+			Meteor.call("cleanInput", myZip, function(error, myZip) {
 				if (myZip != false) {
 					var regPostalCode = new RegExp("^\\d{5}(-\\d{4})?$");
 					if (regPostalCode.test(myZip) == true) {
@@ -144,6 +144,7 @@ Meteor.subscribe("userSettingsData");
 						});
 					}
 				});
+			};
 		},
 	});
 
@@ -155,29 +156,13 @@ Template.userSettings.helpers({
 
 	getUserName: function() {
 		var name = Meteor.user().profile.name;
-		/*var input = document.getElementById("inputName").value;
-		if (input.length ==0){
-			//nothing in database
-			
-			document.getElementById("inputName").readOnly = false;
-			document.getElementById("editNameButton").style.visibility = "hidden";
-			document.getElementById("saveNameButton").style.visibility = "visible";
-			
-		}
-		else{
-			
-			document.getElementById("inputName").readOnly = true;
-			document.getElementById("editNameButton").style.visibility = "visible";
-			document.getElementById("saveNameButton").style.visibility = "hidden";
-			
-			
-		}
-		*/
+		
 		
 		return name;
 	
 	},
 
+	/*
 	nameStyle: function(){
 		var input = document.getElementById("inputName").value;
 		if (input.length ==0){
@@ -196,7 +181,7 @@ Template.userSettings.helpers({
 			
 			
 		}
-	},
+	},*/
 
 
 
