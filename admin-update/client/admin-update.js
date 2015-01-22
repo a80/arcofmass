@@ -155,8 +155,8 @@
 						if (message != false) {
 							Meteor.call("cleanInput", goal, function(error, goal) {
 								if (goal != false) {
-									if (goal === parseInt(goal, 10)) {
-										Meteor.call("addNewTodo", name, goal, message, issue, important);
+									if (goal == parseInt(goal)) {
+										Meteor.call("addNewTodo", name, parseInt(goal), message, issue, important);
 									} else {
 										alert("Your goal must be an integer");
 									}
