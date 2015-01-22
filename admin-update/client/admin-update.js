@@ -177,10 +177,6 @@
 			//console.log(Template.instance);
 			var name = Template.instance().find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
-<<<<<<< HEAD
-			
-=======
->>>>>>> 0f6c70315ec3ae850793e90fb6d7652f00b7eb10
 		},
 	});
 
