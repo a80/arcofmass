@@ -78,14 +78,13 @@
 	});
 
 	Template.legislatorRowNew.events({
-		"click #saveLegislatorButton": function(event) {
+		"click #saveLegislatorButton": function(event, template) {
 
-			//
-			console.log(Template.instance()); 
-			var legName = Template.instance().find("#nameInput").value;	
 
-			var legEmail = Template.instance().find("#emailInput").value;
-			var legAddress = Template.instance().find("#addressInput").value;
+
+			var legName = template.find("#nameInput").value;	
+			var legEmail = template.find("#emailInput").value;
+			var legAddress = template.find("#addressInput").value;
 			
 			var dropdown = document.getElementById("dropdownMenu1");
 
@@ -128,21 +127,21 @@
 			});
 			
 		},
-		"click #deleteLegislatorButton": function(event) {
+		"click #deleteLegislatorButton": function(event, template) {
 			//console.log(Template.instance);
-			var name = Template.instance().find("#nameInput").value;
+			var name = template.find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
 		},
 	});
 	
 	Template.toDoRowNew.events({
-		"click #saveTodoButton": function(event) {
-			var name = Template.instance().find("#todoInput").value;
-			var goal = Template.instance().find("#goalInput").value;
-			var message = Template.instance().find("#messageInput").value;
+		"click #saveTodoButton": function(event, template) {
+			var name = template.find("#todoInput").value;
+			var goal = template.find("#goalInput").value;
+			var message = template.find("#messageInput").value;
 			//var dropdown = Template.instance().find("#dropdownMenu1");
 			//var issue = dropdown.options[dropdown.selectedIndex].text;
-			var c = Template.instance().find("#checkInput");
+			var c = template.find("#checkInput");
 			
 			var important = false;
 			if (c.checked) important = true;
@@ -176,8 +175,8 @@
 			});
 			
 		},
-		"click #deleteTodoButton": function(event) {
-			var name = Template.instance().find("#todoInput").value;
+		"click #deleteTodoButton": function(event, template) {
+			var name = template.find("#todoInput").value;
 			Meteor.call("deleteTodo", name);
 		},
 
