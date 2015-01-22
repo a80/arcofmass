@@ -96,12 +96,13 @@ Meteor.methods({
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.story":myStory}});
   },
   modifyUserEmail: function(myEmail) {
-	Meteor.users.update({_id:Meteor.userId()}, {$set:{"email":{address: myEmail, verified: false}}});
+	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.email":{address: myEmail, verified: false}}});
   },
   modifyUserPassword: function(myOPassword, myNPassword) {
 	  console.log("exec");
      
   },
+
   addNewAdmin: function(username) {
   	console.log('addNewAdmin accessed');
 
@@ -235,7 +236,15 @@ Meteor.methods({
 
   adminUpdateSelectIssue: function(issueName) {
     selectedIssue.upsert({name: "selectedIssueObject"}, {$set: {selectedIssue: issueName}}); 
-  }, 
+  },
+  cleanInput: function(str) {
+	str = str.replace(/[^a-z0-9@ \.,_-]/gim,"");
+	if (str.trim != "" && str.trim != null) {
+		return str.trim();
+	} else {
+		return false;
+	}
+  },
 
 
 

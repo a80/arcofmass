@@ -43,7 +43,7 @@
 					<h5>Name</h5>
 					<div class = "name">
 						<div>
-							<input type="text" class="form-control" id="inputName" placeholder="Enter Name"> 
+							<input type="text" class="form-control" id="inputName" placeholder="Enter Name" value="{{getUserName}}"> 
 							<button type="button" class = "btn btn-default" id="saveNameButton" >Save</button>
 							<button type="button" class = "btn btn-default"  id= "editNameButton" >Edit</button>
 
@@ -57,7 +57,7 @@
 					<div class = "email">
 						<div>
 
-							<input type="text" class="form-control" id="inputEmail" placeholder="Email"> 
+							<input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{getUserEmail}}"> 
 							
 							<button type="button" class="btn btn-default" id="saveEmailButton">Save </button>
 							<button type="button" class = "btn btn-default"  id= "editEmailButton">Edit</button>
@@ -68,7 +68,7 @@
 					<h5>Zip Code</h5>
 					<div class = "zipcode">
 						<div>
-							<input type="text" class="form-control" id="inputZipcode" placeholder="Enter Zip Code"> 
+							<input type="text" class="form-control" id="inputZipcode" placeholder="Enter Zip Code" value="{{getUserZipCode}}"> 
 
 							
 							<button type="button" class="btn btn-default" id="saveZipCodeButton">Save </button>
@@ -80,7 +80,7 @@
 					<h5>Story</h5>
 					<div class = "story">
 						<div>
-							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story"> </textarea>
+							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story">{{getUserStory}}</textarea>
 							
 							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
 							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
