@@ -37,20 +37,31 @@ Template.login.events({
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
+	Meteor.call("cleanInput", username, function(error, username) {
+		if (username != false) {
+			Meteor.call("cleanInput", password, function(error, password) {
+				if (password != false) {
+					Meteor.loginWithPassword(username, password, function(error) {
+					  if (error) {
+						console.log('login failed');
+					  } else {
+						console.log('login-succeeded');
+						Router.go('/profile');
+					  }
+					});
+				} else {
+					alert("There was a problem with the password");
+				}
+			});
+		} else {
+			alert("There was a problem with the username");
+		}
+	});
     //var usernameField = document.getElementById('username-field');
     //var username = usernameField.value; 
 
     //console.log(username + "; " + password);
     //console.log('executed');
-
-    Meteor.loginWithPassword(username, password, function(error) {
-      if (error) {
-        console.log('login failed');
-      } else {
-        console.log('login-succeeded');
-        Router.go('/profile');
-      }
-    });
 
 
     return false; 
@@ -75,8 +86,36 @@ Template.login.events({
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
+	
+	Meteor.call("cleanInput", username, function(error, username) {
+		if (username != false) {
+			Meteor.call("cleanInput", password, function(error, password) {
+				if (password != false) {	
+					Accounts.createUser({username: username, password: password});
+					
+					Meteor.call("addNewRegularUser", username, function(error) {
+					  if (error) {
+
+					  } else {
+						Meteor.loginWithPassword(username, password, function(error) {
+						  if (error) {
+							console.log('login failed');
+						  } else {
+								console.log('login-succeeded');
+								Router.go('/profile');
+							}
+						});
+					  }
+					}); 
+				} else {
+					alert("There was a problem with the password");
+				}
+			});
+		} else {
+			alert("There was a problem with the username");
+		}
+	});
     
-    Accounts.createUser({username: username, password: password});
 
     /*, function(error) {
       if (error) {
@@ -86,20 +125,6 @@ Template.login.events({
       }
     });*/
 
-    Meteor.call("addNewRegularUser", username, function(error) {
-      if (error) {
-
-      } else {
-        Meteor.loginWithPassword(username, password, function(error) {
-          if (error) {
-            console.log('login failed');
-          } else {
-            console.log('login-succeeded');
-            Router.go('/profile');
-      }
-    });
-      }
-    }); 
     return false; 
   },
 
@@ -155,6 +180,34 @@ Template.adminLogin.events({
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
+	Meteor.call("cleanInput", username, function(error, username) {
+		if (username != false) {
+			Meteor.call("cleanInput", password, function(error, password) {
+				if (password != false) {	
+					Accounts.createUser({username: username, password: password}); 
+
+					Meteor.call("addNewAdmin", username, function(error) {
+					  if (error) {
+
+					  } else {
+						Meteor.loginWithPassword(username, password, function(error) {
+						  if (error) {
+							console.log('admin login failed');
+						  } else {
+								console.log('admin-login-succeeded');
+								Router.go('/admin');
+							}
+						});
+					  }
+					}); 
+				} else {
+					alert("There was a problem with the password");
+				}
+			});
+		} else {
+			alert("There was a problem with the username");
+		}
+	});
 
     
     //var usernameField = document.getElementById('username-field');
@@ -162,33 +215,7 @@ Template.adminLogin.events({
 
     //console.log(username + "; " + password);
     //console.log('executed');
-    Accounts.createUser({username: username, password: password}); 
-
-
-
-      /*, function(error) {
-      if (error) {
-        console.log(error);
-        console.log('Failed to create new admin.');
-      } else {
-        console.log('Succesfully created new admin.');
-      }
-    });*/
-
-    Meteor.call("addNewAdmin", username, function(error) {
-      if (error) {
-
-      } else {
-        Meteor.loginWithPassword(username, password, function(error) {
-          if (error) {
-            console.log('admin login failed');
-          } else {
-            console.log('admin-login-succeeded');
-            Router.go('/admin');
-      }
-    });
-      }
-    });  
+     
 
 
     //var id = Meteor.users.find(); 
@@ -216,25 +243,34 @@ Template.adminLogin.events({
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
+	
+	Meteor.call("cleanInput", username, function(error, username) {
+		if (username != false) {
+			Meteor.call("cleanInput", password, function(error, password) {
+				if (password != false) {	
+					Meteor.loginWithPassword(username, password, function(error) {
+					  if (error) {
+						console.log('admin login failed');
+					  } else {
+						console.log('admin login-succeeded');
+						Router.go('/admin');
+						//Router.go('/admin');
+						//this.redirect('/admin'); 
+					  }
+					});
+				} else {
+					alert("There was a problem with the password");
+				}
+			});
+		} else {
+			alert("There was a problem with the username");
+		}
+	});
     //var usernameField = document.getElementById('username-field');
     //var username = usernameField.value; 
 
     //console.log(username + "; " + password);
     //console.log('executed');
-
-    Meteor.loginWithPassword(username, password, function(error) {
-      if (error) {
-        console.log('admin login failed');
-      } else {
-        console.log('admin login-succeeded');
-        Router.go('/admin');
-        //Router.go('/admin');
-        //this.redirect('/admin'); 
-      }
-    });
-
-    
-
     //this.redirect("/admin"); 
 
     return false; 
