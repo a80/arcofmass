@@ -19,12 +19,18 @@ Template.login.events({
     var passwordField = document.getElementById('password-field');
     /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
     passwordField.style.visibility = "visible";
+
+    document.getElementById('login-button').style.visibility = "visible";
+    document.getElementById('new-user-button').style.visibility = "visible";
   },
 
   'keypress #username-field': function() {
     var passwordField = document.getElementById('password-field');
     /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
     passwordField.style.visibility = "visible";
+
+    document.getElementById('login-button').style.visibility = "visible";
+    document.getElementById('new-user-button').style.visibility = "visible";
   },
 
   'click #login-button': function(event, template) {
@@ -114,12 +120,19 @@ Template.adminLogin.events({
     var passwordField = document.getElementById('password-field');
     /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
     passwordField.style.visibility = "visible";
+
+
+    document.getElementById('admin-login-button').style.visibility = "visible";
+    document.getElementById('new-admin-button').style.visibility = "visible";
   },
 
   'keypress #username-field': function() {
     var passwordField = document.getElementById('password-field');
     /*$("#password-field").style.visibility = "hidden";*/ //seems jQuery not installed.
     passwordField.style.visibility = "visible";
+
+    document.getElementById('admin-login-button').style.visibility = "visible";
+    document.getElementById('new-admin-button').style.visibility = "visible";
   },
   'click #userLoginLink': function() {
     Router.go('/');

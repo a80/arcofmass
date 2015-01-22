@@ -24,8 +24,8 @@
 	position: relative;
 	margin: 0 auto;*/
 	position: fixed;
-	top: 40%;
-	left: 10%;
+	top: 38%;
+	left: 13%;
 }
 
 #username-field {
@@ -73,8 +73,8 @@
 	font-size: 300%;
 	text-decoration: underline;
 	position: fixed;
-	top: 52%;
-	left: 10%;
+	top: 50%;
+	left: 13%;
 	visibility: hidden;
 
 	outline: none;
@@ -106,23 +106,64 @@
 
 
 #login-button {
-	font-size: 60px;
+	font-size: 50px;
 	/*position: relative;
 	right: 25px;*/
 	outline: none;
   	border: none !important;
   	animation: pulse 3s alternate infinite;
   	-webkit-animation: pulse 3s alternate infinite;
+  	position: fixed;
+  	top: 68%;
+  	left: 43%;
+  	visibility: hidden;
+
 }
 
 
 
 #new-user-button {
-	font-size: 60px;
+	font-size: 30px;
 	/*position: relative;
 	right: 25px;*/
 	outline: none;
   	border: none !important;
+  	position: relative;
+  	position: fixed;
+  	top: 81%;
+  	left: 41%;
+  	visibility: hidden;
+}
+
+
+#admin-login-button {
+	font-size: 50px;
+	/*position: relative;
+	right: 25px;*/
+	outline: none;
+  	border: none !important;
+  	animation: pulse 3s alternate infinite;
+  	-webkit-animation: pulse 3s alternate infinite;
+  	position: fixed;
+  	top: 68%;
+  	left: 43%;
+  	visibility: hidden;
+
+}
+
+
+
+#new-admin-button {
+	font-size: 30px;
+	/*position: relative;
+	right: 25px;*/
+	outline: none;
+  	border: none !important;
+  	position: relative;
+  	position: fixed;
+  	top: 81%;
+  	left: 41%;
+  	visibility: hidden;
 }
 
 #new-user-button-text {

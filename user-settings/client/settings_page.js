@@ -147,7 +147,6 @@ Meteor.subscribe("userSettingsData");
 						});
 					}
 				});
-
 		} else {
 			document.getElementById("savedSuccessfullyMessage").style.visibility = "hidden";
 			document.getElementById("alertMessage").style.visibility = "visible";
@@ -219,7 +218,22 @@ Template.userSettings.helpers({
 	getUserStory: function() {
 		return Meteor.user().profile.story;
 	},
+
+	getUserIssues: function() {
+		//console.log(issues.find({}).fetch());
+    return issues.find({}).fetch();
+	
+	//map IDs in here.
+	},
+
 });
+
+
+Template.issueCheckBoxField.helpers({
+	returnIssueName: function() {
+		return this.name;
+	},
+})
 
 /*if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 

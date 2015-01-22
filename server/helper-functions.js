@@ -245,6 +245,28 @@ Meteor.methods({
 		return false;
 	}
   },
+  
+  getOldLegName: function(ID) {
+	return legislators.find({id: ID}).name;
+  },
+  getOldLegEmail: function(ID) {
+	return legislators.find({id: ID}).email;
+  },
+  getOldLegAddress: function(ID) {
+	return legislators.find({id: ID}).address;
+  },
+  getOldTodoText: function(ID) {
+	return actionItems.find({id: ID}).text;
+  },
+  getOldTodoGoal: function(ID) {
+	return actionItems.find({id: ID}).goal;
+  },
+  getOldTodoMessage: function(ID) {
+	return actionItems.find({id: ID}).message;
+  },
+  getOldTodoImportance: function(ID) {
+	return actionItems.finc({id: ID}).important;
+  },
 
 
 
