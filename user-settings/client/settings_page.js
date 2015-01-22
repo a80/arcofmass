@@ -19,8 +19,7 @@ Meteor.subscribe("userSettingsData");
 			if (Meteor.call("cleanInput", myName) != false) {
 				myName = Meteor.call("cleanInput", myName);
 				Meteor.call("modifyUserName", myName);
-			}
-			else {
+			} else {
 				alert("There was a problem with the input");
 			}
 		},
@@ -71,8 +70,6 @@ Meteor.subscribe("userSettingsData");
 			else {
 				alert("There was a problem with the input");
 			}
-
-			Meteor.call("modifyUserStory", myStory);
 		},
 
 		"click #editStoryButton" : function(event){
@@ -90,7 +87,10 @@ Meteor.subscribe("userSettingsData");
 			var myZip = document.getElementById("inputZipcode").value;
 			if (Meteor.call("cleanInput", myZip) != false) {
 				myZip = Meteor.call("cleanInput", myZip);
-				Meteor.call("modifyUserZip", myZip);
+				var regPostalCode = new RegExp("^\\d{5}(-\\d{4})?$");
+				if (regPostalCode.test(myZip) == true) {
+					Meteor.call("modifyUserZip", myZip);
+				}
 			}
 			else {
 				alert("There was a problem with the input");
