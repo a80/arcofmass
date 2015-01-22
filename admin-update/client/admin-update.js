@@ -1,9 +1,7 @@
 	Meteor.subscribe("adminUpdateIssues");
 	Meteor.subscribe("adminUpdateActions");
-	Meteor.subscribe("adminLegislatorRowArray"); 
-	Meteor.subscribe("adminToDoRowArray"); 
-	
-
+	//Meteor.subscribe("adminLegislatorRowArray"); 
+	//Meteor.subscribe("adminToDoRowArray"); 
 	//var selectedUserIssue = "none";
 	//var issue = null; 
 	//var legislatorRowArray = [];
@@ -67,7 +65,10 @@
 			selectedIssueInList = $(".active").text();
 			//selectedIssueInList = template.find(".active").text();
 
-			Meteor.call("adminUpdateSelectIssue", selectedIssueInList); 
+			Session.set("adminSelectedIssue", selectedIssueInList); 
+			//console.log(Session.get("adminSelectedIssue")); 
+
+			//Meteor.call("adminUpdateSelectIssue", selectedIssueInList); 
 
 			//console.log("clicked"); 
 
@@ -289,9 +290,24 @@
 	  		return legislatorRow.instance();
 	  },*/
 
-	  returnUserId: function() {
-		return Meteor.user().username; 
-	},
+	    returnUserId: function() {
+			return Meteor.user().username; 
+		},
+
+		issueSelected: function() {
+			var issueSel = false; 
+			if (Session.get("adminSelectedIssue") != undefined) {
+				issueSel = true; 
+			}
+			return issueSel; 
+		}, 
+
+		getSelectedIssueName: function() {
+			console.log("template should now appear, issue is "); 
+			return Session.get("adminSelectedIssue"); 
+
+		}, 
+
 
 
 	});
