@@ -248,9 +248,5 @@ Meteor.methods({
 
 
 
-
-
-
-
   //put comma after above function
 });

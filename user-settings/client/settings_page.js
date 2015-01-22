@@ -16,12 +16,12 @@ Meteor.subscribe("userSettingsData");
 			console.log("saveNameButton pressed");
 			
 			var myName = document.getElementById("inputName").value;
-			if (Meteor.call("cleanInput", myName) != false) {
-				myName = Meteor.call("cleanInput", myName);
+			//if (Meteor.call("cleanInput", myName) != false) {
+				//myName = Meteor.call("cleanInput", myName);
 				Meteor.call("modifyUserName", myName);
-			} else {
-				alert("There was a problem with the input");
-			}
+			//} else {
+				//alert("There was a problem with the input");
+			//}
 		},
 
 		"click #editNameButton": function(event) {
