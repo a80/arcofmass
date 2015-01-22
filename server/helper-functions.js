@@ -236,25 +236,25 @@ Meteor.methods({
   },
   
   getOldLegName: function(ID) {
-	return legislators.find({id: ID}).name;
+	return legislators.findOne({_id: ID}).name;
   },
   getOldLegEmail: function(ID) {
-	return legislators.find({id: ID}).email;
+	return legislators.findOne({_id: ID}).email;
   },
   getOldLegAddress: function(ID) {
-	return legislators.find({id: ID}).address;
+	return legislators.findOne({_id: ID}).address;
   },
   getOldTodoText: function(ID) {
 	return actionItems.find({id: ID}).text;
   },
   getOldTodoGoal: function(ID) {
-	return actionItems.find({id: ID}).goal;
+	return actionItems.findOne({_id: ID}).goal;
   },
   getOldTodoMessage: function(ID) {
-	return actionItems.find({id: ID}).message;
+	return actionItems.findOne({_id: ID}).message;
   },
   getOldTodoImportance: function(ID) {
-	return actionItems.finc({id: ID}).important;
+	return actionItems.findOne({_id: ID}).important;
   },
   addUserIssueItem: function(issueName) {
 	 //curr = Meteor.user().profile.issues;
