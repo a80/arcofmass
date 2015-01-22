@@ -129,7 +129,7 @@
 	{{/each}}
 
 	{{#each getLegislatorRowArray}}
-		{{>legislatorRow}}
+		{{> legislatorRowNew}}
 	{{/each}}
 	
 	{{> addLegButton}}
@@ -139,7 +139,7 @@
 	{{/each}}
 
 	{{#each getToDoRowArray}}
-		{{> toDoRow}}
+		{{> toDoRowNew}}
 	{{/each}}
 
 	{{> addToDoButton}}
@@ -171,6 +171,34 @@
 					</div>
 				</template>
 				
+				<template name="legislatorRowNew">
+					<div class="legRow">
+						<h5>Contact for Issue X</h5>
+						
+					 	<input type="text" class="form-control" id="nameInput" aria-label="..." placeholder = "Representative">
+					 	<input type="text" class="form-control" id="emailInput" aria-label="..." placeholder = "Email">
+						<input id="addressInput" type="text" class="form-control" aria-label="..." placeholder = "Address">
+							 
+						 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "saveLegislatorButton">
+							 	Save
+						</button>
+					 	
+					 	<button type="button" class="btn btn-default" id="editLegislatorButton" onclick="toSaveLegislator()">
+					 			Edit
+					 	</button>
+					 	
+						<button type="button" class="btn btn-default" id="deleteLegislatorButton">
+							 	Delete
+						</button>
+					</div>
+				</template>
+				
+
+
+
+
+
+
 
 
 				<template name="addLegButton">
@@ -218,6 +246,41 @@
 
 				
 			</template>
+
+
+			<template name="toDoRowNew">
+				
+					 <div class = 'row'>
+						
+						 		<input type= 'checkbox' id="checkInput" aria-label="..." >
+						 		
+						 		<input type="text" class="form-control" id="todoInput" aria-label="..." placeholder = "To Do #1" >
+
+						 		<input type="text" class="form-control" id="goalInput" aria-label="..." placeholder = "Goal #1">
+						 							 			
+					 			<input type="text" class="form-control" id="messageInput" aria-label="..." placeholder = "Message">
+
+						 		<button type="button" class="btn btn-default" onclick="toEdit()" id="saveToDoButton">
+						 			Save
+						 		</button>
+						 	
+						 		<button type="button" class="btn btn-default" onclick="toSave()" id="editToDoButton">
+						 			Edit
+						 		</button>
+						 	
+						 		<button type="button" id="deleteToDoButton" class="btn btn-default">
+						 			Delete
+						 		</button>
+						 
+					 </div>
+				
+
+				
+			</template>
+
+
+
+
 			
 			<template name="addToDoButton">
 
@@ -229,6 +292,14 @@
 	
 		
 </template> 
+
+
+
+
+
+
+
+
 
 <template name = "customErrorPageAdminUpdate"> 
   <h1>You're not an admin.</h1> 
