@@ -152,6 +152,56 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("alertMessage").style.visibility = "visible";
 		}
 	},
+
+	"click .list-group-item": function(event, template){
+			//event.target.addClass("active");
+
+			selectedIssueInList = $(event.target).text();
+
+
+			if (template.find(".active") === null) {
+				$(event.target).addClass('active');
+				//event.target.addClass("active");
+				Meteor.call("addUserIssueItem", selectedIssueInList); 
+			} else {
+				if ($(event.target).hasClass('active')) {
+					$(event.target).removeClass('active');
+					Meteor.call("deleteUserIssueItem", selectedIssueInList);  
+				} else {
+					$(event.target).addClass('active');
+					Meteor.call("addUserIssueItem", selectedIssueInList); 
+				}
+				/*console.log("entering the else"); 
+				previous = template.find(".active");
+				console.log(previous); 
+				console.log("here"); 
+				template.find(".active").removeClass('active'); */
+
+				//console.log(template.find(".active").classList);
+
+				//template.find(".active").classList.remove("active"); 
+			}
+
+		/*"click .list-group-item": function(event){
+			
+			previous.removeClass('active');
+			$(event.target).addClass('active'); */
+			
+			
+			//selectedIssueInList = $(".active").text();
+			//selectedIssueInList = template.find(".active").text();
+
+			console.log("issue selected:"); 
+
+			console.log(selectedIssueInList); 
+
+			//Meteor.call("addUserIssueItem", selectedIssueInList); 
+
+			//console.log("clicked"); 
+
+
+			//TODO!
+		}
 	});
 
 Template.userSettings.helpers({
@@ -226,14 +276,18 @@ Template.userSettings.helpers({
 	//map IDs in here.
 	},
 
-});
-
-
-Template.issueCheckBoxField.helpers({
 	returnIssueName: function() {
 		return this.name;
 	},
-})
+
+});
+
+
+/*Template.issueCheckBoxField.helpers({
+	returnIssueName: function() {
+		return this.name;
+	},
+})*/
 
 /*if (!Roles.userIsInRole(Meteor.user(), ['admin'])) {
 

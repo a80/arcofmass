@@ -267,8 +267,16 @@ Meteor.methods({
   getOldTodoImportance: function(ID) {
 	return actionItems.finc({id: ID}).important;
   },
+  addUserIssueItem: function(issueName) {
+	 //curr = Meteor.user().profile.issues;
+	 //newIssues = curr.push(issueName);
+	 //Meteor.user().profile.issues = newIssues;
+   Meteor.users.upsert({_id:Meteor.userId()}, {$push :{"profile.issues": issueName}});
+  },
+  deleteUserIssueItem: function(issueName) {
+    Meteor.users.upsert({_id:Meteor.userId()}, {$pop :{"profile.issues": issueName}});
 
-
+  },
 
   //put comma after above function
 });

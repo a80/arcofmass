@@ -91,15 +91,18 @@
 					
 						<h3 id="arcIssues"> Issues of the Arc</h3>
 
-						<ul>
-
+						<!-- <ul>
 						{{#each getUserIssues}}
-
 							<li> {{> issueCheckBoxField}}</li>
-
 						{{/each}}
+					    </ul> --> 
 
-					</ul>
+					    <div id="listGroup">
+		    				<!-- List of all issues -->
+		    				{{#each getUserIssues}}
+		    					<a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
+		    				{{/each}}
+						</div>
 					
 					<!-- <div>
 						<input type= 'checkbox' class="checkInput" aria-label="..." >
@@ -160,8 +163,8 @@
 </body>
 </template>
 
-<template name = "issueCheckBoxField">
+<!-- <template name = "issueCheckBoxField">
 	<input type= 'checkbox' class="checkInput" aria-label="..." >
 	<h4 class= "issue">{{returnIssueName}}</h4>
-</template> 
+</template> --> 
 

@@ -86,7 +86,20 @@ Template.login.events({
       }
     });*/
 
-    Meteor.call("addNewRegularUser", username); 
+    Meteor.call("addNewRegularUser", username, function(error) {
+      if (error) {
+
+      } else {
+        Meteor.loginWithPassword(username, password, function(error) {
+          if (error) {
+            console.log('login failed');
+          } else {
+            console.log('login-succeeded');
+            Router.go('/profile');
+      }
+    });
+      }
+    }); 
     return false; 
   },
 
@@ -162,7 +175,21 @@ Template.adminLogin.events({
       }
     });*/
 
-    Meteor.call("addNewAdmin", username); 
+    Meteor.call("addNewAdmin", username, function(error) {
+      if (error) {
+
+      } else {
+        Meteor.loginWithPassword(username, password, function(error) {
+          if (error) {
+            console.log('admin login failed');
+          } else {
+            console.log('admin-login-succeeded');
+            Router.go('/admin');
+      }
+    });
+      }
+    });  
+
 
     //var id = Meteor.users.find(); 
 
