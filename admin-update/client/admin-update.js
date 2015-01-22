@@ -196,7 +196,17 @@
 	    },
 
 	    getLegislatorRowArray: function() {
-	    	return legislatorRowArray.findOne({name: "legislatorRowArrayObject"}).arrayList;
+	    	//return legislatorRowArray.findOne({name: "legislatorRowArrayObject"}).arrayList;
+	    	var numberOfRows; 
+	    	if (Session.get("newLegislatorRowArray") === undefined) {
+				numberOfRows = 0; 
+			} else {
+				numberOfRows = Session.get("newLegislatorRowArray");
+			}
+
+			console.log(numberOfRows); 
+
+	    	//return new Array[numberOfRows]; 
 	    }, 
 
 
@@ -256,9 +266,18 @@
 
 Template.addLegButton.events({
 	"click #addLegislatorRow": function(event) {
-		Meteor.call("addLegislatorRowFunction");
+		//Meteor.call("addLegislatorRowFunction");
 		console.log("called in client - addLegRowFunction"); 
 		//Router.go("/update");  
+		//Session.set("newLegislatorRowArray", )
+
+		if (Session.get("newLegislatorRowArray") === undefined) {
+			Session.set("newLegislatorRowArray", 1);
+		} else {
+			var numberOfRows = Session.get("newLegislatorRowArray");
+			//console.log(Session.get("newLegislatorRowArray"));
+			Session.set("newLegislatorRowArray", numberOfRows + 1);
+		}
 	},
 });
 
