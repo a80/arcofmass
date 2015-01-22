@@ -12,7 +12,7 @@ Template.profileHome.events({
 Template.profileHome.helpers({
 	getUserIssues: function() {
 		//console.log(issues.find({}).fetch());
-    var list = issues.find({}).fetch();
+    var list = issues.find({name: {$in: Meteor.user().profile.issues}}).fetch();
 	
 	return _.map(list, function(l) {
     	_.extend(l, {graphID: l.name.replace(/\s*/g, '')});
