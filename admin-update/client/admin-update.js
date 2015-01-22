@@ -77,13 +77,13 @@
 		}
 	});
 
-
-	
-	Template.updateFormField.events({
+	Template.legislatorRowNew.events({
 		"click #saveLegislatorButton": function(event) {
 
 			//
+			console.log(Template.instance()); 
 			var legName = Template.instance().find("#nameInput").value;	
+
 			var legEmail = Template.instance().find("#emailInput").value;
 			var legAddress = Template.instance().find("#addressInput").value;
 			
@@ -128,7 +128,14 @@
 			});
 			
 		},
-		
+		"click #deleteLegislatorButton": function(event) {
+			//console.log(Template.instance);
+			var name = Template.instance().find("#nameInput").value;
+			Meteor.call("deleteLegislator", name);
+		},
+	});
+	
+	Template.toDoRowNew.events({
 		"click #saveTodoButton": function(event) {
 			var name = Template.instance().find("#todoInput").value;
 			var goal = Template.instance().find("#goalInput").value;
@@ -173,11 +180,7 @@
 			var name = Template.instance().find("#todoInput").value;
 			Meteor.call("deleteTodo", name);
 		},
-		"click #deleteLegislatorButton": function(event) {
-			//console.log(Template.instance);
-			var name = Template.instance().find("#nameInput").value;
-			Meteor.call("deleteLegislator", name);
-		},
+
 	});
 
 	Template.updateFormField.helpers({
