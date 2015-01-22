@@ -144,7 +144,6 @@ Meteor.subscribe("userSettingsData");
 						});
 					}
 				});
-
 		},
 	});
 
