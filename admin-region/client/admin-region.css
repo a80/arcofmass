@@ -1,0 +1,7 @@
+.list-group-item {
+	width: 200px;
+}
+
+.list-group, .visualGroup {
+	display: inline;
+}

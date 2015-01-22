@@ -201,7 +201,7 @@ Meteor.subscribe("userSettingsData");
 
 
 			//TODO!
-		}
+		},
 	});
 
 Template.userSettings.helpers({
@@ -212,31 +212,16 @@ Template.userSettings.helpers({
 
 	getUserName: function() {
 		var name = Meteor.user().profile.name;
-		/*
-		if (name.length == 0){
-			//nothing in database
-			
-			document.getElementById("inputName").readOnly = false;
-			document.getElementById("editNameButton").style.visibility = "hidden";
-			document.getElementById("saveNameButton").style.visibility = "visible";
-			
-		}
-		else{
-			
-			document.getElementById("inputName").readOnly = true;
-			document.getElementById("editNameButton").style.visibility = "visible";
-			document.getElementById("saveNameButton").style.visibility = "hidden";
-			
-			
-		}
-		*/
+		
 		
 		return name;
+	
 	},
 
-	getStyle: function() {
-		var name = Meteor.user().profile.name;
-		if (name.length == 0){
+	/*
+	nameStyle: function(){
+		var input = document.getElementById("inputName").value;
+		if (input.length ==0){
 			//nothing in database
 			
 			document.getElementById("inputName").readOnly = false;
@@ -252,7 +237,9 @@ Template.userSettings.helpers({
 			
 			
 		}
-	},
+	},*/
+
+
 
 	getUserEmail: function() {
 

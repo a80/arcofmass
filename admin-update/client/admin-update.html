@@ -45,31 +45,31 @@
 			
 
 			function toEdit(){
-				document.getElementById("saveToDo").style.visibility = "hidden";
-				document.getElementById("editToDo").style.visibility = "visible";
+				document.getElementById("saveToDoButton").style.visibility = "hidden";
+				document.getElementById("editToDoButton").style.visibility = "visible";
 				document.getElementById("todoInput").readOnly = true;
 				document.getElementById("goalInput").readOnly = true;
 				document.getElementById("messageInput").readOnly = true;
 			}
 
 			function toSave(){
-				document.getElementById("editToDo").style.visibility = "hidden";
-				document.getElementById("saveToDo").style.visibility = "visible";
+				document.getElementById("editToDoButton").style.visibility = "hidden";
+				document.getElementById("saveToDoButton").style.visibility = "visible";
 				document.getElementById("todoInput").readOnly = false;
 				document.getElementById("goalInput").readOnly = false;
 				document.getElementById("messageInput").readOnly = false;
 			}
 			function toEditLegislator(){
-				document.getElementById("saveLeg").style.visibility = "hidden";
-				document.getElementById("editLeg").style.visibility = "visible";
+				document.getElementById("saveLegislatorButton").style.visibility = "hidden";
+				document.getElementById("editLegislatorButton").style.visibility = "visible";
 				document.getElementById("nameInput").readOnly = true;
 				document.getElementById("emailInput").readOnly = true;
 				document.getElementById("addressInput").readOnly = true;
 			}
 
 			function toSaveLegislator(){
-				document.getElementById("editLeg").style.visibility = "hidden";
-				document.getElementById("saveLeg").style.visibility = "visible";
+				document.getElementById("editLegislatorButton").style.visibility = "hidden";
+				document.getElementById("saveLegislatorButton").style.visibility = "visible";
 				document.getElementById("nameInput").readOnly = false;
 				document.getElementById("emailInput").readOnly = false;
 				document.getElementById("addressInput").readOnly = false;
@@ -79,7 +79,7 @@
 			</script>
 	</head>
 	
-		<div id="listGroup">
+		<div class="col-md-2" id="listGroup">
 		  
 		  
 		    <!-- List of all issues -->
@@ -89,7 +89,7 @@
 
 		  
 		</div>
-		<div id="newIssueField">
+		<div class = "col-md-10">
 			 
 				<button type="button" class="btn btn-default" id ="addIssueButton">
 					Add Issue
@@ -99,9 +99,8 @@
 				
 				<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete Current Issue
 				</button>
-
 		</div>
-	
+		
 	
 	{{>updateFormField}}
 
@@ -112,17 +111,6 @@
 <template name = "updateFormField"> 
 
 
-	<div>
-		<h3> Issue X</h3>
-
-	</div>
-
-	<!-- For each issue there will be the following -->
-
-	<div>
-		<!-- Contacts -->
-
-	</div>
 
 	{{#each getLegislatorInfo}}
 		{{>legislatorRow}}
@@ -203,7 +191,7 @@
 
 				<template name="addLegButton">
 
-				<div>
+				<div class= "col-md-2 col-md-offset-5" style="padding:15px; padding-left:125px">
 					<button type="button" class="btn btn-default" id = "addLegislatorRow"> Add Legislator
 
 					</button>
@@ -284,7 +272,7 @@
 			
 			<template name="addToDoButton">
 
-			<div>
+			<div class = "col-md-2 col-md-offset-5" style="padding:15px; padding-left:135px">
 				<button type= "button" class="btn btn-default" id= "addToDoRow" > Add To Do
 				</button>
 			</div>
