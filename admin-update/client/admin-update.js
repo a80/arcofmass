@@ -133,7 +133,7 @@
 		},
 	});
 	
-	Template.toDoRowNew.events({}
+	Template.toDoRowNew.events({
 		"click #saveTodoButton": function(event) {
 			var name = Template.instance().find("#todoInput").value;
 			var goal = Template.instance().find("#goalInput").value;
@@ -178,8 +178,7 @@
 			var name = Template.instance().find("#todoInput").value;
 			Meteor.call("deleteTodo", name);
 		},
-	);
-	
+	});
 
 	Template.updateFormField.helpers({
 	    getLegislatorInfo: function() {

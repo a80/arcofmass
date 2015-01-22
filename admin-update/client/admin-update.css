@@ -59,6 +59,9 @@
 #checkInput, #todoInput, #goalInput, #messageInput, #saveToDoButton, #editToDoButton, #deleteToDoButton{
 	display: inline;
 }
+.form-control {
+	display: inline;
+}
 
 #todoInput, #goalInput, #messageInput{
 	width: 300px;
