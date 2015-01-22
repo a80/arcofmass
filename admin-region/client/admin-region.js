@@ -15,6 +15,10 @@ Template.adminRegion.helpers({
 	returnUserId: function() {
 		return Meteor.user().username; 
 	},
+
+	getCurrentRegion: function(){
+
+	},
 });
 /*
 Template.adminRegion.barChart = function() {
