@@ -151,15 +151,15 @@
 					 	<input type="text" class="form-control emailInput" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}">
 						<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}">
 							 
-						 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "{{getSaveLegislatorButtonID}}">
+						 <button type="button" class="btn btn-default saveLegislatorButtonButton" onclick="toEditLegislator()" id = "{{getSaveLegislatorButtonID}}">
 							 	Save
 						</button>
 					 	
-					 	<button type="button" class="btn btn-default" id="{{getEditLegislatorButtonID}}" onclick="toSaveLegislator()">
+					 	<button type="button" class="btn btn-default editLegislatorButtonButton" id="{{getEditLegislatorButtonID}}" onclick="toSaveLegislator()">
 					 			Edit
 					 	</button>
 					 	
-						<button type="button" class="btn btn-default" id="{{getDeleteLegislatorButtonID}}">
+						<button type="button" class="btn btn-default deleteLegislatorButtonButton" id="{{getDeleteLegislatorButtonID}}">
 							 	Delete
 						</button>
 					</div>
@@ -224,15 +224,15 @@
 						 							 			
 					 			<input type="text" class="form-control messageInput" id="{{getMessageInputID}}" aria-label="..." placeholder = "Message" value="{{getMessageValue}}">
 
-						 		<button type="button" class="btn btn-default" onclick="toEdit()" id="{{saveToDoButtonID}}">
+						 		<button type="button" class="btn btn-default saveToDoButton" onclick="toEdit()" id="{{saveToDoButtonID}}">
 						 			Save
 						 		</button>
 						 	
-						 		<button type="button" class="btn btn-default" onclick="toSave()" id="{{editToDoButtonID}}" >
+						 		<button type="button" class="btn btn-default editToDoButton" onclick="toSave()" id="{{editToDoButtonID}}" >
 						 			Edit
 						 		</button>
 						 	
-						 		<button type="button" id="{{deleteToDoButtonID}}" class="btn btn-default">
+						 		<button type="button" id="{{deleteToDoButtonID}}" class="btn btn-default deleteToDoButton">
 						 			Delete
 						 		</button>
 						 
