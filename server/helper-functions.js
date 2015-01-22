@@ -245,7 +245,7 @@ Meteor.methods({
 	return legislators.find({id: ID}).address;
   },
   getOldTodoText: function(ID) {
-	return actionItems.find({id: ID}).text;
+	return actionItems.findOne({_id: ID}).text;
   },
   getOldTodoGoal: function(ID) {
 	return actionItems.find({id: ID}).goal;

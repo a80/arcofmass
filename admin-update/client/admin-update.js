@@ -332,9 +332,29 @@
 	}); 
 
 	Template.legislatorRow.helpers({
-		/*getLegID: function(){
+		getLegID: function(){
 			//returns a specific ID for the legislator 
-			return this._id;
+			return this._id + "legRow";
+		},
+
+		getLegislatorName: function(){
+			var ID = this._id; 
+			return legislators.findOne({_id: ID}).name;
+		},
+
+		getLegislatorEmail: function(){
+			var ID = this._id; 
+			return legislators.findOne({_id: ID}).email;
+		},
+
+		getLegislatorAddress: function(){
+			var ID = this._id; 
+			return legislators.findOne({_id: ID}).address;
+		},
+
+		/*getSaveLegislatorButtonID: function(){
+			var ID = getLegID;
+			return this._id +"saveButton";
 		},
 
 		getNameID: function(){
@@ -343,38 +363,17 @@
 			return this._id+Meteor.call("getOldLegName",ID);
 		},
 
-		getLegislatorName: function(){
-			var ID = getLegID;
-			return Meteor.call("getOldLegName",ID);
-		},
-
 		getEmailID: function(){
 			var ID = getLegID;
 			return this._id+Meteor.call("getOldLegEmail", ID);
 		},
 
-		getLegislatorEmail: function(){
-			var ID = getLegID;
-			return Meteor.call("getOldLegEmail", ID);
+		getEditLegislatorButtonID: function(){
+			return this._id +"editButton";
 		},
-
 		getAddressID: function(){
 			var ID = getLegID;
 			return this._id+Meteor.call("getOldLegAddress", ID);
-		},
-
-		getLegislatorAddress: function(){
-			var ID = getLegID;
-			return Meteor.call("getOldLegAddress", ID);
-		},
-
-		getSaveLegislatorButtonID: function(){
-			var ID = getLegID;
-			return this._id +"saveButton";
-		},
-
-		getEditLegislatorButtonID: function(){
-			return this._id +"editButton";
 		},
 
 		getDeleteLegislatorButtonID: function(){
@@ -383,47 +382,54 @@
 	});
 
 	Template.toDoRow.helpers({
-		/*getRowID: function(){
-			
-			return this.issue;
-
+		getToDoRowID: function(){
+			return this._id + "toDoRow";
 		},
 
-		getToDoInputID: function(){
+		/*getToDoInputID: function(){
 			var ID = getRowID;
 			return this.issue+this.text;
-		},
+		},*/
 
 		getToDoValue: function(){
-			var ID = getRowID;
-			return Meteor.call("getOldTodoText",ID);
+			//var ID = getRowID;
+			//console.log("here"); 
+			var ID = this._id; 
+			//console.log("and here"); 
+			//console.log(actionItems.findOne({_id: ID}).text); 
+			return actionItems.findOne({_id: ID}).text;
 		},
 
-		getGoalInputID: function(){
+		/*getGoalInputID: function(){
 			var ID = getRowID;
 			return this.issue+this.goal;
 
-		},
+		},*/
 
 		getGoalValue: function(){
-			var ID = getRowID;
-			return Meteor.call("getOldTodoGoal",ID);
+			var ID = this._id; 
+			//console.log("and here"); 
+			//console.log(actionItems.findOne({_id: ID}).text); 
+			return actionItems.findOne({_id: ID}).goal;
 
 		},
 
-		getMessageInputID: function(){
+		/*getMessageInputID: function(){
 			var ID = getRowID;
 			return this.issue+this.message;
 
-		},
+		},*/
 
 		getMessageValue: function(){
-			var ID = getRowID;
-			return Meteor.call("getOldTodoMessage",ID);
+			var ID = this._id; 
+			//console.log("and here"); 
+			//console.log(actionItems.findOne({_id: ID}).text); 
+			return actionItems.findOne({_id: ID}).message;
+
 
 		},
 
-		saveToDoButtonID: function(){
+		/*saveToDoButtonID: function(){
 			return this.issue+"save";
 
 		},

@@ -33,10 +33,10 @@
 	display: inline;
 }
 
-.nameInput, #emailInput, #addressInput{
+.nameInput, .emailInput, .addressInput{
 	width: 300px;
 }
-.nameInput, #emailInput, #addressInput, #saveLegislatorButton, #editLegislatorButton, #deleteLegislatorButton {
+.nameInput, .emailInput, .addressInput, #saveLegislatorButton, #editLegislatorButton, #deleteLegislatorButton {
 	display: inline;
 }
 
@@ -56,14 +56,14 @@
 	padding-left:88px ;
 }
 
-#checkInput, #todoInput, #goalInput, #messageInput, #saveToDoButton, #editToDoButton, #deleteToDoButton{
+.checkInput, .todoInput, .goalInput, .messageInput, #saveToDoButton, #editToDoButton, #deleteToDoButton{
 	display: inline;
 }
 .form-control {
 	display: inline;
 }
 
-#todoInput, #goalInput, #messageInput{
+.todoInput, .goalInput, .messageInput{
 	width: 300px;
 }
 
