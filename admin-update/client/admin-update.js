@@ -18,28 +18,58 @@
 		},
 		"click #addIssueButton": function(event) {
 			var newIssue = document.getElementById("addIssueField").value;
-			if (newIssue == null || newIssue == "") {
-				alert("You must type in the name of an issue.");
-			}
-			else {
-				Meteor.call("addNewIssue", newIssue);
-			}
+			Meteor.call("cleanInput", newIssue, function(error, newIssue) {
+				if (newIssue != false) {
+					Meteor.call("addNewIssue", newIssue);
+				}
+				else {
+					alert("There was a problem with the input");
+				}
+			});
 		},
 		"click #deleteIssueButton": function(event) {
 			var delIssue = $document.find(".active").value;
-			Meteor.call("delIssue", delIssue);
+			Meteor.call("cleanInput", delIssue, function(error, delIssue) {
+				if (delIssue != false) {
+					Meteor.call("delIssue", delIssue);
+				}
+				else {
+					alert("There was a problem with the input");
+				}
+			});
 		},
-		"click .list-group-item": function(event){
-			var previous = $(this).closest(".list-group").children(".active");
-			previous.removeClass('active'); // previous list-item
-			$(event.target).addClass('active'); // activated list-item
+
+		"click .list-group-item": function(event, template){
+			//event.target.addClass("active");
+
+			if (template.find(".active") === null) {
+				$(event.target).addClass('active');
+				//event.target.addClass("active");
+			} else {
+				/*console.log("entering the else"); 
+				previous = template.find(".active");
+				console.log(previous); 
+				console.log("here"); 
+				template.find(".active").removeClass('active'); */
+
+				//console.log(template.find(".active").classList);
+
+				template.find(".active").classList.remove("active"); 
+				$(event.target).addClass('active');
+			}
+
+		/*"click .list-group-item": function(event){
+			
+			previous.removeClass('active');
+			$(event.target).addClass('active'); */
 			
 			
 			selectedIssueInList = $(".active").text();
+			//selectedIssueInList = template.find(".active").text();
 
 			Meteor.call("adminUpdateSelectIssue", selectedIssueInList); 
 
-			console.log("clicked"); 
+			//console.log("clicked"); 
 
 
 			//TODO!
@@ -52,11 +82,8 @@
 		"click #saveLegislatorButton": function(event) {
 
 			//
-			console.log(Template.instance().find("#nameInput").value);
-			var legName = Template.instance().find("#nameInput").value;
-			console.log(Template.instance().find("#emailInput").value);
+			var legName = Template.instance().find("#nameInput").value;	
 			var legEmail = Template.instance().find("#emailInput").value;
-			console.log(Template.instance().find("#addressInput").value);
 			var legAddress = Template.instance().find("#addressInput").value;
 			
 			var dropdown = document.getElementById("dropdownMenu1");
@@ -64,11 +91,41 @@
 			//console.log(dropdown);
 			//var issue = dropdown.options[dropdown.selectedIndex].text;
 			//console.log("I have clicked the savelegislator button. submitted.");
-			//var issue = $(".active").text; 
+			var issue = $(".active").text; 
 			//console.log("got here");
 			//console.log(issue); 
-
-			Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
+			Meteor.call("cleanInput", legName, function(error, legName) {
+				if (legName != false) {
+					Meteor.call("cleanInput", legAddress, function(error, legAddress) {
+						if (legAddress != false) {
+							Meteor.call("cleanInput", legEmail, function(error, legEmail) {
+								if (legEmail != false) {
+									var atPos = legEmail.indexOf("@");
+									var perPos = legEmail.indexOf(".");
+									if (atpos< 1 || perpos<dotpos+2 || perpos+2>=legEmail.length) {
+										alert("Not a valid email address");
+									} else {
+										Meteor.call("cleanInput", issue, function(error, issue) {
+											if (issue != false) {
+												Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
+											} else {
+												alert("There was a problem with your issue");
+											}
+										});
+									}
+								} else {
+									alert("There was a problem with your email");
+								}
+							});
+						} else {
+							alert("There was a problem with your address");
+						}
+					});
+				} else {
+					alert("There was a problem with your name");
+				}
+			});
+			
 		},
 		
 		"click #saveTodoButton": function(event) {
@@ -84,9 +141,32 @@
 
 			//var issue = $(".active").text;
 
-			var issue = 
+			var issue = $(".active").text;
 			
-			Meteor.call("addNewTodo", name, goal, message, issue, important);
+			Meteor.call("cleanInput", name, function(error, name) {
+				if (name != false) {
+					Meteor.call("cleanInput", message, function(error, message) {
+						if (message != false) {
+							Meteor.call("cleanInput", goal, function(error, goal) {
+								if (goal != false) {
+									if (goal === parseInt(goal, 10)) {
+										Meteor.call("addNewTodo", name, goal, message, issue, important);
+									} else {
+										alert("Your goal must be an integer");
+									}
+								} else {
+									alert("There was a problem with your goal");
+								}
+							});
+						} else {
+							alert("There was a problem with your message");
+						}
+					});
+				} else {
+					alert("There was a problem with your name");
+				}
+			});
+			
 		},
 		"click #deleteTodoButton": function(event) {
 			var name = Template.instance().find("#todoInput").value;
@@ -95,9 +175,14 @@
 		"click #deleteLegislatorButton": function(event) {
 			//console.log(Template.instance);
 			var name = Template.instance().find("#nameInput").value;
-
-			var name = Template.instance().find("#nameInput").value;
-			Meteor.call("deleteLegislator", name);
+			Meteor.call("cleanInput", name, function(error, name) {
+				if (name != false) {
+					Meteor.call("deleteLegislator", name);
+				}
+				else {
+					alert("There was a problem with the input");
+				}
+			});
 		},
 	});
 

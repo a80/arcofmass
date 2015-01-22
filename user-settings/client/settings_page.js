@@ -16,7 +16,15 @@ Meteor.subscribe("userSettingsData");
 			console.log("saveNameButton pressed");
 			
 			var myName = document.getElementById("inputName").value;
-			Meteor.call("modifyUserName", myName);
+
+			Meteor.call("cleanInput", myName, function(err, res) {
+				if (res != false){
+					console.log(res); 
+					Meteor.call("modifyUserName", res);
+				} else {
+					alert("There was a problem with the input");
+				}
+			}); 
 		},
 
 		"click #editNameButton": function(event) {
@@ -31,7 +39,19 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("inputEmail").readOnly = true;
 			
 			var myEmail = document.getElementById("inputEmail").value;
-			Meteor.call("modifyUserEmail", myEmail);
+			Meteor.call("cleanInput", myEmail, function(error, myEmail) {
+				if (myEmail != false) {
+					var atpos = myEmail.indexOf("@");
+					var dotpos = myEmail.lastIndexOf(".");
+					if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=myEmail.length) {
+						alert("Not a valid e-mail address");
+					} else {
+					Meteor.call("modifyUserEmail", myEmail);
+					}
+				} else {
+					alert("There was a problem with the input");
+				}
+			});
 		},
 
 		"click #editEmailButton" : function(event){
@@ -47,8 +67,14 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("inputStory").readOnly = true;
 			
 			var myStory = document.getElementById("inputStory").value;
-
-			Meteor.call("modifyUserStory", myStory);
+			Meteor.call("cleanInput", myStory, function(error, myStory) {
+				if (myStory != false) {
+					myStory = Meteor.call("cleanInput", myStory);
+					Meteor.call("modifyUserStory", myStory);
+				} else {
+					alert("There was a problem with the input");
+				}
+			});
 		},
 
 		"click #editStoryButton" : function(event){
@@ -64,8 +90,17 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("inputZipcode").readOnly = true;
 			
 			var myZip = document.getElementById("inputZipcode").value;
-			console.log(myZip);
-			Meteor.call("modifyUserZip", myZip);
+			Meteor.call("cleanInput", myZip function(error, myZip) {
+				if (myZip != false) {
+					var regPostalCode = new RegExp("^\\d{5}(-\\d{4})?$");
+					if (regPostalCode.test(myZip) == true) {
+						Meteor.call("modifyUserZip", myZip);
+					}
+				}
+				else {
+					alert("There was a problem with the input");
+				}
+			});
 		},
 
 		"click #editZipCodeButton" : function(event){
@@ -84,25 +119,31 @@ Meteor.subscribe("userSettingsData");
 				document.getElementById("inputOPassword").value = "";
 		  		document.getElementById("inputNPassword").value = "";
 		  		document.getElementById("confirmNPassword").value = "";	
+				
+				
+				Meteor.call("cleanInput", myOPassword, function(error, myOPassword) {
+					if (myOPassword != false) {
+						Meteor.call("cleanInput", myNPassword, function(error, myNPassword) {
+							if (myNPassword != false) {
+							Accounts.changePassword(myOPassword, myNPassword, function(error) {
+								if (error) {
+									console.log(error);
+									console.log("Failed to change password.");
 
-				Accounts.changePassword(myOPassword, myNPassword, function(error) {
-		  			if (error) {
-			  			console.log(error);
-			  			console.log("Failed to change password.");
-
-						//Tell user that they entered their old password incorrectly?
-		  			} else {
-						console.log("Successfully changed password.");
-						document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
-		  				
-		  			}
-	  			});
-				//Meteor.call("modifyUserPassword", myOPassword, myNPassword);
-			}
-			else{
-				document.getElementById("alertMessage").style.visibility = "visible";
-			}
-
+									//Tell user that they entered their old password incorrectly?
+								} else {
+									console.log("Successfully changed password.");
+									document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
+									
+								}
+							});
+							}
+							else {
+								alert("There was a problem with the input");
+							}
+						});
+					}
+				});
 		},
 	});
 

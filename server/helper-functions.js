@@ -236,13 +236,42 @@ Meteor.methods({
 
   adminUpdateSelectIssue: function(issueName) {
     selectedIssue.upsert({name: "selectedIssueObject"}, {$set: {selectedIssue: issueName}}); 
-  }, 
-
-
-
-
-
-
+  },
+  cleanInput: function(str) {
+	str = str.replace(/[^a-z0-9@ '\.,_-]/gim,"");
+	if (str.trim() != "" && str.trim() != null) {
+		return str.trim();
+	} else {
+		return false;
+	}
+  },
+  
+  getOldLegName: function(ID) {
+	return legislators.find({id: ID}).name;
+  },
+  getOldLegEmail: function(ID) {
+	return legislators.find({id: ID}).email;
+  },
+  getOldLegAddress: function(ID) {
+	return legislators.find({id: ID}).address;
+  },
+  getOldTodoText: function(ID) {
+	return actionItems.find({id: ID}).text;
+  },
+  getOldTodoGoal: function(ID) {
+	return actionItems.find({id: ID}).goal;
+  },
+  getOldTodoMessage: function(ID) {
+	return actionItems.find({id: ID}).message;
+  },
+  getOldTodoImportance: function(ID) {
+	return actionItems.finc({id: ID}).important;
+  },
+  appendIssue: function(issueName) {
+	curr = Meteor.user().profile.issues;
+	newIssues = curr.push(issueName);
+	Meteor.user().profile.issues = newIssues;
+  }
 
   //put comma after above function
 });
