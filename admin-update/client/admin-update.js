@@ -225,13 +225,41 @@
 	    },
 
 	    getLegislatorRowArray: function() {
-	    	return legislatorRowArray.findOne({name: "legislatorRowArrayObject"}).arrayList;
+
+	    	//return legislatorRowArray.findOne({name: "legislatorRowArrayObject"}).arrayList;
+
+	    	//return legislatorRowArray.findOne({name: "legislatorRowArrayObject"}).arrayList;
+	    	var numberOfRows; 
+	    	if (Session.get("newLegislatorRowArray") === undefined) {
+				numberOfRows = []; 
+			} else {
+				numberOfRows = Session.get("newLegislatorRowArray").split(" ");
+			}
+
+			console.log(numberOfRows); 
+
+			return numberOfRows; 
+
+	    	//return new Array[numberOfRows]; 
+
 	    }, 
 
 
 
 	    getToDoRowArray: function() {
-	    	return toDoRowArray.findOne({name: "toDoRowArrayObject"}).arrayList; 
+	    	//return toDoRowArray.findOne({name: "toDoRowArrayObject"}).arrayList; 
+	    	var numberOfRows; 
+	    	if (Session.get("newToDoRowArray") === undefined) {
+				numberOfRows = []; 
+			} else {
+				numberOfRows = Session.get("newToDoRowArray").split(" ");
+			}
+
+			console.log(numberOfRows); 
+
+			return numberOfRows; 
+
+	    	
 	    },
 
 	    //delete button should be wired to decrementing the array. 
@@ -382,29 +410,86 @@
 
 Template.addLegButton.events({
 	"click #addLegislatorRow": function(event) {
-		Meteor.call("addLegislatorRowFunction");
-		console.log("called in client - addLegRowFunction"); 
+
+		//Meteor.call("addLegislatorRowFunction");
+		//console.log("called in client - addLegRowFunction"); 
 		//Router.go("/update");  
+
+		//Meteor.call("addLegislatorRowFunction");
+		//console.log("called in client - addLegRowFunction"); 
+		//Router.go("/update");  
+		//Session.set("newLegislatorRowArray", )
+
+		if (Session.get("newLegislatorRowArray") === undefined) {
+			//console.log("here"); 
+			Session.set("newLegislatorRowArray", "1");
+		} else {
+			var numberOfRows = Session.get("newLegislatorRowArray");
+			console.log(numberOfRows); 
+
+			//.split("");
+			//console.log(Session.get("newLegislatorRowArray"));
+
+
+			Session.set("newLegislatorRowArray", numberOfRows + " 1");
+		}
+
 	},
 });
 
 Template.addToDoButton.events({
 	"click #addToDoRow": function(event) {
-		Meteor.call("addToDoRowFunction");
-		console.log("called in client - addToDoRowFunction"); 
+		//Meteor.call("addToDoRowFunction");
+		//console.log("called in client - addToDoRowFunction"); 
 		//Router.go("/update");  
+
+		if (Session.get("newToDoRowArray") === undefined) {
+			//console.log("here"); 
+			Session.set("newToDoRowArray", "1");
+		} else {
+			var numberOfRows = Session.get("newToDoRowArray");
+			console.log(numberOfRows); 
+
+			//.split("");
+			//console.log(Session.get("newLegislatorRowArray"));
+
+
+			Session.set("newToDoRowArray", numberOfRows + " 1");
+		}
 	},
 });
 
-Template.legislatorRow.events({
+Template.legislatorRowNew.events({
 	"click #deleteLegislatorButton": function(event) {
-		Meteor.call("deleteLegislatorRowFunction");
+		//Meteor.call("deleteLegislatorRowFunction");
+		var numberOfRows; 
+	    
+	    if (Session.get("newLegislatorRowArray") != undefined) {
+	    	if (Session.get("newLegislatorRowArray") === "1") {
+	    		Session.set("newLegislatorRowArray", undefined);
+	    	} else {
+	    		numberOfRows = Session.get("newLegislatorRowArray"); 
+	    		index = numberOfRows.length - 2; 
+				Session.set("newLegislatorRowArray", numberOfRows.substring(0, index));
+	    	}
+		}
 	},
 }); 
 
-Template.toDoRow.events({
+Template.toDoRowNew.events({
 	"click #deleteToDoButton": function(event) {
-		Meteor.call("deleteToDoRowFunction");
+		//Meteor.call("deleteToDoRowFunction");
+		var numberOfRows; 
+	    
+	    if (Session.get("newToDoRowArray") != undefined) {
+	    	if (Session.get("newToDoRowArray") === "1") {
+	    		Session.set("newToDoRowArray", undefined);
+	    	} else {
+	    		numberOfRows = Session.get("newToDoRowArray"); 
+	    		index = numberOfRows.length - 2; 
+				Session.set("newToDoRowArray", numberOfRows.substring(0, index));
+	    	}
+		}
 	},
 }); 
 
