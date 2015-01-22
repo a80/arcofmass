@@ -78,6 +78,81 @@
 	});
 
 
+	Template.legislatorRow.events({
+		"click .saveLegislatorButton": function(event, template) {
+
+
+			console.log(template.find(".nameInput").value); 
+
+
+			var legName = template.find(".nameInput").value;	
+
+			console.log(template.find(".emailInput").value); 
+			var legEmail = template.find(".emailInput").value;
+			var legAddress = template.find(".addressInput").value;
+			
+			//var dropdown = document.getElementById("dropdownMenu1");
+
+			//console.log(dropdown);
+			//var issue = dropdown.options[dropdown.selectedIndex].text;
+			//console.log("I have clicked the savelegislator button. submitted.");
+			//var issue = $(".active").text; 
+
+			var issue = Session.get("adminSelectedIssue"); 
+			console.log(issue); 
+			//console.log("got here");
+			//console.log(issue); 
+			Meteor.call("cleanInput", legName, function(error, legName) {
+				if (legName != false) {
+					Meteor.call("cleanInput", legAddress, function(error, legAddress) {
+						if (legAddress != false) {
+							Meteor.call("cleanInput", legEmail, function(error, legEmail) {
+								if (legEmail != false) {
+									var atpos = legEmail.indexOf("@");
+									var perpos = legEmail.indexOf(".");
+									if (atpos< 1 || perpos<atpos+2 || perpos+2>=legEmail.length) {
+										alert("Not a valid email address");
+									} else {
+										Meteor.call("cleanInput", issue, function(error, issue) {
+											if (issue != false) {
+												Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
+											} else {
+												alert("There was a problem with your issue");
+											}
+										});
+									}
+								} else {
+									alert("There was a problem with your email");
+								}
+							});
+						} else {
+							alert("There was a problem with your address");
+						}
+					});
+				} else {
+					alert("There was a problem with your name");
+				}
+			});
+			
+		},
+
+		"click .deleteLegislatorButton": function(event) {
+			//Meteor.call("deleteLegislatorRowFunction");
+			var numberOfRows; 
+			var name = Template.instance.find(".nameInput").value;
+			Meteor.call("deleteLegislator", name);
+			
+			if (Session.get("newLegislatorRowArray") != undefined) {
+				if (Session.get("newLegislatorRowArray") === "1") {
+					Session.set("newLegislatorRowArray", undefined);
+				} else {
+					numberOfRows = Session.get("newLegislatorRowArray"); 
+					index = numberOfRows.length - 2; 
+					Session.set("newLegislatorRowArray", numberOfRows.substring(0, index));
+				}
+			}
+		},
+	});
 
 
 
@@ -159,6 +234,78 @@
 	    	}
 		}
 	},
+	});
+	
+	Template.toDoRow.events({
+		"click .saveToDoButton": function(event, template) {
+			console.log("ITS CALLEDAS");
+			var name = template.find(".todoInput").value;
+			var goal = template.find(".goalInput").value;
+			console.log(goal); 
+			var message = template.find(".messageInput").value;
+			//var dropdown = Template.instance().find("#dropdownMenu1");
+			//var issue = dropdown.options[dropdown.selectedIndex].text;
+			var c = template.find(".checkInput");
+			
+			var important = false;
+			if (c.checked) important = true;
+
+			console.log(c.checked); 
+			console.log(important); 
+
+			//var issue = $(".active").text;
+
+			//var issue = $(".active").text;
+
+			var issue = Session.get("adminSelectedIssue"); 
+			
+			Meteor.call("cleanInput", name, function(error, name) {
+				if (name != false) {
+					Meteor.call("cleanInput", message, function(error, message) {
+						if (message != false) {
+							Meteor.call("cleanInput", goal, function(error, goal) {
+								if (goal != false) {
+									if (!isNaN(goal)) {
+										Meteor.call("addNewTodo", name, goal, message, issue, important);
+									} else {
+										alert("Your goal must be an integer");
+									}
+								} else {
+									alert("There was a problem with your goal");
+								}
+							});
+						} else {
+							alert("There was a problem with your message");
+						}
+					});
+				} else {
+					alert("There was a problem with your name");
+				}
+			});
+			
+		},
+		/*"click #deleteTodoButton": function(event) {
+			var name = Template.instance.find("#todoInput").value;
+			Meteor.call("deleteTodo", name);
+		},*/
+
+		"click .deleteToDoButton": function(event) {
+		//Meteor.call("deleteToDoRowFunction");
+			var numberOfRows;
+			var name = Template.instance.find(".todoInput").value;
+			Meteor.call("deleteTodo", name);
+			
+			if (Session.get("newToDoRowArray") != undefined) {
+				if (Session.get("newToDoRowArray") === "1") {
+					Session.set("newToDoRowArray", undefined);
+				} else {
+					numberOfRows = Session.get("newToDoRowArray"); 
+					index = numberOfRows.length - 2; 
+					Session.set("newToDoRowArray", numberOfRows.substring(0, index));
+				}
+			}
+		},
+
 	});
 	
 	Template.toDoRowNew.events({

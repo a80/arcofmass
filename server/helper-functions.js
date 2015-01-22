@@ -195,7 +195,7 @@ Meteor.methods({
 	legislators.remove({name: myName});
   },
   addNewIssue: function(myName) {
-	  issues.insert({name: myName, count: 0});
+	issues.insert({name: myName, count: 0});
   },
   delIssue: function(myName) {
 	issues.remove({name: myName});
