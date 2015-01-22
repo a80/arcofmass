@@ -238,9 +238,9 @@ Meteor.methods({
     selectedIssue.upsert({name: "selectedIssueObject"}, {$set: {selectedIssue: issueName}}); 
   },
   cleanInput: function(str) {
-	str = str.replace(/[^a-z0-9@ '\.,_-]/gim,"");
-	if (str.trim() != "" && str.trim() != null) {
-		return str.trim();
+	newstr = str.replace(/[^a-z0-9@ '\.,_-]/gim,"");
+	if (newstr != "" && newstr != null && str == newstr) {
+		return str;
 	} else {
 		return false;
 	}
