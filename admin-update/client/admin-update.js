@@ -25,8 +25,8 @@
 				}
 			});
 		},
-		"click #deleteIssueButton": function(event) {
-			var delIssue = $document.find(".active").value;
+		"click #deleteIssueButton": function(event, template) {
+			var delIssue = template.find(".active").value;
 			Meteor.call("delIssue", delIssue);
 		},
 
