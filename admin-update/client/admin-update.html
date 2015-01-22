@@ -47,9 +47,9 @@
 			function toEdit(){
 				document.getElementById("saveToDoButton").style.visibility = "hidden";
 				document.getElementById("editToDoButton").style.visibility = "visible";
-				document.getElementById("todoInput").readOnly = true;
-				document.getElementById("goalInput").readOnly = true;
-				document.getElementById("messageInput").readOnly = true;
+				//document.getElementById("todoInput").readOnly = true;
+				//document.getElementById("goalInput").readOnly = true;
+				//document.getElementById("messageInput").readOnly = true;
 			}
 
 			function toSave(){
@@ -62,9 +62,9 @@
 			function toEditLegislator(){
 				document.getElementById("saveLegislatorButton").style.visibility = "hidden";
 				document.getElementById("editLegislatorButton").style.visibility = "visible";
-				document.getElementById("nameInput").readOnly = true;
-				document.getElementById("emailInput").readOnly = true;
-				document.getElementById("addressInput").readOnly = true;
+				//document.getElementById("nameInput").readOnly = true;
+				//document.getElementById("emailInput").readOnly = true;
+				//document.getElementById("addressInput").readOnly = true;
 			}
 
 			function toSaveLegislator(){
@@ -147,9 +147,9 @@
 					<div class="legRow" id="{{getLegID}}">
 						
 						
-					 	<input type="text" class="form-control" id="{{getNameID}}" aria-label="..." placeholder = "Representative" value="{{getLegislatorName}}">
-					 	<input type="text" class="form-control" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}">
-						<input id="{{getAddressID}}" type="text" class="form-control" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}">
+					 	<input type="text" class="form-control nameInput" id="{{getNameID}}" aria-label="..." placeholder = "Representative" value="{{getLegislatorName}}">
+					 	<input type="text" class="form-control emailInput" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}">
+						<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}">
 							 
 						 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "{{getSaveLegislatorButtonID}}">
 							 	Save
@@ -170,8 +170,8 @@
 						
 						
 					 	<input type="text" class="form-control nameInput" aria-label="..." placeholder = "Representative" >
-					 	<input type="text" class="form-control" id="emailInput" aria-label="..." placeholder = "Email">
-						<input id="addressInput" type="text" class="form-control" aria-label="..." placeholder = "Address" >
+					 	<input type="text" class="form-control emailInput" aria-label="..." placeholder = "Email">
+						<input type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" >
 							 
 						 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "saveLegislatorButton">
 							 	Save
@@ -216,13 +216,13 @@
 				
 					 <div class = 'row' id="{{getRowID}}">
 						
-						 		<input type= 'checkbox' id="checkInput" aria-label="..." >
+						 		<input type= 'checkbox' class = "checkInput" aria-label="..." >
 						 		
-						 		<input type="text" class="form-control" id="{{getTodoInputID}}" aria-label="..." placeholder = "To Do #1" value="{{getTodoValue}}" >
+						 		<input type="text" class="form-control todoInput" id="{{getTodoInputID}}" aria-label="..." placeholder = "To Do #1" value="{{getTodoValue}}" >
 
-						 		<input type="text" class="form-control" id="{{getGoalInputID}}" aria-label="..." placeholder = "Goal #1" value="{{getGoalValue}}">
+						 		<input type="text" class="form-control goalInput" id="{{getGoalInputID}}" aria-label="..." placeholder = "Goal #1" value="{{getGoalValue}}">
 						 							 			
-					 			<input type="text" class="form-control" id="{{getMessageInputID}}" aria-label="..." placeholder = "Message" value="{{getMessageValue}}">
+					 			<input type="text" class="form-control messageInput" id="{{getMessageInputID}}" aria-label="..." placeholder = "Message" value="{{getMessageValue}}">
 
 						 		<button type="button" class="btn btn-default" onclick="toEdit()" id="{{saveToDoButtonID}}">
 						 			Save
@@ -247,13 +247,13 @@
 				
 					 <div class = 'row'>
 						
-						 		<input type= 'checkbox' id="checkInput" aria-label="..." >
+						 		<input type= 'checkbox' class = "checkInput" aria-label="..." >
 						 		
-						 		<input type="text" class="form-control" id="todoInput" aria-label="..." placeholder = "To Do #1" >
+						 		<input type="text" class="form-control todoInput" aria-label="..." placeholder = "To Do #1" >
 
-						 		<input type="text" class="form-control" id="goalInput" aria-label="..." placeholder = "Goal #1">
+						 		<input type="text" class="form-control goalInput" aria-label="..." placeholder = "Goal #1">
 						 							 			
-					 			<input type="text" class="form-control" id="messageInput" aria-label="..." placeholder = "Message">
+					 			<input type="text" class="form-control messageInput" aria-label="..." placeholder = "Message">
 
 						 		<button type="button" class="btn btn-default" onclick="toEdit()" id="saveToDoButton">
 						 			Save
