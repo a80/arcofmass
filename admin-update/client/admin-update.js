@@ -27,14 +27,7 @@
 		},
 		"click #deleteIssueButton": function(event) {
 			var delIssue = $document.find(".active").value;
-			Meteor.call("cleanInput", delIssue, function(error, delIssue) {
-				if (delIssue != false) {
-					Meteor.call("delIssue", delIssue);
-				}
-				else {
-					alert("There was a problem with the input");
-				}
-			});
+			Meteor.call("delIssue", delIssue);
 		},
 
 		"click .list-group-item": function(event, template){
@@ -226,6 +219,9 @@
 	    },
 
 	    getLegislatorRowArray: function() {
+
+	    	//return legislatorRowArray.findOne({name: "legislatorRowArrayObject"}).arrayList;
+
 	    	//return legislatorRowArray.findOne({name: "legislatorRowArrayObject"}).arrayList;
 	    	var numberOfRows; 
 	    	if (Session.get("newLegislatorRowArray") === undefined) {
@@ -239,6 +235,7 @@
 			return numberOfRows; 
 
 	    	//return new Array[numberOfRows]; 
+
 	    }, 
 
 
@@ -263,6 +260,113 @@
 
 	}); 
 
+	Template.legislatorRow.helpers({
+		getLegID: function(){
+			//returns a specific ID for the legislator 
+			return this._id;
+		},
+
+		getNameID: function(){
+			//returns the NAME ID
+			var ID = getLegID;
+			return this._id+Meteor.call("getOldLegName",ID);
+		},
+
+		getLegislatorName: function(){
+			var ID = getLegID;
+			return Meteor.call("getOldLegName",ID);
+		},
+
+		getEmailID: function(){
+			var ID = getLegID;
+			return this._id+Meteor.call("getOldLegEmail", ID);
+		},
+
+		getLegislatorEmail: function(){
+			var ID = getLegID;
+			return Meteor.call("getOldLegEmail", ID);
+		},
+
+		getAddressID: function(){
+			var ID = getLegID;
+			return this._id+Meteor.call("getOldLegAddress", ID);
+		},
+
+		getLegislatorAddress: function(){
+			var ID = getLegID;
+			return Meteor.call("getOldLegAddress", ID);
+		},
+
+		getSaveLegislatorButtonID: function(){
+			var ID = getLegID;
+			return this._id +"saveButton";
+		},
+
+		getEditLegislatorButtonID: function(){
+			return this._id +"editButton";
+		},
+
+		getDeleteLegislatorButtonID: function(){
+			return this._id +"deleteButton";
+		}
+	});
+
+	Template.toDoRow.helpers({
+		getRowID: function(){
+			
+			return this.issue;
+
+		},
+
+		getToDoInputID: function(){
+			var ID = getRowID;
+			return this.issue+this.text;
+		},
+
+		getToDoValue: function(){
+			var ID = getRowID;
+			return Meteor.call("getOldTodoText",ID);
+		},
+
+		getGoalInputID: function(){
+			var ID = getRowID;
+			return this.issue+this.goal;
+
+		},
+
+		getGoalValue: function(){
+			var ID = getRowID;
+			return Meteor.call("getOldTodoGoal",ID);
+
+		},
+
+		getMessageInputID: function(){
+			var ID = getRowID;
+			return this.issue+this.message;
+
+		},
+
+		getMessageValue: function(){
+			var ID = getRowID;
+			return Meteor.call("getOldTodoMessage",ID);
+
+		},
+
+		saveToDoButtonID: function(){
+			return this.issue+"save";
+
+		},
+
+		editToDoButtonID: function(){
+			return this.issue+'edit';
+
+		},
+
+		deleteToDoButtonID: function(){
+			return this.issue+'delete';
+
+		},
+	});
 
 	Template.adminUpdate.helpers({
 	  getUserIssues: function() {
@@ -325,6 +429,11 @@
 
 Template.addLegButton.events({
 	"click #addLegislatorRow": function(event) {
+
+		//Meteor.call("addLegislatorRowFunction");
+		//console.log("called in client - addLegRowFunction"); 
+		//Router.go("/update");  
+
 		//Meteor.call("addLegislatorRowFunction");
 		//console.log("called in client - addLegRowFunction"); 
 		//Router.go("/update");  
@@ -343,6 +452,7 @@ Template.addLegButton.events({
 
 			Session.set("newLegislatorRowArray", numberOfRows + " 1");
 		}
+
 	},
 });
 
