@@ -29,17 +29,40 @@
 			var delIssue = $document.find(".active").value;
 			Meteor.call("delIssue", delIssue);
 		},
-		"click .list-group-item": function(event){
-			var previous = $document.find(".active");
-			previous.removeClass('active'); // previous list-item
-			$(event.target).addClass('active'); // activated list-item
+		"click .list-group-item": function(event, template){
+			//event.target.addClass("active");
+
+			if (template.find(".active") === null) {
+				$(event.target).addClass('active');
+				//event.target.addClass("active");
+			} else {
+				/*console.log("entering the else"); 
+				previous = template.find(".active");
+				console.log(previous); 
+				console.log("here"); 
+				template.find(".active").removeClass('active'); */
+
+				//console.log(template.find(".active").classList);
+
+				template.find(".active").classList.remove("active"); 
+				$(event.target).addClass('active');
+			}
+
+			//var previous = $document.find(".active");
+			//var previous = template.find(".active");
+
+			//console.log(previous); 
+			
+			//previous.removeClass('active'); // previous list-item
+			//$(event.target).addClass('active'); // activated list-item
 			
 			
 			selectedIssueInList = $(".active").text();
+			//selectedIssueInList = template.find(".active").text();
 
 			Meteor.call("adminUpdateSelectIssue", selectedIssueInList); 
 
-			console.log("clicked"); 
+			//console.log("clicked"); 
 
 
 			//TODO!
