@@ -239,16 +239,12 @@ Meteor.methods({
   },
   cleanInput: function(str) {
 	str = str.replace(/[^a-z0-9@ \.,_-]/gim,"");
-	if (str.trim != "" && str.trim != null) {
+	if (str.trim() != "" && str.trim() != null) {
 		return str.trim();
 	} else {
 		return false;
 	}
   },
-
-
-
-
 
 
 
