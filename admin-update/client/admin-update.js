@@ -169,7 +169,7 @@
 			//console.log(Template.instance);
 			var name = Template.instance().find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
-			});
+			
 		},
 	});
 
