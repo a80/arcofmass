@@ -176,13 +176,7 @@
 		"click #deleteLegislatorButton": function(event) {
 			//console.log(Template.instance);
 			var name = Template.instance().find("#nameInput").value;
-			Meteor.call("cleanInput", name, function(error, name) {
-				if (name != false) {
-					Meteor.call("deleteLegislator", name);
-				}
-				else {
-					alert("There was a problem with the input");
-				}
+			Meteor.call("deleteLegislator", name);
 			});
 		},
 	});
