@@ -177,7 +177,6 @@
 			//console.log(Template.instance);
 			var name = Template.instance().find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
-			});
 		},
 	});
 
@@ -186,8 +185,19 @@
 	  	//return leg associated with the issue 
 	  	//console.log("getLegInfo accessed, the issue is: " + issue);
 	  	//console.log(legislators.find({issue: issue}).fetch()); 
-	  		issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
-	  		return legislators.find({issue: issueName}); 
+	  		//issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
+
+	  		var relevantLegislators; 
+
+	  		issueName = Session.get("adminSelectedIssue"); 
+
+	  		if (issueName != undefined) {
+	  			relevantLegislators = legislators.find({issue: issueName}); 
+	  		} else {
+	  			relevantLegislators = []; 
+	  		}
+
+	  		return relevantLegislators; 
 	    },
 
 	    getToDoInfo: function() {
@@ -196,18 +206,27 @@
 
 	  		//console.log("getToDoInfo accessed, the issue is: " + issue);
 
-	  		issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
+	  		//issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
 
 	  		var actionItemsForIssue = [];
+	  		issueName = Session.get("adminSelectedIssue"); 
 
-			actionItemsData = actionItems.find({}).fetch();
+	  		if (issueName != undefined) {
+	  			actionItemsForIssue = actionItems.find({issue: issueName}); 
+	  		} else {
+	  			actionItemsForIssue = []; 
+	  		}
+
+	  		return actionItemsForIssue; 
+
+			/*actionItemsData = actionItems.find({}).fetch();
 
 			for (var i = 0; i < actionItemsData.length; i++) {
 		  //console.log("entered if loop"); 
 		  		if (actionItemsData[i].issue === issueName) {
 				actionItemsForIssue.push(actionItemsData[i]); 
 		  		}	
-			}
+			}*/
 
 		//need to map according to a new layout schema
 		/*_.map(actionItemsForIssue, function(a) {
