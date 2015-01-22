@@ -138,22 +138,22 @@
 
 		<!--	<div id="contactList"> -->
 				<template name="legislatorRow">
-					<div class="legRow">
+					<div class="legRow" id="{{getLegID}}">
 						<h5>Contact for Issue X</h5>
 						
-					 	<input type="text" class="form-control" id="nameInput" aria-label="..." placeholder = "Representative">
-					 	<input type="text" class="form-control" id="emailInput" aria-label="..." placeholder = "Email">
-						<input id="addressInput" type="text" class="form-control" aria-label="..." placeholder = "Address">
+					 	<input type="text" class="form-control" id="{{getNameID}}" aria-label="..." placeholder = "Representative" value="{{getLegislatorName}}">
+					 	<input type="text" class="form-control" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}">
+						<input id="{{getAddressID}}" type="text" class="form-control" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}">
 							 
-						 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "saveLegislatorButton">
+						 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "{{getSaveLegislatorButtonID}}">
 							 	Save
 						</button>
 					 	
-					 	<button type="button" class="btn btn-default" id="editLegislatorButton" onclick="toSaveLegislator()">
+					 	<button type="button" class="btn btn-default" id="{{getEditLegislatorButtonID}}" onclick="toSaveLegislator()">
 					 			Edit
 					 	</button>
 					 	
-						<button type="button" class="btn btn-default" id="deleteLegislatorButton">
+						<button type="button" class="btn btn-default" id="{{getDeleteLegislatorButtonID}}">
 							 	Delete
 						</button>
 					</div>
@@ -163,9 +163,9 @@
 					<div class="legRow">
 						<h5>Contact for Issue X</h5>
 						
-					 	<input type="text" class="form-control" id="nameInput" aria-label="..." placeholder = "Representative">
+					 	<input type="text" class="form-control" id="nameInput" aria-label="..." placeholder = "Representative" >
 					 	<input type="text" class="form-control" id="emailInput" aria-label="..." placeholder = "Email">
-						<input id="addressInput" type="text" class="form-control" aria-label="..." placeholder = "Address">
+						<input id="addressInput" type="text" class="form-control" aria-label="..." placeholder = "Address" >
 							 
 						 <button type="button" class="btn btn-default" onclick="toEditLegislator()" id = "saveLegislatorButton">
 							 	Save
@@ -207,25 +207,25 @@
 				</template>
 				<template name="toDoRow">
 				
-					 <div class = 'row'>
+					 <div class = 'row' id="{{getRowID}}">
 						
 						 		<input type= 'checkbox' id="checkInput" aria-label="..." >
 						 		
-						 		<input type="text" class="form-control" id="todoInput" aria-label="..." placeholder = "To Do #1" >
+						 		<input type="text" class="form-control" id="{{getTodoInputID}}" aria-label="..." placeholder = "To Do #1" value="{{getTodoValue}}" >
 
-						 		<input type="text" class="form-control" id="goalInput" aria-label="..." placeholder = "Goal #1">
+						 		<input type="text" class="form-control" id="{{getGoalInputID}}" aria-label="..." placeholder = "Goal #1" value="{{getGoalValue}}">
 						 							 			
-					 			<input type="text" class="form-control" id="messageInput" aria-label="..." placeholder = "Message">
+					 			<input type="text" class="form-control" id="{{getMessageInputID}}" aria-label="..." placeholder = "Message" value="{{getMessageValue}}">
 
-						 		<button type="button" class="btn btn-default" onclick="toEdit()" id="saveToDoButton">
+						 		<button type="button" class="btn btn-default" onclick="toEdit()" id="{{saveToDoButtonID}}">
 						 			Save
 						 		</button>
 						 	
-						 		<button type="button" class="btn btn-default" onclick="toSave()" id="editToDoButton">
+						 		<button type="button" class="btn btn-default" onclick="toSave()" id="{{editToDoButtonID}}" >
 						 			Edit
 						 		</button>
 						 	
-						 		<button type="button" id="deleteToDoButton" class="btn btn-default">
+						 		<button type="button" id="{{deleteToDoButtonID}}" class="btn btn-default">
 						 			Delete
 						 		</button>
 						 
