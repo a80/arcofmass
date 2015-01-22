@@ -127,9 +127,9 @@
 			});
 			
 		},
-		"click #deleteLegislatorButton": function(event, template) {
+		"click #deleteLegislatorButton": function(event) {
 			//console.log(Template.instance);
-			var name = template.find("#nameInput").value;
+			var name = Template.instance.find("#nameInput").value;
 			Meteor.call("deleteLegislator", name);
 		},
 	});
@@ -175,8 +175,8 @@
 			});
 			
 		},
-		"click #deleteTodoButton": function(event, template) {
-			var name = template.find("#todoInput").value;
+		"click #deleteTodoButton": function(event) {
+			var name = Template.instance.find("#todoInput").value;
 			Meteor.call("deleteTodo", name);
 		},
 
