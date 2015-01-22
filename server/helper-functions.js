@@ -239,6 +239,7 @@ Meteor.methods({
   },
   cleanInput: function(str) {
 	str = str.replace(/[^a-z0-9@ \.,_-]/gim,"");
+  console.log(str.trim()); 
 	if (str.trim() != "" && str.trim() != null) {
 		return str.trim();
 	} else {
