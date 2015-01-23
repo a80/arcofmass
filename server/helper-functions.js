@@ -268,37 +268,63 @@ Meteor.methods({
   deleteUserIssueItem: function(issueName) {
     Meteor.users.upsert({_id:Meteor.userId()}, {$pull :{"profile.issues": issueName}});
   },
-  getUserLegislatorInfo: function() {
+  /*getUserLegislatorInfo: function() {
 	zip = Meteor.user().profile.zip;
+
 	if (zip != '' && zip != null) {
-		geocoder = new google.maps.Geocoder();
-		lat = '';
-		lng = '';
+		var geocoder = new google.maps.Geocoder();
+		var lat = '';
+		var lng = '';
 		geocoder.geocode( { 'address': zip}, function(results, status) {
 		  if (status == google.maps.GeocoderStatus.OK) {
 			 lat = results[0].geometry.location.lat();
 			 lng = results[0].geometry.location.lng();
-			});
-		  } else {
+			} else {
 			return "Error";
 		  }
-		});
+    });
+
 		try {
-			return Meteor.http.call("GET", "http://openstates.org/api/v1/legislators/geo/?lat=" + lat "&long=" + lng, {params: {'apikey' : 'df3e5cc5bbb648229e3e1030dc5c112e'}};
+			return Meteor.http.call("GET", "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng, {params: {'apikey' : 'df3e5cc5bbb648229e3e1030dc5c112e'}});
 		} catch(e) {
 			return "Error";
 		}
-	} else {
-		return "Error";
-	}
-  },
+  }
+},*/
   assignUserDistrict: function() {
-	  legInfo = getUserLegislatorInfo();
+    console.log("called in server"); 
+	  //legInfo = getUserLegislatorInfo();
+
+    var legInfo; 
+
+    zip = Meteor.user().profile.zip;
+
+  if (zip != '' && zip != null) {
+    var geocoder = new google.maps.Geocoder();
+    var lat = '';
+    var lng = '';
+    geocoder.geocode( { 'address': zip}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+       lat = results[0].geometry.location.lat();
+       lng = results[0].geometry.location.lng();
+      } else {
+      legInfo = "Error";
+      }
+    });
+
+    try {
+      legInfo = Meteor.http.call("GET", "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng, {params: {'apikey' : 'df3e5cc5bbb648229e3e1030dc5c112e'}});
+    } catch(e) {
+      legInfo = "Error";
+    }
+  }
 	  if (legInfo != "Error") {
 		  //Meteor.user().profile.district = legInfo[0].district;
 		  return legInfo[0].district;
+      console.log("server successful"); 
 	  } else {
 		  //console.log("Didn't get info");
+      console.log("server unsuccessful");
 		  return "Didn't get info"
 	  }
   },
@@ -313,7 +339,7 @@ Meteor.methods({
 	} else {
 		console.log("Didn't get info");
 		return [];
-	},
+	}
   },
 
   //put comma after above function
