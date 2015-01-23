@@ -310,8 +310,8 @@ Meteor.methods({
 
     console.log(result); 
 
-    lat = result['latitude'];
-    lng = result['longitude'];
+    lat = result[0].latitude;
+    lng = result[0].longitude;
 
     console.log(lat); 
     console.log(lng); 
