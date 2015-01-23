@@ -5,3 +5,49 @@
 /*#barChart {
 	position: relative;
 }*/
+
+* {
+  box-sizing: border-box; 
+}
+
+section {
+  width: 100%;
+  /*padding: 0 7%;*/
+  display: table;
+  margin: 0;
+  max-width: none;
+  /*background-color: #373B44;*/
+  height: 100vh;
+  background-color: #575757; 
+
+  /*background: -webkit-linear-gradient(white, PeachPuff); */
+  
+}
+
+.content {
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 1px solid orange;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	/*height: 50%;*/
+}
+
+.issuePanelClass {
+	height: 100%;
+
+}
+
+.navbar {
+  /*background:rgba(255,255,255,0.9);*/
+  background: white;
+  opacity: 0.9;
+}
+
+.graphDiv {
+  padding: 0px;
+  margin: 0px;
+}

@@ -1,12 +1,19 @@
 /* CSS declarations go here */
 
+*{
+	font-family: 'Open Sans';
+}
+
 #overallContainer {
-	background-image: url(background.jpg);
+
+	/*background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('background.jpg');*/
+
+	background-image: url(backgroundpicnew.jpg);
 	background-size: cover; 
 	width: 100%;
 	height: 1000px;
 	opacity: 0.15;
-	-webkit-filter: sepia(50%);
+	/*-webkit-filter: sepia(30%);*/
 
 }
 
@@ -22,10 +29,15 @@
 	position: relative;
 	right: 5%;
 	bottom: 6px;
+	/*color: white; */
 }
 
 .colorify {
-	color: orange;
+	color: DarkOrange;
+}
+
+#boldThis {
+	font-weight: 700;
 }
 
 
@@ -38,13 +50,21 @@
 	left: 10%;
 }
 
+#underline {
+	border-bottom: 10px solid black; 
+}
+
 #username-field {
+	font-color: DarkOrange;
 	font-size: 500%;
 	text-decoration: underline;
-	border-top: 0.5px solid #000;
+	border-left: 0.5px solid transparent;
+	border-right: 0.5px solid transparent;
+	border-top: 0.5px solid transparent;
+	border-bottom: 1px solid transparent;
 
 	outline: none;
-  	border: none !important;
+  	/*border: none !important;*/
   	-webkit-box-shadow: none !important;
   	-moz-box-shadow: none !important;
   	box-shadow: none !important;
@@ -70,11 +90,11 @@
 
 @keyframes pulse {
   from {color: black}
-  to {color:orange}
+  to {color:DarkOrange}
 }
 @-webkit-keyframes pulse {
   from {color: black}
-  to {color:orange}
+  to {color:DarkOrange}
 }
 
 
@@ -116,77 +136,128 @@
 
 
 #login-button {
+	font-family: 'Open Sans';
 	background: transparent;
-	font-size: 300%;
+	font-size: 200%;
 	/*position: relative;
 	right: 25px;*/
 	outline: none;
-  	border: none !important;
+  	border: 2px solid white;
+
+  	/*border-left: 3px solid black;
+	border-right: 3px solid black;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black; */
+	padding: 13px;
+
+
   	animation: pulse 3s alternate infinite;
   	-webkit-animation: pulse 3s alternate infinite;
   	position: fixed;
   	top: 68%;
-  	left: 44%;
+  	left: 45%;
   	visibility: hidden;
 
+}
+
+#login-button:hover {
+	background-color: white; 
 }
 
 
 
 #new-user-button {
+	font-family: 'Open Sans';
+	font-weight: 700;
 	background: transparent;
-	font-size: 150%;
+	font-size: 100%;
 	/*position: relative;
 	right: 25px;*/
 	outline: none;
-  	border: none !important;
+  	border: 2px solid white;
+  	/*border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;*/
+	padding: 9px;
   	position: relative;
   	position: fixed;
-  	top: 81%;
-  	left: 44%;
+  	top: 82%;
+  	left: 45%;
   	visibility: hidden;
+  	/*color: white;*/
+}
+
+#new-user-button:hover {
+	background-color: white; 
 }
 
 
 #admin-login-button {
+	font-family: 'Open Sans';
 	background: transparent;
-	font-size: 300%;
+	font-size: 200%;
 	/*position: relative;
 	right: 25px;*/
+	border: 2px solid white;
 	outline: none;
-  	border: none !important;
+  	/*border: none !important;*/
   	animation: pulse 3s alternate infinite;
   	-webkit-animation: pulse 3s alternate infinite;
   	position: fixed;
   	top: 68%;
-  	left: 44%;
+  	left: 45%;
   	visibility: hidden;
+  	padding: 13px;
 
+}
+
+#admin-login-button:hover {
+	background-color: white; 
 }
 
 
 
 #new-admin-button {
+	font-family: 'Open Sans';
 	background: transparent;
-	font-size: 150%;
+	font-size: 100%;
 	/*position: relative;
 	right: 25px;*/
+	border: 2px solid white;
 	outline: none;
-  	border: none !important;
+  	/*border: none !important;*/
   	position: relative;
   	position: fixed;
-  	top: 81%;
-  	left: 44%;
+  	top: 82%;
+  	left: 45%;
   	visibility: hidden;
+  	padding: 7px;
+
+ }
+
+ #new-admin-button:hover {
+	background-color: white; 
 }
 
 .navbar{
- 	background:rgba(255,255,255,0.6);
+	border: none !important;
+ 	
+ 	/*-webkit-filter: blur(2px);*/
+}
+
+#loginNavBar {
+	background:rgba(255,255,255,0.5);
+	
 }
 
 #adminLoginLink, #userLoginLink {
 	cursor: pointer;
+	text-decoration: none; 
+}
 
+#adminLoginLink:hover, #userLoginLink:hover {
+	color: OrangeRed;
 }
 
 /*#new-user-button-text {

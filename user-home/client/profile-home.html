@@ -1,7 +1,10 @@
 <template name="profileHome">
 	
+  <head> 
+    <link rel = "stylesheet" type = "text/css" href = "profile-home.css">
+  </head>
   <!--nav bar-->
-  <nav class = "navbar navbar-default">
+  <nav class = "navbar navbar-default navbar-fixed-top">
     <div class = "container">
       <div class = "navbar-header">
         <a class = "navbar-brand">you<strong>arc</strong>hange<strong>for</strong>SOMEBODYORSOMEPPL.</a>
@@ -19,19 +22,21 @@
     
     </div>
   </nav>
+
+  <body>
   
-  <ul>
   	{{#each getUserIssues}}
+    <section>
+    <div class = "content"> 
   		{{> issuePanel}}
+    </div>
+  </section>
   	{{/each}}
-  </ul>
+
+  </body>
 
 </template>
 
-
-<template name = "progressBarPanel">
-
-</template> 
 
 <template name = "toDoPanel">
   <ul>
@@ -53,13 +58,11 @@
           <link rel = "stylesheet" type = "text/css" href = "profile-home.css">
         </head>
 
-        <h1 id = "name-header">Progress toward issue: {{returnIssueName}}</h1>
+        <!-- <h1 id = "name-header">Progress toward issue: {{returnIssueName}}</h1> --> 
 
-        <div id = "{{ graphID }}">
-          
+        <div class = "graphDiv" id = "{{ graphID }}"> 
         </div>
 
-        {{> progressBarPanel}}
       </div>
   		
       <div class="col-md-4">

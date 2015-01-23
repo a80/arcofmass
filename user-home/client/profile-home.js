@@ -108,7 +108,10 @@ Template.toDoPanel.events({
     	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
     	console.log(graphIDtoChange);
 
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count);
+      console.log("this.issue: "); 
+      /*console.log(this.issue); */
+
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count, this.issue);
 
     },
 
@@ -129,7 +132,7 @@ Template.toDoPanel.events({
     	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
     	console.log(graphIDtoChange);
 
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count);
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count, "To Do: " + this.text);
     },
 
 });
@@ -147,7 +150,8 @@ Template.profileHome.rendered = function() {
 
       //modify the graph shown here with the one relevant to the to-do.
       //graphs[issue._id] = progressBar("#" + graphID, issue.count);
-      graphs[graphID] = progressBar("#" + graphID, issue.count);
+      console.log("issue Name: " + issue.name);
+      graphs[graphID] = progressBar("#" + graphID, issue.count, "Issue: " + issue.name);
     }); 
 	});
 
@@ -156,12 +160,12 @@ Template.profileHome.rendered = function() {
 }
 
 
-function progressBar(el, data) {
+function progressBar(el, data, label) {
 	var self = this;
 	var canvas; 
 
-  var width = 900; 
-  var height = 500;
+  var width = 950; 
+  var height = 600;
 
   var widthScale = d3.scale.linear()
                       .domain([0, 20])
@@ -173,9 +177,15 @@ function progressBar(el, data) {
 
 
   var createCanvasSvg = function(el) {
-    d3.select(el).selectAll("svg").remove();
-    canvas = d3.select(el).append("svg").attr("width", width)
-                .attr("height", height);
+      d3.select(el)
+        .selectAll("svg")
+        .remove();
+        
+      canvas = d3.select(el)
+                  .append("svg")
+                  .attr("width", width)
+                  .attr("height", height)
+                  .append("g");
   }
 
   createCanvasSvg(el);
@@ -187,6 +197,11 @@ function progressBar(el, data) {
                     .attr("width", width)
                     .attr("height", function (d) { return widthScale(d); })
                     .attr("y", function(d, i) {return height - widthScale(d) })
-                    .attr("fill", function(d) {return color(d)});
+                    .attr("fill", "orange"); 
+                    /*.attr("fill", function(d) {return color(d)});*/
+
+  /*console.log(issueName); */
+  
+  canvas.append('text').text(label).attr("x", 30).attr("y", 100).attr("fill", "white").style("font-size", "100px");
 
 }
