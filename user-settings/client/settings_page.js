@@ -1,5 +1,10 @@
 Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
+		"click #testDistrictButton": function(event) {
+			Meteor.call("assignUserDistrict", function(err, result) {
+				console.log(result);
+			});
+		},
 		"click #logoutButton": function(event) {
 			Meteor.logout();
 		},
