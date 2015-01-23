@@ -114,7 +114,7 @@ Meteor.subscribe("userSettingsData");
 
 		"click #savePasswordButton" : function(event) {
 			if (document.getElementById("inputNPassword").value === document.getElementById("confirmNPassword").value){
-				//document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
+				document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
 				document.getElementById("alertMessage").style.visibility = "hidden";
 				
 				var myOPassword = document.getElementById("inputOPassword").value;
