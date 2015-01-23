@@ -95,6 +95,9 @@ Meteor.methods({
   modifyUserStory: function(myStory) {
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.story":myStory}});
   },
+  modifyUserInspiration: function(myInspiration) {
+  Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.inspiration":myInspiration}});
+  },
   modifyUserEmail: function(myEmail) {
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.email":{address: myEmail, verified: false}}});
   },

@@ -55,7 +55,7 @@ padding-left: 35px;
 	display: inline;
 }
 
-#editNameButton, #editEmailButton, #editStoryButton, #editZipCodeButton{
+#editNameButton, #editEmailButton, #editStoryButton,#editInspirationButton, #editZipCodeButton{
 	visibility: hidden;
 }
 
