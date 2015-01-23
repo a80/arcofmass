@@ -327,18 +327,33 @@ Meteor.methods({
       }
     });*/
 
-	legInfo = [];
+	
 	
     urlToCall = "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng + "&apikey=df3e5cc5bbb648229e3e1030dc5c112e"; 
     console.log(urlToCall);
-    Meteor.http.call("GET", urlToCall, function(error, result) {
-	  legInfo = result;
-    });
+    
+
+  this.unblock();
+
+  try {
+    var legInfo = HTTP.call("GET", urlToCall);
+    //return true;
+  } catch (e) {
+    // Got a network error, time-out or HTTP error in the 400 or 500 range.
+    //return false;
+  }
+
+
+
+    /*HTTP.call("GET", urlToCall, function(error, result) {
+	     legInfo = result;
+    });*/
     console.log(legInfo);
   }
 	  if (legInfo != "Error") {
 		  //Meteor.user().profile.district = legInfo[0].district;
-		  return legInfo[0].district;
+      console.log(legInfo.data[0].district);
+		  return legInfo.data[0].district;
       console.log("server successful"); 
 	  } else {
 		  //console.log("Didn't get info");
