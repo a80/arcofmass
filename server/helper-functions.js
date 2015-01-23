@@ -327,12 +327,13 @@ Meteor.methods({
       }
     });*/
 
-    try {
-      urlToCall = "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng + "&apikey=df3e5cc5bbb648229e3e1030dc5c112e"; 
-      console.log(urlToCall);
-      legInfo = Meteor.http.call("GET", urlToCall);
-    } catch(e) {
-    }
+	legInfo = [];
+	
+    urlToCall = "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng + "&apikey=df3e5cc5bbb648229e3e1030dc5c112e"; 
+    console.log(urlToCall);
+    Meteor.http.call("GET", urlToCall, function(error, result) {
+	  legInfo = result;
+    });
     console.log(legInfo);
   }
 	  if (legInfo != "Error") {
