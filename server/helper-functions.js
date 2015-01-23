@@ -308,13 +308,13 @@ Meteor.methods({
     var geo = new GeoCoder();
     var result = geo.geocode(zip);
 
-    console.log(result); 
+    //console.log(result); 
 
     lat = result[0].latitude;
     lng = result[0].longitude;
 
-    console.log(lat); 
-    console.log(lng); 
+    //console.log(lat); 
+    //console.log(lng); 
 
 
 
@@ -328,10 +328,12 @@ Meteor.methods({
     });*/
 
     try {
-      legInfo = Meteor.http.call("GET", "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng, {params: {'apikey' : 'df3e5cc5bbb648229e3e1030dc5c112e'}});
+      urlToCall = "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng + "&apikey=df3e5cc5bbb648229e3e1030dc5c112e"; 
+      console.log(urlToCall);
+      legInfo = Meteor.http.call("GET", urlToCall);
     } catch(e) {
-      legInfo = "Error";
     }
+    console.log(legInfo);
   }
 	  if (legInfo != "Error") {
 		  //Meteor.user().profile.district = legInfo[0].district;
