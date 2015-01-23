@@ -267,7 +267,53 @@ Meteor.methods({
   },
   deleteUserIssueItem: function(issueName) {
     Meteor.users.upsert({_id:Meteor.userId()}, {$pull :{"profile.issues": issueName}});
-
+  },
+  getUserLegislatorInfo: function() {
+	zip = Meteor.user().profile.zip;
+	if (zip != '' && zip != null) {
+		geocoder = new google.maps.Geocoder();
+		lat = '';
+		lng = '';
+		geocoder.geocode( { 'address': zip}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+			 lat = results[0].geometry.location.lat();
+			 lng = results[0].geometry.location.lng();
+			});
+		  } else {
+			return "Error";
+		  }
+		});
+		try {
+			return Meteor.http.call("GET", "http://openstates.org/api/v1/legislators/geo/?lat=" + lat "&long=" + lng, {params: {'apikey' : 'df3e5cc5bbb648229e3e1030dc5c112e'}};
+		} catch(e) {
+			return "Error";
+		}
+	} else {
+		return "Error";
+	}
+  },
+  assignUserDistrict: function() {
+	  legInfo = getUserLegislatorInfo();
+	  if (legInfo != "Error") {
+		  //Meteor.user().profile.district = legInfo[0].district;
+		  return legInfo[0].district;
+	  } else {
+		  //console.log("Didn't get info");
+		  return "Didn't get info"
+	  }
+  },
+  getAreaIssues: function() {
+	legInfo = getUserLegislatorInfo();
+	if (legInfo != "Error") {
+		userLegislators = [];
+		for (leg in legInfo) {
+			userLegislators.push(leg.full_name);
+		}
+		return issues.find({name: {$in: userLegislators}});
+	} else {
+		console.log("Didn't get info");
+		return [];
+	},
   },
 
   //put comma after above function
