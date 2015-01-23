@@ -6,8 +6,13 @@
 	display: inline;
 }
 
-#passwordTitle, #arcIssues, #theTitle{
+#passwordTitle, #arcIssues{
 	padding: 15px;
+}
+
+#theTitle{
+padding: 15px;
+padding-left: 35px;
 }
 
 #issueSelect{
