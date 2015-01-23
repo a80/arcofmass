@@ -28,6 +28,7 @@ Meteor.methods({
     console.log("increaseIssueCount executed"); 
 	  issues.update({name: issueName}, {$inc: {count: 1}});
 
+
     //console.log("increaseIssueCount executed"); 
     //issues.findOne({name: issueName}).count += 1;
   },
@@ -300,17 +301,31 @@ Meteor.methods({
     zip = Meteor.user().profile.zip;
 
   if (zip != '' && zip != null) {
-    var geocoder = new google.maps.Geocoder();
+    //var geocoder = new google.maps.Geocoder();
     var lat = '';
     var lng = '';
-    geocoder.geocode( { 'address': zip}, function(results, status) {
+
+    var geo = new GeoCoder();
+    var result = geo.geocode(zip);
+
+    console.log(result); 
+
+    lat = result['latitude'];
+    lng = result['longitude'];
+
+    console.log(lat); 
+    console.log(lng); 
+
+
+
+    /*geo.geocode( { 'address': zip}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
        lat = results[0].geometry.location.lat();
        lng = results[0].geometry.location.lng();
       } else {
       legInfo = "Error";
       }
-    });
+    });*/
 
     try {
       legInfo = Meteor.http.call("GET", "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng, {params: {'apikey' : 'df3e5cc5bbb648229e3e1030dc5c112e'}});
