@@ -6,10 +6,19 @@
 	display: inline;
 }
 
-#passwordTitle, #arcIssues, #theTitle{
+#passwordTitle, #arcIssues{
 	padding: 15px;
 }
 
+#theTitle{
+padding: 15px;
+padding-left: 35px;
+}
+
+#issueSelect{
+	width: 305px;
+
+}
 
 .btn-group{
 	padding-top: 10px;
@@ -22,7 +31,7 @@
 	padding-left: 20px;
 }
 
-#inputName, #inputUsername, #inputEmail, #inputPassword,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
+#inputName, #inputUsername, #inputEmail, #inputPassword,#inputInspiration,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
 	width: 305px;
 	height: 30px;
 
@@ -46,7 +55,7 @@
 	display: inline;
 }
 
-#editNameButton, #editEmailButton, #editStoryButton, #editZipCodeButton{
+#editNameButton, #editEmailButton, #editStoryButton,#editInspirationButton, #editZipCodeButton{
 	visibility: hidden;
 }
 

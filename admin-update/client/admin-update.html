@@ -177,9 +177,9 @@
 							 	Save
 						</button>
 					 	
-					 	<button type="button" class="btn btn-default" id="editLegislatorButton" onclick="toSaveLegislator()">
+					 	<!-- <button type="button" class="btn btn-default" id="editLegislatorButton" onclick="toSaveLegislator()">
 					 			Edit
-					 	</button>
+					 	</button> --> 
 					 	
 						<button type="button" class="btn btn-default" id="deleteLegislatorButton">
 							 	Delete
@@ -214,11 +214,11 @@
 				
 				<template name="toDoRow">
 				
-					 <div class = 'row' id="{{getRowID}}">
+					 <div class = 'row' id="{{getToDoRowID}}">
 						
 						 		<input type= 'checkbox' class = "checkInput" aria-label="..." >
 						 		
-						 		<input type="text" class="form-control todoInput" id="{{getTodoInputID}}" aria-label="..." placeholder = "To Do #1" value="{{getTodoValue}}" >
+						 		<input type="text" class="form-control todoInput" id="{{getTodoInputID}}" aria-label="..." placeholder = "To Do #1" value="{{getToDoValue}}" >
 
 						 		<input type="text" class="form-control goalInput" id="{{getGoalInputID}}" aria-label="..." placeholder = "Goal #1" value="{{getGoalValue}}">
 						 							 			
@@ -259,9 +259,9 @@
 						 			Save
 						 		</button>
 						 	
-						 		<button type="button" class="btn btn-default" onclick="toSave()" id="editToDoButton">
+						 		<!-- <button type="button" class="btn btn-default" onclick="toSave()" id="editToDoButton">
 						 			Edit
-						 		</button>
+						 		</button> --> 
 						 	
 						 		<button type="button" id="deleteToDoButton" class="btn btn-default">
 						 			Delete

@@ -61,6 +61,29 @@ Meteor.subscribe("userSettingsData");
 
 		},
 
+		"click #saveInspirationButton" : function(event) {
+			document.getElementById("saveInspirationButton").style.visibility = "hidden";
+			document.getElementById("editInspirationButton").style.visibility = "visible";
+			document.getElementById("inputInspiration").readOnly = true;
+
+			var myInspiration = document.getElementById("inputInspiration").value;
+			
+			Meteor.call("cleanInput", myInspiration, function(error, myInspiration) {
+				if (myInspiration != false){
+					Meteor.call("modifyUserInspiration", myInspiration);
+				} else {
+					alert("There was a problem with the input");
+				}
+			});
+		},
+
+		"click #editInspirationButton" : function(event){
+			document.getElementById("saveInspirationButton").style.visibility = "visible";
+			document.getElementById("editInspirationButton").style.visibility = "hidden";
+			document.getElementById("inputInspiration").readOnly = false;
+
+		},
+
 		"click #saveStoryButton" : function(event){
 			document.getElementById("saveStoryButton").style.visibility = "hidden";
 			document.getElementById("editStoryButton").style.visibility = "visible";
@@ -114,7 +137,7 @@ Meteor.subscribe("userSettingsData");
 
 		"click #savePasswordButton" : function(event) {
 			if (document.getElementById("inputNPassword").value === document.getElementById("confirmNPassword").value){
-				//document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
+				document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
 				document.getElementById("alertMessage").style.visibility = "hidden";
 				
 				var myOPassword = document.getElementById("inputOPassword").value;
@@ -254,6 +277,10 @@ Template.userSettings.helpers({
 
 	getUserStory: function() {
 		return Meteor.user().profile.story;
+	},
+
+	getUserInspiration: function() {
+		return Meteor.user().profile.inspiration;
 	},
 
 	getUserIssues: function() {

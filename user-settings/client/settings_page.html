@@ -36,8 +36,8 @@
 	</div>
 
 	
-	<div class = 'wholePage' >
-		<div class = "formPage">
+	
+		<div class = "col-md-6">
 			<form class = "form">
 				<div class = "each">
 					<h5>Name</h5>
@@ -51,7 +51,7 @@
 						
 					</div>
 				</div>
-				
+				<!--
 				<div class = "each">
 					<h5>Email</h5>
 					<div class = "email">
@@ -61,6 +61,18 @@
 							
 							<button type="button" class="btn btn-default" id="saveEmailButton">Save </button>
 							<button type="button" class = "btn btn-default"  id= "editEmailButton">Edit</button>
+						</div>
+					</div>
+				</div>-->
+				<div class = "each">
+					<h5>Who You Advocate For</h5>
+					<div class = "inspiration">
+						<div>
+
+							<input type="text" class="form-control" id="inputInspiration" placeholder="Your Inspiration" value="{{getUserInspiration}}"> 
+							
+							<button type="button" class="btn btn-default" id="saveInspirationButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editInspirationButton">Edit</button>
 						</div>
 					</div>
 				</div>
@@ -157,9 +169,12 @@
 			</form>
 			
 		</div>
+		<div class="col-md-6" style="padding-top:200px">
+			<img src ="http://i.imgur.com/VzMYlrl.png" style="width:562px; height:356px">
+		</div>
 	
 		
-	</div>
+	
 
 </body>
 </template>

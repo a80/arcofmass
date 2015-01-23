@@ -95,6 +95,9 @@ Meteor.methods({
   modifyUserStory: function(myStory) {
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.story":myStory}});
   },
+  modifyUserInspiration: function(myInspiration) {
+  Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.inspiration":myInspiration}});
+  },
   modifyUserEmail: function(myEmail) {
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.email":{address: myEmail, verified: false}}});
   },
@@ -189,7 +192,7 @@ Meteor.methods({
 	actionItems.upsert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});	
   },
   deleteTodo: function(myName) {
-	actionItems.remove({name: myName});
+	actionItems.remove({text: myName});
   },
   deleteLegislator: function(myName) {
 	legislators.remove({name: myName});
@@ -245,7 +248,7 @@ Meteor.methods({
 	return legislators.findOne({_id: ID}).address;
   },
   getOldTodoText: function(ID) {
-	return actionItems.find({id: ID}).text;
+	return actionItems.findOne({_id: ID}).text;
   },
   getOldTodoGoal: function(ID) {
 	return actionItems.findOne({_id: ID}).goal;
