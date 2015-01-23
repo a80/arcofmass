@@ -326,7 +326,7 @@ Meteor.methods({
 		return "Didn't get info"
 	}
   },
-  getAreaIssues: function() {
+  getIssuesRelevLeg: function() {
 	legInfo = getUserLegislatorInfo();
 	if (legInfo != "Error") {
 		userLegislators = [];
@@ -339,6 +339,28 @@ Meteor.methods({
 		return [];
 	}
   },
+  getIssuesByDistrict: function(district) {
+	  result = [];
+	  for (user in Meteor.users.find(district: district)) {
+			for (issue in user.issues) {
+				if (result[issue] == null) {
+					result[issue] = 1;
+				} else {
+					result[issue] += 1;
+				}
+			}
+	  }
+  },
+  getDistrictsByIssue: function(issue) {
+	  result = [];
+	  for (user in Meteor.users.find(issues: {$in: issue})) {
+			if (result[user.district] == null) {
+				result[user.district] = 1;
+			} else {
+				result[user.district] += 1;
+			}
+	  }
+  }
 
   //put comma after above function
 });
