@@ -189,7 +189,7 @@ Meteor.methods({
 	actionItems.upsert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});	
   },
   deleteTodo: function(myName) {
-	actionItems.remove({name: myName});
+	actionItems.remove({text: myName});
   },
   deleteLegislator: function(myName) {
 	legislators.remove({name: myName});

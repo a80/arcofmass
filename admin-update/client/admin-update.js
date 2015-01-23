@@ -136,10 +136,11 @@
 			
 		},
 
-		"click .deleteLegislatorButton": function(event) {
+		"click .deleteLegislatorButton": function(event, template) {
 			//Meteor.call("deleteLegislatorRowFunction");
 			var numberOfRows; 
-			var name = Template.instance.find(".nameInput").value;
+			var name = template.find(".nameInput").value;
+			console.log(name); 
 			Meteor.call("deleteLegislator", name);
 			
 			if (Session.get("newLegislatorRowArray") != undefined) {
@@ -289,10 +290,12 @@
 			Meteor.call("deleteTodo", name);
 		},*/
 
-		"click .deleteToDoButton": function(event) {
+		"click .deleteToDoButton": function(event, template) {
 		//Meteor.call("deleteToDoRowFunction");
 			var numberOfRows;
-			var name = Template.instance.find(".todoInput").value;
+			var name = template.find(".todoInput").value;
+			console.log("entered"); 
+			console.log(name); 
 			Meteor.call("deleteTodo", name);
 			
 			if (Session.get("newToDoRowArray") != undefined) {
