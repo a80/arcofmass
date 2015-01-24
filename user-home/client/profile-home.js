@@ -47,7 +47,7 @@ Template.myChangeListItem.helpers({
     return actionItems.findOne({_id: toDoId}).issue; 
   }, 
   dateOfNotification: function() {
-    return this.dateCompleted; 
+    return moment(this.dateCompleted).format('MMMM Do YYYY, h:mm:ss a');
   }
 });
 

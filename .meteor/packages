@@ -13,3 +13,4 @@ accounts-password
 alanning:roles
 aldeed:geocoder
 http
+momentjs:moment
