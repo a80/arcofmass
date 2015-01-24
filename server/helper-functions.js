@@ -300,68 +300,33 @@ Meteor.methods({
 
     zip = Meteor.user().profile.zip;
 
-  if (zip != '' && zip != null) {
-    //var geocoder = new google.maps.Geocoder();
-    var lat = '';
-    var lng = '';
+	if (zip != '' && zip != null) {
+		var lat = '';
+		var lng = '';
+		var geo = new GeoCoder();
+		var result = geo.geocode(zip);
+		lat = result[0].latitude;
+		lng = result[0].longitude;
 
-    var geo = new GeoCoder();
-    var result = geo.geocode(zip);
+		urlToCall = "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng + "&apikey=df3e5cc5bbb648229e3e1030dc5c112e"; 
+		console.log(urlToCall);
+		this.unblock();
+		try {
+			var legInfo = HTTP.call("GET", urlToCall);
+		} catch (e) {
+			// Got a network error, time-out or HTTP error in the 400 or 500 range.
+		}
 
-    //console.log(result); 
-
-    lat = result[0].latitude;
-    lng = result[0].longitude;
-
-    //console.log(lat); 
-    //console.log(lng); 
-
-
-
-    /*geo.geocode( { 'address': zip}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-       lat = results[0].geometry.location.lat();
-       lng = results[0].geometry.location.lng();
-      } else {
-      legInfo = "Error";
-      }
-    });*/
-
-	
-	
-    urlToCall = "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng + "&apikey=df3e5cc5bbb648229e3e1030dc5c112e"; 
-    console.log(urlToCall);
-    
-
-  this.unblock();
-
-  try {
-    var legInfo = HTTP.call("GET", urlToCall);
-    //return true;
-  } catch (e) {
-    // Got a network error, time-out or HTTP error in the 400 or 500 range.
-    //return false;
-  }
-
-
-
-    /*HTTP.call("GET", urlToCall, function(error, result) {
-	     legInfo = result;
-    });*/
-    console.log(legInfo);
-  }
-	  if (legInfo != "Error") {
-		  //Meteor.user().profile.district = legInfo[0].district;
-      console.log(legInfo.data[0].district);
-		  return legInfo.data[0].district;
-      console.log("server successful"); 
-	  } else {
-		  //console.log("Didn't get info");
-      console.log("server unsuccessful");
-		  return "Didn't get info"
-	  }
+	}
+	if (legInfo != "Error") {
+		Meteor.user().profile.district = legInfo[0].district;
+		return legInfo.data[0].district;
+	} else {
+		//console.log("Didn't get info");
+		return "Didn't get info"
+	}
   },
-  getAreaIssues: function() {
+  getIssuesRelevLeg: function() {
 	legInfo = getUserLegislatorInfo();
 	if (legInfo != "Error") {
 		userLegislators = [];
@@ -374,6 +339,28 @@ Meteor.methods({
 		return [];
 	}
   },
+  getIssuesByDistrict: function(district) {
+	  result = [];
+	  for (user in Meteor.users.find(district: district)) {
+			for (issue in user.issues) {
+				if (result[issue] == null) {
+					result[issue] = 1;
+				} else {
+					result[issue] += 1;
+				}
+			}
+	  }
+  },
+  getDistrictsByIssue: function(issue) {
+	  result = [];
+	  for (user in Meteor.users.find(issues: {$in: issue})) {
+			if (result[user.district] == null) {
+				result[user.district] = 1;
+			} else {
+				result[user.district] += 1;
+			}
+	  }
+  }
 
   //put comma after above function
 });

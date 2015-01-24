@@ -1,13 +1,5 @@
 Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
-		"click #testDistrictButton": function(event) {
-			console.log("called"); 
-			Meteor.call("assignUserDistrict", function(err, result) {
-				console.log("here"); 
-				console.log(result);
-				console.log("and here"); 
-			});
-		},
 		"click #logoutButton": function(event) {
 			Meteor.logout();
 		},
@@ -127,6 +119,7 @@ Meteor.subscribe("userSettingsData");
 					var regPostalCode = new RegExp("^\\d{5}(-\\d{4})?$");
 					if (regPostalCode.test(myZip) == true) {
 						Meteor.call("modifyUserZip", myZip);
+						Meteor.call("assignUserDistrict");
 					} else {
 					alert("There was a problem with the input");
 					}
