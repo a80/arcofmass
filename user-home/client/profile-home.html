@@ -7,7 +7,7 @@
   <nav class = "navbar navbar-default navbar-fixed-top">
     <div class = "container">
       <div class = "navbar-header">
-        <a class = "navbar-brand" id = "profileHomeBrandText">you<span id = "profileHomeArc"><strong>arc</strong></span>hange<strong>for</strong>SOMEBODYORSOMEPPL.</a>
+        <a class = "navbar-brand" id = "profileHomeBrandText" data-toggle="modal" data-target="#myModal"><span id = "brandYou">you</span><span id = "profileHomeArc"><strong>arc</strong></span>hange<strong>for</strong>SOMEBODYORSOMEPPL.</a>
       </div>
 
       <div>
@@ -19,9 +19,28 @@
           <span class = "glyphicon glyphicon-cog"></span>
         </button>
       </div>
-    
     </div>
   </nav>
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" id = "profileHomeModal">
+    <div class="modal-content" id = "profileHomeModalContent">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;[ESC]</span></button>
+        <h1 class="modal-title" id="myModalLabel">My Change.</h1>
+      </div>
+      <div class="modal-body">
+        {{#each returnNotifications}}
+          {{> myChangeListItem}}
+        {{/each}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <body>
   
@@ -79,6 +98,6 @@
   </div>
 </template> 
 
-<template name = "profileError"> 
-  <h1>You're not a user.</h1> 
-</template> 
+<template name = "myChangeListItem"> 
+  <li> In support of <span>{{notificationIssue}}</span>, I completed <span>{{notificationTask}}</span> on {{dateOfNotification}}. </li> 
+</template>

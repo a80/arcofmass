@@ -27,6 +27,28 @@ Template.profileHome.helpers({
 	returnUserId: function() {
 		return Meteor.user().username; 
 	},
+
+  returnNotifications: function() {
+    //return notifications from most recent to oldest. 
+    return notifications.find({userId: Meteor.user()._id}, {sort: {dateCompleted: -1}}); 
+  }
+});
+
+
+//myChangeListItem
+
+Template.myChangeListItem.helpers({
+  notificationTask: function() {
+    var toDoId = this.toDoId; 
+    return actionItems.findOne({_id: toDoId}).text; 
+  }, 
+  notificationIssue: function() {
+    var toDoId = this.toDoId; 
+    return actionItems.findOne({_id: toDoId}).issue; 
+  }, 
+  dateOfNotification: function() {
+    return this.dateCompleted; 
+  }
 });
 
 
