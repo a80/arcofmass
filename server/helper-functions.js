@@ -302,7 +302,7 @@ Meteor.methods({
 
     zip = Meteor.user().profile.zip;
 
-	if (zip != '' && zip != null) {
+	   if (zip != '' && zip != null) {
 		var lat = '';
 		var lng = '';
 		var geo = new GeoCoder();
@@ -311,23 +311,27 @@ Meteor.methods({
 		lng = result[0].longitude;
 
 		urlToCall = "http://openstates.org/api/v1/legislators/geo/?lat=" + lat + "&long=" + lng + "&apikey=df3e5cc5bbb648229e3e1030dc5c112e"; 
-		console.log(urlToCall);
+		//console.log(urlToCall);
 		this.unblock();
 		try {
-			var legInfo = HTTP.call("GET", urlToCall);
+			legInfo = HTTP.call("GET", urlToCall);
 		} catch (e) {
 			// Got a network error, time-out or HTTP error in the 400 or 500 range.
 		}
+	   }
 
-	}
-	if (legInfo != "Error") {
-		Meteor.user().profile.district = legInfo[0].district;
-		return legInfo.data[0].district;
-	} else {
-		//console.log("Didn't get info");
-		return "Didn't get info"
-	}
+    console.log(legInfo.data[0].district); 
+	  
+    if (legInfo != "Error") {
+      Meteor.users.update({_id:Meteor.userId()}, {$set :{"profile.district": legInfo.data[0].district}});
+		  return legInfo.data[0].district;
+	  } else {
+		  //console.log("Didn't get info");
+		  return "Didn't get info"
+	  }
   },
+
+
   getIssuesRelevLeg: function() {
 	legInfo = getUserLegislatorInfo();
 	if (legInfo != "Error") {
@@ -343,7 +347,7 @@ Meteor.methods({
   },
   getIssuesByDistrict: function(district) {
 	  result = [];
-	  for (user in Meteor.users.find({district: district})) {
+	  for (user in Meteor.users.find({district: district}).fetch()) {
 			for (issue in user.issues) {
 				if (result[issue] == null) {
 					result[issue] = 1;
@@ -352,16 +356,18 @@ Meteor.methods({
 				}
 			}
 	  }
+    return result; 
   },
   getDistrictsByIssue: function(issue) {
 	  result = [];
-	  for (user in Meteor.users.find({issues: {$in: issue}})) {
+	  for (user in Meteor.users.find({issues: {$in: issue}}).fetch()) {
 			if (result[user.district] == null) {
 				result[user.district] = 1;
 			} else {
 				result[user.district] += 1;
 			}
 	  }
+    return result; 
   }, 
 
   //helper functions for notifications. 

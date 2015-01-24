@@ -48,7 +48,6 @@ Template.adminHome.helpers({
 
 Template.adminIssueListView.helpers({
 	getUserIssues: function() {
-		console.log(issues.find({}).fetch());
 		return issues.find({});  
 	},
 })
@@ -102,22 +101,73 @@ Template.adminHome.events({
 });
 
 
-//adding graphs to adminHome
+Template.adminIssueGraphView.helpers({
+	graphViewShowIssueList: function() {
+		if (Session.get("graphViewShowIssues") === undefined) {
+			return true; 
+		} else {
+			return Session.get("graphViewShowIssues"); 
+		}
+	}
 
-var graphs = {};
+});
+
+Template.adminIssueGraphView.events({
+	"click #toggleIssueList": function() {
+		Session.set("graphViewShowIssues", true);
+	},
+	"click #toggleDistrictList": function() {
+		Session.set("graphViewShowIssues", false);
+	}
+}); 
+
+
+//within graph view, the issue list: 
+Template.graphViewIssueList.helpers({
+	getUserIssues: function() {
+		return issues.find({});  
+	},
+	returnIssueName: function() {
+    return this.name;
+  },
+}); 
+
+Template.graphViewIssueList.events({
+	"click .list-group-item": function(event, template){
+
+			if (template.find(".active") === null) {
+				$(event.target).addClass('active');
+				$(event.target).addClass('activeItem');
+			} else {
+
+				template.find(".activeItem").classList.remove("active"); 
+				template.find(".activeItem").classList.remove("activeItem");
+				$(event.target).addClass('active');
+				$(event.target).addClass('activeItem');
+			}
+			
+			selectedIssueInList = $(".activeItem").text();
+			console.log("selected:" + selectedIssueInList);
+			Session.set("adminSelectedIssueGraphView", selectedIssueInList); 
+			console.log(Session.get("adminSelectedIssueGraphView"));
+
+			//now need to rerender the graph. 
+			graph = progressBar(".adminHomeGraphDiv", 10, "what: ");
+
+		}
+
+}); 
+
+var graph; 
+
+//adding graphs to adminHome
 
 Template.adminIssueGraphView.rendered = function() {
 
 	Deps.autorun(function() {
 	var issueList = issues.find({}).fetch();
-    //var notifications = notifications.find({issueId: this._id}, {sort: {dateCompleted: -1}, limit: 3}); 
-
-    console.log(notifications); 
     
-    _.each(issueList, function(issue) {
-      var graphID = issue.name.replace(/\s*/g, '');
-      graphs[graphID] = progressBar(".adminHomeGraphDiv", issue.count, "what: " + issue.name);
-    }); 
+      graph = progressBar(".adminHomeGraphDiv", 10, "what: ");
 	});
 
   //how to vary other elements in progressBar based on function arguments. 
