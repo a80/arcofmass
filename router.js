@@ -68,7 +68,7 @@ Router.map(function() {
   	}
   }); //insert Admin ID
 
-   this.route('adminRegion', {path: '/region', 
+   /*this.route('adminRegion', {path: '/region', 
     onBeforeAction: function() {
       user = Meteor.user()._id; 
       //console.log(user.username);
@@ -78,6 +78,6 @@ Router.map(function() {
       }
       this.next(); 
     }
-  });
+  });*/
 
 });
