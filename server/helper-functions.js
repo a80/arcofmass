@@ -47,13 +47,15 @@ Meteor.methods({
 	//TAKES THE NAME OF THE TODO
 	//Increases the todo count by one
 	//actionItems.find({text: todoName}).count += 1;
-    console.log("increaseToDoCount called.");
+    //console.log("increaseToDoCount called.");
     actionItems.update({text: todoName}, {$inc: {count: 1}});
   },
   decreaseToDoCount: function(todoName) {
 	//TAKES THE NAME OF THE TODO
 	//Decreases the todo count by one
-	actionItems.find({text: todoName}).count -= 1;
+	//actionItems.find({text: todoName}).count -= 1;
+    actionItems.update({text: todoName}, {$inc: {count: -1}});
+
   },
   getIssueCount: function(issueName) {
 	//TAKES THE NAME OF THE ISSUE
@@ -360,7 +362,20 @@ Meteor.methods({
 				result[user.district] += 1;
 			}
 	  }
-  }
+  }, 
+
+  //helper functions for notifications. 
+
+  insertNotification: function(toDoId) {
+    //get userID
+    userId = Meteor.user()._id; 
+    notifications.insert({userId: userId, toDoId: toDoId, dateCompleted: new Date()}); 
+  }, 
+
+  deleteNotification: function(toDoId) {
+    userId = Meteor.user()._id; 
+    notifications.remove({userId: userId, toDoId: toDoId}); 
+  },
 
   //put comma after above function
 });

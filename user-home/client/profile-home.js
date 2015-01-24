@@ -1,19 +1,23 @@
 Meteor.subscribe("userHomeIssues");
+Meteor.subscribe("userNotifications");
+
+//profileHome
 
 Template.profileHome.events({
 	"click #logoutButton": function(event) {
 			Meteor.logout();
 		},
+
 	'click #user-settings-button': function() {
     Router.go('/user-settings');
   },
 });
 
+
 Template.profileHome.helpers({
 	getUserIssues: function() {
-		//console.log(issues.find({}).fetch());
-    var list = issues.find({name: {$in: Meteor.user().profile.issues}}).fetch();
-	
+  var list = issues.find({name: {$in: Meteor.user().profile.issues}}).fetch();
+
 	return _.map(list, function(l) {
     	_.extend(l, {graphID: l.name.replace(/\s*/g, '')});
       	return l;
@@ -24,7 +28,30 @@ Template.profileHome.helpers({
 		return Meteor.user().username; 
 	},
 });
+
+
+//issuePanel
+
+Template.issuePanel.helpers({
+  loggedIn: function() {
+    //verify if user logged in. 
+    if (Meteor.userId() === null) {
+      console.log('executed, result is false'); 
+      return false; 
+    } else {
+      console.log('executed, result is true'); 
+      return true; 
+    } 
+  }, 
+  
+  returnIssueName: function() {
+    return this.name;
+  }
+});
 	 
+
+//toDoPanel   
+
 Template.toDoPanel.helpers({
 	returnToDos: function(issue) {
 		var issueName = this.name;
@@ -33,107 +60,89 @@ Template.toDoPanel.helpers({
 		actionItemsData = actionItems.find({}).fetch();
 
 		for (var i = 0; i < actionItemsData.length; i++) {
-		  //console.log("entered if loop"); 
 		  if (actionItemsData[i].issue === issueName) {
 			actionItemsForIssue.push(actionItemsData[i]); 
 		  }
 		}
 
 		_.map(actionItemsForIssue, function(a) {
-      		_.extend(a, {toDoID: a._id}); });
+      _.extend(a, {toDoID: a._id}); });
 
-      	_.map(actionItemsForIssue, function(a) {
-      		_.extend(a, {toDoCheckID: a.message}); }); 
+    _.map(actionItemsForIssue, function(a) {
+      _.extend(a, {toDoCheckID: a._id + "check"}); }); //change this.
 
-      	return actionItemsForIssue; 
-
-		/*return _.map(actionItemsForIssue, function(a) {
-      		_.extend(a, {toDoID: a._id}); 
-      		return actionItemsForIssue;  
-		});*/
+    return actionItemsForIssue; 
 	}, 
 
 	returnToDoName: function() {
 		return this.text; 
 	}, 
 
-});
+  checked: function() {
+    userId = Meteor.user()._id;
+    foundNotification = notifications.findOne({userId: userId, toDoId: this._id}); 
 
+    console.log("userId: " + userId);
+    console.log("toDoId: " + this._id);
+    console.log(foundNotification);
 
-Template.issuePanel.helpers({
-	loggedIn: function() {
-		//verify if user logged in. 
-		if (Meteor.userId() === null) {
-		  console.log('executed, result is false'); 
-		  return false; 
-		} else {
-		  console.log('executed, result is true'); 
-		  return true; 
-		} 
-	}, 
-	
-	returnIssueName: function() {
-		return this.name;
-	}
+    if (foundNotification != undefined) {
+      return true; 
+    } else {
+      return false; 
+    }
+
+  },
 });
 
 
 Template.toDoPanel.events({
 	"click .toggle-checked": function (event) {
-      //get the relevant id associated with this checkbox
-      var issueName = this.issue; 
-      //Meteor.call("increaseIssueCount", issueName); 
+      var idOfElement = this._id + "check"; 
+      //console.log(document.getElementById(idOfElement).checked); 
+      var toDoName = actionItems.findOne({_id: this._id}).text; 
+      var issueOfInterest = this.issue; 
+      var toDoId = this._id; 
+      console.log(issueOfInterest);  
 
-      //retrieve parent id. 
-    	var checkID = event.currentTarget.id; //this corresponds to the actionItem ID.
-    	
-      console.log("check ID");
+      if (document.getElementById(idOfElement).checked) {
+        console.log("adding notification, incrementing");
+        //add notification, increment
+        Meteor.call("increaseToDoCount", toDoName, function(error) {
+          if (!error) {
+            Meteor.call("insertNotification", toDoId, function(error) {
+              if (!error) {
+                var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, actionItems.findOne({_id: toDoId}).count, "to do: " + toDoName);
+              }
+            });
+          }
+        }); 
+      } else {
+        console.log("deleting notification, decrementing");
+        //remove notification, decrement.
+        Meteor.call("decreaseToDoCount", toDoName, function(error) {
+          if (!error) {
+            Meteor.call("deleteNotification", toDoId, function(error) {
+              if (!error) {
+                var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, actionItems.findOne({_id: toDoId}).count, "to do: " + toDoName);
+              }
+            });
+          }
+        }); 
+      }
 
-    	console.log(checkID);
-    	//console.log(actionItems.findOne({_id: checkID}));
-
-
-    	var toDoName = actionItems.findOne({message: checkID}).text; //change 
-
-    	Meteor.call("increaseToDoCount", toDoName); 
-
-    	var toDoOfInterest = actionItems.findOne({_id: checkID}); 
-
-    	//console.log(toDoOfInterest.goal); 
-
-    	//get the graph id to change. 
-
-    	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
-    	console.log(graphIDtoChange);
-
-      console.log("this.issue: "); 
-      /*console.log(this.issue); */
-
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count, this.issue);
-
+      
     },
 
-    //select the link corresponding to the list element, display that issue. 
-
     "click .toDoListItemText": function(event) {
-    	//retrieve parent id. 
-      //console.log(event.currentTarget);
+      //select the link corresponding to the list element, display that issue. 
+    	//retrieve id
     	var toDoListItemID = event.currentTarget.id;
-
-      //console.log("here");
-    	//console.log(toDoListItemID); 
-
-    	//get the count associated with the todo. 
     	var toDoOfInterest = actionItems.findOne({_id: toDoListItemID}); 
-
-    	//console.log(toDoOfInterest.goal); 
-
-    	//get the graph id to change. 
-
     	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
-    	console.log(graphIDtoChange);
-
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count, "To Do: " + this.text);
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count, "to Do: " + this.text);
     },
 
 });
