@@ -204,6 +204,15 @@ Meteor.methods({
 	issues.insert({name: myName, count: 0});
   },
   delIssue: function(myName) {
+	relUsers = Meteor.users.find({issues: {$in: myName}}).fetch();
+	for (person in relUser) {
+		delete person.issues[myName];
+		Meteor.users.find({name: person.name}).issues = person.issues;
+	}
+	actionItems.remove({issue: myName});
+	legislators.remove({issue: myName});
+	relId = issues.find({name: myName})._id;
+	notifications.remove({issueId: relId});
 	issues.remove({name: myName});
   }, 
 

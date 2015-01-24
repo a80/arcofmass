@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+#admin-home-button:hover {
+	cursor:pointer;
+}
