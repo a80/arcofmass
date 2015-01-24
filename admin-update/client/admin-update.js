@@ -108,8 +108,8 @@
 						if (legAddress != false) {
 							Meteor.call("cleanInput", legEmail, function(error, legEmail) {
 								if (legEmail != false) {
-									var atpos = legEmail.indexOf("@");
-									var perpos = legEmail.indexOf(".");
+									var atpos = legEmail.lastIndexOf("@");
+									var perpos = legEmail.lastIndexOf(".");
 									if (atpos< 1 || perpos<atpos+2 || perpos+2>=legEmail.length) {
 										alert("Not a valid email address");
 									} else {
@@ -187,8 +187,8 @@
 						if (legAddress != false) {
 							Meteor.call("cleanInput", legEmail, function(error, legEmail) {
 								if (legEmail != false) {
-									var atpos = legEmail.indexOf("@");
-									var perpos = legEmail.indexOf(".");
+									var atpos = legEmail.lastIndexOf("@");
+									var perpos = legEmail.lastIndexOf(".");
 									if (atpos< 1 || perpos<atpos+2 || perpos+2>=legEmail.length) {
 										alert("Not a valid email address");
 									} else {

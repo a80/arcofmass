@@ -41,7 +41,7 @@ Meteor.subscribe("userSettingsData");
 			var myEmail = document.getElementById("inputEmail").value;
 			Meteor.call("cleanInput", myEmail, function(error, myEmail) {
 				if (myEmail != false) {
-					var atpos = myEmail.indexOf("@");
+					var atpos = myEmail.lastIndexOf("@");
 					var dotpos = myEmail.lastIndexOf(".");
 					if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=myEmail.length) {
 						alert("Not a valid e-mail address");
