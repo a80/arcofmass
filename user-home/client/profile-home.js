@@ -123,7 +123,9 @@ Template.toDoPanel.events({
       var idOfElement = this._id + "check"; 
       //console.log(document.getElementById(idOfElement).checked); 
       var toDoName = actionItems.findOne({_id: this._id}).text; 
-      var issueOfInterest = this.issue; 
+      var issueOfInterest = this.issue;
+      var issueId = issues.findOne({name: this.issue})._dbid; 
+      console.log("issueId: " + issueId); 
       var toDoId = this._id; 
       console.log(issueOfInterest);  
 
@@ -132,7 +134,7 @@ Template.toDoPanel.events({
         //add notification, increment
         Meteor.call("increaseToDoCount", toDoName, function(error) {
           if (!error) {
-            Meteor.call("insertNotification", toDoId, function(error) {
+            Meteor.call("insertNotification", toDoId, issueId, function(error) {
               if (!error) {
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
                 graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, actionItems.findOne({_id: toDoId}).count, "to do: " + toDoName);
@@ -174,15 +176,13 @@ var graphs = {};
 Template.profileHome.rendered = function() {
 
 	Deps.autorun(function() {
-    
-	var issueList = issues.find({}).fetch();
+	  var issueList = issues.find({}).fetch();
+    var notifications = notifications.find({issueId: this._id}, {sort: {dateCompleted: -1}, limit: 3}); 
+
+    console.log(notifications); 
     
     _.each(issueList, function(issue) {
       var graphID = issue.name.replace(/\s*/g, '');
-
-      //modify the graph shown here with the one relevant to the to-do.
-      //graphs[issue._id] = progressBar("#" + graphID, issue.count);
-      console.log("issue Name: " + issue.name);
       graphs[graphID] = progressBar("#" + graphID, issue.count, "what: " + issue.name);
     }); 
 	});
@@ -226,14 +226,32 @@ function progressBar(el, data, label) {
                   .data([data])
                   .enter()
                     .append("rect")
+                    .attr("y", 600)
                     .attr("width", width)
+                    .attr("fill", "orange")
+                    .transition()
+                    .duration(1000)
                     .attr("height", function (d) { return widthScale(d); })
-                    .attr("y", function(d, i) {return height - widthScale(d) })
-                    .attr("fill", "orange"); 
+                    .attr("y", function(d, i) {return height - widthScale(d) }); 
                     /*.attr("fill", function(d) {return color(d)});*/
 
   /*console.log(issueName); */
+  /*if (showNotifications) {
+    canvas.append('text').text("[username] completed [todo] [min ago]").attr("x", 30).attr("y", 450).attr("fill", "white").style("font-size", "30px");
+    canvas.append('text').text("[username] completed [todo] [min ago]").attr("x", 30).attr("y", 490).attr("fill", "white").style("font-size", "30px");
+    canvas.append('text').text("[username] completed [todo] [min ago]").attr("x", 30).attr("y", 530).attr("fill", "white").style("font-size", "30px");
+  } else {
+
+  } */
   
   canvas.append('text').text(label).attr("x", 30).attr("y", 100).attr("fill", "white").style("font-size", "100px");
+
+  canvas.append('text').text('legislator: [put name]').attr("x", 30).attr("y", 250).attr("fill", "black").style("font-size", "40px");
+  canvas.append('text').text('phone: [put]').attr("x", 30).attr("y", 300).attr("fill", "black").style("font-size", "40px");
+  canvas.append('text').text('email: [put]').attr("x", 30).attr("y", 350).attr("fill", "black").style("font-size", "40px");
+
+  canvas.append('text').text(notifications.userId).attr("x", 30).attr("y", 450).attr("fill", "white").style("font-size", "30px");
+    canvas.append('text').text("[username] completed [todo] [min ago]").attr("x", 30).attr("y", 490).attr("fill", "white").style("font-size", "30px");
+    canvas.append('text').text("[username] completed [todo] [min ago]").attr("x", 30).attr("y", 530).attr("fill", "white").style("font-size", "30px");
 
 }

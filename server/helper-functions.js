@@ -366,10 +366,10 @@ Meteor.methods({
 
   //helper functions for notifications. 
 
-  insertNotification: function(toDoId) {
+  insertNotification: function(toDoId, issueId) {
     //get userID
     userId = Meteor.user()._id; 
-    notifications.insert({userId: userId, toDoId: toDoId, dateCompleted: new Date()}); 
+    notifications.insert({userId: userId, toDoId: toDoId, issueId: issueId, dateCompleted: new Date()}); 
   }, 
 
   deleteNotification: function(toDoId) {
