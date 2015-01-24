@@ -341,7 +341,7 @@ Meteor.methods({
   },
   getIssuesByDistrict: function(district) {
 	  result = [];
-	  for (user in Meteor.users.find(district: district)) {
+	  for (user in Meteor.users.find({district: district})) {
 			for (issue in user.issues) {
 				if (result[issue] == null) {
 					result[issue] = 1;
@@ -353,7 +353,7 @@ Meteor.methods({
   },
   getDistrictsByIssue: function(issue) {
 	  result = [];
-	  for (user in Meteor.users.find(issues: {$in: issue})) {
+	  for (user in Meteor.users.find({issues: {$in: issue}})) {
 			if (result[user.district] == null) {
 				result[user.district] = 1;
 			} else {
