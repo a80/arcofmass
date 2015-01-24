@@ -251,6 +251,11 @@
 	
 }
 
+#adminLoginNavBar {
+	background:rgba(255,255,255,0.5);
+	
+}
+
 #adminLoginLink, #userLoginLink {
 	cursor: pointer;
 	text-decoration: none; 

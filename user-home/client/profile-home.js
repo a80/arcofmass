@@ -151,7 +151,7 @@ Template.profileHome.rendered = function() {
       //modify the graph shown here with the one relevant to the to-do.
       //graphs[issue._id] = progressBar("#" + graphID, issue.count);
       console.log("issue Name: " + issue.name);
-      graphs[graphID] = progressBar("#" + graphID, issue.count, "Issue: " + issue.name);
+      graphs[graphID] = progressBar("#" + graphID, issue.count, "what: " + issue.name);
     }); 
 	});
 
