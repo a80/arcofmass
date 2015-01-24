@@ -90,6 +90,7 @@
 			console.log(template.find(".emailInput").value); 
 			var legEmail = template.find(".emailInput").value;
 			var legAddress = template.find(".addressInput").value;
+			var legPhone = template.find(".phoneInput").value;
 			
 			//var dropdown = document.getElementById("dropdownMenu1");
 
@@ -115,7 +116,13 @@
 									} else {
 										Meteor.call("cleanInput", issue, function(error, issue) {
 											if (issue != false) {
-												Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
+												Meteor.call("cleanInput", legPhone, function(error, legPhone) {
+													if (legPhone != false) {
+														Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
+													} else {
+														alert("There was a problem with your phone number");
+													}
+												});
 											} else {
 												alert("There was a problem with your issue");
 											}
@@ -169,6 +176,7 @@
 			console.log(template.find(".emailInput").value); 
 			var legEmail = template.find(".emailInput").value;
 			var legAddress = template.find(".addressInput").value;
+			var legPhone = template.find(".phoneInput").value;
 			
 			//var dropdown = document.getElementById("dropdownMenu1");
 
@@ -194,7 +202,13 @@
 									} else {
 										Meteor.call("cleanInput", issue, function(error, issue) {
 											if (issue != false) {
-												Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
+												Meteor.call("cleanInput", legPhone, function(error, legPhone) {
+													if (legPhone != false) {
+														Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
+													} else {
+														alert("There was a problem with your phone number");
+													}
+												});
 											} else {
 												alert("There was a problem with your issue");
 											}
@@ -500,6 +514,11 @@
 		getLegislatorAddress: function(){
 			var ID = this._id; 
 			return legislators.findOne({_id: ID}).address;
+		},
+		
+		getLegislatorEmail: function() {
+			var ID = this._id;
+			return legislators.findOne({_id: ID}).phone;
 		},
 
 		/*getSaveLegislatorButtonID: function(){

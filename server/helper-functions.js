@@ -187,9 +187,9 @@ Meteor.methods({
 
   },
   
-  addNewLegislator: function(myName, myEmail, myAddress, myIssue) {
+  addNewLegislator: function(myName, myEmail, myAddress, myIssue, myPhone) {
 	  console.log("in addNewLegislator");
-    legislators.upsert({name: myName}, {$set: {name: myName, email: myEmail, address: myAddress, issue: myIssue}});
+    legislators.upsert({name: myName}, {$set: {name: myName, email: myEmail, address: myAddress, issue: myIssue, phone: myPhone}});
   },
   addNewTodo: function(myName, myGoal, myMessage, myIssue, isImportant) {
 	actionItems.upsert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});	
