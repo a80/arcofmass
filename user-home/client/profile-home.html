@@ -40,27 +40,14 @@
 
 <template name = "toDoPanel">
 
-  <ul class="list-group checked-list-box">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item" data-checked="true">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
-
 
 
 
   <ul>
     {{#each returnToDos}}
-      <li>
-        <input type="checkbox" checked="{{checked}}" class="toggle-checked" id = "{{ toDoID }}"/> 
-        <a class = "toDoListItem" id = "{{ toDoID }}">{{returnToDoName}}</a> 
+      <li class = "toDoListItem">
+        <input type="checkbox" checked="{{checked}}" class="toggle-checked toDoCheckBox" id = "{{ toDoID }}"/> 
+        <label class = "toDoListItemLabel" for = "{{ toDoID }}"><span></span>{{returnToDoName}}</label> 
       </li> 
     {{/each}}
   </ul> 
