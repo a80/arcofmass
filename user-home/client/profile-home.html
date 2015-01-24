@@ -46,9 +46,10 @@
   <ul>
     {{#each returnToDos}}
       <li class = "toDoListItem">
-        <input type="checkbox" checked="{{checked}}" class="toggle-checked toDoCheckBox" id = "{{ toDoID }}"/> 
-        <label class = "toDoListItemLabel" for = "{{ toDoID }}"><span></span>{{returnToDoName}}</label> 
+        <input type="checkbox" checked="{{checked}}" class="toggle-checked toDoCheckBox" id = "{{ toDoCheckID }}"/> 
+        <label class = "toDoListItemLabel" for = "{{ toDoCheckID }}"><span></span></label> 
       </li> 
+      <h2 class = "toDoListItemText" id = "{{ toDoID }}"> {{returnToDoName}}</h2>
     {{/each}}
   </ul> 
 </template> 

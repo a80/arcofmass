@@ -80,22 +80,20 @@ Template.issuePanel.helpers({
 
 Template.toDoPanel.events({
 	"click .toggle-checked": function (event) {
-      	//get the relevant id associated with this checkbox
-      	var issueName = this.issue; 
-      	//Meteor.call("increaseIssueCount", issueName); 
+      //get the relevant id associated with this checkbox
+      var issueName = this.issue; 
+      //Meteor.call("increaseIssueCount", issueName); 
 
-      	//retrieve parent id. 
+      //retrieve parent id. 
     	var checkID = event.currentTarget.id; //this corresponds to the actionItem ID.
     	
+      console.log("check ID");
+
     	console.log(checkID);
     	//console.log(actionItems.findOne({_id: checkID}));
 
 
-    	var toDoName = actionItems.findOne({_id: checkID}).text; //change 
-
-
-
-
+    	var toDoName = actionItems.findOne({message: checkID}).text; //change 
 
     	Meteor.call("increaseToDoCount", toDoName); 
 
@@ -117,10 +115,13 @@ Template.toDoPanel.events({
 
     //select the link corresponding to the list element, display that issue. 
 
-    "click .toDoListItem": function(event) {
+    "click .toDoListItemText": function(event) {
     	//retrieve parent id. 
-    	var toDoListItemID = event.currentTarget.id; 
-    	//console.log("selected: " + toDoListItemID); 
+      //console.log(event.currentTarget);
+    	var toDoListItemID = event.currentTarget.id;
+
+      //console.log("here");
+    	//console.log(toDoListItemID); 
 
     	//get the count associated with the todo. 
     	var toDoOfInterest = actionItems.findOne({_id: toDoListItemID}); 
