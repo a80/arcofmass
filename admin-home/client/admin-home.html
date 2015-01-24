@@ -36,10 +36,6 @@
       <span class = "glyphicon glyphicon-cog"></span>
       </button>
 
-      <button type = "button" class = "btn btn-default navbar-btn" id = "region-button">
-      <span class = "glyphicon glyphicon-picture"></span>
-      </button>
-
     </div>
     
     </div>
@@ -53,14 +49,37 @@
 
 
 
-  	<h2>Trending Issues</h2>
-  	<ol>
-  		{{#each getUserIssues}}
-  			<!-- <li>Issue X</li> --> 
-  			<li>{{> adminIssuePanel}}</li> 
-  		{{/each}}
-  	</ol> 
+
+
+  	<h2>trending</h2>
+
+    <button type = "button" class = "btn btn-default {{returnListActive}}" id = "toggleListView">
+      List View
+      <span class = "glyphicon glyphicon-th-list"></span>
+    </button>
+
+    <button type = "button" class = "btn btn-default {{returnGraphActive}}" id = "toggleGraphView">
+      Graph View
+      <span class = "glyphicon glyphicon-stats"></span>
+    </button>
+
+    {{#if toggleListViewDefault}}
+      {{> adminIssueListView}}
+    {{else}}
+      {{> adminIssueGraphView}}
+    {{/if}}
+
 </template>
+
+<template name = "adminIssueListView"> 
+      <ol>
+      {{#each getUserIssues}}
+        <!-- <li>Issue X</li> --> 
+        <li>{{> adminIssuePanel}}</li> 
+      {{/each}}
+    </ol> 
+</template> 
+
 
 <template name = "adminIssuePanel"> 
 
@@ -91,4 +110,30 @@
 
 <template name = "customErrorPageAdminHome"> 
   <h1>You're not an admin.</h1> 
+</template>
+
+<template name = "adminIssueGraphView"> 
+  <!-- <h1>This is the graph view. </h1> --> 
+    <div class = "container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        
+        <head> 
+          
+        </head>
+
+        <!-- <h1 id = "name-header">Progress toward issue: {{returnIssueName}}</h1> --> 
+
+
+      </div>
+      
+      <div class="col-md-10">
+          <div class = "adminHomeGraphDiv"> 
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
 </template> 
