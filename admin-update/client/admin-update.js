@@ -10,10 +10,11 @@
 	Template.adminUpdate.events({
 		"click #logoutButton": function(event) {
 			Meteor.logout();
+			Router.go("/login"); 
 		},
-		"click #logoutButton": function(event) {
+		/*"click #logoutButton": function(event) {
 			Accounts.logout();
-		},
+		},*/
 		"click #addIssueButton": function(event) {
 			var newIssue = document.getElementById("addIssueField").value;
 			Meteor.call("cleanInput", newIssue, function(error, newIssue) {
