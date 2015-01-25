@@ -199,8 +199,8 @@ Meteor.methods({
 	 issues.insert({name: myName, count: 0});
   },
   delIssue: function(myName) {
-	relUsers = Meteor.users.find({issues: {$in: myName}}).fetch();
-	for (person in relUser) {
+	relUsers = Meteor.users.find({"profile.issues": {$in: [myName]}}).fetch();
+	for (person in relUsers) {
 		delete person.issues[myName];
 		Meteor.users.find({name: person.name}).issues = person.issues;
 	}

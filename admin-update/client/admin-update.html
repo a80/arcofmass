@@ -148,10 +148,10 @@
 					<div class="legRow" id="{{getLegID}}">
 						
 						
-					 	<input type="text" class="form-control nameInput" id="{{getNameID}}" aria-label="..." placeholder = "Representative" value="{{getLegislatorName}}">
-					 	<input type="text" class="form-control emailInput" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}">
-						<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}">
-						<input id="{{getPhoneID}}" type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" value="{{getLegislatorPhone}}">
+					 	<input type="text" class="form-control nameInput" id="{{getNameID}}" aria-label="..." placeholder = "Representative" value="{{getLegislatorName}}" readonly = true>
+					 	<input type="text" class="form-control emailInput" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}" readonly = true>
+						<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}" readonly = true>
+						<input id="{{getPhoneID}}" type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" value="{{getLegislatorPhone}}" readonly = true>
 							 
 						 <button type="button" class="btn btn-default saveLegislatorButton" onclick="toEditLegislator()" id = "{{getSaveLegislatorButtonID}}">
 							 	Save
@@ -176,7 +176,7 @@
 						<input type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" >
 						<input type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" >
 							 
-						 <button type="button" class="btn btn-default saveLegislatorButton" onclick="toEditLegislator()" id = "saveLegislatorButton">
+						 <button type="button" class="btn btn-default saveNewLegislatorButton" onclick="toEditLegislator()" id = "saveLegislatorButton">
 							 	Save
 						</button>
 					 	
@@ -221,11 +221,11 @@
 						
 						 		<input type= 'checkbox' class = "checkInput" aria-label="..." >
 						 		
-						 		<input type="text" class="form-control todoInput" id="{{getTodoInputID}}" aria-label="..." placeholder = "To Do" value="{{getToDoValue}}" >
+						 		<input type="text" class="form-control todoInput" id="{{getTodoInputID}}" aria-label="..." placeholder = "To Do" value="{{getToDoValue}}" readonly = true>
 
-						 		<input type="text" class="form-control goalInput" id="{{getGoalInputID}}" aria-label="..." placeholder = "Goal (Target # of Completions)" value="{{getGoalValue}}">
+						 		<input type="text" class="form-control goalInput" id="{{getGoalInputID}}" aria-label="..." placeholder = "Goal (Target # of Completions)" value="{{getGoalValue}}" readonly = true>
 						 							 			
-					 			<input type="text" class="form-control messageInput" id="{{getMessageInputID}}" aria-label="..." placeholder = "Message" value="{{getMessageValue}}">
+					 			<input type="text" class="form-control messageInput" id="{{getMessageInputID}}" aria-label="..." placeholder = "Message" value="{{getMessageValue}}" readonly = true>
 
 						 		<button type="button" class="btn btn-default saveToDoButton" onclick="toEdit()" id="{{saveToDoButtonID}}">
 						 			Save
