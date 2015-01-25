@@ -90,6 +90,7 @@
 			console.log(template.find(".emailInput").value); 
 			var legEmail = template.find(".emailInput").value;
 			var legAddress = template.find(".addressInput").value;
+			var legPhone = template.find(".phoneInput").value;
 			
 			//var dropdown = document.getElementById("dropdownMenu1");
 
@@ -115,7 +116,19 @@
 									} else {
 										Meteor.call("cleanInput", issue, function(error, issue) {
 											if (issue != false) {
-												Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
+												Meteor.call("cleanInput", legPhone, function(error, legPhone) {
+													if (legPhone != false) {
+														Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
+														template.find(".saveLegislatorButton").style.visibility = "hidden";
+														template.find(".editLegislatorButton").style.visbility = "hidden";
+														template.find(".nameInput").readOnly = true;
+														template.find(".addressInput").readOnly = true;
+														template.find(".emailInput").readOnly = true;
+														template.find(".phoneInput").readOnly = true;
+													} else {
+														alert("There was a problem with your phone number");
+													}
+												});
 											} else {
 												alert("There was a problem with your issue");
 											}
@@ -169,6 +182,7 @@
 			console.log(template.find(".emailInput").value); 
 			var legEmail = template.find(".emailInput").value;
 			var legAddress = template.find(".addressInput").value;
+			var legPhone = template.find(".phoneInput").value;
 			
 			//var dropdown = document.getElementById("dropdownMenu1");
 
@@ -194,7 +208,19 @@
 									} else {
 										Meteor.call("cleanInput", issue, function(error, issue) {
 											if (issue != false) {
-												Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue);
+												Meteor.call("cleanInput", legPhone, function(error, legPhone) {
+													if (legPhone != false) {
+														Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
+														template.find(".saveLegislatorButton").style.visibility = "hidden";
+														template.find(".editLegislatorButton").style.visbility = "hidden";
+														template.find(".nameInput").readOnly = true;
+														template.find(".addressInput").readOnly = true;
+														template.find(".emailInput").readOnly = true;
+														template.find(".phoneInput").readOnly = true;
+													} else {
+														alert("There was a problem with your phone number");
+													}
+												});
 											} else {
 												alert("There was a problem with your issue");
 											}
@@ -268,6 +294,11 @@
 								if (goal != false) {
 									if (!isNaN(goal)) {
 										Meteor.call("addNewTodo", name, goal, message, issue, important);
+										template.find(".saveToDoButton").style.visibility = "hidden";
+										template.find(".editToDoButton").style.visbility = "hidden";
+										template.find(".nameInput").readOnly = true;
+										template.find(".goalInput").readOnly = true;
+										template.find(".messageInput").readOnly = true;
 									} else {
 										alert("Your goal must be an integer");
 									}
@@ -342,6 +373,11 @@
 								if (goal != false) {
 									if (!isNaN(goal)) {
 										Meteor.call("addNewTodo", name, goal, message, issue, important);
+										template.find(".saveToDoButton").style.visibility = "hidden";
+										template.find(".editToDoButton").style.visbility = "hidden";
+										template.find(".nameInput").readOnly = true;
+										template.find(".goalInput").readOnly = true;
+										template.find(".messageInput").readOnly = true;
 									} else {
 										alert("Your goal must be an integer");
 									}
@@ -500,6 +536,11 @@
 		getLegislatorAddress: function(){
 			var ID = this._id; 
 			return legislators.findOne({_id: ID}).address;
+		},
+		
+		getLegislatorEmail: function() {
+			var ID = this._id;
+			return legislators.findOne({_id: ID}).phone;
 		},
 
 		/*getSaveLegislatorButtonID: function(){

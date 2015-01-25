@@ -2,6 +2,13 @@
 	padding: 45px;
 }
 
+BODY {
+	background-color: #FFFAE2;
+	background-size: cover; 
+	width: 100%;
+	height: 100%;
+}
+
 .checkbox, .issue {
 	display: inline;
 }
@@ -55,9 +62,13 @@ padding-left: 35px;
 	display: inline;
 }
 
-#editNameButton, #editEmailButton, #editStoryButton,#editInspirationButton, #editZipCodeButton{
+
+#saveNameButton, #saveStoryButton,#saveInspirationButton, #saveZipCodeButton{
 	visibility: hidden;
 }
+
+
+
 
 #alertMessage, #savedSuccessfullyMessage {
 	visibility: hidden;

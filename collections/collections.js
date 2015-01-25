@@ -1,7 +1,8 @@
 actionItems = new Meteor.Collection("actionItems");
 legislators = new Meteor.Collection("legislators");
 issues = new Meteor.Collection("issues"); //redefined in profile-home.js
-notifications = new Meteor.Collection("notifications"); 
+notifications = new Meteor.Collection("notifications");
+districts = new Meteor.Collection("districts");
 
 //adding a new collection 
 //legislatorRowArray = new Meteor.Collection("legislatorRowArray"); 

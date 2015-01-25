@@ -237,11 +237,24 @@ Template.userSettings.helpers({
 	getUserName: function() {
 		var name = Meteor.user().profile.name;
 		
-		
 		return name;
 	
 	},
-
+	/*
+	changeNameStyle: function() {
+		var name = Meteor.user().profile.name;
+		if (name.length !== 0){
+			console.log("aaaaaayyyooooooasdfasdf")
+			document.getElementById("saveNameButton").style.visibility = "hidden";
+			document.getElementById("editNameButton").style.visibility = "visible";
+			document.getElementById("inputName").readOnly = true;
+		}
+		else{
+			document.getElementById("saveNameButton").style.visibility = "visible";
+			document.getElementById("editNameButton").style.visibility = "hidden";
+			document.getElementById("inputName").readOnly = false;
+		}
+	},
 	/*
 	nameStyle: function(){
 		var input = document.getElementById("inputName").value;

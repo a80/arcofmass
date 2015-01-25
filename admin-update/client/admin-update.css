@@ -3,7 +3,8 @@
 }
 
 #admin-home-button:hover {
-	cursor:pointer;
+	cursor: pointer;
+	color: orange;
 }
 
 .checkbox, .todo, .goal, .message, .save,.edit, .deleteToDo {
