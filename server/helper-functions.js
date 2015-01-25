@@ -298,13 +298,11 @@ Meteor.methods({
 		}
   }
 },*/
-  assignUserDistrict: function() {
+  assignUserDistrict: function(zip) {
     console.log("called in server"); 
 	  //legInfo = getUserLegislatorInfo();
 
     var legInfo; 
-
-    zip = Meteor.user().profile.zip;
 
 	   if (zip != '' && zip != null) {
 		var lat = '';
