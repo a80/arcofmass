@@ -243,6 +243,7 @@ Template.adminLogin.events({
 
   'click #admin-login-button': function(event, template) {
     event.preventDefault();
+	document.getElementById("loginFail").style.visibility = "hidden";
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
 	
@@ -253,6 +254,7 @@ Template.adminLogin.events({
 					Meteor.loginWithPassword(username, password, function(error) {
 					  if (error) {
 						console.log('admin login failed');
+						document.getElementById("loginFail").style.visibility = "visible";
 					  } else {
 						console.log('admin login-succeeded');
 						Router.go('/admin');
