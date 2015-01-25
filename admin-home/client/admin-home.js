@@ -203,10 +203,36 @@ var graph;
 Template.adminIssueGraphView.rendered = function() {
 
 	Deps.autorun(function() {
-      //graph = progressBar(".adminHomeGraphDiv", 10);
+      graph = nothingSelected(".adminHomeGraphDiv");
+
 	});
 }
 
+function nothingSelected(el) {
+
+ 	var self = this;
+	var canvas; 
+
+  	var width = 1000; 
+  	var height = 600;
+
+  	var createCanvasSvg = function(el) {
+      d3.select(el)
+        .selectAll("svg")
+        .remove();
+        
+      	canvas = d3.select(el)
+                  .append("svg")
+                  .attr("width", width)
+                  .attr("height", height)
+                  .append("g"); 
+  }
+
+  	createCanvasSvg(el);
+
+
+  	canvas.append('text').text("Select an issue or district.").attr("x", 30).attr("y", 100).attr("fill", "white").style("font-size", "50px");
+}
 
 function progressBar(el, dict) {
 
