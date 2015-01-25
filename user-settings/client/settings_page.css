@@ -2,12 +2,17 @@
 	padding: 45px;
 }
 
-BODY {
+/*BODY {
 	background-color: #FFFAE2;
+}*/
+
+#userSettingsBody, #userSettingsColumn1, #userSettingsColumn2 {
+	background-color: #FFFAE2; 
 	background-size: cover; 
 	width: 100%;
 	height: 100%;
 }
+
 
 .checkbox, .issue {
 	display: inline;
