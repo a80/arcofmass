@@ -1,4 +1,7 @@
-//<<<<<<< HEAD
+Meteor.subscribe("adminHomeAllUsers");
+
+
+
 Template.adminHome.helpers({
 	returnUserId: function() {
 		return Meteor.user().username; 
@@ -155,21 +158,39 @@ Template.graphViewIssueList.events({
 			Session.set("adminSelectedIssueGraphView", selectedIssueInList); 
 			console.log(Session.get("adminSelectedIssueGraphView"));
 
-			//now need to rerender the graph. 
+			//now need to rerender the graph.
+			//get the data needed. 
 
-			Meteor.call("getDistrictsByIssue", selectedIssueInList, function(error, result) {
+			var result = [];
+ 			var filteredUsersByIssue = Meteor.users.find({"profile.issues": {$in: [selectedIssueInList]}}).fetch(); 
+
+    		console.log(filteredUsersByIssue); 
+
+    		for (var i = 0; i < filteredUsersByIssue.length; i++) {
+      			var user = filteredUsersByIssue[i]; 
+      			//console.log("this is user: " + user); 
+      			if (result[user.profile.district] == null) {
+        			result[user.profile.district] = 1;
+      			} else {
+        			result[user.profile.district] += 1;
+      			}
+    		}
+
+    		console.log(result); 
+
+    		graph = progressBar(".adminHomeGraphDiv", result);
+    		//return result;
+
+
+			/*Meteor.call("getDistrictsByIssue", selectedIssueInList, function(error, result) {
 				if (!error) {
 					console.log(result); 
-
 					console.log(result); 
-
 					array = result; 
 					//graph = progressBar(".adminHomeGraphDiv", 10, "what: ");
 				}
 			}); 
-
-			console.log(array); 
-			
+			console.log(array); */
 
 		}
 
@@ -182,9 +203,9 @@ var graph;
 Template.adminIssueGraphView.rendered = function() {
 
 	Deps.autorun(function() {
-	var issueList = issues.find({}).fetch();
+	//var issueList = issues.find({}).fetch();
     
-      graph = progressBar(".adminHomeGraphDiv", 10, "what: ");
+      //graph = progressBar(".adminHomeGraphDiv", 10);
 	});
 
   //how to vary other elements in progressBar based on function arguments. 
@@ -192,15 +213,27 @@ Template.adminIssueGraphView.rendered = function() {
 }
 
 
-function progressBar(el, data, label) {
+function progressBar(el, dict) {
+
+	//parse the dict. 
+	var keys = []; 
+	var values = []; 
+
+	for (var key in dict) {
+		keys.push(key); 
+		values.push(dict[key]); 
+	}
+
+	//console.log(keys, values);
+
  	var self = this;
 	var canvas; 
 
-  	var width = 950; 
-  	var height = 400;
+  	var width = 1000; 
+  	var height = 600;
 
   	var widthScale = d3.scale.linear()
-                      .domain([0, 20])
+                      .domain([0, 10])
                       .range([0, height]); 
 
   	var color = d3.scale.linear()
@@ -208,9 +241,13 @@ function progressBar(el, data, label) {
                 .range(["red", "blue"]);
 
     var yAxis = d3.svg.axis()
-    				.scale(d3.scale.linear().domain([0, 20]).range([height, 0]))
+    				.scale(d3.scale.linear().domain([0, 20]).range([0.9*height, 0]))
     				.orient("left")
     				.ticks(5); 
+
+    var xAxis = d3.svg.axis()
+    				.scale(d3.scale.linear().domain([0, keys.length]).range([0, width]))
+    				.orient("bottom"); 
 
 
   	var createCanvasSvg = function(el) {
@@ -222,8 +259,7 @@ function progressBar(el, data, label) {
                   .append("svg")
                   .attr("width", width)
                   .attr("height", height)
-                  .append("g")
-                  .attr("transform", "translate(0, 50)"); 
+                  .append("g"); 
   }
 
   	createCanvasSvg(el);
@@ -241,7 +277,7 @@ function progressBar(el, data, label) {
   						.attr("y", function(d, i) {return i*100; });*/
 
   	var bars = canvas.selectAll("rect")
-                  .data([10, 20, 30, 40, 50])
+                  .data(values)
                   .enter()
                     .append("rect")
                     .attr("y", 600)
@@ -250,13 +286,17 @@ function progressBar(el, data, label) {
                     .transition()
                     .duration(1000)
                     .attr("height", function (d) { return widthScale(d); })
-                    .attr("y", function(d, i) {return height - widthScale(d) })
+                    .attr("y", function(d, i) {return 0.9*(height - widthScale(d)) })
                     .attr("x", function(d, i) {return 100 + (i*120)}); 
                     //.attr("fill", function(d) {return color(d)});
 
     canvas.append("g")
     	.attr("transform", "translate(100, 0)")
     	.call(yAxis);
+
+    canvas.append("g")
+    	.attr("transform", "translate(0, 500)")
+    	.call(xAxis);
 
 
 

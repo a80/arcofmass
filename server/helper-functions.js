@@ -355,6 +355,7 @@ Meteor.methods({
 		return [];
 	}
   },
+
   getIssuesByDistrict: function(district) {
 	  result = [];
 	  for (user in Meteor.users.find({"profile.district": district}).fetch()) {
@@ -368,16 +369,17 @@ Meteor.methods({
 	  }
     return result; 
   },
+
   getDistrictsByIssue: function(issue) {
 	  var result = [];
 
     var filteredUsersByIssue = Meteor.users.find({"profile.issues": {$in: [issue]}}).fetch(); 
 
-    console.log(filteredUsersByIssue); 
+    //console.log(filteredUsersByIssue); 
 
     for (var i = 0; i < filteredUsersByIssue.length; i++) {
       var user = filteredUsersByIssue[i]; 
-      console.log("this is user: " + user); 
+      //console.log("this is user: " + user); 
       if (result[user.profile.district] == null) {
         result[user.profile.district] = 1;
       } else {
