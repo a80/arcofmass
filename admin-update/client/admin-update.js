@@ -105,7 +105,7 @@
 													if (legPhone != false) {
 														Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
 														template.find(".saveLegislatorButton").style.visibility = "hidden";
-														template.find(".editLegislatorButton").style.visbility = "hidden";
+														template.find(".editLegislatorButton").style.visibility = "visible";
 														template.find(".nameInput").readOnly = true;
 														template.find(".addressInput").readOnly = true;
 														template.find(".emailInput").readOnly = true;
@@ -132,6 +132,16 @@
 				}
 			});
 			
+		},
+
+		"click .editLegislatorButton": function(event, template) {
+				template.find(".editLegislatorButton").style.visibility = "hidden";
+				template.find(".saveLegislatorButton").style.visibility = "visible";
+				template.find(".nameInput").readOnly = false;
+				template.find(".emailInput").readOnly = false;
+				template.find(".addressInput").readOnly = false;
+				template.find(".phoneInput").readOnly = false;
+
 		},
 
 		"click .deleteLegislatorButton": function(event, template) {
@@ -267,8 +277,8 @@
 									if (!isNaN(goal)) {
 										Meteor.call("addNewTodo", name, goal, message, issue, important);
 										template.find(".saveToDoButton").style.visibility = "hidden";
-										template.find(".editToDoButton").style.visbility = "hidden";
-										template.find(".nameInput").readOnly = true;
+										template.find(".editToDoButton").style.visibility = "visible";
+										template.find(".todoInput").readOnly = true;
 										template.find(".goalInput").readOnly = true;
 										template.find(".messageInput").readOnly = true;
 									} else {
@@ -311,15 +321,20 @@
 				}
 			}
 		},
+		"click .editToDoButton": function(event, template) {
+			template.find(".editToDoButton").style.visibility = "hidden";
+			template.find(".saveToDoButton").style.visibility = "visible";
+			template.find(".todoInput").readOnly = false;
+			template.find(".goalInput").readOnly = false;
+			template.find(".messageInput").readOnly = false;
+		},
 
 	});
 	
 	Template.toDoRowNew.events({
 		"click #saveToDoButton": function(event, template) {
-			console.log("ITS CALLEDAS");
 			var name = template.find(".todoInput").value;
 			var goal = template.find(".goalInput").value;
-			console.log(goal); 
 			var message = template.find(".messageInput").value;
 			//var dropdown = Template.instance().find("#dropdownMenu1");
 			//var issue = dropdown.options[dropdown.selectedIndex].text;
@@ -327,9 +342,6 @@
 			
 			var important = false;
 			if (c.checked) important = true;
-
-			console.log(c.checked); 
-			console.log(important); 
 
 			//var issue = $(".active").text;
 

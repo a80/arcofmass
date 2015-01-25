@@ -12,7 +12,13 @@
 	padding: 3px
 }
 
+.saveLegislatorButton {
+	visibility: hidden;
+}
 
+.saveToDoButton {
+	visibility: hidden;
+}
 
 .row,.legRow{
 	text-align: center;
