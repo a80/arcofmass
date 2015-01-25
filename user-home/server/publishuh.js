@@ -11,3 +11,9 @@ Meteor.publish("userHomeActions", function() {
 	}
 	return todos;
 });
+
+Meteor.publish("userNotifications", function() {
+	console.log(notifications.find({}).fetch());
+	//console.log("RIGHT HERE"); 
+	return notifications.find({});
+});

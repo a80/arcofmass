@@ -135,6 +135,10 @@ Template.graphViewIssueList.helpers({
 Template.graphViewIssueList.events({
 	"click .list-group-item": function(event, template){
 
+		var array; 
+
+
+
 			if (template.find(".active") === null) {
 				$(event.target).addClass('active');
 				$(event.target).addClass('activeItem');
@@ -152,7 +156,20 @@ Template.graphViewIssueList.events({
 			console.log(Session.get("adminSelectedIssueGraphView"));
 
 			//now need to rerender the graph. 
-			graph = progressBar(".adminHomeGraphDiv", 10, "what: ");
+
+			Meteor.call("getDistrictsByIssue", selectedIssueInList, function(error, result) {
+				if (!error) {
+					console.log(result); 
+
+					console.log(result); 
+
+					array = result; 
+					//graph = progressBar(".adminHomeGraphDiv", 10, "what: ");
+				}
+			}); 
+
+			console.log(array); 
+			
 
 		}
 

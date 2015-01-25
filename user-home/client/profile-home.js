@@ -1,6 +1,7 @@
 Meteor.subscribe("userHomeIssues");
 Meteor.subscribe("userNotifications");
 
+// notifications = new Mongo.Collection("notifications");
 //profileHome
 
 Template.profileHome.events({
@@ -29,7 +30,9 @@ Template.profileHome.helpers({
 	},
 
   returnNotifications: function() {
-    //return notifications from most recent to oldest. 
+    //return notifications from most recent to oldest.
+    var n = notifications.find().fetch();
+    console.log(Meteor.user()._id, n);
     return notifications.find({userId: Meteor.user()._id}, {sort: {dateCompleted: -1}}); 
   }
 });
@@ -177,9 +180,9 @@ Template.profileHome.rendered = function() {
 
 	Deps.autorun(function() {
 	  var issueList = issues.find({}).fetch();
-    var notifications = notifications.find({issueId: this._id}, {sort: {dateCompleted: -1}, limit: 3}); 
+    //var notifications = notifications.find({issueId: this._id}, {sort: {dateCompleted: -1}, limit: 3}); 
 
-    console.log(notifications); 
+    //console.log(notifications); 
     
     _.each(issueList, function(issue) {
       var graphID = issue.name.replace(/\s*/g, '');
