@@ -106,8 +106,10 @@
 <template name = "adminIssueGraphView"> 
   <!-- <h1>This is the graph view. </h1> --> 
     <div class = "container-fluid">
-    <div class="row">
+    <div class="row" id = "adminIssueGraphViewRow">
       <div class="col-md-2">
+
+        <div id = "toggleButtonsGraphView">
 
       <button type = "button" class = "btn btn-default {{graphViewIssueListActive}}" id = "toggleIssueList">
       By issue
@@ -116,6 +118,7 @@
     <button type = "button" class = "btn btn-default {{graphViewDistrictListActive}}" id = "toggleDistrictList">
       By district.
     </button>
+  </div> 
         {{#if graphViewShowIssueList}}
           {{> graphViewIssueList}}
         {{else}}
@@ -139,18 +142,16 @@
 
 <template name = "graphViewIssueList">
   <div id = "graphViewIssueListDiv"> 
-  <p> IssueList </p>
           <!-- List of all issues -->
     {{#each getUserIssues}}
-    <a href="#" class="list-group-item">{{returnIssueName}}</a>
+    <a href="#" class="graphViewListItem list-group-item" ><span class = "listItemText">{{returnIssueName}}</span></a>
     {{/each}}
   </div> 
 </template> 
 
 <template name = "graphViewDistrictList">
-  <p> District List </p>
           <!-- List of all districts -->
     {{#each getDistricts}}
-    <a href="#" class="list-group-item">{{returnDistrictName}}</a>
+    <a href="#" class="graphViewListItem list-group-item"><span class = "listItemText">{{returnDistrictName}}</span></a>
     {{/each}}
 </template> 
