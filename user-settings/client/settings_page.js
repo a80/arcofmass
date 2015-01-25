@@ -131,7 +131,7 @@ Meteor.subscribe("userSettingsData");
 			Meteor.call("cleanInput", myZip, function(error, myZip) {
 				if (myZip != false) {
 					var regPostalCode = new RegExp("^\\d{5}(-\\d{4})?$");
-					if (regPostalCode.test(myZip) == true) 
+					if (regPostalCode.test(myZip) == true) {
 						Meteor.call("assignUserDistrict", myZip, function(error, res) {
 							if (res) {
 								Meteor.call("modifyUserZip", myZip);

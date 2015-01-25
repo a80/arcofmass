@@ -32,9 +32,15 @@
 	visibility: hidden;
 }
 
-.row,.legRow{
+.legRow{
 	text-align: center;
-	padding-top: 75px;
+	
+	padding: 100px;
+}
+
+.row {
+	text-align: center;
+	padding: 150px;
 }
 
 #contactList, #addLegislator{
@@ -58,6 +64,7 @@
 
 .nameInput, .emailInput, .addressInput{
 	width: 300px;
+	display: inline;
 }
 .nameInput, .emailInput, .addressInput, #saveLegislatorButton, #editLegislatorButton, #deleteLegislatorButton {
 	display: inline;
