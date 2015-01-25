@@ -49,12 +49,12 @@
 	</div>
 	
 	<div class = 'title'>
-		<h2 id="theTitle" style="color:DarkOrange"><strong> Your Settings </strong></h2>
+		<h2 id="theTitle" style="color:DarkOrange; padding-left: 350px"><strong> Your Settings </strong></h2>
 	</div>
 	
 	
 	
-		<div class = "col-md-4" id = "userSettingsColumn1">
+		<div class = "col-md-4 col-md-offset-2 col-md-offset-6" id = "userSettingsColumn1">
 
 			<form class = "form">
 				<div class = "each">
@@ -84,6 +84,31 @@
 						</div>
 					</div>
 				</div>
+				<div class = "each">
+					<h5>Whom Do You Advocate For</h5>
+					<div class = "inspiration">
+						<div>
+
+							<input type="text" class="form-control" id="inputInspiration" placeholder="First Name of Your Inspiration" value="{{getUserInspiration}}" readonly> 
+							
+							<button type="button" class="btn btn-default" id="saveInspirationButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editInspirationButton">Edit</button>
+							<h5 id="alertInspiration" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
+						</div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Story</h5>
+					<div class = "story">
+						<div>
+							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story" readonly>{{getUserStory}}</textarea>
+							
+							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
+							<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
+						</div>
+					</div>
+				</div>
 				<!--
 				<div class = "each">
 					<h5>Email</h5>
@@ -99,7 +124,8 @@
 				</div>-->
 				<div class = "each">
 					
-						<h3 id="arcIssues" style="color:DarkOrange"> <strong>Issues of the Arc</strong></h3>
+						<h2 id="arcIssues" style="color:DarkOrange"> <strong>Issues of the Arc</strong></h2>
+						<h5 style="color:LightGray; padding-left:15px; padding-bottom:10px"> Click on the Issues Important to You</h5>
 
 						<!-- <ul>
 						{{#each getUserIssues}}
@@ -129,33 +155,9 @@
 					</div> -->
 					
 				</div>
+				
 				<div class = "each">
-					<h5>Whom Do You Advocate For</h5>
-					<div class = "inspiration">
-						<div>
-
-							<input type="text" class="form-control" id="inputInspiration" placeholder="First Name of Your Inspiration" value="{{getUserInspiration}}" readonly> 
-							
-							<button type="button" class="btn btn-default" id="saveInspirationButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editInspirationButton">Edit</button>
-							<h5 id="alertInspiration" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
-						</div>
-					</div>
-				</div>
-				<div class = "each">
-					<h5>Story</h5>
-					<div class = "story">
-						<div>
-							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story" readonly>{{getUserStory}}</textarea>
-							
-							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
-							<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
-						</div>
-					</div>
-				</div>
-				<div class = "each">
-					<h3 id="passwordTitle" style="color:DarkOrange"><strong> Change Your Password</strong></h3>
+					<h2 id="passwordTitle" style="color:DarkOrange"><strong> Change Your Password</strong></h2>
 					<h5>Password</h5>
 					<div class = "password">
 						<div>
@@ -195,9 +197,10 @@
 			</form>
 			
 		</div>
+		<!--
 		<div class="col-md-8" style="padding-top:200px" id = "userSettingsColumn2s">
 			<img src ="http://i.imgur.com/E8y5NZH.jpg" style="width:70%; height:70%">
-		</div>
+		</div>-->
 	
 		
 	

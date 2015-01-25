@@ -31,9 +31,11 @@
 				delIssue = Session.get("adminSelectedIssue");
 				Meteor.call("delIssue", delIssue);
 			}
+			Session.set("adminSelectedIssue",undefined);
 			
 			
 		},
+
 
 		"click .list-group-item": function(event, template){
 			//event.target.addClass("active");
@@ -625,6 +627,9 @@
 	});
 
 	Template.adminUpdate.helpers({
+
+
+
 	  getUserIssues: function() {
 		//Meteor.call("getUserIssues");
 		//var userIssues =  

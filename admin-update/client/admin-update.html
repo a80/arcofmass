@@ -107,7 +107,10 @@
 	<div class= "col-md-9">
 		{{#if issueSelected}}
 			{{> updateFormField }}
+		{{else}}
+			{{> selectAnIssue}}
 		{{/if}}
+
 	</div>	
 	
 
@@ -149,7 +152,13 @@
 		<template name="legHead">
 			<h3 class="col-md-8" style="text-align:center">Contacts for {{getSelectedIssueName}}</h3>
 		</template>
-				
+		
+		<template name = "selectAnIssue">
+			<div id="selectIssueDiv">
+				<h1> Select an Issue</h1>
+
+			</div>
+		</template>
 
 				<template name="legislatorRow">
 					<div class="legRow" id="{{getLegID}}">
