@@ -689,9 +689,6 @@
 			Router.go("/admin"); 
 		},
 
-		"click #region-button": function(event) {
-			Router.go("/region"); 
-		}
 	});
 
 
