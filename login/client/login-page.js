@@ -34,6 +34,7 @@ Template.login.events({
   },
 
   'click #login-button': function(event, template) {
+	document.getElementById("loginFail").style.visibilty = "hidden";
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
@@ -44,6 +45,7 @@ Template.login.events({
 					Meteor.loginWithPassword(username, password, function(error) {
 					  if (error) {
 						console.log('login failed');
+						document.getElementById("loginFail").style.visibilty = "visible";
 					  } else {
 						console.log('login-succeeded');
 						Router.go('/profile');

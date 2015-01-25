@@ -16,6 +16,9 @@
 	/*-webkit-filter: sepia(30%);*/
 
 }
+#loginFail {
+	visibility: hidden;
+}
 
 #slogan {
 	/*position: fixed;
