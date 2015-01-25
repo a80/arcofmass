@@ -1,6 +1,18 @@
 .edit, #editLeg {
 	visibility: hidden;
 }
+#admin-home-button {
+  color: white;
+}
+
+#admin-home-button:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+#adminHomeArc {
+  color: DarkOrange;
+}
 
 #admin-home-button:hover {
 	cursor: pointer;
