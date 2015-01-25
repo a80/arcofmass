@@ -178,30 +178,25 @@ Meteor.methods({
 
     var id = Meteor.users.findOne({username: username})._id; 
 
-    //console.log("should get to here"); 
-
-    //console.log(id); 
-
     Roles.addUsersToRoles(id, ['regular']);
 
 
   },
   
   addNewLegislator: function(myName, myEmail, myAddress, myIssue, myPhone) {
-	  console.log("in addNewLegislator");
     legislators.upsert({name: myName}, {$set: {name: myName, email: myEmail, address: myAddress, issue: myIssue, phone: myPhone}});
   },
   addNewTodo: function(myName, myGoal, myMessage, myIssue, isImportant) {
-	actionItems.upsert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});	
+	 actionItems.upsert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});	
   },
   deleteTodo: function(myName) {
-	actionItems.remove({text: myName});
+	 actionItems.remove({text: myName});
   },
   deleteLegislator: function(myName) {
-	legislators.remove({name: myName});
+	 legislators.remove({name: myName});
   },
   addNewIssue: function(myName) {
-	issues.insert({name: myName, count: 0});
+	 issues.insert({name: myName, count: 0});
   },
   delIssue: function(myName) {
 	relUsers = Meteor.users.find({issues: {$in: myName}}).fetch();
