@@ -14,3 +14,7 @@ Meteor.publish("userHomeActions", function() {
 Meteor.publish("userNotifications", function() {
 	return notifications.find({});
 });
+
+Meteor.publish("allUsers", function() {
+	return Meteor.users.find();
+});
