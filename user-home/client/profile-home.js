@@ -13,6 +13,10 @@ Template.profileHome.events({
 	'click #user-settings-button': function() {
     Router.go('/user-settings');
   },
+  "click #logoutButton": function() {
+	  Meteor.logout();
+	  Router.go('/login');
+  }
 });
 
 

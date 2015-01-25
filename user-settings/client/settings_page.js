@@ -6,6 +6,10 @@ Meteor.subscribe("userSettingsData");
 		'click #user-home-button': function() {
     		Router.go('/profile');
   		},
+		"click #logoutButton": function() {
+			Meteor.logout();
+			Router.go('/login');
+		},
 
   		"click #saveNameButton": function(event){
   			document.getElementById("alertName").style.visibility = "hidden";
