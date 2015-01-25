@@ -76,7 +76,7 @@ padding-left: 35px;
 	padding-left: 20px;
 }
 
-#formProblem, #inputName, #inputUsername, #inputEmail, #inputPassword,#inputInspiration,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
+#inputName, #inputUsername, #inputEmail, #inputPassword,#inputInspiration,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
 	width: 305px;
 	height: 30px;
 
@@ -108,6 +108,6 @@ padding-left: 35px;
 
 
 
-#alertMessageWrong, #alertMessageMatch, #alertMessageBad, #savedSuccessfullyMessage, #alertName, #alertInspiration, #alertZip, #alertStory {
+#formProblem, #alertMessageWrong, #alertMessageMatch, #alertMessageBad, #savedSuccessfullyMessage, #alertName, #alertInspiration, #alertZip, #badZip, #alertStory {
 	visibility: hidden;
 }

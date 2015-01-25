@@ -329,10 +329,10 @@ Meteor.methods({
     if (legInfo != "Error") {
       Meteor.users.update({_id:Meteor.userId()}, {$set :{"profile.district": legInfo.data[0].district}});
 	     districts.upsert({name: legInfo.data[0].district}, {name: legInfo.data[0].district});
-		  return legInfo.data[0].district;
+		  return true;
 	  } else {
 		  //console.log("Didn't get info");
-		  return "Didn't get info"
+		  return false
 	  }
   },
 
