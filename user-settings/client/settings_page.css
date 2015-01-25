@@ -2,6 +2,20 @@
 	padding: 45px;
 }
 
+#user-home-button {
+  color: white;
+}
+
+#user-home-button:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+
+#adminHomeArc {
+  color: DarkOrange;
+}
+
 /*BODY {
 	background-color: #FFFAE2;
 }*/
