@@ -12,6 +12,9 @@
   cursor: pointer;
 }
 
+#glyphButtons{
+	text-align: right;
+}
 
 #profileHomeArc {
   color: DarkOrange;
@@ -53,6 +56,11 @@
 
 #passwordTitle, #arcIssues{
 	padding: 15px;
+	padding-top: 25px;
+}
+
+#arbDiv {
+	padding: 25px;
 }
 
 #theTitle{
@@ -110,4 +118,5 @@ padding-left: 35px;
 
 #formProblem, #alertMessageWrong, #alertMessageMatch, #alertMessageBad, #savedSuccessfullyMessage, #alertName, #alertInspiration, #alertZip, #badZip, #alertStory {
 	visibility: hidden;
+	position: absolute;
 }

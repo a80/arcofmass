@@ -29,11 +29,12 @@
       <p class = "navbar-text">Signed in as {{returnUserId}}.</p>
     </div>
 
-    <div>
-      <button type = "button" class = "btn btn-default navbar-btn" id = "user-settings-button">
+    <div id="glyphButtons">
+      <button type = "button" class = "btn btn-default navbar-btn" id = "user-settings-button"> Settings
       <span class = "glyphicon glyphicon-cog"></span>
       </button>
 	  <button type = "button" class = "btn btn-default navbar-btn" id = "logoutButton"> 
+	  	Logout
       <span class = "glyphicon glyphicon-log-out"></span>
       </button>
     </div>
@@ -183,12 +184,13 @@
 							<input type="password" class="form-control" id="confirmNPassword" placeholder="Confirm New Password" > 
 						<button type="button" class="btn btn-default" id="savePasswordButton">Save password</button>
 						
+						<h5 id= "savedSuccessfullyMessage" style="color:green">Saved Successfully!</h5>
 						<h5 id="alertMessageMatch" style="color:red;"> Whoops! Your new password and confirmed password need to match. </h5>
 
 						<h5 id="alertMessageWrong" style="color:red;"> Whoops! You entered your old password incorrectly. </h5>
 						<h5 id="alertMessageBad" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
 
-						<h5 id= "savedSuccessfullyMessage" style="color:green">Saved Successfully!</h5>
+						<div id="arbDiv"></div>
 						</div>
 						
 					</div>
