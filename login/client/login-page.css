@@ -16,7 +16,7 @@
 	/*-webkit-filter: sepia(30%);*/
 
 }
-#loginFail {
+#loginFail, #badName, #badPass, #createFail {
 	visibility: hidden;
 }
 
