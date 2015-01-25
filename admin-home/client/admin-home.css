@@ -61,3 +61,42 @@
 	background: white;
 	color: orange;
 }
+
+.panel {
+	background-color: #575757;
+	border: 2px solid orange;
+	outline: none;
+	box-shadow: none;
+	margin-right: 50px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	margin-left: 50px;
+}
+
+.adminHomeIssueListItems {
+	color: white;
+}
+
+#adminHomeIssueList {
+	list-style-type: none;
+    counter-reset: ol-counter;
+
+    margin: 0;
+    margin-left: 2em;
+    margin-right: 0;
+    padding-bottom: 5em;
+}
+
+#adminHomeIssueList > li {
+
+}
+
+#adminHomeIssueList > li:before {
+	content: counter(ol-counter);
+    counter-increment: ol-counter;
+
+    position: relative;
+    top: 90px;
+
+    font-size: 200%;
+}

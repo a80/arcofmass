@@ -58,10 +58,11 @@
 </template>
 
 <template name = "adminIssueListView"> 
-      <ol>
+
+      <ol id = "adminHomeIssueList">
       {{#each getUserIssues}}
         <!-- <li>Issue X</li> --> 
-        <li>{{> adminIssuePanel}}</li> 
+        <li class = "adminHomeIssueListItems">{{> adminIssuePanel}}</li> 
       {{/each}}
     </ol> 
 </template> 
