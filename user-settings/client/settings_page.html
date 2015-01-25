@@ -67,32 +67,6 @@
 						
 					</div>
 				</div>
-				<!--
-				<div class = "each">
-					<h5>Email</h5>
-					<div class = "email">
-						<div>
-
-							<input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{getUserEmail}}"> 
-							
-							<button type="button" class="btn btn-default" id="saveEmailButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editEmailButton">Edit</button>
-						</div>
-					</div>
-				</div>-->
-				<div class = "each">
-					<h5>Who You Advocate For</h5>
-					<div class = "inspiration">
-						<div>
-
-							<input type="text" class="form-control" id="inputInspiration" placeholder="Your Inspiration" value="{{getUserInspiration}}" readonly> 
-							
-							<button type="button" class="btn btn-default" id="saveInspirationButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editInspirationButton">Edit</button>
-							<h5 id="alertInspiration" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
-						</div>
-					</div>
-				</div>
 				<div class = "each">
 					<h5>Zip Code</h5>
 					<div class = "zipcode">
@@ -106,18 +80,19 @@
 						</div>
 					</div>
 				</div>
+				<!--
 				<div class = "each">
-					<h5>Story</h5>
-					<div class = "story">
+					<h5>Email</h5>
+					<div class = "email">
 						<div>
-							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story" readonly>{{getUserStory}}</textarea>
+
+							<input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{getUserEmail}}"> 
 							
-							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
-							<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
+							<button type="button" class="btn btn-default" id="saveEmailButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editEmailButton">Edit</button>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<div class = "each">
 					
 						<h3 id="arcIssues" style="color:DarkOrange"> <strong>Issues of the Arc</strong></h3>
@@ -149,6 +124,31 @@
 						<h4 class= "issue">Issue3</h4>
 					</div> -->
 					
+				</div>
+				<div class = "each">
+					<h5>Who You Advocate For</h5>
+					<div class = "inspiration">
+						<div>
+
+							<input type="text" class="form-control" id="inputInspiration" placeholder="Your Inspiration" value="{{getUserInspiration}}" readonly> 
+							
+							<button type="button" class="btn btn-default" id="saveInspirationButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editInspirationButton">Edit</button>
+							<h5 id="alertInspiration" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
+						</div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Story</h5>
+					<div class = "story">
+						<div>
+							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story" readonly>{{getUserStory}}</textarea>
+							
+							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
+							<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
+						</div>
+					</div>
 				</div>
 				<div class = "each">
 					<h3 id="passwordTitle" style="color:DarkOrange"><strong> Change Your Password</strong></h3>
