@@ -34,7 +34,20 @@ Template.profileHome.helpers({
     var n = notifications.find().fetch();
     console.log(Meteor.user()._id, n);
     return notifications.find({userId: Meteor.user()._id}, {sort: {dateCompleted: -1}}); 
-  }
+  }, 
+  returnInspiration: function() {
+    try {
+      insp = Meteor.user().profile.inspiration;
+      
+      if (insp != null && insp != "") {
+        return insp;
+      } else {
+        return "Someone";
+      }
+    } catch(e) {
+      return "Someone";
+    }
+  },
 });
 
 

@@ -678,6 +678,16 @@
 		"click #admin-home-button": function(event) {
 			Router.go("/admin"); 
 		},
+		"click #logoutButton": function(event) {
+			event.preventDefault();
+			Meteor.logout(function(error) {
+				if (error) {
+					console.log("Failed to logout");
+				} else {
+					console.log("Successfully logged out");
+				}
+			});
+		},
 
 	});
 

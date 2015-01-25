@@ -70,6 +70,6 @@ padding-left: 35px;
 
 
 
-#alertMessage, #savedSuccessfullyMessage {
+#alertMessageWrong, #alertMessageMatch, #alertMessageBad, #savedSuccessfullyMessage, #alertName, #alertInspiration, #alertZip, #alertStory {
 	visibility: hidden;
 }

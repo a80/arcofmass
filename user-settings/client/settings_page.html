@@ -20,7 +20,7 @@
   <nav class = "navbar navbar-default">
     <div class = "container">
       <div class = "navbar-header">
-        <a class = "navbar-brand" id = "user-home-button">you<strong>arc</strong>hange<strong>for</strong>SOMEBODYORSOMEPPL.</a>
+        <a class = "navbar-brand" id = "user-home-button">you<strong>arc</strong>hange<strong>for</strong>{{returnInspiration}}</a>
       </div>
 
     <div>
@@ -55,6 +55,7 @@
 							<input type="text" class="form-control" id="inputName" placeholder="Enter Name" value="{{getUserName}}" readonly> 
 							<button type="button" class = "btn btn-default" id="saveNameButton" >Save</button>
 							<button type="button" class = "btn btn-default"  id= "editNameButton" >Edit</button>
+							<h5 id="alertName" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
 
 						</div>
 						
@@ -82,6 +83,7 @@
 							
 							<button type="button" class="btn btn-default" id="saveInspirationButton">Save </button>
 							<button type="button" class = "btn btn-default"  id= "editInspirationButton">Edit</button>
+							<h5 id="alertInspiration" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
 						</div>
 					</div>
 				</div>
@@ -94,6 +96,7 @@
 							
 							<button type="button" class="btn btn-default" id="saveZipCodeButton">Save </button>
 							<button type="button" class = "btn btn-default"  id= "editZipCodeButton">Edit</button>
+							<h5 id="alertZip" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
 						</div>
 					</div>
 				</div>
@@ -105,6 +108,7 @@
 							
 							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
 							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
+							<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
 						</div>
 					</div>
 				</div>
@@ -167,7 +171,10 @@
 							<input type="password" class="form-control" id="confirmNPassword" placeholder="Confirm New Password" > 
 						<button type="button" class="btn btn-default" id="savePasswordButton">Save password</button>
 						
-						<h5 id="alertMessage" style="color:red;"> Whoops! Your new password and confirmed password need to match. </h5>
+						<h5 id="alertMessageMatch" style="color:red;"> Whoops! Your new password and confirmed password need to match. </h5>
+
+						<h5 id="alertMessageWrong" style="color:red;"> Whoops! You entered your old password incorrectly. </h5>
+						<h5 id="alertMessageBad" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
 
 						<h5 id= "savedSuccessfullyMessage" style="color:green">Saved Successfully!</h5>
 						</div>
