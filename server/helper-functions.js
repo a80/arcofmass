@@ -389,14 +389,40 @@ Meteor.methods({
   //helper functions for notifications. 
 
   insertNotification: function(toDoId, issueId) {
+    console.log("toDoId: ", toDoId); 
+
+    console.log("issueId: ", issueId); 
     //get userID
-    userId = Meteor.user()._id; 
-    notifications.insert({userId: userId, toDoId: toDoId, issueId: issueId, dateCompleted: new Date()}); 
+    //console.log(notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}}).fetch()[0]); 
+    //var mostRecentAssociatedNotification = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}, limit: 1}).fetch();
+    //console.log("most recent: " + mostRecentAssociatedNotification.dateCompleted); 
+
+    var mostRecentAssociatedNotification = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}}).fetch()[0]
+
+    console.log(mostRecentAssociatedNotification);
+
+    if (mostRecentAssociatedNotification != undefined) {
+      //notification exists, get userId 
+      var assocUserId = mostRecentAssociatedNotification.userId;
+      var assocInspiration = Meteor.users.findOne({_id: assocUserId}).profile.inspiration;  
+      //console.log(assocInspiration); 
+      inspirations.insert({userId: Meteor.user()._id, changeFor: assocInspiration, changeForUserId: assocUserId, toDoId: toDoId}); 
+      //helped.insert({userId: Meteor.user()._id, userName: Meteor.user().profile.name, changeFor: assocInspiration, changeForUserId: assocUserId, toDoId: toDoId, value: 1.0})
+      helped.insert({_id: toDoId, source: Meteor.user().profile.name, target: assocInspiration, value: "1.0"});
+    }
+
+    //userId = Meteor.user()._id; 
+    notifications.insert({userId: Meteor.user()._id, toDoId: toDoId, issueId: issueId, dateCompleted: new Date()}); 
+
   }, 
 
   deleteNotification: function(toDoId) {
     userId = Meteor.user()._id; 
+    userName = Meteor.user().profile.name; 
     notifications.remove({userId: userId, toDoId: toDoId}); 
+    inspirations.remove({userId: userId, toDoId: toDoId}); 
+    helped.remove({source: userId, _id: toDoId});
+    //helped.remove({userId: userId, toDoId: toDoId}); 
   },
 
   //put comma after above function

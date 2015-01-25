@@ -29,10 +29,7 @@ Template.profileHome.helpers({
 		return Meteor.user().username; 
 	},
 
-  returnNotifications: function() {
-    //return notifications from most recent to oldest.
-    return notifications.find({userId: Meteor.user()._id}, {sort: {dateCompleted: -1}}); 
-  }, 
+  
   returnInspiration: function() {
     try {
       insp = Meteor.user().profile.inspiration;
@@ -46,6 +43,14 @@ Template.profileHome.helpers({
       return "Someone";
     }
   },
+
+  showMyNotifications: function() {
+    if (Session.get("showMyNotifications") === undefined) {
+      return true; 
+    } else {
+      return Session.get("showMyNotifications"); 
+    }
+  }
 });
 
 
@@ -310,3 +315,10 @@ function progressBar(el, data, label, notifications) {
   
 
 }
+
+Template.myNotificationsList.helpers({
+  returnNotifications: function() {
+    //return notifications from most recent to oldest.
+    return notifications.find({userId: Meteor.user()._id}, {sort: {dateCompleted: -1}}); 
+  }, 
+})
