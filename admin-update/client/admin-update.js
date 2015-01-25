@@ -671,6 +671,22 @@
 
 
 	});
+	
+	Template.legHead.helpers({
+		getSelectedIssueName: function() {
+			console.log("template should now appear, issue is "); 
+			return Session.get("adminSelectedIssue"); 
+
+		}, 
+	});
+	
+	Template.toDoHead.helpers({
+		getSelectedIssueName: function() {
+			console.log("template should now appear, issue is "); 
+			return Session.get("adminSelectedIssue"); 
+
+		}, 
+	});
 
 	Template.adminUpdate.events({
 		"click #admin-home-button": function(event) {
