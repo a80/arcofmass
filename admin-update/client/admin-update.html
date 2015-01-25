@@ -83,20 +83,24 @@
 			</script>
 	</head>
 	<div class = "col-md-3">
-		<button type="button" class="btn btn-default" id ="addIssueButton">
-			Add Issue
-		</button>
-				
-		<input type="text" id="addIssueField" class="form-control" aria-label="..." placeholder = "New Issue">
-				
-		<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete Current Issue
-		</button>
-		  
-		    <!-- List of all issues -->
-		{{#each getUserIssues}}
-		<a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
-		{{/each}}
-
+		<div id="issueBtnDiv">
+			<button type="button" class="btn btn-default" id ="addIssueButton">
+				Add Issue
+			</button>
+		</div>
+		<div id="addIssueFieldDiv">
+			<input type="text" id="addIssueField" class="form-control" aria-label="..." placeholder = "New Issue">
+		</div>	
+		<div id="deleteBtnDiv">	
+			<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete  Issue
+			</button>
+		</div>
+		<div id="listDiv">  
+			    <!-- List of all issues -->
+			{{#each getUserIssues}}
+			<a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
+			{{/each}}
+		</div>
 		</div>
 
 	
@@ -153,7 +157,7 @@
 						
 					 	<input type="text" class="form-control nameInput" id="{{getNameID}}" aria-label="..." placeholder = "Representative" value="{{getLegislatorName}}" readonly = true>
 					 	<input type="text" class="form-control emailInput" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}" readonly = true>
-						<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}" readonly = true>
+						<!--<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}" readonly = true>-->
 						<input id="{{getPhoneID}}" type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" value="{{getLegislatorPhone}}" readonly = true>
 							 
 						 <button type="button" class="btn btn-default saveLegislatorButton" onclick="toEditLegislator()" id = "{{getSaveLegislatorButtonID}}">
@@ -176,7 +180,7 @@
 						
 					 	<input type="text" class="form-control nameInput" aria-label="..." placeholder = "Representative" >
 					 	<input type="text" class="form-control emailInput" aria-label="..." placeholder = "Email">
-						<input type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" >
+						<!--<input type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" >-->
 						<input type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" >
 							 
 						 <button type="button" class="btn btn-default saveNewLegislatorButton" onclick="toEditLegislator()" id = "saveLegislatorButton">

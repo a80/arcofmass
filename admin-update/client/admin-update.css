@@ -47,6 +47,28 @@
 	text-align: center;
 }
 
+#issueBtnDiv, #addIssueFieldDiv, #deleteBtnDiv{
+	padding-right: 5px;
+	display: inline;
+}
+
+#newIssueField{
+	width: 75px;
+
+}
+
+
+#issueBtnDiv, #deleteBtnDiv{
+	padding-bottom: 2px;
+}
+
+#listDiv{
+	padding-top: 10px;
+	width: 460px;
+}
+
+
+
 #todoList{
 	text-align: center;
 	padding: 10px
@@ -54,7 +76,7 @@
 }
 
 #issueSelect {
-	width: 405px;
+	width: 460px;
 	padding-top:10px;
 }
 
@@ -62,11 +84,11 @@
 	display: inline;
 }
 
-.nameInput, .emailInput, .addressInput{
+.nameInput, .emailInput, .addressInput, .phoneInput{
 	width: 300px;
 	display: inline;
 }
-.nameInput, .emailInput, .addressInput, #saveLegislatorButton, #editLegislatorButton, #deleteLegislatorButton {
+.nameInput, .emailInput,.phoneInput, .addressInput, #saveLegislatorButton, #editLegislatorButton, #deleteLegislatorButton {
 	display: inline;
 }
 
@@ -97,12 +119,17 @@
 	width: 300px;
 }
 
-#addIssueButton, #addIssueField, #deleteIssueButton, #listGroup {
+#addIssueButton, #addIssueField, #deleteIssueButton {
 	display: inline;
+	
 }
 
-#addIssueField{
-	width: 150px;
+#addIssueButton{
+	width: 89px;
+}
+
+#addIssueField, #deleteIssueButton{
+	width: 100px;
 }
 
 #save, #edit {
