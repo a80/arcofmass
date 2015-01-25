@@ -81,28 +81,13 @@
 	Template.legislatorRow.events({
 		"click .saveLegislatorButton": function(event, template) {
 
-
-			console.log(template.find(".nameInput").value); 
-
-
 			var legName = template.find(".nameInput").value;	
 
-			console.log(template.find(".emailInput").value); 
 			var legEmail = template.find(".emailInput").value;
 			var legAddress = template.find(".addressInput").value;
 			var legPhone = template.find(".phoneInput").value;
 			
-			//var dropdown = document.getElementById("dropdownMenu1");
-
-			//console.log(dropdown);
-			//var issue = dropdown.options[dropdown.selectedIndex].text;
-			//console.log("I have clicked the savelegislator button. submitted.");
-			//var issue = $(".active").text; 
-
 			var issue = Session.get("adminSelectedIssue"); 
-			console.log(issue); 
-			//console.log("got here");
-			//console.log(issue); 
 			Meteor.call("cleanInput", legName, function(error, legName) {
 				if (legName != false) {
 					Meteor.call("cleanInput", legAddress, function(error, legAddress) {
@@ -153,7 +138,6 @@
 			//Meteor.call("deleteLegislatorRowFunction");
 			var numberOfRows; 
 			var name = template.find(".nameInput").value;
-			console.log(name); 
 			Meteor.call("deleteLegislator", name);
 			
 			if (Session.get("newLegislatorRowArray") != undefined) {
@@ -168,33 +152,16 @@
 		},
 	});
 
-
-
 	Template.legislatorRowNew.events({
 		"click #saveLegislatorButton": function(event, template) {
-
-
-			console.log(template.find(".nameInput").value); 
-
-
 			var legName = template.find(".nameInput").value;	
 
-			console.log(template.find(".emailInput").value); 
 			var legEmail = template.find(".emailInput").value;
 			var legAddress = template.find(".addressInput").value;
 			var legPhone = template.find(".phoneInput").value;
 			
-			//var dropdown = document.getElementById("dropdownMenu1");
-
-			//console.log(dropdown);
-			//var issue = dropdown.options[dropdown.selectedIndex].text;
-			//console.log("I have clicked the savelegislator button. submitted.");
-			//var issue = $(".active").text; 
 
 			var issue = Session.get("adminSelectedIssue"); 
-			console.log(issue); 
-			//console.log("got here");
-			//console.log(issue); 
 			Meteor.call("cleanInput", legName, function(error, legName) {
 				if (legName != false) {
 					Meteor.call("cleanInput", legAddress, function(error, legAddress) {
@@ -211,12 +178,18 @@
 												Meteor.call("cleanInput", legPhone, function(error, legPhone) {
 													if (legPhone != false) {
 														Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
-														template.find(".saveLegislatorButton").style.visibility = "hidden";
-														template.find(".editLegislatorButton").style.visbility = "hidden";
-														template.find(".nameInput").readOnly = true;
-														template.find(".addressInput").readOnly = true;
-														template.find(".emailInput").readOnly = true;
-														template.find(".phoneInput").readOnly = true;
+														var numberOfRows; 
+														var name = template.find(".nameInput").value;
+														
+														if (Session.get("newLegislatorRowArray") != undefined) {
+															if (Session.get("newLegislatorRowArray") === "1") {
+																Session.set("newLegislatorRowArray", undefined);
+															} else {
+																numberOfRows = Session.get("newLegislatorRowArray"); 
+																index = numberOfRows.length - 2; 
+																Session.set("newLegislatorRowArray", numberOfRows.substring(0, index));
+															}
+														}
 													} else {
 														alert("There was a problem with your phone number");
 													}
@@ -265,7 +238,6 @@
 	
 	Template.toDoRow.events({
 		"click .saveToDoButton": function(event, template) {
-			console.log("ITS CALLEDAS");
 			var name = template.find(".todoInput").value;
 			var goal = template.find(".goalInput").value;
 			console.log(goal); 
@@ -373,11 +345,17 @@
 								if (goal != false) {
 									if (!isNaN(goal)) {
 										Meteor.call("addNewTodo", name, goal, message, issue, important);
-										template.find(".saveToDoButton").style.visibility = "hidden";
-										template.find(".editToDoButton").style.visbility = "hidden";
-										template.find(".nameInput").readOnly = true;
-										template.find(".goalInput").readOnly = true;
-										template.find(".messageInput").readOnly = true;
+										var numberOfRows; 
+	    
+									    if (Session.get("newToDoRowArray") != undefined) {
+									    	if (Session.get("newToDoRowArray") === "1") {
+									    		Session.set("newToDoRowArray", undefined);
+									    	} else {
+									    		numberOfRows = Session.get("newToDoRowArray"); 
+									    		index = numberOfRows.length - 2; 
+												Session.set("newToDoRowArray", numberOfRows.substring(0, index));
+									    	}
+										}
 									} else {
 										alert("Your goal must be an integer");
 									}
@@ -538,7 +516,7 @@
 			return legislators.findOne({_id: ID}).address;
 		},
 		
-		getLegislatorEmail: function() {
+		getLegislatorPhone: function() {
 			var ID = this._id;
 			return legislators.findOne({_id: ID}).phone;
 		},
