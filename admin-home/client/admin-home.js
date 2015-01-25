@@ -1,5 +1,5 @@
 Meteor.subscribe("adminHomeAllUsers");
-
+Meteor.subscribe("adminHomeDistricts");
 
 
 Template.adminHome.helpers({
@@ -203,13 +203,8 @@ var graph;
 Template.adminIssueGraphView.rendered = function() {
 
 	Deps.autorun(function() {
-	//var issueList = issues.find({}).fetch();
-    
       //graph = progressBar(".adminHomeGraphDiv", 10);
 	});
-
-  //how to vary other elements in progressBar based on function arguments. 
-
 }
 
 
@@ -246,7 +241,7 @@ function progressBar(el, dict) {
     				.ticks(5); 
 
     var xAxis = d3.svg.axis()
-    				.scale(d3.scale.linear().domain([0, keys.length]).range([0, width]))
+    				.scale(d3.scale.ordinal().domain(keys).rangePoints([0, 170*keys.length], 0.9))
     				.orient("bottom"); 
 
 
@@ -286,26 +281,84 @@ function progressBar(el, dict) {
                     .transition()
                     .duration(1000)
                     .attr("height", function (d) { return widthScale(d); })
-                    .attr("y", function(d, i) {return 0.9*(height - widthScale(d)) })
-                    .attr("x", function(d, i) {return 100 + (i*120)}); 
+                    .attr("y", function(d, i) {return height - 50 - widthScale(d) })
+                    .attr("x", function(d, i) {return 80 + (i*180)}); 
                     //.attr("fill", function(d) {return color(d)});
 
     canvas.append("g")
-    	.attr("transform", "translate(100, 0)")
+    	.attr("transform", "translate(50, 16)")
     	.call(yAxis);
 
     canvas.append("g")
-    	.attr("transform", "translate(0, 500)")
+    	.attr("transform", "translate(50, 550)")
     	.call(xAxis);
 
-
-
-
-
-
-  
   	//canvas.append('text').text(label).attr("x", 30).attr("y", 100).attr("fill", "white").style("font-size", "100px");
 
 }
+
+//for graph view district list. 
+
+Template.graphViewDistrictList.helpers({
+	getDistricts: function() {
+		return districts.find({}).fetch(); 
+	}, 
+	returnDistrictName: function() {
+		return this.name; 
+	}
+}); 
+
+Template.graphViewDistrictList.events({
+	"click .list-group-item": function(event, template){
+
+		var array; 
+
+			if (template.find(".active") === null) {
+				$(event.target).addClass('active');
+				$(event.target).addClass('activeItem');
+			} else {
+
+				template.find(".activeItem").classList.remove("active"); 
+				template.find(".activeItem").classList.remove("activeItem");
+				$(event.target).addClass('active');
+				$(event.target).addClass('activeItem');
+			}
+			
+			selectedDistrictInList = $(".activeItem").text();
+			console.log("selected:" + selectedDistrictInList);
+			Session.set("adminSelectedDistrictGraphView", selectedDistrictInList); 
+			console.log(Session.get("adminSelectedDistrictGraphView"));
+
+			//now need to rerender the graph.
+			//get the data needed. 
+
+			var result = [];
+ 			var filteredUsersByDistrict = Meteor.users.find({"profile.district": selectedDistrictInList}).fetch(); 
+
+ 			console.log("here"); 
+
+    		console.log(filteredUsersByDistrict); 
+
+    		for (var i = 0; i < filteredUsersByDistrict.length; i++) {
+      			var user = filteredUsersByDistrict[i]; 
+      			var userIssues = user.profile.issues; 
+      			//console.log("this is user: " + user);
+
+      			for (var j = 0; j < userIssues.length; j++) {
+      				var issue = userIssues[j]; 
+      				if (result[issue] == null) {
+						result[issue] = 1;
+					} else {
+						result[issue] += 1;
+					}
+      			} 
+    		}
+
+    		console.log(result); 
+
+    		graph = progressBar(".adminHomeGraphDiv", result);
+		},
+
+}); 
 
 
