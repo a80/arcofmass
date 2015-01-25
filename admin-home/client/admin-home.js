@@ -241,7 +241,7 @@ function progressBar(el, dict) {
     				.ticks(5); 
 
     var xAxis = d3.svg.axis()
-    				.scale(d3.scale.ordinal().domain(keys).rangePoints([0, 170*keys.length], 0.9))
+    				.scale(d3.scale.ordinal().domain(keys).rangePoints([0, 175*keys.length], 0.9))
     				.orient("bottom"); 
 
 
