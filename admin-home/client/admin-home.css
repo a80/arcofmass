@@ -62,16 +62,7 @@
 	color: orange;
 }
 
-.panel {
-	background-color: #575757;
-	border: 2px solid orange;
-	outline: none;
-	box-shadow: none;
-	margin-right: 50px;
-	margin-top: 10px;
-	margin-bottom: 0px;
-	margin-left: 50px;
-}
+
 
 .adminHomeIssueListItems {
 	color: white;
@@ -87,16 +78,35 @@
     padding-bottom: 5em;
 }
 
-#adminHomeIssueList > li {
-
-}
 
 #adminHomeIssueList > li:before {
 	content: counter(ol-counter);
     counter-increment: ol-counter;
 
     position: relative;
-    top: 90px;
+    top: 85px;
 
     font-size: 200%;
 }
+
+.panel {
+	background-color: #575757;
+	border: 2px solid orange;
+	outline: none;
+	box-shadow: none;
+	margin-right: 50px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	margin-left: 50px;
+}
+
+.panel-body {
+	padding-top: 10px;
+	padding-left: 30px;
+	padding-bottom: 20px;
+}
+
+#adminIssuePanelName {
+
+}
+

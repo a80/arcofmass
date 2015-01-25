@@ -72,9 +72,11 @@
 
 	<div class="panel panel-default">
   		<div class="panel-body">
-    		<h1>{{returnIssueName}}</h1> 
+    		<h1 name = "adminIssuePanelName">{{returnIssueName}}</h1> 
 
-    		<p>Number of associated constituents: {{returnIssueCount}}</p> 
+        <h3> Following: {{returnIssueCount}} </h3>
+
+        <h3> Goal Completion: </h3>  
 
 
         <!-- return the todos --> 
@@ -83,7 +85,7 @@
 
         {{#each returnToDos}}
           <li>
-            <p>{{returnToDoName}}</p> 
+            <p>{{returnToDoName}}: [PUT PERCENTAGE]</p> 
           </li> 
         {{/each}}
 
