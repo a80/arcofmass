@@ -10,9 +10,7 @@
 	Template.adminUpdate.events({
 		"click #logoutButton": function(event) {
 			Meteor.logout();
-		},
-		"click #logoutButton": function(event) {
-			Accounts.logout();
+			Router.go('/login');
 		},
 		"click #addIssueButton": function(event) {
 			var newIssue = document.getElementById("addIssueField").value;
