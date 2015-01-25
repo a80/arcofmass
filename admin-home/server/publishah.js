@@ -8,3 +8,15 @@ Meteor.publish("adminHomeActions", function() {
 		return actionItems.find({});
 	}
 });
+
+Meteor.publish("adminHomeAllUsers", function() {
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
+		return Meteor.users.find();
+	}
+});
+
+Meteor.publish("adminHomeDistricts", function() {
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
+		return districts.find();
+	}
+});

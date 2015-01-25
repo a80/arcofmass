@@ -21,6 +21,32 @@
 	padding: 45px;
 }
 
+#user-home-button {
+  color: white;
+}
+
+#user-home-button:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+
+#adminHomeArc {
+  color: DarkOrange;
+}
+
+/*BODY {
+	background-color: #FFFAE2;
+}*/
+
+#userSettingsBody, #userSettingsColumn1, #userSettingsColumn2 {
+	background-color: #FFFAE2; 
+	background-size: cover; 
+	width: 100%;
+	height: 100%;
+}
+
+
 .checkbox, .issue {
 	display: inline;
 }
@@ -74,10 +100,14 @@ padding-left: 35px;
 	display: inline;
 }
 
-#editNameButton, #editEmailButton, #editStoryButton,#editInspirationButton, #editZipCodeButton{
+
+#saveNameButton, #saveStoryButton,#saveInspirationButton, #saveZipCodeButton{
 	visibility: hidden;
 }
 
-#alertMessage, #savedSuccessfullyMessage {
+
+
+
+#alertMessageWrong, #alertMessageMatch, #alertMessageBad, #savedSuccessfullyMessage, #alertName, #alertInspiration, #alertZip, #alertStory {
 	visibility: hidden;
 }

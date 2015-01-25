@@ -1,7 +1,6 @@
-Meteor.publish("userHomeIssues", function() {
-	console.log("RIGHT HERE"); 
+/*Meteor.publish("userHomeIssues", function() {
 	return issues.find({name: {$in: Meteor.users.find({_id: this.userId}).profile.issues}});
-});
+});*/
 Meteor.publish("userHomeActions", function() {
 	var todos = [];
 	//this should loop through all of the users issues
@@ -10,4 +9,15 @@ Meteor.publish("userHomeActions", function() {
 		todos.push(actionItems.find({name: {$in: item.actionItems}}));
 	}
 	return todos;
+});
+
+Meteor.publish("userNotifications", function() {
+	return notifications.find({});
+});
+
+Meteor.publish("allUsers", function() {
+	return Meteor.users.find();
+});
+Meteor.publish("legislatorData", function() {
+	return legislators.find({});
 });

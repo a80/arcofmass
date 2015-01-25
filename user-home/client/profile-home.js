@@ -1,6 +1,8 @@
 Meteor.subscribe("userHomeIssues");
 Meteor.subscribe("userNotifications");
-
+Meteor.subscribe("allUsers");
+Meteor.subscribe("legislatorData");
+// notifications = new Mongo.Collection("notifications");
 //profileHome
 
 Template.profileHome.events({
@@ -29,9 +31,22 @@ Template.profileHome.helpers({
 	},
 
   returnNotifications: function() {
-    //return notifications from most recent to oldest. 
+    //return notifications from most recent to oldest.
     return notifications.find({userId: Meteor.user()._id}, {sort: {dateCompleted: -1}}); 
-  }
+  }, 
+  returnInspiration: function() {
+    try {
+      insp = Meteor.user().profile.inspiration;
+      
+      if (insp != null && insp != "") {
+        return insp;
+      } else {
+        return "Someone";
+      }
+    } catch(e) {
+      return "Someone";
+    }
+  },
 });
 
 
@@ -104,9 +119,9 @@ Template.toDoPanel.helpers({
     userId = Meteor.user()._id;
     foundNotification = notifications.findOne({userId: userId, toDoId: this._id}); 
 
-    console.log("userId: " + userId);
-    console.log("toDoId: " + this._id);
-    console.log(foundNotification);
+    //console.log("userId: " + userId);
+    //console.log("toDoId: " + this._id);
+    //console.log(foundNotification);
 
     if (foundNotification != undefined) {
       return true; 
@@ -125,12 +140,13 @@ Template.toDoPanel.events({
       var toDoName = actionItems.findOne({_id: this._id}).text; 
       var issueOfInterest = this.issue;
       var issueId = issues.findOne({name: this.issue})._dbid; 
-      console.log("issueId: " + issueId); 
+      //console.log("issueId: " + issueId); 
       var toDoId = this._id; 
-      console.log(issueOfInterest);  
+      //console.log(issueOfInterest);  
+
 
       if (document.getElementById(idOfElement).checked) {
-        console.log("adding notification, incrementing");
+        //console.log("adding notification, incrementing");
         //add notification, increment
         Meteor.call("increaseToDoCount", toDoName, function(error) {
           if (!error) {
@@ -143,7 +159,7 @@ Template.toDoPanel.events({
           }
         }); 
       } else {
-        console.log("deleting notification, decrementing");
+        //console.log("deleting notification, decrementing");
         //remove notification, decrement.
         Meteor.call("decreaseToDoCount", toDoName, function(error) {
           if (!error) {
@@ -164,9 +180,26 @@ Template.toDoPanel.events({
       //select the link corresponding to the list element, display that issue. 
     	//retrieve id
     	var toDoListItemID = event.currentTarget.id;
-    	var toDoOfInterest = actionItems.findOne({_id: toDoListItemID}); 
+    	var toDoOfInterest = actionItems.findOne({_id: toDoListItemID});
+
+
+      //construct a dict. 
+      var inputNotifParam = []; 
+
+      var filteredNotifications = notifications.find({toDoId: toDoListItemID}, {sort: {dateCompleted: -1}, limit: 3}).fetch();
+      //console.log(filteredNotifications); 
+
+      for (var i = 0; i < filteredNotifications.length; i++) {
+        var notifOfInterest = filteredNotifications[i]; 
+        //console.log(Meteor.users.find().fetch()); 
+        var username = Meteor.users.findOne({_id: notifOfInterest.userId}).username; 
+        var timeElapsed = moment(notifOfInterest.dateCompleted).fromNow(); 
+        //console.log(username, timeElapsed); 
+        inputNotifParam[username] = timeElapsed; 
+      } 
+
     	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count, "to Do: " + this.text);
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count, "to Do: " + this.text, inputNotifParam);
     },
 
 });
@@ -177,13 +210,13 @@ Template.profileHome.rendered = function() {
 
 	Deps.autorun(function() {
 	  var issueList = issues.find({}).fetch();
-    var notifications = notifications.find({issueId: this._id}, {sort: {dateCompleted: -1}, limit: 3}); 
+    //var notifications = notifications.find({issueId: this._id}, {sort: {dateCompleted: -1}, limit: 3}); 
 
-    console.log(notifications); 
+    //console.log(notifications); 
     
     _.each(issueList, function(issue) {
       var graphID = issue.name.replace(/\s*/g, '');
-      graphs[graphID] = progressBar("#" + graphID, issue.count, "what: " + issue.name);
+      graphs[graphID] = progressBar("#" + graphID, issue.count, "what: " + issue.name, "");
     }); 
 	});
 
@@ -192,7 +225,20 @@ Template.profileHome.rendered = function() {
 }
 
 
-function progressBar(el, data, label) {
+function progressBar(el, data, label, notifications) {
+  //parse input notif. param:
+  //parse the dict. 
+  var keys = []; 
+  var values = []; 
+
+  for (var key in notifications) {
+    keys.push(key); 
+    values.push(notifications[key]); 
+  } 
+
+  //console.log(keys, values);
+
+
 	var self = this;
 	var canvas; 
 
@@ -250,8 +296,18 @@ function progressBar(el, data, label) {
   canvas.append('text').text('phone: [put]').attr("x", 30).attr("y", 300).attr("fill", "black").style("font-size", "40px");
   canvas.append('text').text('email: [put]').attr("x", 30).attr("y", 350).attr("fill", "black").style("font-size", "40px");
 
-  canvas.append('text').text(notifications.userId).attr("x", 30).attr("y", 450).attr("fill", "white").style("font-size", "30px");
-    canvas.append('text').text("[username] completed [todo] [min ago]").attr("x", 30).attr("y", 490).attr("fill", "white").style("font-size", "30px");
-    canvas.append('text').text("[username] completed [todo] [min ago]").attr("x", 30).attr("y", 530).attr("fill", "white").style("font-size", "30px");
+  //selectively display notifications. 
+  if (keys[0] != undefined) {
+    canvas.append('text').text(keys[0] + " completed " + values[0] + ".").attr("x", 30).attr("y", 450).attr("fill", "white").style("font-size", "30px");
+  }
+
+  if (keys[1] != undefined) {
+    canvas.append('text').text(keys[1] + " completed " + values[1] + ".").attr("x", 30).attr("y", 490).attr("fill", "white").style("font-size", "30px");
+  }
+  
+  if (keys[2] != undefined) {
+    canvas.append('text').text(keys[2] + " completed " + values[2] + ".").attr("x", 30).attr("y", 530).attr("fill", "white").style("font-size", "30px");
+  }
+  
 
 }

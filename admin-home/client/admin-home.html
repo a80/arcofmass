@@ -1,30 +1,15 @@
-<!-- <head>
-  <title>arcofmass</title>
-</head>
-
-<body>
-  <h1>Admin Page</h1>
-
-  {{> hello}}
-</body> -->
-
-<!-- <template name = "adminHomeBody">
-
-
-  
-  {{#if isInRole 'admin'}}
-    {{> adminHomeBody}}
-  {{else}}
-    {{> customErrorPageAdminHome }}
-  {{/if}}
-</template> --> 
-
 <template name="adminHome">
 
-    <nav class = "navbar navbar-default">
+  <head> 
+    <link rel = "stylesheet" type = "text/css" href = "admin-home.css">
+  </head>
+
+
+
+    <nav class = "navbar navbar-default navbar-fixed-top">
     <div class = "container">
       <div class = "navbar-header">
-        <a class = "navbar-brand" id = "admin-home-button">you<strong>arc</strong>hange<strong>for</strong>massachusetts</a>
+        <a class = "navbar-brand" id = "adminHomeBrandText" data-toggle="modal" data-target="#myModal"><span id = "adminHomeBrandYou">you</span><span id = "adminHomeArc"><strong>arc</strong></span>hange<strong>for</strong>massachusetts</a>
       </div>
 
     <div>
@@ -37,21 +22,16 @@
       </button>
 
     </div>
-    
     </div>
-
-
   </nav>
 
-	<h1>Administrator Home</h1>
 
-    <!-- <button type="button" class="btn btn-default" id = "updates-button"> Go to updates</button> -->
+<div id = "adminHomeBody">
 
+  <div id = "adminHomeHeader">
+  	<h1 id = "adminHomeTitle">Trending</h1>
 
-
-
-
-  	<h2>trending</h2>
+    <div id = "toggleButtons">
 
     <button type = "button" class = "btn btn-default {{returnListActive}}" id = "toggleListView">
       List View
@@ -63,19 +43,26 @@
       <span class = "glyphicon glyphicon-stats"></span>
     </button>
 
+  </div> 
+</div>
     {{#if toggleListViewDefault}}
       {{> adminIssueListView}}
     {{else}}
       {{> adminIssueGraphView}}
     {{/if}}
 
+  
+
+</div>
+
 </template>
 
 <template name = "adminIssueListView"> 
-      <ol>
+
+      <ol id = "adminHomeIssueList">
       {{#each getUserIssues}}
         <!-- <li>Issue X</li> --> 
-        <li>{{> adminIssuePanel}}</li> 
+        <li class = "adminHomeIssueListItems">{{> adminIssuePanel}}</li> 
       {{/each}}
     </ol> 
 </template> 
@@ -85,9 +72,11 @@
 
 	<div class="panel panel-default">
   		<div class="panel-body">
-    		<h1>{{returnIssueName}}</h1> 
+    		<h1 name = "adminIssuePanelName">{{returnIssueName}}</h1> 
 
-    		<p>Number of associated constituents: {{returnIssueCount}}</p> 
+        <h3> Following: {{returnIssueCount}} </h3>
+
+        <h3> Goal Completion: </h3>  
 
 
         <!-- return the todos --> 
@@ -96,7 +85,7 @@
 
         {{#each returnToDos}}
           <li>
-            <p>{{returnToDoName}}</p> 
+            <p>{{returnToDoName}}: [PUT PERCENTAGE]</p> 
           </li> 
         {{/each}}
 
@@ -117,8 +106,10 @@
 <template name = "adminIssueGraphView"> 
   <!-- <h1>This is the graph view. </h1> --> 
     <div class = "container-fluid">
-    <div class="row">
+    <div class="row" id = "adminIssueGraphViewRow">
       <div class="col-md-2">
+
+        <div id = "toggleButtonsGraphView">
 
       <button type = "button" class = "btn btn-default {{graphViewIssueListActive}}" id = "toggleIssueList">
       By issue
@@ -127,6 +118,7 @@
     <button type = "button" class = "btn btn-default {{graphViewDistrictListActive}}" id = "toggleDistrictList">
       By district.
     </button>
+  </div> 
         {{#if graphViewShowIssueList}}
           {{> graphViewIssueList}}
         {{else}}
@@ -149,17 +141,17 @@
 
 
 <template name = "graphViewIssueList">
-  <p> IssueList </p>
+  <div id = "graphViewIssueListDiv"> 
           <!-- List of all issues -->
     {{#each getUserIssues}}
-    <a href="#" class="list-group-item">{{returnIssueName}}</a>
+    <a href="#" class="graphViewListItem list-group-item" ><span class = "listItemText">{{returnIssueName}}</span></a>
     {{/each}}
+  </div> 
 </template> 
 
 <template name = "graphViewDistrictList">
-  <p> District List </p>
-          <!-- List of all issues -->
-    <!-- {{#each getDistricts}}
-    <a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
-    {{/each}} --> 
+          <!-- List of all districts -->
+    {{#each getDistricts}}
+    <a href="#" class="graphViewListItem list-group-item"><span class = "listItemText">{{returnDistrictName}}</span></a>
+    {{/each}}
 </template> 

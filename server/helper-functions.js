@@ -178,34 +178,29 @@ Meteor.methods({
 
     var id = Meteor.users.findOne({username: username})._id; 
 
-    //console.log("should get to here"); 
-
-    //console.log(id); 
-
     Roles.addUsersToRoles(id, ['regular']);
 
 
   },
   
   addNewLegislator: function(myName, myEmail, myAddress, myIssue, myPhone) {
-	  console.log("in addNewLegislator");
     legislators.upsert({name: myName}, {$set: {name: myName, email: myEmail, address: myAddress, issue: myIssue, phone: myPhone}});
   },
   addNewTodo: function(myName, myGoal, myMessage, myIssue, isImportant) {
-	actionItems.upsert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});	
+	 actionItems.upsert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});	
   },
   deleteTodo: function(myName) {
-	actionItems.remove({text: myName});
+	 actionItems.remove({text: myName});
   },
   deleteLegislator: function(myName) {
-	legislators.remove({name: myName});
+	 legislators.remove({name: myName});
   },
   addNewIssue: function(myName) {
-	issues.insert({name: myName, count: 0});
+	 issues.insert({name: myName, count: 0});
   },
   delIssue: function(myName) {
-	relUsers = Meteor.users.find({issues: {$in: myName}}).fetch();
-	for (person in relUser) {
+	relUsers = Meteor.users.find({"profile.issues": {$in: [myName]}}).fetch();
+	for (person in relUsers) {
 		delete person.issues[myName];
 		Meteor.users.find({name: person.name}).issues = person.issues;
 	}
@@ -333,7 +328,7 @@ Meteor.methods({
 	  
     if (legInfo != "Error") {
       Meteor.users.update({_id:Meteor.userId()}, {$set :{"profile.district": legInfo.data[0].district}});
-	  district.upsert({name: legInfo.data[0].district}, {name: legInfo.data[0].district});
+	     districts.upsert({name: legInfo.data[0].district}, {name: legInfo.data[0].district});
 		  return legInfo.data[0].district;
 	  } else {
 		  //console.log("Didn't get info");
@@ -355,10 +350,11 @@ Meteor.methods({
 		return [];
 	}
   },
+
   getIssuesByDistrict: function(district) {
 	  result = [];
-	  for (user in Meteor.users.find({district: district}).fetch()) {
-			for (issue in user.issues) {
+	  for (user in Meteor.users.find({"profile.district": district}).fetch()) {
+			for (issue in user.profile.issues) {
 				if (result[issue] == null) {
 					result[issue] = 1;
 				} else {
@@ -368,15 +364,25 @@ Meteor.methods({
 	  }
     return result; 
   },
+
   getDistrictsByIssue: function(issue) {
-	  result = [];
-	  for (user in Meteor.users.find({issues: {$in: issue}}).fetch()) {
-			if (result[user.district] == null) {
-				result[user.district] = 1;
-			} else {
-				result[user.district] += 1;
-			}
-	  }
+	  var result = [];
+
+    var filteredUsersByIssue = Meteor.users.find({"profile.issues": {$in: [issue]}}).fetch(); 
+
+    //console.log(filteredUsersByIssue); 
+
+    for (var i = 0; i < filteredUsersByIssue.length; i++) {
+      var user = filteredUsersByIssue[i]; 
+      //console.log("this is user: " + user); 
+      if (result[user.profile.district] == null) {
+        result[user.profile.district] = 1;
+      } else {
+        result[user.profile.district] += 1;
+      }
+    }
+
+    console.log(result); 
     return result; 
   }, 
 
