@@ -4,7 +4,20 @@ Meteor.subscribe("userSettingsData");
 			Meteor.logout();
 		},
 		'click #user-home-button': function() {
-    		Router.go('/profile');
+			document.getElementById("formProblem").style.visibility = "hidden";
+			var name = document.getElementById("inputName").value;
+			var nameReady = document.getElementById("inputName").readOnly;
+			var zip = document.getElementById("inputZip").value;
+			var zipReady = document.getElementById("inputZip").readOnly;
+			var insp = document.getElementById("inputInspiration").value;
+			var inspReady = document.getElementById("inputInspiration").readOnly;
+			var story = document.getElementById("inputStory").value;
+			var storyReady = document.getElementById("inputStory").readOnly;
+			if (name != "" && nameReady && zip != "" && zipReady && insp != "" && inspReady && story != "" && storyReady) {
+				Router.go('/profile');
+			} else {
+				document.getElementById("formProblem").style.visibility = "visible";
+			}
   		},
 		"click #logoutButton": function() {
 			Meteor.logout();

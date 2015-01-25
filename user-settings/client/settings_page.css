@@ -76,7 +76,7 @@ padding-left: 35px;
 	padding-left: 20px;
 }
 
-#inputName, #inputUsername, #inputEmail, #inputPassword,#inputInspiration,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
+#formProblem, #inputName, #inputUsername, #inputEmail, #inputPassword,#inputInspiration,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
 	width: 305px;
 	height: 30px;
 
