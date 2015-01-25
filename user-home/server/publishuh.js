@@ -1,7 +1,6 @@
-Meteor.publish("userHomeIssues", function() {
-	console.log("RIGHT HERE"); 
+/*Meteor.publish("userHomeIssues", function() {
 	return issues.find({name: {$in: Meteor.users.find({_id: this.userId}).profile.issues}});
-});
+});*/
 Meteor.publish("userHomeActions", function() {
 	var todos = [];
 	//this should loop through all of the users issues
@@ -13,7 +12,5 @@ Meteor.publish("userHomeActions", function() {
 });
 
 Meteor.publish("userNotifications", function() {
-	console.log(notifications.find({}).fetch());
-	//console.log("RIGHT HERE"); 
 	return notifications.find({});
 });

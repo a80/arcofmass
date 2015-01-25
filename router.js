@@ -42,7 +42,6 @@ Router.map(function() {
   this.route('userSettings', {path: '/user-settings',
   	loadingTemplate: 'loading',
     onBeforeAction: function() {
-      console.log('am i a user', Meteor.user());
   		if (Meteor.user()) {
         user = Meteor.user()._id; 
         if (!Roles.userIsInRole(user, ['regular'])) {
@@ -52,7 +51,6 @@ Router.map(function() {
           this.next();
         }
       } else {
-        console.log('you are not a user');
         this.render('loading');
       }
   	}
@@ -61,7 +59,6 @@ Router.map(function() {
   this.route('adminHome', {path: '/admin', 
   	onBeforeAction: function() {
   		user = Meteor.user()._id; 
-  		console.log(user.username);
   		if (!Roles.userIsInRole(user, ['admin'])) {
   			this.redirect('login');
   			this.stop(); 
@@ -75,7 +72,6 @@ Router.map(function() {
   		user = Meteor.user()._id; 
   		//console.log(user.username);
   		if (!Roles.userIsInRole(user, ['admin'])) {
-  			console.log(user.username);
         this.redirect('login');
   			this.stop(); 
   		}
