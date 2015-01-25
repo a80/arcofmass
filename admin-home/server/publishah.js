@@ -14,3 +14,9 @@ Meteor.publish("adminHomeAllUsers", function() {
 		return Meteor.users.find();
 	}
 });
+
+Meteor.publish("adminHomeDistricts", function() {
+	if (Roles.userIsInRole(this.userId, ['admin'])) {
+		return districts.find();
+	}
+});
