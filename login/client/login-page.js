@@ -102,7 +102,7 @@ Template.login.events({
 							console.log('login failed');
 						  } else {
 								console.log('login-succeeded');
-								Router.go('/profile');
+								Router.go('/user-settings');
 							}
 						});
 					  }

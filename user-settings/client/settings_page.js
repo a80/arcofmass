@@ -8,21 +8,19 @@ Meteor.subscribe("userSettingsData");
   		},
 
   		"click #saveNameButton": function(event){
-			document.getElementById("saveNameButton").style.visibility = "hidden";
-			document.getElementById("editNameButton").style.visibility = "visible";
+  			document.getElementById("alertName").style.visibility = "hidden";
 
-			document.getElementById("inputName").readOnly = true;
-
-			console.log("saveNameButton pressed");
-			
 			var myName = document.getElementById("inputName").value;
 
 			Meteor.call("cleanInput", myName, function(err, res) {
 				if (res != false){
-					console.log(res); 
 					Meteor.call("modifyUserName", res);
+					document.getElementById("saveNameButton").style.visibility = "hidden";
+					document.getElementById("editNameButton").style.visibility = "visible";
+
+					document.getElementById("inputName").readOnly = true;
 				} else {
-					alert("There was a problem with the input");
+					document.getElementById("alertName").style.visibility = "visible";
 				}
 			}); 
 		},
@@ -34,10 +32,6 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #saveEmailButton" : function(event) {
-			document.getElementById("saveEmailButton").style.visibility = "hidden";
-			document.getElementById("editEmailButton").style.visibility = "visible";
-			document.getElementById("inputEmail").readOnly = true;
-			
 			var myEmail = document.getElementById("inputEmail").value;
 			Meteor.call("cleanInput", myEmail, function(error, myEmail) {
 				if (myEmail != false) {
@@ -47,6 +41,9 @@ Meteor.subscribe("userSettingsData");
 						alert("Not a valid e-mail address");
 					} else {
 					Meteor.call("modifyUserEmail", myEmail);
+					document.getElementById("saveEmailButton").style.visibility = "hidden";
+					document.getElementById("editEmailButton").style.visibility = "visible";
+					document.getElementById("inputEmail").readOnly = true;
 					}
 				} else {
 					alert("There was a problem with the input");
@@ -62,17 +59,18 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #saveInspirationButton" : function(event) {
-			document.getElementById("saveInspirationButton").style.visibility = "hidden";
-			document.getElementById("editInspirationButton").style.visibility = "visible";
-			document.getElementById("inputInspiration").readOnly = true;
-
+			document.getElementById("alertInspiration").style.visibility = "hidden";
 			var myInspiration = document.getElementById("inputInspiration").value;
 			
 			Meteor.call("cleanInput", myInspiration, function(error, myInspiration) {
 				if (myInspiration != false){
 					Meteor.call("modifyUserInspiration", myInspiration);
+					document.getElementById("saveInspirationButton").style.visibility = "hidden";
+					document.getElementById("editInspirationButton").style.visibility = "visible";
+					document.getElementById("inputInspiration").readOnly = true;
+
 				} else {
-					alert("There was a problem with the input");
+					document.getElementById("alertInspiration").style.visibility = "visible";
 				}
 			});
 		},
@@ -85,9 +83,7 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #saveStoryButton" : function(event){
-			document.getElementById("saveStoryButton").style.visibility = "hidden";
-			document.getElementById("editStoryButton").style.visibility = "visible";
-			document.getElementById("inputStory").readOnly = true;
+			document.getElementById("alertStory").style.visibility = "hidden";
 			
 			var myStory = document.getElementById("inputStory").value;
 			Meteor.call("cleanInput", myStory, function(error, myStory) {
@@ -95,8 +91,11 @@ Meteor.subscribe("userSettingsData");
 
 					console.log(myStory); 
 					Meteor.call("modifyUserStory", myStory);
+					document.getElementById("saveStoryButton").style.visibility = "hidden";
+					document.getElementById("editStoryButton").style.visibility = "visible";
+					document.getElementById("inputStory").readOnly = true;
 				} else {
-					alert("There was a problem with the input");
+					document.getElementById("alertStory").style.visibility = "visible";
 				}
 			});
 		},
@@ -109,10 +108,8 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #saveZipCodeButton" : function(event){
-			document.getElementById("saveZipCodeButton").style.visibility = "hidden";
-			document.getElementById("editZipCodeButton").style.visibility = "visible";
-			document.getElementById("inputZipcode").readOnly = true;
 			
+			document.getElementById("alertZip").style.visibility = "hidden";
 			var myZip = document.getElementById("inputZipcode").value;
 			Meteor.call("cleanInput", myZip, function(error, myZip) {
 				if (myZip != false) {
@@ -120,12 +117,15 @@ Meteor.subscribe("userSettingsData");
 					if (regPostalCode.test(myZip) == true) {
 						Meteor.call("modifyUserZip", myZip);
 						Meteor.call("assignUserDistrict");
+						document.getElementById("saveZipCodeButton").style.visibility = "hidden";
+						document.getElementById("editZipCodeButton").style.visibility = "visible";
+						document.getElementById("inputZipcode").readOnly = true;
 					} else {
-					alert("There was a problem with the input");
+					document.getElementById("alertZip").style.visibility = "visible";
 					}
 				}
 				else {
-					alert("There was a problem with the input");
+					document.getElementById("alertZip").style.visibility = "visible";
 				}
 			});
 		},
@@ -137,10 +137,11 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #savePasswordButton" : function(event) {
+			document.getElementById("savedSuccessfullyMessage").style.visibility = "hidden";
+			document.getElementById("alertMessageMatch").style.visibility = "hidden";
+			document.getElementById("alertMessageWrong").style.visibility = "hidden";
+			document.getElementById("alertMessageBad").style.visibility = "hidden";
 			if (document.getElementById("inputNPassword").value === document.getElementById("confirmNPassword").value){
-				document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
-				document.getElementById("alertMessage").style.visibility = "hidden";
-				
 				var myOPassword = document.getElementById("inputOPassword").value;
 				var myNPassword = document.getElementById("inputNPassword").value;
 				document.getElementById("inputOPassword").value = "";
@@ -156,6 +157,7 @@ Meteor.subscribe("userSettingsData");
 								if (error) {
 									console.log(error);
 									console.log("Failed to change password.");
+									document.getElementById("alertMessageWrong").style.visibility = "visible";
 
 									//Tell user that they entered their old password incorrectly?
 								} else {
@@ -166,14 +168,14 @@ Meteor.subscribe("userSettingsData");
 							});
 							}
 							else {
-								alert("There was a problem with the input");
+								document.getElementById("alertMessageBad").style.visibility = "visible";
 							}
 						});
 					}
 				});
 		} else {
 			document.getElementById("savedSuccessfullyMessage").style.visibility = "hidden";
-			document.getElementById("alertMessage").style.visibility = "visible";
+			document.getElementById("alertMessageMatch").style.visibility = "visible";
 		}
 	},
 
@@ -239,6 +241,19 @@ Template.userSettings.helpers({
 		
 		return name;
 	
+	},
+	returnInspiration: function() {
+		try {
+			insp = Meteor.user().profile.inspiration;
+			
+			if (insp != null && insp != "") {
+				return insp;
+			} else {
+				return "Someone";
+			}
+		} catch(e) {
+			return "Someone";
+		}
 	},
 	/*
 	changeNameStyle: function() {
