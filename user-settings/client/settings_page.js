@@ -10,8 +10,8 @@ Meteor.subscribe("userSettingsData");
 			document.getElementById("formProblem").style.visibility = "hidden";
 			var name = document.getElementById("inputName").value;
 			var nameReady = document.getElementById("inputName").readOnly;
-			var zip = document.getElementById("inputZip").value;
-			var zipReady = document.getElementById("inputZip").readOnly;
+			var zip = document.getElementById("inputZipcode").value;
+			var zipReady = document.getElementById("inputZipcode").readOnly;
 			var insp = document.getElementById("inputInspiration").value;
 			var inspReady = document.getElementById("inputInspiration").readOnly;
 			var story = document.getElementById("inputStory").value;
@@ -29,7 +29,7 @@ Meteor.subscribe("userSettingsData");
 			var myName = document.getElementById("inputName").value;
 
 			Meteor.call("cleanInput", myName, function(err, res) {
-				if (res != false && (new RegExp(cussWords.join("|")).test(res))) {
+				if (res != false && !(new RegExp(cussWords.join("|")).test(res))) {
 					Meteor.call("modifyUserName", res);
 					document.getElementById("saveNameButton").style.visibility = "hidden";
 					document.getElementById("editNameButton").style.visibility = "visible";
