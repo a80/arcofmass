@@ -20,6 +20,7 @@
 			Meteor.call("cleanInput", newIssue, function(error, newIssue) {
 				if (newIssue != false) {
 					Meteor.call("addNewIssue", newIssue);
+					document.getElementById("addIssueField").value = "";
 				}
 				else {
 					alert("There was a problem with the input");
@@ -34,6 +35,7 @@
 				delIssue = Session.get("adminSelectedIssue");
 				Meteor.call("delIssue", delIssue);
 			}
+			Session.set("adminSelectedIssue", undefined);
 			
 			
 		},
