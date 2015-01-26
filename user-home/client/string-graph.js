@@ -181,6 +181,9 @@ function stringGraph(el) {
   $(el).on('click', 'g.node', function (e) {
     var node = this;
     graph.selectedNode = d3.select(node).data()[0].name;
+    console.log(d3.select(node).data()[0].id);
+    Session.set("showMyNotifications", false); 
+    Session.set("selectedInspiration", d3.select(node).data()[0].id); 
     update();
   });
 
@@ -246,7 +249,7 @@ function stringGraph(el) {
   };
 
   // set up the D3 visualisation in the specified element
-  var w = 500,
+  var w = 700,
   h = 500;
   var svg = d3.select(el)
     .append("svg:svg")
@@ -303,7 +306,7 @@ function stringGraph(el) {
       .call(force.drag);
 
     nodeEnter.append("svg:circle")
-      .attr("r", 16)
+      .attr("r", 30)
       .attr("id",function(d) { return "Node;"+d.id;})
       .attr("class","nodeStrokeClass");
 
@@ -332,8 +335,8 @@ function stringGraph(el) {
 
       // Restart the force layout.
       force
-        .gravity(.05)
-        .distance(50)
+        .gravity(.01)
+        .distance(150)
         .linkDistance( 50 )
         .size([w, h])
         .start();
@@ -349,10 +352,10 @@ function stringGraph(el) {
     //console.log("Rendering..."); 
     var graph;
     graph = new stringGraph("#svgdiv");
-    Deps.autorun(function() {
+    /*Deps.autorun(function() {
       console.log(Meteor.user().profile.name); 
       graph.addNode(Meteor.user().profile.name); 
-    });
+    });*/
     
 
     inspirations.find().observe({
