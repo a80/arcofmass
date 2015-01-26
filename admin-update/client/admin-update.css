@@ -53,6 +53,10 @@
 
 }
 
+.row {
+	padding-top: 30px;
+}
+
 #issueSelect {
 	width: 405px;
 	padding-top:10px;
