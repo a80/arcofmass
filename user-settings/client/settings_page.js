@@ -146,6 +146,7 @@ Meteor.subscribe("userSettingsData");
 			var myZip = document.getElementById("inputZipcode").value;
 			Meteor.call("cleanInput", myZip, function(error, myZip) {
 				if (myZip != false) {
+					//RegExp found on: http://stackoverflow.com/questions/2577236/regex-for-zip-code
 					var regPostalCode = new RegExp("^\\d{5}(-\\d{4})?$");
 					if (regPostalCode.test(myZip) == true) {
 						Meteor.call("modifyUserZip", myZip);

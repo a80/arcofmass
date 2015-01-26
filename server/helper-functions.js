@@ -237,6 +237,7 @@ Meteor.methods({
     selectedIssue.upsert({name: "selectedIssueObject"}, {$set: {selectedIssue: issueName}}); 
   },*/
   cleanInput: function(str) {
+	//RegExp found on http://stackoverflow.com/questions/23187013/is-there-a-better-way-to-sanitize-input-with-javascript
 	newstr = str.replace(/[^a-z0-9@ '\.,_-]/gim,"");
 	if (newstr != "" && newstr != null && str == newstr) {
 		return str;
@@ -426,7 +427,7 @@ Meteor.methods({
   },
   achievedTodo: function(myName) {
 	  toDo = actionItems.find({name: myName});
-	  if (toDo.count == toDo.goal) {
+	  if (toDo.count == parseInt(toDo.goal)) {
 		  actionItems.update({name: myName}, {$set {achieved: true}});
 	  }
   }
