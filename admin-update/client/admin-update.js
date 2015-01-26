@@ -10,7 +10,7 @@
 	Template.adminUpdate.events({
 		"click #logoutButton": function(event) {
 			Meteor.logout();
-			Router.go("/login"); 
+			Router.go("/"); 
 		},
 		/*"click #logoutButton": function(event) {
 			Accounts.logout();
