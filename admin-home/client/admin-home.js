@@ -176,9 +176,39 @@ Template.graphViewIssueList.events({
       			}
     		}
 
-    		console.log(result); 
+    		console.log(" this is the result: ", result);
 
-    		graph = progressBar(".adminHomeGraphDiv", result);
+    		var keyNames = []; 
+			var values = []; 
+
+			/*for (var key in result) {
+				keyNames.push(key); 
+				values.push(result[key]); 
+			}*/ 
+
+			/*for (var j = 0; j < 5; j++) {
+				console.log(sortedKeys[10]); 
+			}*/
+
+
+			var sortedKeys = Object.keys(result).sort(function(a,b){return result[b]-result[a]});
+
+			console.log(sortedKeys);
+
+			//console.log(sortedKeys[10]); 
+
+			for (var j = 0; j < 5; j++) {
+				if (sortedKeys[j] != undefined) {
+					keyNames.push(sortedKeys[j]); 
+					values.push(result[sortedKeys[j]]);
+				}
+			}
+
+			console.log(keyNames, values); 
+
+    		//put list in order and only give it keys.  
+
+    		graph = progressBar(".adminHomeGraphDiv", [keyNames, values]);
     		//return result;
 
 
@@ -213,7 +243,7 @@ function nothingSelected(el) {
  	var self = this;
 	var canvas; 
 
-  	var width = 1000; 
+  	var width = 600; 
   	var height = 600;
 
   	var createCanvasSvg = function(el) {
@@ -232,18 +262,26 @@ function nothingSelected(el) {
 
 
   	canvas.append('text').text("Select an issue or district.").attr("x", 30).attr("y", 100).attr("fill", "white").style("font-size", "50px");
+  	canvas.append('text').text("View top 5 stats.").attr("x", 30).attr("y", 150).attr("fill", "white").style("font-size", "30px");
 }
 
-function progressBar(el, dict) {
+function progressBar(el, keysAndValues) {
 
 	//parse the dict. 
-	var keys = []; 
+	/*var keys = []; 
 	var values = []; 
 
 	for (var key in dict) {
 		keys.push(key); 
 		values.push(dict[key]); 
-	}
+	}*/
+
+	var keys = keysAndValues[0]; 
+	var values = keysAndValues[1];
+
+	//console.log("in graph", keys, values); 
+
+
 
 	//console.log(keys, values);
 
@@ -254,17 +292,20 @@ function progressBar(el, dict) {
   	var height = 600;
 
   	var widthScale = d3.scale.linear()
-                      .domain([0, 20])
-                      .range([0, height]); 
+                      .domain([0, (Math.max.apply(Math, values))])
+                      .range([0, 0.9*height]); 
 
   	var color = d3.scale.linear()
                 .domain([0, 10])
                 .range(["red", "blue"]);
 
     var yAxis = d3.svg.axis()
-    				.scale(d3.scale.linear().domain([0, 20]).range([0.9*height, 0]))
+    				.scale(d3.scale.linear().domain([0, Math.max.apply(Math, values)]).range([0.9*height, 0]))
     				.orient("left")
-    				.ticks(5); 
+    				.ticks(5)
+    				 .tickFormat(d3.format("d")); 
+
+    yAxis.integersOnly = true; 
 
     var xAxis = d3.svg.axis()
     				.scale(d3.scale.ordinal().domain(keys).rangePoints([0, 175*keys.length], 0.9))
@@ -307,17 +348,37 @@ function progressBar(el, dict) {
                     .transition()
                     .duration(1000)
                     .attr("height", function (d) { return widthScale(d); })
-                    .attr("y", function(d, i) {return height - 50 - widthScale(d) })
+                    .attr("y", function(d, i) {return (0.9*height) - widthScale(d) })
                     .attr("x", function(d, i) {return 80 + (i*180)}); 
                     //.attr("fill", function(d) {return color(d)});
 
     canvas.append("g")
-    	.attr("transform", "translate(50, 16)")
+    	.attr("transform", "translate(50, 6)")
+    	.attr("class", "axis")
     	.call(yAxis);
 
     canvas.append("g")
-    	.attr("transform", "translate(50, 550)")
+    	.attr("transform", "translate(50, 540)")
+    	.attr("class", "axis")
     	.call(xAxis);
+
+    canvas.append("text")
+    .attr("class", "ylabel")
+    .attr("text-anchor", "end")
+    .attr("y", 0)
+    .attr("x", -150)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .text("Number of user constituents");
+
+
+
+    svg.append("text")
+    .attr("class", "xlabel")
+    .attr("text-anchor", "end")
+    .attr("x", width)
+    .attr("y", height - 6)
+    .text("income per capita, inflation-adjusted (dollars)");
 
   	//canvas.append('text').text(label).attr("x", 30).attr("y", 100).attr("fill", "white").style("font-size", "100px");
 
@@ -380,9 +441,22 @@ Template.graphViewDistrictList.events({
       			} 
     		}
 
-    		console.log(result); 
 
-    		graph = progressBar(".adminHomeGraphDiv", result);
+    		var keyNames = []; 
+			var values = []; 
+
+			var sortedKeys = Object.keys(result).sort(function(a,b){return result[b]-result[a]});
+
+			for (var j = 0; j < 5; j++) {
+				if (sortedKeys[j] != undefined) {
+					keyNames.push(sortedKeys[j]); 
+					values.push(result[sortedKeys[j]]);
+				}
+			}
+
+			//console.log(keyNames, values); 
+
+    		graph = progressBar(".adminHomeGraphDiv", [keyNames, values]);
 		},
 
 }); 
