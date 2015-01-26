@@ -18,6 +18,12 @@ Meteor.publish("userNotifications", function() {
 Meteor.publish("allUsers", function() {
 	return Meteor.users.find();
 });
-Meteor.publish("legislatorData", function() {
-	return legislators.find({});
+
+Meteor.publish("getUserInspirations", function() {
+	return inspirations.find({userId: this.userId}); 
 });
+
+Meteor.publish("getHelpedLinks", function() {
+	return helped.find({userId: this.userId}); 
+}); 
+

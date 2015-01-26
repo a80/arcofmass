@@ -10,8 +10,11 @@
 	Template.adminUpdate.events({
 		"click #logoutButton": function(event) {
 			Meteor.logout();
-			Router.go('/login');
+			Router.go("/login"); 
 		},
+		/*"click #logoutButton": function(event) {
+			Accounts.logout();
+		},*/
 		"click #addIssueButton": function(event) {
 			var newIssue = document.getElementById("addIssueField").value;
 			Meteor.call("cleanInput", newIssue, function(error, newIssue) {
@@ -677,22 +680,6 @@
 
 
 
-	});
-	
-	Template.legHead.helpers({
-		getSelectedIssueName: function() {
-			console.log("template should now appear, issue is "); 
-			return Session.get("adminSelectedIssue"); 
-
-		}, 
-	});
-	
-	Template.toDoHead.helpers({
-		getSelectedIssueName: function() {
-			console.log("template should now appear, issue is "); 
-			return Session.get("adminSelectedIssue"); 
-
-		}, 
 	});
 
 	Template.adminUpdate.events({

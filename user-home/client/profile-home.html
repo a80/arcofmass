@@ -1,3 +1,21 @@
+<!-- modal templates --> 
+
+<template name = "myNotificationsList">
+    {{#each returnNotifications}}
+          {{> myChangeListItem}}
+        {{/each}}
+</template> 
+
+<template name = "inspiration"> 
+  <h1> I am change for </h1>
+  <!-- <h1> {{returnInspirationName}} and {{returnAssociatedUserName}}</h1> 
+
+  <h1>{{returnAssociatedUserName}}'s story</h1> 
+
+  <p>{{return story}}</p> -->
+</template> 
+
+
 <template name="profileHome">
 	
   <head> 
@@ -18,9 +36,6 @@
         <button type = "button" class = "btn btn-default navbar-btn" id = "user-settings-button">
           <span class = "glyphicon glyphicon-cog"></span>
         </button>
-		<button type = "button" class = "btn btn-default navbar-btn" id = "logoutButton"> 
-		<span class = "glyphicon glyphicon-log-out"></span>
-      </button>
       </div>
     </div>
   </nav>
@@ -33,11 +48,27 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;[ESC]</span></button>
         <h1 class="modal-title" id="myModalLabel">My Change.</h1>
       </div>
-      <div class="modal-body">
-        {{#each returnNotifications}}
-          {{> myChangeListItem}}
-        {{/each}}
+      <!-- <div class="modal-body"> --> 
+        <div class="row">
+  <div class="col-md-6">.col-md-6
+    {{#if showMyNotifications}}
+    {{> myNotificationsList}}
+    {{else}}
+    {{> inspiration}}
+    {{/if}}
+
+
       </div>
+  <div class="col-md-6">.col-md-6
+
+    <div id = "stringGraphDiv">
+      {{> diagram}}
+    </div> 
+
+    </div>
+</div>
+        
+      <!-- </div> --> 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>

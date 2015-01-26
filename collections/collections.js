@@ -11,8 +11,8 @@ districts = new Meteor.Collection("districts");
 
 
 /* REMOVE THESE: */
-/*Things = new Meteor.Collection("things");
-Links = new Meteor.Collection("links");*/
+inspirations = new Meteor.Collection("inspirations");
+helped = new Meteor.Collection("helped");
 
 
 //Roles.createRole("admin");

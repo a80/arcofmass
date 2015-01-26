@@ -16,9 +16,6 @@
 	/*-webkit-filter: sepia(30%);*/
 
 }
-#loginFail, #badName, #badPass, #createFail {
-	visibility: hidden;
-}
 
 #slogan {
 	/*position: fixed;

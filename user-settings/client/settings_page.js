@@ -4,25 +4,8 @@ Meteor.subscribe("userSettingsData");
 			Meteor.logout();
 		},
 		'click #user-home-button': function() {
-			document.getElementById("formProblem").style.visibility = "hidden";
-			var name = document.getElementById("inputName").value;
-			var nameReady = document.getElementById("inputName").readOnly;
-			var zip = document.getElementById("inputZip").value;
-			var zipReady = document.getElementById("inputZip").readOnly;
-			var insp = document.getElementById("inputInspiration").value;
-			var inspReady = document.getElementById("inputInspiration").readOnly;
-			var story = document.getElementById("inputStory").value;
-			var storyReady = document.getElementById("inputStory").readOnly;
-			if (name != "" && nameReady && zip != "" && zipReady && insp != "" && inspReady && story != "" && storyReady) {
-				Router.go('/profile');
-			} else {
-				document.getElementById("formProblem").style.visibility = "visible";
-			}
+    		Router.go('/profile');
   		},
-		"click #logoutButton": function() {
-			Meteor.logout();
-			Router.go('/login');
-		},
 
   		"click #saveNameButton": function(event){
   			document.getElementById("alertName").style.visibility = "hidden";
@@ -125,23 +108,18 @@ Meteor.subscribe("userSettingsData");
 		},
 
 		"click #saveZipCodeButton" : function(event){
-			document.getElementById("badZip").style.visibility = "hidden";
+			
 			document.getElementById("alertZip").style.visibility = "hidden";
 			var myZip = document.getElementById("inputZipcode").value;
 			Meteor.call("cleanInput", myZip, function(error, myZip) {
 				if (myZip != false) {
 					var regPostalCode = new RegExp("^\\d{5}(-\\d{4})?$");
-					if (regPostalCode.test(myZip) == true) 
-						Meteor.call("assignUserDistrict", myZip, function(error, res) {
-							if (res) {
-								Meteor.call("modifyUserZip", myZip);
-								document.getElementById("saveZipCodeButton").style.visibility = "hidden";
-								document.getElementById("editZipCodeButton").style.visibility = "visible";
-								document.getElementById("inputZipcode").readOnly = true;
-							} else {
-								document.getElementById("badZip").style.visibility = "visible";
-							}
-						});
+					if (regPostalCode.test(myZip) == true) {
+						Meteor.call("modifyUserZip", myZip);
+						Meteor.call("assignUserDistrict");
+						document.getElementById("saveZipCodeButton").style.visibility = "hidden";
+						document.getElementById("editZipCodeButton").style.visibility = "visible";
+						document.getElementById("inputZipcode").readOnly = true;
 					} else {
 					document.getElementById("alertZip").style.visibility = "visible";
 					}

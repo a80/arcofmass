@@ -1,0 +1,18 @@
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.2px;
+}
+
+circle {
+  fill: orange;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+/*text {
+  fill: #000;
+  font: 20px 'Open Sans';
+  pointer-events: none;
+}*/
+

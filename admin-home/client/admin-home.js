@@ -100,10 +100,6 @@ Template.adminHome.events({
 	},
 	"click #toggleGraphView": function() {
 		Session.set("toggleListView", false);
-	},
-	"click #logoutButton": function() {
-		Meteor.logout();
-		Router.go('/login');
 	}
 });
 

@@ -34,10 +34,6 @@ Template.login.events({
   },
 
   'click #login-button': function(event, template) {
-	document.getElementById("loginFail").style.visibility = "hidden";
-	document.getElementById("createFail").style.visibility = "hidden";
-	document.getElementById("badPass").style.visbility = "hidden";
-	document.getElementById("badName").style.visibility = "hidden";
     event.preventDefault();
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
@@ -48,18 +44,17 @@ Template.login.events({
 					Meteor.loginWithPassword(username, password, function(error) {
 					  if (error) {
 						console.log('login failed');
-						document.getElementById("loginFail").style.visibilty = "visible";
 					  } else {
 						console.log('login-succeeded');
 						Router.go('/profile');
 					  }
 					});
 				} else {
-					document.getElementById("badPass").style.visbility = "visible";
+					alert("There was a problem with the password");
 				}
 			});
 		} else {
-			document.getElementById("badName").style.visibilty = "visible";
+			alert("There was a problem with the username");
 		}
 	});
     //var usernameField = document.getElementById('username-field');
@@ -89,10 +84,6 @@ Template.login.events({
 
   'click #new-user-button': function(event, template) {
     event.preventDefault();
-	document.getElementById("loginFail").style.visibility = "hidden";
-	document.getElementById("createFail").style.visibility = "hidden";
-	document.getElementById("badPass").style.visbility = "hidden";
-	document.getElementById("badName").style.visibility = "hidden";
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
 	
@@ -104,12 +95,11 @@ Template.login.events({
 					
 					Meteor.call("addNewRegularUser", username, function(error) {
 					  if (error) {
-						document.getElementById("createFail").style.visibility = "visible";
+
 					  } else {
 						Meteor.loginWithPassword(username, password, function(error) {
 						  if (error) {
 							console.log('login failed');
-							document.getElementById("loginFail").style.visibility = "visible";
 						  } else {
 								console.log('login-succeeded');
 								Router.go('/user-settings');
@@ -118,11 +108,11 @@ Template.login.events({
 					  }
 					}); 
 				} else {
-					document.getElementById("badPass").style.visbility = "visible";
+					alert("There was a problem with the password");
 				}
 			});
 		} else {
-			document.getElementById("badName").style.visibility = "visible";
+			alert("There was a problem with the username");
 		}
 	});
     
@@ -188,10 +178,6 @@ Template.adminLogin.events({
 
   'click #new-admin-button': function(event, template) {
     event.preventDefault();
-	document.getElementById("loginFail").style.visibility = "hidden";
-	document.getElementById("createFail").style.visibility = "hidden";
-	document.getElementById("badPass").style.visbility = "hidden";
-	document.getElementById("badName").style.visibility = "hidden";
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
 	Meteor.call("cleanInput", username, function(error, username) {
@@ -202,12 +188,11 @@ Template.adminLogin.events({
 
 					Meteor.call("addNewAdmin", username, function(error) {
 					  if (error) {
-						document.getElementById("createFail").style.visibility = "visible";
+
 					  } else {
 						Meteor.loginWithPassword(username, password, function(error) {
 						  if (error) {
 							console.log('admin login failed');
-							document.getElementById("loginFail").style.visibility = "visible";
 						  } else {
 								console.log('admin-login-succeeded');
 								Router.go('/admin');
@@ -216,11 +201,11 @@ Template.adminLogin.events({
 					  }
 					}); 
 				} else {
-					document.getElementById("badPass").style.visibility = "visible";
+					alert("There was a problem with the password");
 				}
 			});
 		} else {
-			document.getElementById("badName").style.visibility = "visible";
+			alert("There was a problem with the username");
 		}
 	});
 
@@ -256,10 +241,6 @@ Template.adminLogin.events({
 
   'click #admin-login-button': function(event, template) {
     event.preventDefault();
-	document.getElementById("loginFail").style.visibility = "hidden";
-	document.getElementById("createFail").style.visibility = "hidden";
-	document.getElementById("badPass").style.visbility = "hidden";
-	document.getElementById("badName").style.visibility = "hidden";
     var username = template.find("#username-field").value;
     var password = template.find("#password-field").value;
 	
@@ -270,7 +251,6 @@ Template.adminLogin.events({
 					Meteor.loginWithPassword(username, password, function(error) {
 					  if (error) {
 						console.log('admin login failed');
-						document.getElementById("loginFail").style.visibility = "visible";
 					  } else {
 						console.log('admin login-succeeded');
 						Router.go('/admin');
