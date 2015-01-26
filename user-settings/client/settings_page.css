@@ -21,7 +21,7 @@
 }*/
 
 #userSettingsBody, #userSettingsColumn1, #userSettingsColumn2 {
-	background-color: #FFFAE2; 
+	background-color: #FFFFFF; 
 	background-size: cover; 
 	width: 100%;
 	height: 100%;
@@ -58,14 +58,14 @@ padding-left: 35px;
 }
 
 #inputName, #inputUsername, #inputEmail, #inputPassword,#inputInspiration,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
-	width: 305px;
+	width: 500px;
 	height: 30px;
 
 
 }
 
 #inputStory {
-	width: 305px;
+	width: 500px;
 	height: 250px;
 }
 
