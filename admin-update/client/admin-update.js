@@ -35,7 +35,7 @@
 				delIssue = Session.get("adminSelectedIssue");
 				Meteor.call("delIssue", delIssue);
 			}
-			//Session.set("adminSelectedIssue", undefined);
+			Session.set("adminSelectedIssue", undefined);
 			
 			
 		},
