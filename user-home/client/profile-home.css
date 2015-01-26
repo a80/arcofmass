@@ -174,5 +174,10 @@ input[type=checkbox]:not(old):checked + label > span:before{
 #toggle-navigation-button {
   position: absolute;
   bottom: 5%;
-  right: 5%;
+  right: 2%;
+}
+
+#issueNavButton {
+  color: white;
+  background: transparent;
 }
