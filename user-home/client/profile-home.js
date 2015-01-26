@@ -6,12 +6,12 @@ Meteor.subscribe("legislatorsColl");
 //profileHome
 
 Template.profileHome.events({
-	"click #logoutButton": function(event) {
-			Meteor.logout();
-			Router.go("/");
-		},
+  "click #logoutButton": function(event) {
+      Meteor.logout();
+      Router.go("/");
+    },
 
-	'click #user-settings-button': function() {
+  'click #user-settings-button': function() {
     Router.go('/user-settings');
   },
   'click #toggle-navigation-button': function() {
@@ -34,22 +34,22 @@ Template.profileHome.events({
 
 
 Template.profileHome.helpers({
-	getUserIssues: function() {
+  getUserIssues: function() {
   var list = issues.find({name: {$in: Meteor.user().profile.issues}}).fetch();
 
-	return _.map(list, function(l) {
-    	_.extend(l, {graphID: l.name.replace(/\s*/g, '')});
-      	return l;
-    	}); 
-	},
+  return _.map(list, function(l) {
+      _.extend(l, {graphID: l.name.replace(/\s*/g, '')});
+        return l;
+      }); 
+  },
 
   returnIssueName: function() {
     return this.name; 
   },
 
-	returnUserId: function() {
-		return Meteor.user().username; 
-	},
+  returnUserId: function() {
+    return Meteor.user().username; 
+  },
 
   
   returnInspiration: function() {
@@ -119,35 +119,35 @@ Template.issuePanel.helpers({
     return this.name;
   }
 });
-	 
+   
 
 //toDoPanel   
 
 Template.toDoPanel.helpers({
-	returnToDos: function(issue) {
-		var issueName = this.name;
-		var actionItemsForIssue = [];
+  returnToDos: function(issue) {
+    var issueName = this.name;
+    var actionItemsForIssue = [];
 
-		actionItemsData = actionItems.find({}).fetch();
+    actionItemsData = actionItems.find({}).fetch();
 
-		for (var i = 0; i < actionItemsData.length; i++) {
-		  if (actionItemsData[i].issue === issueName) {
-			actionItemsForIssue.push(actionItemsData[i]); 
-		  }
-		}
+    for (var i = 0; i < actionItemsData.length; i++) {
+      if (actionItemsData[i].issue === issueName) {
+      actionItemsForIssue.push(actionItemsData[i]); 
+      }
+    }
 
-		_.map(actionItemsForIssue, function(a) {
+    _.map(actionItemsForIssue, function(a) {
       _.extend(a, {toDoID: a._id}); });
 
     _.map(actionItemsForIssue, function(a) {
       _.extend(a, {toDoCheckID: a._id + "check"}); }); //change this.
 
     return actionItemsForIssue; 
-	}, 
+  }, 
 
-	returnToDoName: function() {
-		return this.text; 
-	}, 
+  returnToDoName: function() {
+    return this.text; 
+  }, 
 
   checked: function() {
     userId = Meteor.user()._id;
@@ -168,7 +168,7 @@ Template.toDoPanel.helpers({
 
 
 Template.toDoPanel.events({
-	"click .toggle-checked": function (event) {
+  "click .toggle-checked": function (event) {
       var idOfElement = this._id + "check"; 
       //console.log(document.getElementById(idOfElement).checked); 
       var toDoName = actionItems.findOne({_id: this._id}).text; 
@@ -222,6 +222,7 @@ Template.toDoPanel.events({
             Meteor.call("deleteNotification", toDoId, function(error) {
               if (!error) {
                 var toDoOfInterest = actionItems.findOne({_id: toDoId});
+                var toDoOfInterestMessage = actionItems.findOne({_id: toDoId}).message;
 
                 //construct a dict. 
                 var inputNotifParam = []; 
@@ -255,10 +256,10 @@ Template.toDoPanel.events({
 
     "click .toDoListItemText": function(event) {
       //select the link corresponding to the list element, display that issue. 
-    	//retrieve id
-    	var toDoListItemID = event.currentTarget.id;
-    	var toDoOfInterest = actionItems.findOne({_id: toDoListItemID});
-      var toDoOfInterestMessage = toDoOfInterest.message;
+      //retrieve id
+      var toDoListItemID = event.currentTarget.id;
+      var toDoOfInterest = actionItems.findOne({_id: toDoListItemID});
+      var toDoOfInterestMessage = actionItems.findOne({_id: toDoListItemID}).message;
 
 
 
@@ -277,8 +278,8 @@ Template.toDoPanel.events({
         inputNotifParam[username] = timeElapsed; 
       } 
 
-    	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [toDoOfInterest.count, toDoOfInterest.goal], "to Do: " + this.text, inputNotifParam, true, "", toDoOfInterestMessage);
+      var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
+      graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [toDoOfInterest.count, toDoOfInterest.goal], "to do: " + this.text, inputNotifParam, true, "", toDoOfInterestMessage);
     },
 
 });
@@ -289,8 +290,8 @@ Template.profileHome.rendered = function() {
 
 
 
-	Deps.autorun(function() {
-	  var issueList = issues.find({}).fetch();
+  Deps.autorun(function() {
+    var issueList = issues.find({}).fetch();
     //var notifications = notifications.find({issueId: this._id}, {sort: {dateCompleted: -1}, limit: 3}); 
 
     //console.log(notifications); 
@@ -309,7 +310,7 @@ Template.profileHome.rendered = function() {
       var graphID = issue.name.replace(/\s*/g, '');
       graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + issue.name, "", false, legInfo, "");
     }); 
-	});
+  });
 
   //how to vary other elements in progressBar based on function arguments. 
 
@@ -332,8 +333,8 @@ function progressBar(el, data, label, notifications, showAxis, legInfo, toDoMess
   //console.log(keys, values);
 
 
-	var self = this;
-	var canvas; 
+  var self = this;
+  var canvas; 
 
   var width = 950; 
   var height = 600;
