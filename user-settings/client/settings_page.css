@@ -21,7 +21,7 @@
 }*/
 
 #userSettingsBody, #userSettingsColumn1, #userSettingsColumn2 {
-	background-color: #FFFAE2; 
+	background-color: #FFFFFF; 
 	background-size: cover; 
 	width: 100%;
 	height: 100%;
@@ -54,19 +54,34 @@ padding-left: 35px;
 
 .each {
 	padding: 5px;
-	padding-left: 20px;
+	padding-left: 35px;
+}
+
+#A,#B,#C {
+	display: inline;
 }
 
 #inputName, #inputUsername, #inputEmail, #inputPassword,#inputInspiration,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
-	width: 305px;
+	width: 500px;
 	height: 30px;
 
 
 }
 
+#inputStory, #editStoryButton, #saveStoryButton {
+	display: inline;
+}
+
+#editStoryButton, #saveStoryButton {
+	padding-top: 10px;
+	padding-bottom: -5px;
+	vertical-align: top;
+}
+
+
 #inputStory {
-	width: 305px;
-	height: 250px;
+	width: 500px;
+	height: 260px;
 }
 
 .title {
