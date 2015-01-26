@@ -171,15 +171,15 @@
 			var legName = template.find(".nameInput").value;	
 
 			var legEmail = template.find(".emailInput").value;
-			var legAddress = template.find(".addressInput").value;
+			//var legAddress = template.find(".addressInput").value;
 			var legPhone = template.find(".phoneInput").value;
 			
 
 			var issue = Session.get("adminSelectedIssue"); 
 			Meteor.call("cleanInput", legName, function(error, legName) {
 				if (legName != false) {
-					Meteor.call("cleanInput", legAddress, function(error, legAddress) {
-						if (legAddress != false) {
+					//Meteor.call("cleanInput", legAddress, function(error, legAddress) {
+						//if (legAddress != false) {
 							Meteor.call("cleanInput", legEmail, function(error, legEmail) {
 								if (legEmail != false) {
 									var atpos = legEmail.lastIndexOf("@");
@@ -222,10 +222,10 @@
 									alert("There was a problem with your email");
 								}
 							});
-						} else {
-							alert("There was a problem with your address");
-						}
-					});
+						//} else {
+					//		alert("There was a problem with your address");
+						//}
+					//});
 				} else {
 					alert("There was a problem with your name");
 				}
