@@ -1,16 +1,17 @@
 Meteor.subscribe("userHomeIssues");
 Meteor.subscribe("userNotifications");
 Meteor.subscribe("allUsers");
+Meteor.subscribe("legislatorsColl");
 // notifications = new Mongo.Collection("notifications");
 //profileHome
 
 Template.profileHome.events({
-	"click #logoutButton": function(event) {
-			Meteor.logout();
-			Router.go("/");
-		},
+  "click #logoutButton": function(event) {
+      Meteor.logout();
+      Router.go("/");
+    },
 
-	'click #user-settings-button': function() {
+  'click #user-settings-button': function() {
     Router.go('/user-settings');
   },
   'click #toggle-navigation-button': function() {
@@ -33,22 +34,22 @@ Template.profileHome.events({
 
 
 Template.profileHome.helpers({
-	getUserIssues: function() {
+  getUserIssues: function() {
   var list = issues.find({name: {$in: Meteor.user().profile.issues}}).fetch();
 
-	return _.map(list, function(l) {
-    	_.extend(l, {graphID: l.name.replace(/\s*/g, '')});
-      	return l;
-    	}); 
-	},
+  return _.map(list, function(l) {
+      _.extend(l, {graphID: l.name.replace(/\s*/g, '')});
+        return l;
+      }); 
+  },
 
   returnIssueName: function() {
     return this.name; 
   },
 
-	returnUserId: function() {
-		return Meteor.user().username; 
-	},
+  returnUserId: function() {
+    return Meteor.user().username; 
+  },
 
   
   returnInspiration: function() {
@@ -118,35 +119,35 @@ Template.issuePanel.helpers({
     return this.name;
   }
 });
-	 
+   
 
 //toDoPanel   
 
 Template.toDoPanel.helpers({
-	returnToDos: function(issue) {
-		var issueName = this.name;
-		var actionItemsForIssue = [];
+  returnToDos: function(issue) {
+    var issueName = this.name;
+    var actionItemsForIssue = [];
 
-		actionItemsData = actionItems.find({}).fetch();
+    actionItemsData = actionItems.find({}).fetch();
 
-		for (var i = 0; i < actionItemsData.length; i++) {
-		  if (actionItemsData[i].issue === issueName) {
-			actionItemsForIssue.push(actionItemsData[i]); 
-		  }
-		}
+    for (var i = 0; i < actionItemsData.length; i++) {
+      if (actionItemsData[i].issue === issueName) {
+      actionItemsForIssue.push(actionItemsData[i]); 
+      }
+    }
 
-		_.map(actionItemsForIssue, function(a) {
+    _.map(actionItemsForIssue, function(a) {
       _.extend(a, {toDoID: a._id}); });
 
     _.map(actionItemsForIssue, function(a) {
       _.extend(a, {toDoCheckID: a._id + "check"}); }); //change this.
 
     return actionItemsForIssue; 
-	}, 
+  }, 
 
-	returnToDoName: function() {
-		return this.text; 
-	}, 
+  returnToDoName: function() {
+    return this.text; 
+  }, 
 
   checked: function() {
     userId = Meteor.user()._id;
@@ -167,7 +168,7 @@ Template.toDoPanel.helpers({
 
 
 Template.toDoPanel.events({
-	"click .toggle-checked": function (event) {
+  "click .toggle-checked": function (event) {
       var idOfElement = this._id + "check"; 
       //console.log(document.getElementById(idOfElement).checked); 
       var toDoName = actionItems.findOne({_id: this._id}).text; 
@@ -175,6 +176,7 @@ Template.toDoPanel.events({
       var issueId = issues.findOne({name: this.issue})._dbid; 
       //console.log("issueId: " + issueId); 
       var toDoId = this._id; 
+
       //console.log(issueOfInterest);  
 
 
@@ -185,8 +187,29 @@ Template.toDoPanel.events({
           if (!error) {
             Meteor.call("insertNotification", toDoId, issueId, function(error) {
               if (!error) {
+                var toDoOfInterest = actionItems.findOne({_id: toDoId});
+                var toDoOfInterestMessage = actionItems.findOne({_id: toDoId}).message;
+
+
+                //construct a dict. 
+                var inputNotifParam = []; 
+
+                var filteredNotifications = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}, limit: 3}).fetch();
+                //console.log("executed on click", notifications.find({})); 
+
+
+                for (var i = 0; i < filteredNotifications.length; i++) {
+                  var notifOfInterest = filteredNotifications[i]; 
+                   //console.log(Meteor.users.find().fetch()); 
+                  var username = Meteor.users.findOne({_id: notifOfInterest.userId}).username; 
+                  var timeElapsed = moment(notifOfInterest.dateCompleted).fromNow(); 
+                  //console.log(username, timeElapsed); 
+                  inputNotifParam[username] = timeElapsed; 
+                } 
+
+
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, true);
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam, true, "", toDoOfInterestMessage);
               }
             });
           }
@@ -198,8 +221,30 @@ Template.toDoPanel.events({
           if (!error) {
             Meteor.call("deleteNotification", toDoId, function(error) {
               if (!error) {
+                var toDoOfInterest = actionItems.findOne({_id: toDoId});
+                var toDoOfInterestMessage = actionItems.findOne({_id: toDoId}).message;
+
+                //construct a dict. 
+                var inputNotifParam = []; 
+
+                var filteredNotifications = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}, limit: 3}).fetch();
+                //console.log("executed on click", notifications.find({})); 
+
+
+                for (var i = 0; i < filteredNotifications.length; i++) {
+                  var notifOfInterest = filteredNotifications[i]; 
+                   //console.log(Meteor.users.find().fetch()); 
+                  var username = Meteor.users.findOne({_id: notifOfInterest.userId}).username; 
+                  var timeElapsed = moment(notifOfInterest.dateCompleted).fromNow(); 
+                  //console.log(username, timeElapsed); 
+                  inputNotifParam[username] = timeElapsed; 
+                }
+
+
+
+
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, true);
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "", inputNotifParam,  true, "", toDoOfInterestMessage);
               }
             });
           }
@@ -211,9 +256,11 @@ Template.toDoPanel.events({
 
     "click .toDoListItemText": function(event) {
       //select the link corresponding to the list element, display that issue. 
-    	//retrieve id
-    	var toDoListItemID = event.currentTarget.id;
-    	var toDoOfInterest = actionItems.findOne({_id: toDoListItemID});
+      //retrieve id
+      var toDoListItemID = event.currentTarget.id;
+      var toDoOfInterest = actionItems.findOne({_id: toDoListItemID});
+      var toDoOfInterestMessage = actionItems.findOne({_id: toDoListItemID}).message;
+
 
 
       //construct a dict. 
@@ -231,8 +278,8 @@ Template.toDoPanel.events({
         inputNotifParam[username] = timeElapsed; 
       } 
 
-    	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [toDoOfInterest.count, toDoOfInterest.goal], "to Do: " + this.text, inputNotifParam, true);
+      var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
+      graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [toDoOfInterest.count, toDoOfInterest.goal], "to do: " + this.text, inputNotifParam, true, "", toDoOfInterestMessage);
     },
 
 });
@@ -243,24 +290,34 @@ Template.profileHome.rendered = function() {
 
 
 
-	Deps.autorun(function() {
-	  var issueList = issues.find({}).fetch();
+  Deps.autorun(function() {
+    var issueList = issues.find({}).fetch();
     //var notifications = notifications.find({issueId: this._id}, {sort: {dateCompleted: -1}, limit: 3}); 
 
     //console.log(notifications); 
     
     _.each(issueList, function(issue) {
+      var legInfo; 
+      if (legislators.findOne({issue: issue.name}) != undefined) {
+        var relevantLeg = legislators.findOne({issue: issue.name});
+        var legInfo = [relevantLeg.name,relevantLeg.phone,relevantLeg.email]; 
+        console.log(legInfo); 
+
+      }
+      
+
+
       var graphID = issue.name.replace(/\s*/g, '');
-      graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + issue.name, "", false);
+      graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + issue.name, "", false, legInfo, "");
     }); 
-	});
+  });
 
   //how to vary other elements in progressBar based on function arguments. 
 
 }
 
 
-function progressBar(el, data, label, notifications, showAxis) {
+function progressBar(el, data, label, notifications, showAxis, legInfo, toDoMessage) {
 
   console.log("counts, goal", data[0], data[1]); 
   //parse input notif. param:
@@ -276,8 +333,8 @@ function progressBar(el, data, label, notifications, showAxis) {
   //console.log(keys, values);
 
 
-	var self = this;
-	var canvas; 
+  var self = this;
+  var canvas; 
 
   var width = 950; 
   var height = 600;
@@ -352,13 +409,21 @@ if (showAxis) {
     .attr("dy", ".75em")
     .attr("transform", "rotate(-90)")
     .text("your community of advocates");
+
+canvas.append('text').text(toDoMessage).attr("x", 30).attr("y", 220).attr("fill", "white").style("font-size", "50px");
+
+
+
+
+    } else {
+      canvas.append('text').text('legislator: ').attr("x", 30).attr("y", 250).attr("fill", "white").style("font-size", "40px");
+  canvas.append('text').text('phone: ').attr("x", 30).attr("y", 300).attr("fill", "white").style("font-size", "40px");
+  canvas.append('text').text('email: ').attr("x", 30).attr("y", 350).attr("fill", "white").style("font-size", "40px");
     }
   
-  canvas.append('text').text(label).attr("x", 30).attr("y", 100).attr("fill", "white").style("font-size", "100px");
+  canvas.append('text').text(label).attr("x", 30).attr("y", 150).attr("fill", "white").style("font-size", "80px");
 
-  canvas.append('text').text('legislator: [put name]').attr("x", 30).attr("y", 250).attr("fill", "black").style("font-size", "40px");
-  canvas.append('text').text('phone: [put]').attr("x", 30).attr("y", 300).attr("fill", "black").style("font-size", "40px");
-  canvas.append('text').text('email: [put]').attr("x", 30).attr("y", 350).attr("fill", "black").style("font-size", "40px");
+  
 
   //selectively display notifications. 
   if (keys[0] != undefined) {

@@ -427,8 +427,9 @@ Meteor.methods({
   },
   achievedTodo: function(myName) {
 	  toDo = actionItems.find({name: myName});
-	  if (toDo.count == parseInt(toDo.goal)) {
-		  actionItems.update({name: myName}, {$set {achieved: true}});
+	  if (toDo.count == toDo.goal) {
+		  actionItems.update({name: myName}, {$set: {achieved: true}});
+
 	  }
   }
 
