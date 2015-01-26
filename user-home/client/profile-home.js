@@ -416,9 +416,9 @@ canvas.append('text').text(toDoMessage).attr("x", 30).attr("y", 220).attr("fill"
 
 
     } else {
-      canvas.append('text').text('legislator: ' + legInfo[0]).attr("x", 30).attr("y", 250).attr("fill", "white").style("font-size", "40px");
-  canvas.append('text').text('phone: ' + legInfo[1]).attr("x", 30).attr("y", 300).attr("fill", "white").style("font-size", "40px");
-  canvas.append('text').text('email: ' + legInfo[2]).attr("x", 30).attr("y", 350).attr("fill", "white").style("font-size", "40px");
+      canvas.append('text').text('legislator: ').attr("x", 30).attr("y", 250).attr("fill", "white").style("font-size", "40px");
+  canvas.append('text').text('phone: ').attr("x", 30).attr("y", 300).attr("fill", "white").style("font-size", "40px");
+  canvas.append('text').text('email: ').attr("x", 30).attr("y", 350).attr("fill", "white").style("font-size", "40px");
     }
   
   canvas.append('text').text(label).attr("x", 30).attr("y", 150).attr("fill", "white").style("font-size", "80px");
