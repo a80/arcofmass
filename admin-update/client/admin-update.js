@@ -20,6 +20,7 @@
 			Meteor.call("cleanInput", newIssue, function(error, newIssue) {
 				if (newIssue != false) {
 					Meteor.call("addNewIssue", newIssue);
+					document.getElementById("addIssueField").value = "";
 				}
 				else {
 					alert("There was a problem with the input");
@@ -34,6 +35,7 @@
 				delIssue = Session.get("adminSelectedIssue");
 				Meteor.call("delIssue", delIssue);
 			}
+			Session.set("adminSelectedIssue", undefined);
 			
 			
 		},
@@ -85,15 +87,15 @@
 			var legName = template.find(".nameInput").value;	
 
 			var legEmail = template.find(".emailInput").value;
-			var legAddress = template.find(".addressInput").value;
+			//var legAddress = template.find(".addressInput").value;
 			var legPhone = template.find(".phoneInput").value;
 			
 			var issue = Session.get("adminSelectedIssue"); 
 			Meteor.call("cleanInput", legName, function(error, legName) {
 				if (legName != false) {
 					Meteor.call("cleanInput", legAddress, function(error, legAddress) {
-						if (legAddress != false) {
-							Meteor.call("cleanInput", legEmail, function(error, legEmail) {
+						//if (legAddress != false) {
+							//Meteor.call("cleanInput", legEmail, function(error, legEmail) {
 								if (legEmail != false) {
 									var atpos = legEmail.lastIndexOf("@");
 									var perpos = legEmail.lastIndexOf(".");
@@ -106,11 +108,11 @@
 													if (legPhone != false) {
 														var regPhone = new RegExp("^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$");
 														if (regPhone.test(legPhone) == true) {
-															Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
+															Meteor.call("addNewLegislator", legName, legEmail, /*legAddress,*/ issue, legPhone);
 															template.find(".saveLegislatorButton").style.visibility = "hidden";
 															template.find(".editLegislatorButton").style.visibility = "visible";
 															template.find(".nameInput").readOnly = true;
-															template.find(".addressInput").readOnly = true;
+															//template.find(".addressInput").readOnly = true;
 															template.find(".emailInput").readOnly = true;
 															template.find(".phoneInput").readOnly = true;
 														}
@@ -127,10 +129,10 @@
 									alert("There was a problem with your email");
 								}
 							});
-						} else {
-							alert("There was a problem with your address");
-						}
-					});
+						//} else {
+						//	alert("There was a problem with your address");
+						//}
+					//});
 				} else {
 					alert("There was a problem with your name");
 				}
@@ -171,15 +173,15 @@
 			var legName = template.find(".nameInput").value;	
 
 			var legEmail = template.find(".emailInput").value;
-			var legAddress = template.find(".addressInput").value;
+			//var legAddress = template.find(".addressInput").value;
 			var legPhone = template.find(".phoneInput").value;
 			
 
 			var issue = Session.get("adminSelectedIssue"); 
 			Meteor.call("cleanInput", legName, function(error, legName) {
 				if (legName != false) {
-					Meteor.call("cleanInput", legAddress, function(error, legAddress) {
-						if (legAddress != false) {
+					//Meteor.call("cleanInput", legAddress, function(error, legAddress) {
+						//if (legAddress != false) {
 							Meteor.call("cleanInput", legEmail, function(error, legEmail) {
 								if (legEmail != false) {
 									var atpos = legEmail.lastIndexOf("@");
@@ -194,7 +196,7 @@
 														if (legPhone != false) {
 														var regPhone = new RegExp("^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$");
 														if (regPhone.test(legPhone) == true) {
-															Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
+															Meteor.call("addNewLegislator", legName, legEmail, /*legAddress,*/ issue, legPhone);
 															var numberOfRows; 
 															var name = template.find(".nameInput").value;
 															
@@ -222,10 +224,10 @@
 									alert("There was a problem with your email");
 								}
 							});
-						} else {
-							alert("There was a problem with your address");
-						}
-					});
+						//} else {
+					//		alert("There was a problem with your address");
+						//}
+					//});
 				} else {
 					alert("There was a problem with your name");
 				}
@@ -681,6 +683,22 @@
 
 
 
+	});
+	
+	Template.legHead.helpers({
+		getSelectedIssueName: function() {
+			console.log("template should now appear, issue is "); 
+			return Session.get("adminSelectedIssue"); 
+
+		}, 
+	});
+	
+	Template.toDoHead.helpers({
+		getSelectedIssueName: function() {
+			console.log("template should now appear, issue is "); 
+			return Session.get("adminSelectedIssue"); 
+
+		}, 
 	});
 
 	Template.adminUpdate.events({

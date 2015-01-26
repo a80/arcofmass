@@ -22,11 +22,13 @@
       <p class = "navbar-text">Signed in as {{returnUserId}} (admin). </p>
     </div>
 
-    <div>
+    <div style="text-align:right">
       <button type = "button" class = "btn btn-default navbar-btn" id = "update-button">
+      	Settings
       <span class = "glyphicon glyphicon-cog"></span>
       </button>
       <button type = "button" class = "btn btn-default navbar-btn" id = "logoutButton"> 
+      	Logout
       <span class = "glyphicon glyphicon-log-out"></span>
       </button>
 
@@ -83,26 +85,30 @@
 			</script>
 	</head>
 	<div class = "col-md-3">
-		<button type="button" class="btn btn-default" id ="addIssueButton">
-			Add Issue
-		</button>
-				
-		<input type="text" id="addIssueField" class="form-control" aria-label="..." placeholder = "New Issue">
-				
-		<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete Current Issue
-		</button>
-		  
-		    <!-- List of all issues -->
-		{{#each getUserIssues}}
-		<a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
-		{{/each}}
-
+		<div id="issueBtns">
+			<button type="button" class="btn btn-default" id ="addIssueButton">
+				Add Issue
+			</button>
+					
+			<input type="text" id="addIssueField" class="form-control" aria-label="..." placeholder = "New Issue">
+					
+			<button type="button" class="btn btn-default" id="deleteIssueButton"> Delete Issue
+			</button>
 		</div>
+		<div id="listIssues">
+			    <!-- List of all issues -->
+			{{#each getUserIssues}}
+			<a href="#" id="issueSelect" class="list-group-item">{{returnIssueName}}</a>
+			{{/each}}
+		</div>
+	</div>
 
 	
 	<div class= "col-md-9">
 		{{#if issueSelected}}
 			{{> updateFormField }}
+		{{else}}
+			{{> selectAnIssue}}
 		{{/if}}
 	</div>	
 	
@@ -115,25 +121,32 @@
 
 
 	{{>legHead}}
+	<div class ="legTemplateDiv">
 	{{#each getLegislatorInfo}}
 		{{>legislatorRow}}
 	{{/each}}
+	</div>
 
+	<div class="legTemplateDiv">
 	{{#each getLegislatorRowArray}}
 		{{> legislatorRowNew}}
 	{{/each}}
+	</div>
 	
 	{{> addLegButton}}
 
-	
+	<div class = "toDoTemplateDiv">
 	{{>toDoHead}}
 	{{#each getToDoInfo}}
 		{{> toDoRow}}
 	{{/each}}
+	</div>
 
+	<div class="toDoTemplateDiv">
 	{{#each getToDoRowArray}}
 		{{> toDoRowNew}}
 	{{/each}}
+	</div>
 
 	{{> addToDoButton}}
 
@@ -143,17 +156,21 @@
 
 		<!--	<div id="contactList"> -->
 		<template name="legHead">
-			<h3 class="col-md-8" style="text-align:center">Contacts for {{getSelectedIssueName}}</h3>
+			<h3 style="text-align:center">Contacts for {{getSelectedIssueName}}</h3>
 		</template>
 				
-
+		<template name="selectAnIssue">
+			<div id="selectAnIssueDiv">
+				<h1>Select An Issue</h1>
+			</div>
+		</template>
 				<template name="legislatorRow">
-					<div class="legRow" id="{{getLegID}}">
+					<div class="legRow aLegRow" id="{{getLegID}}">
 						
 						
 					 	<input type="text" class="form-control nameInput" id="{{getNameID}}" aria-label="..." placeholder = "Representative" value="{{getLegislatorName}}" readonly = true>
 					 	<input type="text" class="form-control emailInput" id="{{getEmailID}}" aria-label="..." placeholder = "Email"  value="{{getLegislatorEmail}}" readonly = true>
-						<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}" readonly = true>
+						<!--<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}" readonly = true>-->
 						<input id="{{getPhoneID}}" type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" value="{{getLegislatorPhone}}" readonly = true>
 							 
 						 <button type="button" class="btn btn-default saveLegislatorButton" onclick="toEditLegislator()" id = "{{getSaveLegislatorButtonID}}">
@@ -171,21 +188,21 @@
 				</template>
 				
 				<template name="legislatorRowNew">
-					<div class="legRow">
+					<div class="legRow aLegRow">
 						
 						
 					 	<input type="text" class="form-control nameInput" aria-label="..." placeholder = "Representative" >
 					 	<input type="text" class="form-control emailInput" aria-label="..." placeholder = "Email">
-						<input type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" >
+						<!--<input type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" >-->
 						<input type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" >
 							 
 						 <button type="button" class="btn btn-default saveNewLegislatorButton" onclick="toEditLegislator()" id = "saveLegislatorButton">
 							 	Save
 						</button>
-					 	
-					 	<!-- <button type="button" class="btn btn-default" id="editLegislatorButton" onclick="toSaveLegislator()">
+					 	<!--
+					 	<button type="button" class="btn btn-default" id="editLegislatorButton" onclick="toSaveLegislator()">
 					 			Edit
-					 	</button> --> 
+					 	</button> -->
 					 	
 						<button type="button" class="btn btn-default deleteLegislatorButton" id="deleteLegislatorButton">
 							 	Delete
@@ -203,24 +220,27 @@
 
 				<template name="addLegButton">
 
-				<div class= "col-md-2 col-md-offset-5" id="addLegislatorButtonDiv">
+				<div id="addLegislatorRowButton">
+				
 					<button type="button" class="btn btn-default" id = "addLegislatorRow"> Add Legislator
 
 					</button>
+
 				</div>
+				
 		
 			
 			
 		</template>
 		<template name= "toDoHead">
 		<div id="todoList">
-			<h3 class="col-md-8" style="text-align:center">To Do's for {{getSelectedIssueName}}</h3> 
+			<h3  style="text-align:center">To Do's for {{getSelectedIssueName}}</h3> 
 		</div>
 				</template>
 				
 				<template name="toDoRow">
 				
-					 <div class = 'row' id="{{getToDoRowID}}">
+					 <div class = 'row aToDoRow' id="{{getToDoRowID}}">
 						
 						 		<input type= 'checkbox' class = "checkInput" aria-label="..." >
 						 		
@@ -251,8 +271,7 @@
 
 			<template name="toDoRowNew">
 				
-					 <div class = 'row'>
-						
+					 <div class = 'row aToDoRow'>						
 						 		<input type= 'checkbox' class = "checkInput" aria-label="..." >
 						 		
 						 		<input type="text" class="form-control todoInput" aria-label="..." placeholder = "To Do" >
@@ -285,7 +304,7 @@
 			
 			<template name="addToDoButton">
 
-			<div class = "col-md-2 col-md-offset-5" id="addToDoButtonDiv">
+			<div id="addToDoRowButton">
 				<button type= "button" class="btn btn-default" id= "addToDoRow" > Add To Do
 				</button>
 			</div>

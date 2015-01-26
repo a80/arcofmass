@@ -32,9 +32,15 @@
 	visibility: hidden;
 }
 
-.row,.legRow{
+.legTemplateDiv {
+	margin: 25px;
 	text-align: center;
-	padding-top: 75px;
+
+}
+
+.toDoTemplateDiv {
+	margin: 25px;
+	text-align: center;
 }
 
 #contactList, #addLegislator{
@@ -47,6 +53,10 @@
 
 }
 
+.row {
+	padding-top: 145px;
+}
+
 #issueSelect {
 	width: 405px;
 	padding-top:10px;
@@ -56,10 +66,10 @@
 	display: inline;
 }
 
-.nameInput, .emailInput, .addressInput{
-	width: 300px;
+.nameInput, .emailInput, .phoneInput{
+	width: 180px;
 }
-.nameInput, .emailInput, .addressInput, #saveLegislatorButton, #editLegislatorButton, #deleteLegislatorButton {
+.nameInput, .emailInput, .phoneInput, #saveLegislatorButton, #editLegislatorButton, #deleteLegislatorButton {
 	display: inline;
 }
 
@@ -69,15 +79,28 @@
 }
 
  #addLegislatorButtonDiv{
-	padding-left: 75px;
-
-}
-
-#addToDoButtonDiv {
-	padding-top: 50px;
 	
-	padding-left:88px ;
+	padding-top: 5px;
+	text-align: center;
+
 }
+
+.aLegRow, .aToDoRow {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+
+}
+
+#addToDoRowButton, #addLegislatorRowButton {
+	margin: 5px;
+	text-align: center;
+}
+
+
+
+
 
 .checkInput, .todoInput, .goalInput, .messageInput, #saveToDoButton, #editToDoButton, #deleteToDoButton{
 	display: inline;
@@ -86,8 +109,9 @@
 	display: inline;
 }
 
+
 .todoInput, .goalInput, .messageInput{
-	width: 300px;
+	width: 180px;
 }
 
 #addIssueButton, #addIssueField, #deleteIssueButton, #listGroup {
@@ -95,7 +119,7 @@
 }
 
 #addIssueField{
-	width: 150px;
+	width: 104px;
 }
 
 #save, #edit {
@@ -105,5 +129,9 @@
 
 #editLeg, #saveLeg {
 	display: inline;
+}
+
+#listIssues{
+	padding-top: 10px;
 }
 
