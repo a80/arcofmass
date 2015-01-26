@@ -1,4 +1,4 @@
-cussWords = ["shit", "fuck", "bitch", "ass", "damn", "dammit", "fucked", "cunt", "whore", "nigger", "nigga", "douche", "douchebag", "slut", "dick", "hoe", "fucker"];
+cussWords = ["shit", "fuck", "bitch", "ass", "damn", "dammit", "fucked", "cunt", "whore", "nigger", "nigga", "douche", "douchebag", "slut", "dick", "hoe", "fucker", "retard", "retarded", "fucktard", "asshole", "bastard", "bitchass","bullshit", "penis"];
 
 Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
