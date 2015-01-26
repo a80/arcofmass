@@ -5,8 +5,8 @@ Router.configure({
 
 Router.map(function() {
   //test - REMOVE
-  this.route('removeFeature', {path: '/test2'});
-  //this.route('testNav', {path: '/test'});
+  //this.route('removeFeature', {path: '/test2'});
+  this.route('testNav', {path: '/test'});
 
   this.route('login', {path: '/'});
 

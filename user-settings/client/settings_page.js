@@ -1,10 +1,42 @@
+cussWords = ["shit", "fuck", "bitch", "ass", "damn", "dammit", "fucked", "cunt", "whore", "nigger", "nigga", "douche", "douchebag", "slut", "dick", "hoe", "fucker"];
+
 Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
 		"click #logoutButton": function(event) {
 			Meteor.logout();
+			Router.go('/');
 		},
 		'click #user-home-button': function() {
-    		Router.go('/profile');
+			document.getElementById("formProblem").style.visibility = "hidden";
+			var name = document.getElementById("inputName").value;
+			var nameReady = document.getElementById("inputName").readOnly;
+			var zip = document.getElementById("inputZipcode").value;
+			var zipReady = document.getElementById("inputZipcode").readOnly;
+			var insp = document.getElementById("inputInspiration").value;
+			var inspReady = document.getElementById("inputInspiration").readOnly;
+			var story = document.getElementById("inputStory").value;
+			var storyReady = document.getElementById("inputStory").readOnly;
+			if (name != "" && nameReady == true && zip != "" && zipReady == true && insp != "" && inspReady == true && story != "" && storyReady == true) {
+				Router.go('/profile');
+			} else {
+				document.getElementById("formProblem").style.visibility = "visible";
+			}
+  		},
+		'click #leavePage': function() {
+			document.getElementById("formProblem").style.visibility = "hidden";
+			var name = document.getElementById("inputName").value;
+			var nameReady = document.getElementById("inputName").readOnly;
+			var zip = document.getElementById("inputZipcode").value;
+			var zipReady = document.getElementById("inputZipcode").readOnly;
+			var insp = document.getElementById("inputInspiration").value;
+			var inspReady = document.getElementById("inputInspiration").readOnly;
+			var story = document.getElementById("inputStory").value;
+			var storyReady = document.getElementById("inputStory").readOnly;
+			if (name != "" && nameReady == true && zip != "" && zipReady == true && insp != "" && inspReady == true && story != "" && storyReady == true) {
+				Router.go('/profile');
+			} else {
+				document.getElementById("formProblem").style.visibility = "visible";
+			}
   		},
 
   		"click #saveNameButton": function(event){
@@ -13,7 +45,7 @@ Meteor.subscribe("userSettingsData");
 			var myName = document.getElementById("inputName").value;
 
 			Meteor.call("cleanInput", myName, function(err, res) {
-				if (res != false){
+				if (res != false && !(new RegExp(cussWords.join("|")).test(res.toLowerCase()))) {
 					Meteor.call("modifyUserName", res);
 					document.getElementById("saveNameButton").style.visibility = "hidden";
 					document.getElementById("editNameButton").style.visibility = "visible";
@@ -63,7 +95,8 @@ Meteor.subscribe("userSettingsData");
 			var myInspiration = document.getElementById("inputInspiration").value;
 			
 			Meteor.call("cleanInput", myInspiration, function(error, myInspiration) {
-				if (myInspiration != false){
+				if (myInspiration != false && !(new RegExp(cussWords.join("|")).test(myInspiration.toLowerCase())) && !(new RegExp("[\\s]").test(myInspiration))) {
+
 					Meteor.call("modifyUserInspiration", myInspiration);
 					document.getElementById("saveInspirationButton").style.visibility = "hidden";
 					document.getElementById("editInspirationButton").style.visibility = "visible";
@@ -87,7 +120,7 @@ Meteor.subscribe("userSettingsData");
 			
 			var myStory = document.getElementById("inputStory").value;
 			Meteor.call("cleanInput", myStory, function(error, myStory) {
-				if (myStory != false) {
+				if (myStory != false && !(new RegExp(cussWords.join("|")).test(myStory.toLowerCase()))) {
 
 					console.log(myStory); 
 					Meteor.call("modifyUserStory", myStory);

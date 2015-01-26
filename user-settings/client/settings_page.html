@@ -31,6 +31,9 @@
       <button type = "button" class = "btn btn-default navbar-btn" id = "user-settings-button">
       <span class = "glyphicon glyphicon-cog"></span>
       </button>
+	  <button type = "button" class = "btn btn-default navbar-btn" id = "logoutButton">
+      <span class = "glyphicon glyphicon-log-out"></span>
+      </button>
     </div>
     
     </div>
@@ -38,6 +41,9 @@
 
   </nav>
   
+  <div>
+	<h5 id="formProblem" style="color:red;">Please fill out and save all fields.</h5>
+  </div>
 	
 	<div class = 'title'>
 		<h2 id="theTitle" style="color:DarkOrange"><strong> Your Settings </strong></h2>
@@ -55,36 +61,10 @@
 							<input type="text" class="form-control" id="inputName" placeholder="Enter Name" value="{{getUserName}}" readonly> 
 							<button type="button" class = "btn btn-default" id="saveNameButton" >Save</button>
 							<button type="button" class = "btn btn-default"  id= "editNameButton" >Edit</button>
-							<h5 id="alertName" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
+							<h5 id="alertName" style="color:red;"> Whoops! You entered unallowed characters and/or words. </h5>
 
 						</div>
 						
-					</div>
-				</div>
-				<!--
-				<div class = "each">
-					<h5>Email</h5>
-					<div class = "email">
-						<div>
-
-							<input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{getUserEmail}}"> 
-							
-							<button type="button" class="btn btn-default" id="saveEmailButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editEmailButton">Edit</button>
-						</div>
-					</div>
-				</div>-->
-				<div class = "each">
-					<h5>Who You Advocate For</h5>
-					<div class = "inspiration">
-						<div>
-
-							<input type="text" class="form-control" id="inputInspiration" placeholder="Your Inspiration" value="{{getUserInspiration}}" readonly> 
-							
-							<button type="button" class="btn btn-default" id="saveInspirationButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editInspirationButton">Edit</button>
-							<h5 id="alertInspiration" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
-						</div>
 					</div>
 				</div>
 				<div class = "each">
@@ -96,19 +76,7 @@
 							
 							<button type="button" class="btn btn-default" id="saveZipCodeButton">Save </button>
 							<button type="button" class = "btn btn-default"  id= "editZipCodeButton">Edit</button>
-							<h5 id="alertZip" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
-						</div>
-					</div>
-				</div>
-				<div class = "each">
-					<h5>Story</h5>
-					<div class = "story">
-						<div>
-							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story" readonly>{{getUserStory}}</textarea>
-							
-							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
-							<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
+							<h5 id="alertZip" style="color:red;"> Whoops! You entered unallowed characters and/or words. </h5>
 						</div>
 					</div>
 				</div>
@@ -144,6 +112,44 @@
 					</div> -->
 					
 				</div>
+				<!--
+				<div class = "each">
+					<h5>Email</h5>
+					<div class = "email">
+						<div>
+
+							<input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{getUserEmail}}"> 
+							
+							<button type="button" class="btn btn-default" id="saveEmailButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editEmailButton">Edit</button>
+						</div>
+					</div>
+				</div>-->
+				<div class = "each">
+					<h5>Whom Do You Advocate For</h5>
+					<div class = "inspiration">
+						<div>
+
+							<input type="text" class="form-control" id="inputInspiration" placeholder="First Name of Your Inspiration" value="{{getUserInspiration}}" readonly> 
+							
+							<button type="button" class="btn btn-default" id="saveInspirationButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editInspirationButton">Edit</button>
+							<h5 id="alertInspiration" style="color:red;"> Whoops! You entered unallowed characters and/or words. </h5>
+						</div>
+					</div>
+				</div>
+				<div class = "each">
+					<h5>Story</h5>
+					<div class = "story">
+						<div>
+							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story" readonly>{{getUserStory}}</textarea>
+							
+							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
+							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
+							<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters and/or words. </h5>
+						</div>
+					</div>
+				</div>
 				<div class = "each">
 					<h3 id="passwordTitle" style="color:DarkOrange"><strong> Change Your Password</strong></h3>
 					<h5>Password</h5>
@@ -174,7 +180,7 @@
 						<h5 id="alertMessageMatch" style="color:red;"> Whoops! Your new password and confirmed password need to match. </h5>
 
 						<h5 id="alertMessageWrong" style="color:red;"> Whoops! You entered your old password incorrectly. </h5>
-						<h5 id="alertMessageBad" style="color:red;"> Whoops! You entered unallowed characters. Try again using only alphanumeric characters, spaces, or any of the following: @'.,_- </h5>
+						<h5 id="alertMessageBad" style="color:red;"> Whoops! You entered unallowed characters and/or words. </h5>
 
 						<h5 id= "savedSuccessfullyMessage" style="color:green">Saved Successfully!</h5>
 						</div>
@@ -189,7 +195,9 @@
 			<img src ="http://i.imgur.com/E8y5NZH.jpg" style="width:70%; height:70%">
 		</div>
 	
-		
+	<div>
+		<button type="button" class="btn btn-default" id="leavePage">Go to Homepage</button>
+	</div>	
 	
 
 </body>
