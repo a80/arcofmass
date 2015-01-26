@@ -13,6 +13,10 @@ Template.profileHome.events({
 	'click #user-settings-button': function() {
     Router.go('/user-settings');
   },
+  'click #toggle-navigation-button': function() {
+    alert();
+  },
+  
 });
 
 
@@ -51,7 +55,11 @@ Template.profileHome.helpers({
     } else {
       return Session.get("showMyNotifications"); 
     }
-  }
+  }, 
+
+  returnSectionId: function() {
+    return this._id + "section"; 
+  },
 });
 
 
@@ -212,6 +220,8 @@ Template.toDoPanel.events({
 var graphs = {};
 
 Template.profileHome.rendered = function() {
+
+
 
 	Deps.autorun(function() {
 	  var issueList = issues.find({}).fetch();
