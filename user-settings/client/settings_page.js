@@ -80,6 +80,7 @@ Meteor.subscribe("userSettingsData");
 			
 			Meteor.call("cleanInput", myInspiration, function(error, myInspiration) {
 				if (myInspiration != false && !(new RegExp(cussWords.join("|")).test(myInspiration.toLowerCase()))) {
+
 					Meteor.call("modifyUserInspiration", myInspiration);
 					document.getElementById("saveInspirationButton").style.visibility = "hidden";
 					document.getElementById("editInspirationButton").style.visibility = "visible";

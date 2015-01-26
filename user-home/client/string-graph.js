@@ -184,6 +184,12 @@ function stringGraph(el) {
     console.log(d3.select(node).data()[0].id);
     Session.set("showMyNotifications", false); 
     Session.set("selectedInspiration", d3.select(node).data()[0].id); 
+
+    if (d3.select(node).data()[0].id === Meteor.user().profile.name) {
+      Session.set("showMyNotifications", true); 
+    }
+
+
     update();
   });
 
@@ -352,10 +358,10 @@ function stringGraph(el) {
     //console.log("Rendering..."); 
     var graph;
     graph = new stringGraph("#svgdiv");
-    /*Deps.autorun(function() {
+    Deps.autorun(function() {
       console.log(Meteor.user().profile.name); 
       graph.addNode(Meteor.user().profile.name); 
-    });*/
+    });
     
 
     inspirations.find().observe({

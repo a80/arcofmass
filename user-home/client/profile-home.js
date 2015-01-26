@@ -323,3 +323,19 @@ Template.myNotificationsList.helpers({
     return notifications.find({userId: Meteor.user()._id}, {sort: {dateCompleted: -1}}); 
   }, 
 })
+
+Template.inspiration.helpers({
+  inspirationName: function() {
+    return Session.get("selectedInspiration");
+  }, 
+  otherUserName: function() {
+    var selInspiration = Session.get("selectedInspiration"); 
+    var otherUserId = inspirations.findOne({userId: Meteor.user()._id, changeFor: selInspiration}).changeForUserId; 
+    return Meteor.users.findOne({_id: otherUserId}).profile.name; 
+  },
+  returnStory: function() {
+    var selInspiration = Session.get("selectedInspiration"); 
+    var otherUserId = inspirations.findOne({userId: Meteor.user()._id, changeFor: selInspiration}).changeForUserId; 
+    return Meteor.users.findOne({_id: otherUserId}).profile.story; 
+  },
+}); 
