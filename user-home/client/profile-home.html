@@ -7,7 +7,9 @@
 </template> 
 
 <template name = "inspiration"> 
-  <h1> I am change for </h1>
+  <h1> I am change for {{inspirationName}} + {{otherUserName}}</h1>
+  <h2>Their story.</h2>
+  <p>{{returnStory}}</p>  
   <!-- <h1> {{returnInspirationName}} and {{returnAssociatedUserName}}</h1> 
 
   <h1>{{returnAssociatedUserName}}'s story</h1> 
@@ -50,7 +52,7 @@
       </div>
       <!-- <div class="modal-body"> --> 
         <div class="row">
-  <div class="col-md-6">.col-md-6
+  <div class="col-md-6">
     {{#if showMyNotifications}}
     {{> myNotificationsList}}
     {{else}}
@@ -59,7 +61,7 @@
 
 
       </div>
-  <div class="col-md-6">.col-md-6
+  <div class="col-md-6">
 
     <div id = "stringGraphDiv">
       {{> diagram}}
