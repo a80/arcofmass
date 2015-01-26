@@ -4,6 +4,10 @@
   stroke-width: 1.2px;
 }
 
+.link:hover {
+	cursor: pointer;
+}
+
 circle {
   fill: orange;
   stroke: #fff;
