@@ -1,4 +1,4 @@
-cussWords = ["shit", "fuck", "bitch", "ass", "damn", "dammit", "fucked", "cunt", "whore", "nigger", "nigga", "douche", "douchebag", "slut", "dick", "hoe", "fucker"];
+cussWords = ["shit", "fuck", "bitch", "ass", "damn", "dammit", "fucked", "cunt", "whore", "nigger", "nigga", "douche", "douchebag", "slut", "dick", "hoe", "fucker", "retard", "retarded", "fucktard", "asshole", "bastard", "bitchass","bullshit", "penis"];
 
 Meteor.subscribe("userSettingsData");
 	Template.userSettings.events({
@@ -95,7 +95,7 @@ Meteor.subscribe("userSettingsData");
 			var myInspiration = document.getElementById("inputInspiration").value;
 			
 			Meteor.call("cleanInput", myInspiration, function(error, myInspiration) {
-				if (myInspiration != false && !(new RegExp(cussWords.join("|")).test(myInspiration.toLowerCase())) && !(new RegExp("[\\s]").test(myInspiration))) {
+				if (myInspiration != false && !(new RegExp(cussWords.join("|")).test(myInspiration.toLowerCase()))/* && !(new RegExp("[\\s]").test(myInspiration))*/) {
 
 					Meteor.call("modifyUserInspiration", myInspiration);
 					document.getElementById("saveInspirationButton").style.visibility = "hidden";

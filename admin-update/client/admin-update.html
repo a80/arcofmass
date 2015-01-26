@@ -67,9 +67,9 @@
 				/*
 				document.getElementById("saveLegislatorButton").style.visibility = "hidden";
 				document.getElementById("editLegislatorButton").style.visibility = "visible";
-				//document.getElementById("nameInput").readOnly = true;
-				//document.getElementById("emailInput").readOnly = true;
-				//document.getElementById("addressInput").readOnly = true;
+				document.getElementById("nameInput").readOnly = true;
+				document.getElementById("emailInput").readOnly = true;
+				document.getElementById("addressInput").readOnly = true;
 				*/
 			}
 
@@ -173,7 +173,7 @@
 						<!--<input id="{{getAddressID}}" type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" value="{{getLegislatorAddress}}" readonly = true>-->
 						<input id="{{getPhoneID}}" type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" value="{{getLegislatorPhone}}" readonly = true>
 							 
-						 <button type="button" class="btn btn-default saveLegislatorButton" onclick="toEditLegislator()" id = "{{getSaveLegislatorButtonID}}">
+						 <button type="button" class="btn btn-default saveLegislatorButton"  id = "{{getSaveLegislatorButtonID}}">
 							 	Save
 						</button>
 					 	
@@ -196,7 +196,7 @@
 						<!--<input type="text" class="form-control addressInput" aria-label="..." placeholder = "Address" >-->
 						<input type="text" class="form-control phoneInput" aria-label="..." placeholder = "Phone Number" >
 							 
-						 <button type="button" class="btn btn-default saveNewLegislatorButton" onclick="toEditLegislator()" id = "saveLegislatorButton">
+						 <button type="button" class="btn btn-default saveNewLegislatorButton"  id = "saveLegislatorButton">
 							 	Save
 						</button>
 					 	<!--

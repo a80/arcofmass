@@ -13,6 +13,22 @@ Template.profileHome.events({
 	'click #user-settings-button': function() {
     Router.go('/user-settings');
   },
+  'click #toggle-navigation-button': function() {
+    alert();
+  },
+  'click #toggle-navigation-button': function() {
+    alert();
+  },
+  'click .listGroupItemNavModal': function() {
+    //console.log("clicked"); 
+    //console.log(document.getElementById('navModal').hide()); 
+    //document.getElementById('navModal').modal('hide'); 
+    console.log($('#navModal'));
+    $('#navModal').modal('hide');
+  }
+
+  
+  
 });
 
 
@@ -25,6 +41,10 @@ Template.profileHome.helpers({
       	return l;
     	}); 
 	},
+
+  returnIssueName: function() {
+    return this.name; 
+  },
 
 	returnUserId: function() {
 		return Meteor.user().username; 
@@ -51,6 +71,14 @@ Template.profileHome.helpers({
     } else {
       return Session.get("showMyNotifications"); 
     }
+  }, 
+
+  returnSectionId: function() {
+    return this._id + "section"; 
+  },
+
+  returnHref: function() {
+    return "#" + this._id + "section"; 
   }
 });
 
@@ -158,7 +186,7 @@ Template.toDoPanel.events({
             Meteor.call("insertNotification", toDoId, issueId, function(error) {
               if (!error) {
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, actionItems.findOne({_id: toDoId}).count, "to do: " + toDoName);
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, true);
               }
             });
           }
@@ -171,7 +199,7 @@ Template.toDoPanel.events({
             Meteor.call("deleteNotification", toDoId, function(error) {
               if (!error) {
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, actionItems.findOne({_id: toDoId}).count, "to do: " + toDoName);
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, true);
               }
             });
           }
@@ -204,7 +232,7 @@ Template.toDoPanel.events({
       } 
 
     	var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
-    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, toDoOfInterest.count, "to Do: " + this.text, inputNotifParam);
+    	graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [toDoOfInterest.count, toDoOfInterest.goal], "to Do: " + this.text, inputNotifParam, true);
     },
 
 });
@@ -212,6 +240,8 @@ Template.toDoPanel.events({
 var graphs = {};
 
 Template.profileHome.rendered = function() {
+
+
 
 	Deps.autorun(function() {
 	  var issueList = issues.find({}).fetch();
@@ -221,7 +251,7 @@ Template.profileHome.rendered = function() {
     
     _.each(issueList, function(issue) {
       var graphID = issue.name.replace(/\s*/g, '');
-      graphs[graphID] = progressBar("#" + graphID, issue.count, "what: " + issue.name, "");
+      graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + issue.name, "", false);
     }); 
 	});
 
@@ -230,7 +260,9 @@ Template.profileHome.rendered = function() {
 }
 
 
-function progressBar(el, data, label, notifications) {
+function progressBar(el, data, label, notifications, showAxis) {
+
+  console.log("counts, goal", data[0], data[1]); 
   //parse input notif. param:
   //parse the dict. 
   var keys = []; 
@@ -251,12 +283,18 @@ function progressBar(el, data, label, notifications) {
   var height = 600;
 
   var widthScale = d3.scale.linear()
-                      .domain([0, 20])
+                      .domain([0, data[1]])
                       .range([0, width]); 
 
   var color = d3.scale.linear()
                 .domain([0, 10])
                 .range(["red", "blue"]);
+
+  var yAxis = d3.svg.axis()
+            .scale(d3.scale.linear().domain([0, data[1]]).range([height, 0]))
+            .orient("left")
+            .ticks(5)
+             .tickFormat(d3.format("d")); 
 
 
   var createCanvasSvg = function(el) {
@@ -273,8 +311,14 @@ function progressBar(el, data, label, notifications) {
 
   createCanvasSvg(el);
 
+  /*if (Session.get("valueStart") != undefined) {
+    valueStart = 0; 
+  } else {
+    valueStart = Session.get("valueStart"); 
+  }*/ 
+
   var bars = canvas.selectAll("rect")
-                  .data([data])
+                  .data([data[0]])
                   .enter()
                     .append("rect")
                     .attr("y", 600)
@@ -283,7 +327,7 @@ function progressBar(el, data, label, notifications) {
                     .transition()
                     .duration(1000)
                     .attr("height", function (d) { return widthScale(d); })
-                    .attr("y", function(d, i) {return height - widthScale(d) }); 
+                    .attr("y", function(d, i) {return height + 12 - (widthScale(d)) }); 
                     /*.attr("fill", function(d) {return color(d)});*/
 
   /*console.log(issueName); */
@@ -294,6 +338,21 @@ function progressBar(el, data, label, notifications) {
   } else {
 
   } */
+if (showAxis) {
+  canvas.append("g")
+      .attr("transform", "translate(950, 6)")
+      .attr("class", "axis")
+      .call(yAxis);
+
+         canvas.append("text")
+    .attr("class", "ylabel")
+    .attr("text-anchor", "end")
+    .attr("y", 880)
+    .attr("x", -200)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .text("your community of advocates");
+    }
   
   canvas.append('text').text(label).attr("x", 30).attr("y", 100).attr("fill", "white").style("font-size", "100px");
 

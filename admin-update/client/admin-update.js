@@ -35,7 +35,7 @@
 				delIssue = Session.get("adminSelectedIssue");
 				Meteor.call("delIssue", delIssue);
 			}
-			Session.set("adminSelectedIssue", undefined);
+			//Session.set("adminSelectedIssue", undefined);
 			
 			
 		},
@@ -179,6 +179,7 @@
 			
 
 			var issue = Session.get("adminSelectedIssue"); 
+
 			Meteor.call("cleanInput", legName, function(error, legName) {
 				if (legName != false) {
 					//Meteor.call("cleanInput", legAddress, function(error, legAddress) {
@@ -203,6 +204,7 @@
 															if (Session.get("newLegislatorRowArray") != undefined) {
 																if (Session.get("newLegislatorRowArray") === "1") {
 																	Session.set("newLegislatorRowArray", undefined);
+																	
 																} else {
 																	numberOfRows = Session.get("newLegislatorRowArray"); 
 																	index = numberOfRows.length - 2; 
@@ -372,10 +374,12 @@
 									    if (Session.get("newToDoRowArray") != undefined) {
 									    	if (Session.get("newToDoRowArray") === "1") {
 									    		Session.set("newToDoRowArray", undefined);
+
 									    	} else {
 									    		numberOfRows = Session.get("newToDoRowArray"); 
 									    		index = numberOfRows.length - 2; 
 												Session.set("newToDoRowArray", numberOfRows.substring(0, index));
+												
 									    	}
 										}
 									} else {
@@ -428,8 +432,11 @@
 
 	  		issueName = Session.get("adminSelectedIssue"); 
 
+
 	  		if (issueName != undefined) {
+	  			
 	  			relevantLegislators = legislators.find({issue: issueName}); 
+	  			
 	  		} else {
 	  			relevantLegislators = []; 
 	  		}

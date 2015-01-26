@@ -83,6 +83,7 @@ body {
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: -40px;
+  margin-right: 10%;
 }
 
 .toDoListItemLabel {
@@ -101,6 +102,7 @@ body {
   text-align: left;
   cursor: pointer;
   width: 80%;
+  margin-right: 8%;
 
 }
 
@@ -167,4 +169,18 @@ input[type=checkbox]:not(old):checked + label > span:before{
   padding: 0;
   top: 0px;
   left: 0px;
+}
+
+#issueNavButton, #user-settings-button, #logoutButton {
+  color: white;
+  background: transparent;
+}
+
+.signedInText {
+  color: white;
+}
+
+.row {
+  padding-top: 50px;
+  padding-bottom: 10px;
 }

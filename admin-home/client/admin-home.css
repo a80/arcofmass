@@ -149,3 +149,11 @@
 .listItemText {
 	color: orange;
 }
+
+.axis {
+	fill: white;
+}
+
+.ylabel {
+	fill: white;
+}
