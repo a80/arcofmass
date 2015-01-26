@@ -171,13 +171,16 @@ input[type=checkbox]:not(old):checked + label > span:before{
   left: 0px;
 }
 
-#toggle-navigation-button {
-  position: absolute;
-  bottom: 5%;
-  right: 2%;
-}
-
-#issueNavButton {
+#issueNavButton, #user-settings-button, #logoutButton {
   color: white;
   background: transparent;
+}
+
+.signedInText {
+  color: white;
+}
+
+.row {
+  padding-top: 50px;
+  padding-bottom: 10px;
 }

@@ -31,7 +31,7 @@
       </div>
 
       <div>
-        <p class = "navbar-text">Signed in as {{returnUserId}}.</p>
+        <p class = "navbar-text"> <span class = "signedInText">Signed in as {{returnUserId}}.</span> </p>
       </div>
 
       <div style="text-align:right">
@@ -44,7 +44,7 @@
           <span class = "glyphicon glyphicon-log-out"></span>
         </button>
 
-        <button type = "button" class = "btn btn-default navbar-btn" id = "issueNavButton">
+        <button type = "button" class = "btn btn-default navbar-btn" id = "issueNavButton" data-toggle="modal" data-target=".bs-example-modal-sm">
           <span class = "glyphicon glyphicon-align-justify"></span>
         </button>
 
@@ -54,7 +54,7 @@
   </nav> 
 
 
-  <!-- Modal -->
+  <!-- Modal for my change-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" id = "profileHomeModal">
     <div class="modal-content" id = "profileHomeModalContent">
@@ -89,6 +89,23 @@
     </div>
   </div>
 </div>
+
+
+
+    <div id = "navModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div id="listGroupForModal">
+                {{#each getUserIssues}}
+                  <a href="{{returnHref}}" class="listGroupItemNavModal list-group-item">{{returnIssueName}}</a>
+                {{/each}}
+            </div>
+    </div>
+  </div>
+</div>
+
+
+
 
   <body>
 

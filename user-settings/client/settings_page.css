@@ -86,9 +86,6 @@ padding-left: 35px;
 	visibility: hidden;
 }
 
-
-
-
 #formProblem, #alertMessageWrong, #alertMessageMatch, #alertMessageBad, #savedSuccessfullyMessage, #alertName, #alertInspiration, #alertZip, #alertStory {
 	visibility: hidden;
 }

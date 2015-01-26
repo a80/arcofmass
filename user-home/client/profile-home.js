@@ -16,6 +16,18 @@ Template.profileHome.events({
   'click #toggle-navigation-button': function() {
     alert();
   },
+  'click #toggle-navigation-button': function() {
+    alert();
+  },
+  'click .listGroupItemNavModal': function() {
+    //console.log("clicked"); 
+    //console.log(document.getElementById('navModal').hide()); 
+    //document.getElementById('navModal').modal('hide'); 
+    console.log($('#navModal'));
+    $('#navModal').modal('hide');
+  }
+
+  
   
 });
 
@@ -29,6 +41,10 @@ Template.profileHome.helpers({
       	return l;
     	}); 
 	},
+
+  returnIssueName: function() {
+    return this.name; 
+  },
 
 	returnUserId: function() {
 		return Meteor.user().username; 
@@ -60,6 +76,10 @@ Template.profileHome.helpers({
   returnSectionId: function() {
     return this._id + "section"; 
   },
+
+  returnHref: function() {
+    return "#" + this._id + "section"; 
+  }
 });
 
 
