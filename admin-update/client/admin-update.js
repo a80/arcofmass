@@ -424,11 +424,10 @@
 	Template.updateFormField.helpers({
 	    getLegislatorInfo: function() {
 	  	//return leg associated with the issue 
-	  	//console.log("getLegInfo accessed, the issue is: " + issue);
-	  	//console.log(legislators.find({issue: issue}).fetch()); 
+	  	//console.log("getLegInfo accessed, the issue is: " + issue); 
 	  		//issueName = selectedIssue.findOne({name: "selectedIssueObject"}).selectedIssue; 
 
-	  		var relevantLegislators; 
+	  		var relevantLegislators =[]; 
 
 	  		issueName = Session.get("adminSelectedIssue"); 
 
