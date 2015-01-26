@@ -99,11 +99,17 @@
 					<h5>Story</h5>
 					<div class = "story">
 						<div>
-							<textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story" readonly>{{getUserStory}}</textarea>
-							
-							<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
-							<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
-							<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters and/or words. </h5>
+							<div id ="A"><textarea type="text" class="form-control" id="inputStory" placeholder="Enter Story" readonly>{{getUserStory}}</textarea>
+							</div>
+							<div id="B">
+								<button type="button" class="btn btn-default" id="saveStoryButton">Save </button>
+							</div>
+							<div id="C">
+								<button type="button" class = "btn btn-default"  id= "editStoryButton" >Edit</button>
+							</div>
+							<div id="D">
+								<h5 id="alertStory" style="color:red;"> Whoops! You entered unallowed characters and/or words. </h5>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -153,7 +159,7 @@
 						</div>
 					</div>
 				</div>-->
-				
+
 				<h3 id="passwordTitle" style="color:DarkOrange"> Change Your Password</h3>
 				<div class = "each">
 					
@@ -180,7 +186,9 @@
 					<div class = "password">
 						<div>
 							<input type="password" class="form-control" id="confirmNPassword" placeholder="Confirm New Password" > 
-						<button type="button" class="btn btn-default" id="savePasswordButton">Save password</button>
+						</div>
+						<div style="padding-top:15px">
+						<button type="button" class="btn btn-default" id="savePasswordButton" >Save password</button>
 						
 						<h5 id="alertMessageMatch" style="color:red;"> Whoops! Your new password and confirmed password need to match. </h5>
 
@@ -192,15 +200,16 @@
 						
 					</div>
 				</div>
+				<div class = "col-md-4 col-md-offset-2 col-md-offset-6" style="padding:15px">
+					<button type="button" class="btn btn-default" id="leavePage" >Go to Homepage</button>
+				</div>
 			
 			</form>
 			
 		</div>
 		
 	
-	<div>
-		<button type="button" class="btn btn-default" id="leavePage">Go to Homepage</button>
-	</div>	
+		
 	
 
 </body>

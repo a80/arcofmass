@@ -57,6 +57,10 @@ padding-left: 35px;
 	padding-left: 35px;
 }
 
+#A,#B,#C {
+	display: inline;
+}
+
 #inputName, #inputUsername, #inputEmail, #inputPassword,#inputInspiration,#inputZipcode,#inputOPassword, #inputNPassword, #confirmNPassword  {
 	width: 500px;
 	height: 30px;
@@ -64,9 +68,20 @@ padding-left: 35px;
 
 }
 
+#inputStory, #editStoryButton, #saveStoryButton {
+	display: inline;
+}
+
+#editStoryButton, #saveStoryButton {
+	padding-top: 10px;
+	padding-bottom: -5px;
+	vertical-align: top;
+}
+
+
 #inputStory {
 	width: 500px;
-	height: 250px;
+	height: 260px;
 }
 
 .title {
