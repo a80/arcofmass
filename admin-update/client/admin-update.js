@@ -101,13 +101,16 @@
 											if (issue != false) {
 												Meteor.call("cleanInput", legPhone, function(error, legPhone) {
 													if (legPhone != false) {
-														Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
-														template.find(".saveLegislatorButton").style.visibility = "hidden";
-														template.find(".editLegislatorButton").style.visibility = "visible";
-														template.find(".nameInput").readOnly = true;
-														template.find(".addressInput").readOnly = true;
-														template.find(".emailInput").readOnly = true;
-														template.find(".phoneInput").readOnly = true;
+														var regPhone = new RegExp("^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$");
+														if (regPhone.test(legPhone) == true) {
+															Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
+															template.find(".saveLegislatorButton").style.visibility = "hidden";
+															template.find(".editLegislatorButton").style.visibility = "visible";
+															template.find(".nameInput").readOnly = true;
+															template.find(".addressInput").readOnly = true;
+															template.find(".emailInput").readOnly = true;
+															template.find(".phoneInput").readOnly = true;
+														}
 													} else {
 														alert("There was a problem with your phone number");
 													}
@@ -185,17 +188,21 @@
 											if (issue != false) {
 												Meteor.call("cleanInput", legPhone, function(error, legPhone) {
 													if (legPhone != false) {
-														Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
-														var numberOfRows; 
-														var name = template.find(".nameInput").value;
-														
-														if (Session.get("newLegislatorRowArray") != undefined) {
-															if (Session.get("newLegislatorRowArray") === "1") {
-																Session.set("newLegislatorRowArray", undefined);
-															} else {
-																numberOfRows = Session.get("newLegislatorRowArray"); 
-																index = numberOfRows.length - 2; 
-																Session.set("newLegislatorRowArray", numberOfRows.substring(0, index));
+														if (legPhone != false) {
+														var regPhone = new RegExp("^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$");
+														if (regPhone.test(legPhone) == true) {
+															Meteor.call("addNewLegislator", legName, legEmail, legAddress, issue, legPhone);
+															var numberOfRows; 
+															var name = template.find(".nameInput").value;
+															
+															if (Session.get("newLegislatorRowArray") != undefined) {
+																if (Session.get("newLegislatorRowArray") === "1") {
+																	Session.set("newLegislatorRowArray", undefined);
+																} else {
+																	numberOfRows = Session.get("newLegislatorRowArray"); 
+																	index = numberOfRows.length - 2; 
+																	Session.set("newLegislatorRowArray", numberOfRows.substring(0, index));
+																}
 															}
 														}
 													} else {
