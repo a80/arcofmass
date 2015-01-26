@@ -211,7 +211,8 @@
 													} else {
 														alert("There was a problem with your phone number");
 													}
-												});
+												}
+											});
 											} else {
 												alert("There was a problem with your issue");
 											}

@@ -334,6 +334,8 @@ Template.inspiration.helpers({
     return Meteor.users.findOne({_id: otherUserId}).profile.name; 
   },
   returnStory: function() {
-
+    var selInspiration = Session.get("selectedInspiration"); 
+    var otherUserId = inspirations.findOne({userId: Meteor.user()._id, changeFor: selInspiration}).changeForUserId; 
+    return Meteor.users.findOne({_id: otherUserId}).profile.story; 
   },
 }); 
