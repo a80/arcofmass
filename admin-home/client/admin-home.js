@@ -72,7 +72,9 @@ Template.adminIssuePanel.helpers({
 		for (var i = 0; i < actionItemsData.length; i++) {
 		  //console.log("entered if loop"); 
 		  if (actionItemsData[i].issue === issueName) {
-			actionItemsForIssue.push(actionItemsData[i]); 
+			var toDo = actionItemsData[i];
+			var percent = parseInt((toDo.count / parseInt(toDo.goal))*100);
+			actionItemsForIssue.push(toDo.name + ": " + percent + "%"); 
 		  }
 		}
 
