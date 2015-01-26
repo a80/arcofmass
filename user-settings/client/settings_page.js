@@ -22,6 +22,22 @@ Meteor.subscribe("userSettingsData");
 				document.getElementById("formProblem").style.visibility = "visible";
 			}
   		},
+		'click #leavePage': function() {
+			document.getElementById("formProblem").style.visibility = "hidden";
+			var name = document.getElementById("inputName").value;
+			var nameReady = document.getElementById("inputName").readOnly;
+			var zip = document.getElementById("inputZipcode").value;
+			var zipReady = document.getElementById("inputZipcode").readOnly;
+			var insp = document.getElementById("inputInspiration").value;
+			var inspReady = document.getElementById("inputInspiration").readOnly;
+			var story = document.getElementById("inputStory").value;
+			var storyReady = document.getElementById("inputStory").readOnly;
+			if (name != "" && nameReady == true && zip != "" && zipReady == true && insp != "" && inspReady == true && story != "" && storyReady == true) {
+				Router.go('/profile');
+			} else {
+				document.getElementById("formProblem").style.visibility = "visible";
+			}
+  		},
 
   		"click #saveNameButton": function(event){
   			document.getElementById("alertName").style.visibility = "hidden";
@@ -79,7 +95,7 @@ Meteor.subscribe("userSettingsData");
 			var myInspiration = document.getElementById("inputInspiration").value;
 			
 			Meteor.call("cleanInput", myInspiration, function(error, myInspiration) {
-				if (myInspiration != false && !(new RegExp(cussWords.join("|")).test(myInspiration.toLowerCase()))) {
+				if (myInspiration != false && !(new RegExp(cussWords.join("|")).test(myInspiration.toLowerCase())) && !(new RegExp("[\\s]").test(myInspiration))) {
 
 					Meteor.call("modifyUserInspiration", myInspiration);
 					document.getElementById("saveInspirationButton").style.visibility = "hidden";
