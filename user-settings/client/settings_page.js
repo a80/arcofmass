@@ -79,7 +79,7 @@ Meteor.subscribe("userSettingsData");
 			var myInspiration = document.getElementById("inputInspiration").value;
 			
 			Meteor.call("cleanInput", myInspiration, function(error, myInspiration) {
-				if (myInspiration != false && (new RegExp(cussWords.join("|")).test(myInspiration)))
+				if (myInspiration != false && (new RegExp(cussWords.join("|")).test(myInspiration))) {
 					Meteor.call("modifyUserInspiration", myInspiration);
 					document.getElementById("saveInspirationButton").style.visibility = "hidden";
 					document.getElementById("editInspirationButton").style.visibility = "visible";
