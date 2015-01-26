@@ -44,6 +44,7 @@ Template.login.events({
 					Meteor.loginWithPassword(username, password, function(error) {
 					  if (error) {
 						console.log('login failed');
+						alert("You entered incorrect information.");
 					  } else {
 						console.log('login-succeeded');
 						Router.go('/profile');
@@ -99,6 +100,7 @@ Template.login.events({
 					  } else {
 						Meteor.loginWithPassword(username, password, function(error) {
 						  if (error) {
+							  alert("Account creation failed. Please try again with a new username/password.");
 							console.log('login failed');
 						  } else {
 								console.log('login-succeeded');
@@ -193,6 +195,7 @@ Template.adminLogin.events({
 						Meteor.loginWithPassword(username, password, function(error) {
 						  if (error) {
 							console.log('admin login failed');
+							alert("Account creation failed. Please try again with a new username/password.");
 						  } else {
 								console.log('admin-login-succeeded');
 								Router.go('/admin');
@@ -250,6 +253,7 @@ Template.adminLogin.events({
 				if (password != false) {	
 					Meteor.loginWithPassword(username, password, function(error) {
 					  if (error) {
+						  alert("You entered incorrect information");
 						console.log('admin login failed');
 					  } else {
 						console.log('admin login-succeeded');
