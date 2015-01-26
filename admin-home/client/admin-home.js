@@ -254,7 +254,7 @@ function progressBar(el, dict) {
   	var height = 600;
 
   	var widthScale = d3.scale.linear()
-                      .domain([0, 10])
+                      .domain([0, 20])
                       .range([0, height]); 
 
   	var color = d3.scale.linear()
