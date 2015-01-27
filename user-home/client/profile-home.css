@@ -165,10 +165,19 @@ input[type=checkbox]:not(old):checked + label > span:before{
 }
 
 #profileHomeModalContent {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
   padding: 0;
   top: 0px;
   left: 0px;
+}
+
+#myModalLabel {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.myChangeListItemListel {
+  font-size: 120%;
 }
 
 #issueNavButton, #user-settings-button, #logoutButton {
@@ -193,3 +202,28 @@ input[type=checkbox]:not(old):checked + label > span:before{
 .returnToIssueBlock:hover {
   fill: black;
 }
+
+#escapeButton {
+  font-size: 75%;
+}
+
+#listGroupForModal {
+  background: transparent;
+}
+.listGroupItemNavModal {
+  
+}
+
+.listGroupItemNavModal:select {
+  
+}
+
+/*.listGroupText {
+  color: white;
+}*/
+
+.listGroupText:hover {
+  color: orange;
+}
+
+

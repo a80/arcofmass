@@ -1,9 +1,11 @@
 <!-- modal templates --> 
 
 <template name = "myNotificationsList">
+  <ul>
     {{#each returnNotifications}}
           {{> myChangeListItem}}
         {{/each}}
+      </ul>
 </template> 
 
 <template name = "inspiration"> 
@@ -64,7 +66,7 @@
   <div class="modal-dialog" id = "profileHomeModal">
     <div class="modal-content" id = "profileHomeModalContent">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;[ESC]</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;<span id = "escapeButton"> [ESC]</span></span></button>
         <h1 class="modal-title" id="myModalLabel">My Change.</h1>
       </div>
       <!-- <div class="modal-body"> --> 
@@ -99,10 +101,10 @@
 
     <div id = "navModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div id="listGroupForModal">
+    <div class="modal-content" id="listGroupForModal">
+      <div >
                 {{#each getUserIssues}}
-                  <a href="{{returnHref}}" class="listGroupItemNavModal list-group-item">{{returnIssueName}}</a>
+                  <a href="{{returnHref}}" class="listGroupItemNavModal list-group-item"><span class = "listGroupText">  {{returnIssueName}} </span></a>
                 {{/each}}
             </div>
     </div>
@@ -171,7 +173,7 @@
 </template> 
 
 <template name = "myChangeListItem"> 
-  <li> In support of <span>{{notificationIssue}}</span>, I completed <span>{{notificationTask}}</span> on {{dateOfNotification}}. </li> 
+  <li class = "myChangeListItemListel"> In support of <span>{{notificationIssue}}</span>, I completed <span>{{notificationTask}}</span> on {{dateOfNotification}}. </li> 
 </template>
 
 <template name='profile-loading'>

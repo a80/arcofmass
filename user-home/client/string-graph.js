@@ -256,7 +256,7 @@ function stringGraph(el) {
 
   // set up the D3 visualisation in the specified element
   var w = 700,
-  h = 500;
+  h = 400;
   var svg = d3.select(el)
     .append("svg:svg")
     .attr("width", w)
