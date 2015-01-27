@@ -157,3 +157,12 @@
 .ylabel {
 	fill: white;
 }
+
+#signedInAsAdminAdminHome {
+	color: white;
+}
+
+#update-button {
+	background: transparent;
+	color: white;
+}
