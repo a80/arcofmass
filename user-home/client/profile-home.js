@@ -407,7 +407,7 @@ function progressBar(el, data, label, notifications, showAxis, legInfo, toDoMess
                     .transition()
                     .duration(1000)
                     .attr("height", function (d) { return widthScale(d); })
-                    .attr("y", function(d, i) {return height + 12 - (widthScale(d)) }); 
+                    .attr("y", function(d, i) {return height + 12 - (0.68*widthScale(d)) }); 
                     /*.attr("fill", function(d) {return color(d)});*/
 
   /*console.log(issueName); */
