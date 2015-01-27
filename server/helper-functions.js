@@ -249,7 +249,7 @@ Meteor.methods({
   addNewTodo: function(myName, myGoal, myMessage, myIssue, isImportant) {
 	if (actionItems.findOne({text: myName}) === undefined) {
 		actionItems.insert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant, achieved: false, count: 0}});	
-	else {
+	}else {
 		actionItems.insert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});
 	}
   },

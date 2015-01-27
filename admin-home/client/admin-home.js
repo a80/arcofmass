@@ -53,6 +53,13 @@ Template.adminIssueListView.helpers({
 	getUserIssues: function() {
 		return issues.find({});  
 	},
+
+	issuesExist: function(){
+		if ((issues.find({})).length !=0){
+			return true;
+		}
+		return false;
+	}
 })
 
 Template.adminIssuePanel.helpers({
