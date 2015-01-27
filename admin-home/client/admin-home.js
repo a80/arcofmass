@@ -74,7 +74,8 @@ Template.adminIssuePanel.helpers({
 		  if (actionItemsData[i].issue === issueName) {
 			var toDo = actionItemsData[i];
 			var percent = parseInt((toDo.count / parseInt(toDo.goal))*100);
-			actionItemsForIssue.push(toDo.name + ": " + percent + "%"); 
+			
+			actionItemsForIssue.push(String(toDo.text + ": " + percent + "%")); 
 		  }
 		}
 
@@ -82,7 +83,8 @@ Template.adminIssuePanel.helpers({
 	}, 
 
 	returnToDoName: function() {
-		return this.text; 
+		
+		return this; 
 	}, 
 
 
