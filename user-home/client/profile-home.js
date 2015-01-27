@@ -24,7 +24,7 @@ Template.profileHome.events({
     //console.log("clicked"); 
     //console.log(document.getElementById('navModal').hide()); 
     //document.getElementById('navModal').modal('hide'); 
-    console.log($('#navModal'));
+    //console.log($('#navModal'));
     $('#navModal').modal('hide');
   }
 
@@ -107,10 +107,10 @@ Template.issuePanel.helpers({
   loggedIn: function() {
     //verify if user logged in. 
     if (Meteor.userId() === null) {
-      console.log('executed, result is false'); 
+      //console.log('executed, result is false'); 
       return false; 
     } else {
-      console.log('executed, result is true'); 
+      //console.log('executed, result is true'); 
       return true; 
     } 
   }, 
@@ -188,7 +188,7 @@ Template.toDoPanel.events({
               //console.log("increment"); 
         Meteor.call("increaseToDoCount", toDoName, toDoId, issueId, function(error) {
           if (!error) {
-            console.log("executed"); 
+            //console.log("executed"); 
             var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
             graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
           } 
@@ -196,7 +196,7 @@ Template.toDoPanel.events({
       } else {
         Meteor.call("decreaseToDoCount", toDoName, toDoId, function(error) {
           if (!error) {
-            console.log("de-executed"); 
+            //console.log("de-executed"); 
             var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
             graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
           }
@@ -253,7 +253,7 @@ Template.profileHome.rendered = function() {
       if (legislators.findOne({issue: issue.name}) != undefined) {
         var relevantLeg = legislators.findOne({issue: issue.name});
         var legInfo = [relevantLeg.name,relevantLeg.phone,relevantLeg.email]; 
-        console.log(legInfo); 
+        //console.log(legInfo); 
 
       }
       

@@ -262,7 +262,7 @@
 		"click .saveToDoButton": function(event, template) {
 			var name = template.find(".todoInput").value;
 			var goal = template.find(".goalInput").value;
-			console.log(goal); 
+			//console.log(goal); 
 			var message = template.find(".messageInput").value;
 			//var dropdown = Template.instance().find("#dropdownMenu1");
 			//var issue = dropdown.options[dropdown.selectedIndex].text;
@@ -271,8 +271,8 @@
 			var important = false;
 			if (c.checked) important = true;
 
-			console.log(c.checked); 
-			console.log(important); 
+			//console.log(c.checked); 
+			//console.log(important); 
 
 			//var issue = $(".active").text;
 
@@ -319,8 +319,8 @@
 		//Meteor.call("deleteToDoRowFunction");
 			var numberOfRows;
 			var name = template.find(".todoInput").value;
-			console.log("entered"); 
-			console.log(name); 
+			//console.log("entered"); 
+			//console.log(name); 
 			Meteor.call("deleteTodo", name);
 			
 			if (Session.get("newToDoRowArray") != undefined) {
@@ -493,7 +493,7 @@
 				numberOfRows = Session.get("newLegislatorRowArray").split(" ");
 			}
 
-			console.log(numberOfRows); 
+			//console.log(numberOfRows); 
 
 			return numberOfRows; 
 
@@ -512,7 +512,7 @@
 				numberOfRows = Session.get("newToDoRowArray").split(" ");
 			}
 
-			console.log(numberOfRows); 
+			//console.log(numberOfRows); 
 
 			return numberOfRows; 
 
@@ -647,7 +647,7 @@
 		//Meteor.call("getUserIssues");
 		//var userIssues =  
 		//console.log("function entered: " + userIssues); 
-		console.log(issues.find({}).fetch());
+		//console.log(issues.find({}).fetch());
 		return issues.find({}); 
 		//return ["first issue", "second issue", "third issue"]; 
 	  }, 
@@ -681,7 +681,7 @@
 		}, 
 
 		getSelectedIssueName: function() {
-			console.log("template should now appear, issue is "); 
+			//console.log("template should now appear, issue is "); 
 			return Session.get("adminSelectedIssue"); 
 
 		}, 
@@ -692,7 +692,7 @@
 	
 	Template.legHead.helpers({
 		getSelectedIssueName: function() {
-			console.log("template should now appear, issue is "); 
+			//console.log("template should now appear, issue is "); 
 			return Session.get("adminSelectedIssue"); 
 
 		}, 
@@ -700,7 +700,7 @@
 	
 	Template.toDoHead.helpers({
 		getSelectedIssueName: function() {
-			console.log("template should now appear, issue is "); 
+			//console.log("template should now appear, issue is "); 
 			return Session.get("adminSelectedIssue"); 
 
 		}, 
@@ -714,9 +714,9 @@
 			event.preventDefault();
 			Meteor.logout(function(error) {
 				if (error) {
-					console.log("Failed to logout");
+					//console.log("Failed to logout");
 				} else {
-					console.log("Successfully logged out");
+					//console.log("Successfully logged out");
 				}
 			});
 		},
@@ -741,7 +741,7 @@ Template.addLegButton.events({
 			Session.set("newLegislatorRowArray", "1");
 		} else {
 			var numberOfRows = Session.get("newLegislatorRowArray");
-			console.log(numberOfRows); 
+			//console.log(numberOfRows); 
 
 			//.split("");
 			//console.log(Session.get("newLegislatorRowArray"));
@@ -764,7 +764,7 @@ Template.addToDoButton.events({
 			Session.set("newToDoRowArray", "1");
 		} else {
 			var numberOfRows = Session.get("newToDoRowArray");
-			console.log(numberOfRows); 
+			//console.log(numberOfRows); 
 
 			//.split("");
 			//console.log(Session.get("newLegislatorRowArray"));

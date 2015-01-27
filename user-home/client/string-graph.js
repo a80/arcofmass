@@ -181,7 +181,7 @@ function stringGraph(el) {
   $(el).on('click', 'g.node', function (e) {
     var node = this;
     graph.selectedNode = d3.select(node).data()[0].name;
-    console.log(d3.select(node).data()[0].id);
+    //console.log(d3.select(node).data()[0].id);
     Session.set("showMyNotifications", false); 
     Session.set("selectedInspiration", d3.select(node).data()[0].id); 
 
@@ -237,7 +237,7 @@ function stringGraph(el) {
 
   this.addLink = function (id, source, target, value) {
     links.push({id: id, "source":findNode(source),"target":findNode(target),"value":value});
-    console.log(links);
+    //console.log(links);
     update();
   };
 
@@ -359,7 +359,7 @@ function stringGraph(el) {
     var graph;
     graph = new stringGraph("#svgdiv");
     Deps.autorun(function() {
-      console.log(Meteor.user().profile.name); 
+      //console.log(Meteor.user().profile.name); 
       graph.addNode(Meteor.user().profile.name); 
     });
     

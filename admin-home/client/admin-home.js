@@ -162,9 +162,9 @@ Template.graphViewIssueList.events({
 			}
 			
 			selectedIssueInList = $(".activeItem").text();
-			console.log("selected:" + selectedIssueInList);
+			//console.log("selected:" + selectedIssueInList);
 			Session.set("adminSelectedIssueGraphView", selectedIssueInList); 
-			console.log(Session.get("adminSelectedIssueGraphView"));
+			//console.log(Session.get("adminSelectedIssueGraphView"));
 
 			//now need to rerender the graph.
 			//get the data needed. 
@@ -172,7 +172,7 @@ Template.graphViewIssueList.events({
 			var result = [];
  			var filteredUsersByIssue = Meteor.users.find({"profile.issues": {$in: [selectedIssueInList]}}).fetch(); 
 
-    		console.log(filteredUsersByIssue); 
+    		//console.log(filteredUsersByIssue); 
 
     		for (var i = 0; i < filteredUsersByIssue.length; i++) {
       			var user = filteredUsersByIssue[i]; 
@@ -184,7 +184,7 @@ Template.graphViewIssueList.events({
       			}
     		}
 
-    		console.log(" this is the result: ", result);
+    		//console.log(" this is the result: ", result);
 
     		var keyNames = []; 
 			var values = []; 
@@ -201,7 +201,7 @@ Template.graphViewIssueList.events({
 
 			var sortedKeys = Object.keys(result).sort(function(a,b){return result[b]-result[a]});
 
-			console.log(sortedKeys);
+			//console.log(sortedKeys);
 
 			//console.log(sortedKeys[10]); 
 
@@ -212,7 +212,7 @@ Template.graphViewIssueList.events({
 				}
 			}
 
-			console.log(keyNames, values); 
+			//console.log(keyNames, values); 
 
     		//put list in order and only give it keys.  
 
@@ -420,9 +420,9 @@ Template.graphViewDistrictList.events({
 			}
 			
 			selectedDistrictInList = $(".activeItem").text();
-			console.log("selected:" + selectedDistrictInList);
+			//console.log("selected:" + selectedDistrictInList);
 			Session.set("adminSelectedDistrictGraphView", selectedDistrictInList); 
-			console.log(Session.get("adminSelectedDistrictGraphView"));
+			//console.log(Session.get("adminSelectedDistrictGraphView"));
 
 			//now need to rerender the graph.
 			//get the data needed. 
@@ -430,9 +430,9 @@ Template.graphViewDistrictList.events({
 			var result = [];
  			var filteredUsersByDistrict = Meteor.users.find({"profile.district": selectedDistrictInList}).fetch(); 
 
- 			console.log("here"); 
+ 			//console.log("here"); 
 
-    		console.log(filteredUsersByDistrict); 
+    		//console.log(filteredUsersByDistrict); 
 
     		for (var i = 0; i < filteredUsersByDistrict.length; i++) {
       			var user = filteredUsersByDistrict[i]; 

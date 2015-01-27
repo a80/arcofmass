@@ -122,7 +122,7 @@ Meteor.subscribe("userSettingsData");
 			Meteor.call("cleanInput", myStory, function(error, myStory) {
 				if (myStory != false && !(new RegExp(cussWords.join("|")).test(myStory.toLowerCase()))) {
 
-					console.log(myStory); 
+					//console.log(myStory); 
 					Meteor.call("modifyUserStory", myStory);
 					document.getElementById("saveStoryButton").style.visibility = "hidden";
 					document.getElementById("editStoryButton").style.visibility = "visible";
@@ -189,13 +189,13 @@ Meteor.subscribe("userSettingsData");
 							if (myNPassword != false) {
 							Accounts.changePassword(myOPassword, myNPassword, function(error) {
 								if (error) {
-									console.log(error);
-									console.log("Failed to change password.");
+									//console.log(error);
+									//console.log("Failed to change password.");
 									document.getElementById("alertMessageWrong").style.visibility = "visible";
 
 									//Tell user that they entered their old password incorrectly?
 								} else {
-									console.log("Successfully changed password.");
+									//console.log("Successfully changed password.");
 									document.getElementById("savedSuccessfullyMessage").style.visibility = "visible";
 									
 								}
@@ -251,9 +251,9 @@ Meteor.subscribe("userSettingsData");
 			//selectedIssueInList = $(".active").text();
 			//selectedIssueInList = template.find(".active").text();
 
-			console.log("issue selected:"); 
+			//console.log("issue selected:"); 
 
-			console.log(selectedIssueInList); 
+			//console.log(selectedIssueInList); 
 
 			//Meteor.call("addUserIssueItem", selectedIssueInList); 
 
@@ -361,8 +361,8 @@ Template.userSettings.helpers({
 		var activeClass = ""; 
 
 		issuesForUser = Meteor.user().profile.issues;
-		console.log("issues for user"); 
-		console.log(issuesForUser); 
+		//console.log("issues for user"); 
+		//console.log(issuesForUser); 
 
 		for (var i = 0; i < issuesForUser.length; i++) {
 			if (this.name === issuesForUser[i]) {
