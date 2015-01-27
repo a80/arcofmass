@@ -169,89 +169,51 @@ Template.toDoPanel.helpers({
 
 Template.toDoPanel.events({
   "click .toggle-checked": function (event) {
-      var idOfElement = this._id + "check"; 
-      //console.log(document.getElementById(idOfElement).checked); 
-      var toDoName = actionItems.findOne({_id: this._id}).text; 
-      var issueOfInterest = this.issue;
-      var issueId = issues.findOne({name: this.issue})._dbid; 
+    //console.log("clickd the check button"); 
+    var idOfElement = this._id + "check"; 
+    //console.log(document.getElementById(idOfElement).checked);
+
+    var toDoName = actionItems.findOne({_id: this._id}).text; 
+    var issueOfInterest = this.issue;
+    var issueId = issues.findOne({name: this.issue})._id; 
       //console.log("issueId: " + issueId); 
-      var toDoId = this._id; 
+    var toDoId = this._id; 
+    //console.log(toDoName, issueOfInterest, issueId, toDoId);
 
-      //console.log(issueOfInterest);  
+    var toDoIsChecked = document.getElementById(idOfElement).checked; 
 
 
-      if (document.getElementById(idOfElement).checked) {
-        //console.log("adding notification, incrementing");
-        //add notification, increment
+    if (document.getElementById(idOfElement).checked) {
+              //console.log("increment"); 
         Meteor.call("increaseToDoCount", toDoName, function(error) {
           if (!error) {
-            Meteor.call("insertNotification", toDoId, issueId, function(error) {
-              if (!error) {
-                var toDoOfInterest = actionItems.findOne({_id: toDoId});
-                var toDoOfInterestMessage = actionItems.findOne({_id: toDoId}).message;
-
-
-                //construct a dict. 
-                var inputNotifParam = []; 
-
-                var filteredNotifications = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}, limit: 3}).fetch();
-                //console.log("executed on click", notifications.find({})); 
-
-
-                for (var i = 0; i < filteredNotifications.length; i++) {
-                  var notifOfInterest = filteredNotifications[i]; 
-                   //console.log(Meteor.users.find().fetch()); 
-                  var username = Meteor.users.findOne({_id: notifOfInterest.userId}).username; 
-                  var timeElapsed = moment(notifOfInterest.dateCompleted).fromNow(); 
-                  //console.log(username, timeElapsed); 
-                  inputNotifParam[username] = timeElapsed; 
-                } 
-
-
-                var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam, true, "", toDoOfInterestMessage);
-              }
-            });
+            var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+            graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
           }
         }); 
+
+                 
       } else {
-        //console.log("deleting notification, decrementing");
-        //remove notification, decrement.
+        //Meteor.call("decreaseToDoCount", toDoName);
+        //console.log("decrement"); 
         Meteor.call("decreaseToDoCount", toDoName, function(error) {
           if (!error) {
-            Meteor.call("deleteNotification", toDoId, function(error) {
-              if (!error) {
-                var toDoOfInterest = actionItems.findOne({_id: toDoId});
-                var toDoOfInterestMessage = actionItems.findOne({_id: toDoId}).message;
-
-                //construct a dict. 
-                var inputNotifParam = []; 
-
-                var filteredNotifications = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}, limit: 3}).fetch();
-                //console.log("executed on click", notifications.find({})); 
-
-
-                for (var i = 0; i < filteredNotifications.length; i++) {
-                  var notifOfInterest = filteredNotifications[i]; 
-                   //console.log(Meteor.users.find().fetch()); 
-                  var username = Meteor.users.findOne({_id: notifOfInterest.userId}).username; 
-                  var timeElapsed = moment(notifOfInterest.dateCompleted).fromNow(); 
-                  //console.log(username, timeElapsed); 
-                  inputNotifParam[username] = timeElapsed; 
-                }
-
-
-
-
-                var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "", inputNotifParam,  true, "", toDoOfInterestMessage);
-              }
-            });
+            var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+            graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
           }
         }); 
+
+
+
+                //var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+                //graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "", "inputNotifParam",  true, "", "toDoOfInterestMessage");
+          
       }
 
-      
+
+
+
+
     },
 
     "click .toDoListItemText": function(event) {
