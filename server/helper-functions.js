@@ -47,8 +47,12 @@ Meteor.methods({
 
 
   increaseToDoCount: function(todoName, toDoId, issueId) {
-    var prevCount = actionItems.findOne({text: todoName}).count; 
-    actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
+    //var prevCount = actionItems.findOne({text: todoName}).count; 
+    //var newCount = prevCount + 1; 
+    //console.log(newCount); 
+    //actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
+    //actionItems.update({text: todoName}, {$set: {count: newCount}});
+    actionItems.update({text: todoName}, {$inc: {count: 1}});
 
     //console.log("toDoId: ", toDoId); 
 
@@ -74,9 +78,21 @@ Meteor.methods({
 	//Decreases the todo count by one
 	//actionItems.find({text: todoName}).count -= 1;
     //actionItems.update({text: todoName}, {$inc: {count: -1}});
-    var prevCount = actionItems.findOne({text: todoName}).count; 
+    //var prevCount = actionItems.findOne({text: todoName}).count; 
+
+
     //console.log(prevCount); 
-    actionItems.update({text: todoName}, {$set: {count: prevCount - 1}});
+    //actionItems.update({text: todoName}, {$set: {count: prevCount - 1}});
+
+    //var newCount = prevCount - 1; 
+    //console.log(newCount); 
+    //actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
+    //actionItems.update({text: todoName}, {$set: {count: newCount}});
+    actionItems.update({text: todoName}, {$inc: {count: -1}});
+
+
+
+
     var userId = Meteor.user()._id; 
     var userName = Meteor.user().profile.name; 
     notifications.remove({userId: userId, toDoId: toDoId}); 
@@ -244,15 +260,21 @@ Meteor.methods({
   },
   delIssue: function(myName) {
 	relUsers = Meteor.users.find({"profile.issues": {$in: [myName]}}).fetch();
+ 
 	for (person in relUsers) {
-		delete person.issues[myName];
-		Meteor.users.find({name: person.name}).issues = person.issues;
-	}
+    if (person.profile == undefined){
+      return false;
+    }
+  }
+		
 	actionItems.remove({issue: myName});
 	legislators.remove({issue: myName});
 	relId = issues.find({name: myName})._id;
 	notifications.remove({issueId: relId});
 	issues.remove({name: myName});
+  return true;
+
+
   }, 
 
   /*addToDoRowFunction: function() {

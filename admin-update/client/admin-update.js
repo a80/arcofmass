@@ -33,9 +33,17 @@
 
 			if (Session.get("adminSelectedIssue") != undefined) {
 				delIssue = Session.get("adminSelectedIssue");
-				Meteor.call("delIssue", delIssue);
+				Meteor.call("delIssue", delIssue, function(error, res) {
+					if (res == false) {
+						alert("This issue has users associated with it and cannot be deleted.");
+					} else {
+						Session.set("adminSelectedIssue", undefined);
+					}
+				});
 			}
-			Session.set("adminSelectedIssue", undefined);
+			
+
+
 			
 			
 		},
@@ -442,6 +450,9 @@
 
 	  		return relevantLegislators; 
 	    },
+
+
+
 
 	    getToDoInfo: function() {
 	  	//return todo associated with the issue 
