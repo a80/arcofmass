@@ -47,11 +47,12 @@ Meteor.methods({
 
 
   increaseToDoCount: function(todoName, toDoId, issueId) {
-    var prevCount = actionItems.findOne({text: todoName}).count; 
-    var newCount = prevCount + 1; 
-    console.log(newCount); 
+    //var prevCount = actionItems.findOne({text: todoName}).count; 
+    //var newCount = prevCount + 1; 
+    //console.log(newCount); 
     //actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
-    actionItems.update({text: todoName}, {$set: {count: newCount}});
+    //actionItems.update({text: todoName}, {$set: {count: newCount}});
+    actionItems.update({text: todoName}, {$inc: {count: 1}});
 
     console.log("toDoId: ", toDoId); 
 
@@ -77,16 +78,17 @@ Meteor.methods({
 	//Decreases the todo count by one
 	//actionItems.find({text: todoName}).count -= 1;
     //actionItems.update({text: todoName}, {$inc: {count: -1}});
-    var prevCount = actionItems.findOne({text: todoName}).count; 
+    //var prevCount = actionItems.findOne({text: todoName}).count; 
 
 
     //console.log(prevCount); 
     //actionItems.update({text: todoName}, {$set: {count: prevCount - 1}});
 
-    var newCount = prevCount - 1; 
-    console.log(newCount); 
+    //var newCount = prevCount - 1; 
+    //console.log(newCount); 
     //actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
-    actionItems.update({text: todoName}, {$set: {count: newCount}});
+    //actionItems.update({text: todoName}, {$set: {count: newCount}});
+    actionItems.update({text: todoName}, {$inc: {count: -1}});
 
 
 
