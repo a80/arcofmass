@@ -188,17 +188,77 @@ Template.toDoPanel.events({
               //console.log("increment"); 
         Meteor.call("increaseToDoCount", toDoName, toDoId, issueId, function(error) {
           if (!error) {
-            console.log("executed"); 
-            var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-            graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
+            //console.log("executed"); 
+                var toDoOfInterest = actionItems.findOne({_id: toDoId});
+                var toDoOfInterestMessage = actionItems.findOne({_id: toDoId}).message;
+                //console.log(toDoOfInterestMessage); 
+
+                //construct a dict. 
+                var inputNotifParam = []; 
+
+                var filteredNotifications = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}, limit: 3}).fetch();
+                //console.log("executed on click", notifications.find({})); 
+
+                //console.log(filteredNotifications); 
+
+
+                for (var i = 0; i < filteredNotifications.length; i++) {
+                  var notifOfInterest = filteredNotifications[i]; 
+                   //console.log(Meteor.users.find().fetch()); 
+                  var username = Meteor.users.findOne({_id: notifOfInterest.userId}).username; 
+                  var timeElapsed = moment(notifOfInterest.dateCompleted).fromNow(); 
+                  //console.log(username, timeElapsed); 
+                  inputNotifParam[username] = timeElapsed; 
+                }
+
+
+
+
+                var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam,  true, "", toDoOfInterestMessage);
+
+
+            //var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+            //graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
           } 
         });   
       } else {
         Meteor.call("decreaseToDoCount", toDoName, toDoId, function(error) {
           if (!error) {
-            console.log("de-executed"); 
-            var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-            graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
+                var toDoOfInterest = actionItems.findOne({_id: toDoId});
+                var toDoOfInterestMessage = actionItems.findOne({_id: toDoId}).message;
+
+                //console.log(toDoOfInterestMessage); 
+
+
+
+                //construct a dict. 
+                var inputNotifParam = []; 
+
+                var filteredNotifications = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}, limit: 3}).fetch();
+
+                //console.log(filteredNotifications); 
+
+
+
+
+                for (var i = 0; i < filteredNotifications.length; i++) {
+                  var notifOfInterest = filteredNotifications[i]; 
+                   //console.log(Meteor.users.find().fetch()); 
+                  var username = Meteor.users.findOne({_id: notifOfInterest.userId}).username; 
+                  var timeElapsed = moment(notifOfInterest.dateCompleted).fromNow(); 
+                  //console.log(username, timeElapsed); 
+                  inputNotifParam[username] = timeElapsed; 
+                }
+
+
+
+
+                var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam,  true, "", toDoOfInterestMessage);
+            //console.log("de-executed"); 
+            //var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+            //graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
           }
           }); 
           }
