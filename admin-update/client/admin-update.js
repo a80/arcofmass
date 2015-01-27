@@ -23,7 +23,7 @@
 						Meteor.call("addNewIssue", newIssue);
 						document.getElementById("addIssueField").value = "";
 					} else {
-						alert("Input can only be numbers and letters");
+						alert("Input can only be letters and spaces");
 					}
 				}
 				else {
