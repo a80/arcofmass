@@ -24,6 +24,11 @@ Meteor.subscribe("userSettingsData");
   		},
 		'click #leavePage': function() {
 			document.getElementById("formProblem").style.visibility = "hidden";
+			var notReady = false;
+			if (Meteor.user().profile.issues ==undefined){
+				 notReady = true;
+			}
+			
 			var name = document.getElementById("inputName").value;
 			var nameReady = document.getElementById("inputName").readOnly;
 			var zip = document.getElementById("inputZipcode").value;
@@ -32,7 +37,8 @@ Meteor.subscribe("userSettingsData");
 			var inspReady = document.getElementById("inputInspiration").readOnly;
 			var story = document.getElementById("inputStory").value;
 			var storyReady = document.getElementById("inputStory").readOnly;
-			if (name != "" && nameReady == true && zip != "" && zipReady == true && insp != "" && inspReady == true && story != "" && storyReady == true) {
+			if (name != "" && nameReady == true && zip != "" && zipReady == true && insp != "" && inspReady == true && story != "" && storyReady == true && notReady==false) {
+				console.log("HEEERRRREEE");
 				Router.go('/profile');
 			} else {
 				document.getElementById("formProblem").style.visibility = "visible";

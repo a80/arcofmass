@@ -43,6 +43,20 @@ Template.profileHome.helpers({
       }); 
   },
 
+  checkUserIssues: function(){
+    var list = issues.find({name: {$in: Meteor.user().profile.issues}}).fetch();
+    console.log("AAAAAAAAAAAAAAAAYYYYYYYYYYYY");
+    console.log(list.length);
+    if ((list.length === 0) || (list.length===undefined)){
+      return true;
+    }
+    else{
+      return false;
+    }
+
+  },
+
+
   returnIssueName: function() {
     return this.name; 
   },

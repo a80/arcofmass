@@ -25,7 +25,7 @@
 </template> 
 
 <template name='pleaseSelectIssues'>
-  <div>
+  <div style="padding:100px">
       <h2 style="text-align:center"> Please go to Settings and select issues important to you.</h2>
   </div>
 </template>
@@ -122,7 +122,10 @@
   <body>
 
     
-  
+  {{#if checkUserIssues}}
+    {{>pleaseSelectIssues}}
+
+  {{else}}
   	{{#each getUserIssues}}
     <section id="{{returnSectionId}}">
     <div class = "content"> 
@@ -130,6 +133,7 @@
     </div>
   </section>
   	{{/each}}
+  {{/if}}
 
   </body>
 
