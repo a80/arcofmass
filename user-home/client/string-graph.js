@@ -185,7 +185,7 @@ function stringGraph(el) {
     Session.set("showMyNotifications", false); 
     Session.set("selectedInspiration", d3.select(node).data()[0].id); 
 
-    if (d3.select(node).data()[0].id === Meteor.user().profile.name) {
+    if (d3.select(node).data()[0].id === Meteor.user().profile.inspiration) {
       Session.set("showMyNotifications", true); 
     }
 
@@ -360,7 +360,7 @@ function stringGraph(el) {
     graph = new stringGraph("#svgdiv");
     Deps.autorun(function() {
       //console.log(Meteor.user().profile.name); 
-      graph.addNode(Meteor.user().profile.name); 
+      graph.addNode(Meteor.user().profile.inspiration); 
     });
     
 

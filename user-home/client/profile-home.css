@@ -226,4 +226,15 @@ input[type=checkbox]:not(old):checked + label > span:before{
   color: orange;
 }
 
+#inspirationDiv {
+  padding-left: 35px;
+}
 
+#posse {
+  color: DarkOrange;
+}
+
+#storyDiv {
+  padding-top: 10px;
+  font-size: 150%;
+}

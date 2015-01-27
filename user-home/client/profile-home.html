@@ -9,9 +9,14 @@
 </template> 
 
 <template name = "inspiration"> 
-  <h1> I am change for {{inspirationName}} + {{otherUserName}}</h1>
-  <h2>Their story.</h2>
+  <div id = "inspirationDiv">
+  
+  <h1> I am change for <span id = "posse">{{inspirationName}} + {{otherUserName}}.</span> </h1>
+  <h2>This is their story.</h2>
+  <div id = "storyDiv">
   <p>{{returnStory}}</p>  
+</div> 
+</div> 
   <!-- <h1> {{returnInspirationName}} and {{returnAssociatedUserName}}</h1> 
 
   <h1>{{returnAssociatedUserName}}'s story</h1> 
