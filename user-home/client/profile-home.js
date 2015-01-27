@@ -455,7 +455,7 @@ if (showAxis) {
 
 canvas.append('text').text(toDoMessage).attr("x", 30).attr("y", 220).attr("fill", "white").style("font-size", "50px");
 
-canvas.append('text').text(d3IssueName).attr("x", 30).attr("y", 60).attr("fill", "white").attr("class", "returnToIssueBlock").style("font-size", "30px")
+canvas.append('text').text(d3IssueName).attr("x", 30).attr("y", 60).attr("fill", "gray").attr("class", "returnToIssueBlock").style("font-size", "30px")
               .on('click', function(d,i){ 
 
                 var legInfo; 
