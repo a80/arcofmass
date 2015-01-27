@@ -19,7 +19,7 @@
 			var newIssue = document.getElementById("addIssueField").value;
 			Meteor.call("cleanInput", newIssue, function(error, newIssue) {
 				if (newIssue != false) {
-					if (new RegExp("^[a-zA-Z0-9]+$").test(newIssue) == newIssue) {
+					if (new RegExp("^[a-zA-Z0-9]+$").test(newIssue) == true) {
 						Meteor.call("addNewIssue", newIssue);
 						document.getElementById("addIssueField").value = "";
 					} else {
