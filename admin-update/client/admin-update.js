@@ -295,12 +295,16 @@
 							Meteor.call("cleanInput", goal, function(error, goal) {
 								if (goal != false) {
 									if (!isNaN(goal)) {
-										Meteor.call("addNewTodo", name, goal, message, issue, important);
-										template.find(".saveToDoButton").style.visibility = "hidden";
-										template.find(".editToDoButton").style.visibility = "visible";
-										template.find(".todoInput").readOnly = true;
-										template.find(".goalInput").readOnly = true;
-										template.find(".messageInput").readOnly = true;
+										if (parseInt(goal) > 0) {
+											Meteor.call("addNewTodo", name, goal, message, issue, important);
+											template.find(".saveToDoButton").style.visibility = "hidden";
+											template.find(".editToDoButton").style.visibility = "visible";
+											template.find(".todoInput").readOnly = true;
+											template.find(".goalInput").readOnly = true;
+											template.find(".messageInput").readOnly = true;
+										} else {
+											alert("Your goal must be a positive integer");
+										}
 									} else {
 										alert("Your goal must be an integer");
 									}
@@ -376,19 +380,23 @@
 							Meteor.call("cleanInput", goal, function(error, goal) {
 								if (goal != false) {
 									if (!isNaN(goal)) {
-										Meteor.call("addNewTodo", name, goal, message, issue, important);
-										var numberOfRows; 
-	    
-									    if (Session.get("newToDoRowArray") != undefined) {
-									    	if (Session.get("newToDoRowArray") === "1") {
-									    		Session.set("newToDoRowArray", undefined);
+										if (parseInt(goal) > 0) {
+											Meteor.call("addNewTodo", name, goal, message, issue, important);
+											var numberOfRows; 
+			
+											if (Session.get("newToDoRowArray") != undefined) {
+												if (Session.get("newToDoRowArray") === "1") {
+													Session.set("newToDoRowArray", undefined);
 
-									    	} else {
-									    		numberOfRows = Session.get("newToDoRowArray"); 
-									    		index = numberOfRows.length - 2; 
-												Session.set("newToDoRowArray", numberOfRows.substring(0, index));
-												
-									    	}
+												} else {
+													numberOfRows = Session.get("newToDoRowArray"); 
+													index = numberOfRows.length - 2; 
+													Session.set("newToDoRowArray", numberOfRows.substring(0, index));
+													
+												}
+											}
+										} else {
+											alert("Your goal must be a positive integer");
 										}
 									} else {
 										alert("Your goal must be an integer");
