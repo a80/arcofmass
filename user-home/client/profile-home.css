@@ -185,9 +185,9 @@ input[type=checkbox]:not(old):checked + label > span:before{
   background: transparent;
 }
 
-.signedInText {
+/*.signedInText {
   color: white;
-}
+}*/
 
 .row {
   padding-top: 50px;
@@ -237,4 +237,10 @@ input[type=checkbox]:not(old):checked + label > span:before{
 #storyDiv {
   padding-top: 10px;
   font-size: 150%;
+}
+
+#userHomeSignedIn {
+  color: orange;
+  text-decoration: none; 
+  cursor: pointer;
 }
