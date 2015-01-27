@@ -183,8 +183,8 @@ Template.toDoPanel.events({
     var toDoIsChecked = document.getElementById(idOfElement).checked; 
 
 
-            if (document.getElementById(idOfElement).checked) {
-              console.log("increment"); 
+    if (document.getElementById(idOfElement).checked) {
+              //console.log("increment"); 
         Meteor.call("increaseToDoCount", toDoName, function(error) {
           if (!error) {
             var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
@@ -195,7 +195,7 @@ Template.toDoPanel.events({
                  
       } else {
         //Meteor.call("decreaseToDoCount", toDoName);
-        console.log("decrement"); 
+        //console.log("decrement"); 
         Meteor.call("decreaseToDoCount", toDoName, function(error) {
           if (!error) {
             var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
