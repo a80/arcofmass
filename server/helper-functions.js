@@ -43,20 +43,33 @@ Meteor.methods({
 	//return issues.find({"count", "desc"});
 	return issues.find({count: "desc"});
   },
-  increaseToDoCount: function(todoName) {
-	//TAKES THE NAME OF THE TODO
-	//Increases the todo count by one
-	//actionItems.find({text: todoName}).count += 1;
-    //console.log("increaseToDoCount called.");
+
+
+
+  increaseToDoCount: function(todoName, toDoId, issueId) {
     var prevCount = actionItems.findOne({text: todoName}).count; 
-    //console.log(prevCount); 
     actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
 
+    console.log("toDoId: ", toDoId); 
+
+    console.log("issueId: ", issueId); 
+    var mostRecentAssociatedNotification = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}}).fetch()[0]
+
+    console.log(mostRecentAssociatedNotification);
+
+    if (mostRecentAssociatedNotification != undefined) {
+      var assocUserId = mostRecentAssociatedNotification.userId;
+      var assocInspiration = Meteor.users.findOne({_id: assocUserId}).profile.inspiration; 
+      inspirations.insert({userId: Meteor.user()._id, changeFor: assocInspiration, changeForUserId: assocUserId, toDoId: toDoId}); 
+      //helped.insert({_id: toDoId, source: Meteor.user().profile.name, target: assocInspiration, value: "1.0"});
+    }
+
+    notifications.insert({userId: Meteor.user()._id, toDoId: toDoId, issueId: issueId, dateCompleted: new Date()});
 
 
-    //actionItems.update({text: todoName}, {$inc: {count: 1}});
+    //notifications.insert({userId: Meteor.user()._id, toDoId: toDoId, issueId: issueId, dateCompleted: new Date()});  
   },
-  decreaseToDoCount: function(todoName) {
+  decreaseToDoCount: function(todoName, toDoId) {
 	//TAKES THE NAME OF THE TODO
 	//Decreases the todo count by one
 	//actionItems.find({text: todoName}).count -= 1;
@@ -64,8 +77,30 @@ Meteor.methods({
     var prevCount = actionItems.findOne({text: todoName}).count; 
     //console.log(prevCount); 
     actionItems.update({text: todoName}, {$set: {count: prevCount - 1}});
-
+    var userId = Meteor.user()._id; 
+    var userName = Meteor.user().profile.name; 
+    notifications.remove({userId: userId, toDoId: toDoId}); 
+    inspirations.remove({userId: userId, toDoId: toDoId}); 
+    //helped.remove({source: userId, _id: toDoId});
   },
+
+  /*insertNotification: function(toDoId, issueId) {
+    
+
+  }, 
+
+  deleteNotification: function(toDoId) {
+    
+  },*/
+
+
+
+
+
+
+
+
+
   getIssueCount: function(issueName) {
 	//TAKES THE NAME OF THE ISSUE
 	//Returns the popularity count of the given issue
@@ -398,42 +433,7 @@ Meteor.methods({
 
   //helper functions for notifications. 
 
-  insertNotification: function(toDoId, issueId) {
-    console.log("toDoId: ", toDoId); 
-
-    console.log("issueId: ", issueId); 
-    //get userID
-    //console.log(notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}}).fetch()[0]); 
-    //var mostRecentAssociatedNotification = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}, limit: 1}).fetch();
-    //console.log("most recent: " + mostRecentAssociatedNotification.dateCompleted); 
-
-    var mostRecentAssociatedNotification = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}}).fetch()[0]
-
-    console.log(mostRecentAssociatedNotification);
-
-    if (mostRecentAssociatedNotification != undefined) {
-      //notification exists, get userId 
-      var assocUserId = mostRecentAssociatedNotification.userId;
-      var assocInspiration = Meteor.users.findOne({_id: assocUserId}).profile.inspiration;  
-      //console.log(assocInspiration); 
-      inspirations.insert({userId: Meteor.user()._id, changeFor: assocInspiration, changeForUserId: assocUserId, toDoId: toDoId}); 
-      //helped.insert({userId: Meteor.user()._id, userName: Meteor.user().profile.name, changeFor: assocInspiration, changeForUserId: assocUserId, toDoId: toDoId, value: 1.0})
-      helped.insert({_id: toDoId, source: Meteor.user().profile.name, target: assocInspiration, value: "1.0"});
-    }
-
-    //userId = Meteor.user()._id; 
-    notifications.insert({userId: Meteor.user()._id, toDoId: toDoId, issueId: issueId, dateCompleted: new Date()}); 
-
-  }, 
-
-  deleteNotification: function(toDoId) {
-    var userId = Meteor.user()._id; 
-    var userName = Meteor.user().profile.name; 
-    notifications.remove({userId: userId, toDoId: toDoId}); 
-    inspirations.remove({userId: userId, toDoId: toDoId}); 
-    helped.remove({source: userId, _id: toDoId});
-    //helped.remove({userId: userId, toDoId: toDoId}); 
-  },
+  
   achievedTodo: function(myName) {
 	  var toDo = actionItems.find({name: myName});
 	  if (toDo.count == parseInt(toDo.goal)) {

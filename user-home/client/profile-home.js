@@ -150,6 +150,7 @@ Template.toDoPanel.helpers({
   }, 
 
   checked: function() {
+    //return false; 
     userId = Meteor.user()._id;
     foundNotification = notifications.findOne({userId: userId, toDoId: this._id}); 
 
@@ -182,36 +183,25 @@ Template.toDoPanel.events({
 
     var toDoIsChecked = document.getElementById(idOfElement).checked; 
 
-
+          
     if (document.getElementById(idOfElement).checked) {
               //console.log("increment"); 
-        Meteor.call("increaseToDoCount", toDoName, function(error) {
+        Meteor.call("increaseToDoCount", toDoName, toDoId, issueId, function(error) {
           if (!error) {
+            console.log("executed"); 
             var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
             graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
-          }
-        }); 
-
-                 
+          } 
+        });   
       } else {
-        //Meteor.call("decreaseToDoCount", toDoName);
-        //console.log("decrement"); 
-        Meteor.call("decreaseToDoCount", toDoName, function(error) {
+        Meteor.call("decreaseToDoCount", toDoName, toDoId, function(error) {
           if (!error) {
+            console.log("de-executed"); 
             var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
             graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
           }
-        }); 
-
-
-
-                //var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-                //graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "", "inputNotifParam",  true, "", "toDoOfInterestMessage");
-          
-      }
-
-
-
+          }); 
+          }
 
 
     },
@@ -281,7 +271,7 @@ Template.profileHome.rendered = function() {
 
 function progressBar(el, data, label, notifications, showAxis, legInfo, toDoMessage) {
 
-  console.log("counts, goal", data[0], data[1]); 
+  //console.log("counts, goal", data[0], data[1]); 
   //parse input notif. param:
   //parse the dict. 
   var keys = []; 
