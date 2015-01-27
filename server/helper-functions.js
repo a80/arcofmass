@@ -260,18 +260,22 @@ Meteor.methods({
   },
   delIssue: function(myName) {
 	relUsers = Meteor.users.find({"profile.issues": {$in: [myName]}}).fetch();
-  console.log(relUsers);
-  if (relUsers != []){
-    return false;
+ 
+	for (person in relUsers) {
+    if (person.profile == undefined){
+      return false;
+    }
   }
+		
 	actionItems.remove({issue: myName});
 	legislators.remove({issue: myName});
 	relId = issues.find({name: myName})._id;
 	notifications.remove({issueId: relId});
 	issues.remove({name: myName});
   return true;
-  }, 
 
+
+  }, 
 
   /*addToDoRowFunction: function() {
     //find stuff.
