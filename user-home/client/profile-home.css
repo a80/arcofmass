@@ -244,3 +244,9 @@ input[type=checkbox]:not(old):checked + label > span:before{
   text-decoration: none; 
   cursor: pointer;
 }
+
+#myModalLabel:hover {
+  cursor: pointer;
+  color: DarkOrange;
+
+}

@@ -26,7 +26,12 @@ Template.profileHome.events({
     //document.getElementById('navModal').modal('hide'); 
     //console.log($('#navModal'));
     $('#navModal').modal('hide');
-  }
+  },
+  'click #myModalLabel': function() {
+    //console.log("clickedMyModalLabel");
+    Session.set("showMyNotifications", true); 
+  },
+
 
   
   
