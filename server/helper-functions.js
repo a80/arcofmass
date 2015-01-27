@@ -247,7 +247,11 @@ Meteor.methods({
     legislators.upsert({name: myName}, {$set: {name: myName, email: myEmail, issue: myIssue, phone: myPhone}});
   },
   addNewTodo: function(myName, myGoal, myMessage, myIssue, isImportant) {
-	 actionItems.upsert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant, achieved: false}});	
+	if (actionItems.findOne({text: myName}) === undefined) {
+		actionItems.insert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant, achieved: false, count: 0}});	
+	else {
+		actionItems.insert({text: myName}, {$set: {text: myName, goal: myGoal, message: myMessage, issue: myIssue, important: isImportant}});
+	}
   },
   deleteTodo: function(myName) {
 	 actionItems.remove({text: myName});

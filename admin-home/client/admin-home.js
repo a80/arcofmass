@@ -78,7 +78,7 @@ Template.adminIssuePanel.helpers({
 			if (percent < 100)
 				output = String(toDo.text + ": " + toDo.count + "/" + parseInt(toDo.goal) + " (" + percent + "%" + ")");
 			else
-				output = String(toDo.text + ": " + toDo.count + "/" + parseInt(toDo.goal) + " (" + percent + "%" + ") Goal Achieved!");
+				output = String(toDo.text + ": " + toDo.count + "/" + parseInt(toDo.goal) + " (" + percent + "%" + ") - Goal Achieved!");
 			actionItemsForIssue.push(output); 
 		  }
 		}
