@@ -178,7 +178,7 @@ Template.adminLogin.events({
     Router.go('/');
   },
 
-  /*
+  
   'click #new-admin-button': function(event, template) {
     event.preventDefault();
     var username = template.find("#username-field").value;
@@ -233,17 +233,17 @@ Template.adminLogin.events({
 
     console.log("got here.");*/
   
-    /*//customize user creation - delete for now. 
-    Accounts.onCreateUser(function(options, user) {
-      user.issues = [];
-      if (options.profile) 
-        user.profile = options.profile;  
-      return user; 
-    }); 
+    //customize user creation - delete for now. 
+    //Accounts.onCreateUser(function(options, user) {
+    //  user.issues = [];
+    //  if (options.profile) 
+    //    user.profile = options.profile;  
+    //  return user; 
+    //}); 
 
     return false; 
   },
-*/
+
   'click #admin-login-button': function(event, template) {
     event.preventDefault();
     var username = template.find("#username-field").value;
