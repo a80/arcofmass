@@ -184,3 +184,12 @@ input[type=checkbox]:not(old):checked + label > span:before{
   padding-top: 50px;
   padding-bottom: 10px;
 }
+
+.returnToIssueBlock {
+  cursor: pointer;
+}
+
+
+.returnToIssueBlock:hover {
+  fill: black;
+}

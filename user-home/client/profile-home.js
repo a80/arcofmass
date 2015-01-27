@@ -217,7 +217,7 @@ Template.toDoPanel.events({
 
 
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
-                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam,  true, "", toDoOfInterestMessage);
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam,  true, "", toDoOfInterestMessage, issueOfInterest);
 
 
             //var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
@@ -259,7 +259,7 @@ Template.toDoPanel.events({
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
 
                 console.log(actionItems.findOne({_id: toDoId}).count); 
-                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam,  true, "", toDoOfInterestMessage);
+                graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam,  true, "", toDoOfInterestMessage, issueOfInterest);
             //console.log("de-executed"); 
             //var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
             //graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, "inputNotifParam", true, "", "toDoOfInterestMessage");
@@ -295,7 +295,7 @@ Template.toDoPanel.events({
       } 
 
       var graphIDtoChange = this.issue.replace(/\s*/g, ''); 
-      graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [toDoOfInterest.count, toDoOfInterest.goal], "to do: " + this.text, inputNotifParam, true, "", toDoOfInterestMessage);
+      graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [toDoOfInterest.count, toDoOfInterest.goal], "to do: " + this.text, inputNotifParam, true, "", toDoOfInterestMessage, this.issue);
     },
 
 });
@@ -319,12 +319,14 @@ Template.profileHome.rendered = function() {
         var legInfo = [relevantLeg.name,relevantLeg.phone,relevantLeg.email]; 
         console.log(legInfo); 
 
+      } else {
+        var legInfo = ["None yet!","None yet!","None yet!"]; 
       }
       
 
 
       var graphID = issue.name.replace(/\s*/g, '');
-      graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + issue.name, "", false, legInfo, "");
+      graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + issue.name, "", false, legInfo, "", "");
     }); 
   });
 
@@ -333,7 +335,7 @@ Template.profileHome.rendered = function() {
 }
 
 
-function progressBar(el, data, label, notifications, showAxis, legInfo, toDoMessage) {
+function progressBar(el, data, label, notifications, showAxis, legInfo, toDoMessage, d3IssueName) {
 
   console.log("counts, goal", data[0], data[1]); 
   //parse input notif. param:
@@ -428,13 +430,28 @@ if (showAxis) {
 
 canvas.append('text').text(toDoMessage).attr("x", 30).attr("y", 220).attr("fill", "white").style("font-size", "50px");
 
+canvas.append('text').text(d3IssueName).attr("x", 30).attr("y", 60).attr("fill", "white").attr("class", "returnToIssueBlock").style("font-size", "30px")
+              .on('click', function(d,i){ 
+
+                var legInfo; 
+                if (legislators.findOne({issue: d3IssueName}) != undefined) {
+                  var relevantLeg = legislators.findOne({issue: d3IssueName});
+                  var legInfo = [relevantLeg.name,relevantLeg.phone,relevantLeg.email]; 
+                } else {
+                  var legInfo = ["None yet!","None yet!","None yet!"]; 
+                }
+                var graphID = d3IssueName.replace(/\s*/g, '');
+                graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + d3IssueName, "", false, legInfo, "", "");
+                //console.log("clicked");  
+              });
+
 
 
 
     } else {
-      canvas.append('text').text('legislator: ').attr("x", 30).attr("y", 250).attr("fill", "white").style("font-size", "40px");
-  canvas.append('text').text('phone: ').attr("x", 30).attr("y", 300).attr("fill", "white").style("font-size", "40px");
-  canvas.append('text').text('email: ').attr("x", 30).attr("y", 350).attr("fill", "white").style("font-size", "40px");
+      canvas.append('text').text('legislator: ' + legInfo[0]).attr("x", 30).attr("y", 250).attr("fill", "white").style("font-size", "40px");
+  canvas.append('text').text('phone: ' + legInfo[1]).attr("x", 30).attr("y", 300).attr("fill", "white").style("font-size", "40px");
+  canvas.append('text').text('email: ' + legInfo[2]).attr("x", 30).attr("y", 350).attr("fill", "white").style("font-size", "40px");
     }
   
   canvas.append('text').text(label).attr("x", 30).attr("y", 150).attr("fill", "white").style("font-size", "80px");
@@ -453,7 +470,8 @@ canvas.append('text').text(toDoMessage).attr("x", 30).attr("y", 220).attr("fill"
   if (keys[2] != undefined) {
     canvas.append('text').text(keys[2] + " completed " + values[2] + ".").attr("x", 30).attr("y", 530).attr("fill", "white").style("font-size", "30px");
   }
-  
+
+
 
 }
 
