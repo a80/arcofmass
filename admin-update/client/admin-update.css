@@ -133,3 +133,12 @@
 	padding-top: 10px;
 }
 
+#signedInAsAdminAdminUpdate {
+	color: white;
+}
+
+#adminUpdateLogoutButton {
+	background: transparent;
+	color: white;
+	
+}
