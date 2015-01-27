@@ -427,20 +427,20 @@ Meteor.methods({
   }, 
 
   deleteNotification: function(toDoId) {
-    userId = Meteor.user()._id; 
-    userName = Meteor.user().profile.name; 
+    var userId = Meteor.user()._id; 
+    var userName = Meteor.user().profile.name; 
     notifications.remove({userId: userId, toDoId: toDoId}); 
     inspirations.remove({userId: userId, toDoId: toDoId}); 
     helped.remove({source: userId, _id: toDoId});
     //helped.remove({userId: userId, toDoId: toDoId}); 
   },
   achievedTodo: function(myName) {
-	  toDo = actionItems.find({name: myName});
-	  if (toDo.count == toDo.goal) {
+	  var toDo = actionItems.find({name: myName});
+	  if (toDo.count == parseInt(toDo.goal)) {
 		  actionItems.update({name: myName}, {$set: {achieved: true}});
 
 	  }
-  }
+  },
 
   //put comma after above function
 });

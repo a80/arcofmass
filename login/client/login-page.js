@@ -178,6 +178,7 @@ Template.adminLogin.events({
     Router.go('/');
   },
 
+  /*
   'click #new-admin-button': function(event, template) {
     event.preventDefault();
     var username = template.find("#username-field").value;
@@ -212,6 +213,7 @@ Template.adminLogin.events({
 		}
 	});
 
+
     
     //var usernameField = document.getElementById('username-field');
     //var username = usernameField.value; 
@@ -237,11 +239,11 @@ Template.adminLogin.events({
       if (options.profile) 
         user.profile = options.profile;  
       return user; 
-    }); */
+    }); 
 
     return false; 
   },
-
+*/
   'click #admin-login-button': function(event, template) {
     event.preventDefault();
     var username = template.find("#username-field").value;
