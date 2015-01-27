@@ -68,9 +68,9 @@ Template.adminIssuePanel.helpers({
 	returnIssueName: function() {
 		return this.name;
 	}, 
-	returnIssueCount: function() {
+	/*returnIssueCount: function() {
 		return this.count; 
-	}, 
+	},*/ 
 
 	returnToDos: function(issue) {
 		var issueName = this.name;
