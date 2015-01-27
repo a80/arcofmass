@@ -211,6 +211,8 @@ Template.toDoPanel.events({
                   inputNotifParam[username] = timeElapsed; 
                 }
 
+                console.log(actionItems.findOne({_id: toDoId}).count); 
+
 
 
 
@@ -255,6 +257,8 @@ Template.toDoPanel.events({
 
 
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
+
+                console.log(actionItems.findOne({_id: toDoId}).count); 
                 graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam,  true, "", toDoOfInterestMessage);
             //console.log("de-executed"); 
             //var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
@@ -331,7 +335,7 @@ Template.profileHome.rendered = function() {
 
 function progressBar(el, data, label, notifications, showAxis, legInfo, toDoMessage) {
 
-  //console.log("counts, goal", data[0], data[1]); 
+  console.log("counts, goal", data[0], data[1]); 
   //parse input notif. param:
   //parse the dict. 
   var keys = []; 

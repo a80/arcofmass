@@ -48,7 +48,10 @@ Meteor.methods({
 
   increaseToDoCount: function(todoName, toDoId, issueId) {
     var prevCount = actionItems.findOne({text: todoName}).count; 
-    actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
+    var newCount = prevCount + 1; 
+    console.log(newCount); 
+    //actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
+    actionItems.update({text: todoName}, {$set: {count: newCount}});
 
     console.log("toDoId: ", toDoId); 
 
@@ -75,8 +78,19 @@ Meteor.methods({
 	//actionItems.find({text: todoName}).count -= 1;
     //actionItems.update({text: todoName}, {$inc: {count: -1}});
     var prevCount = actionItems.findOne({text: todoName}).count; 
+
+
     //console.log(prevCount); 
-    actionItems.update({text: todoName}, {$set: {count: prevCount - 1}});
+    //actionItems.update({text: todoName}, {$set: {count: prevCount - 1}});
+
+    var newCount = prevCount - 1; 
+    console.log(newCount); 
+    //actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
+    actionItems.update({text: todoName}, {$set: {count: newCount}});
+
+
+
+
     var userId = Meteor.user()._id; 
     var userName = Meteor.user().profile.name; 
     notifications.remove({userId: userId, toDoId: toDoId}); 
