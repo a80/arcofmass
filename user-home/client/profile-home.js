@@ -319,6 +319,8 @@ Template.profileHome.rendered = function() {
         var legInfo = [relevantLeg.name,relevantLeg.phone,relevantLeg.email]; 
         console.log(legInfo); 
 
+      } else {
+        var legInfo = ["None yet!","None yet!","None yet!"]; 
       }
       
 
@@ -430,8 +432,14 @@ canvas.append('text').text(toDoMessage).attr("x", 30).attr("y", 220).attr("fill"
 
 canvas.append('text').text(d3IssueName).attr("x", 30).attr("y", 60).attr("fill", "white").attr("class", "returnToIssueBlock").style("font-size", "30px")
               .on('click', function(d,i){ 
-                var relevantLeg = legislators.findOne({issue: d3IssueName});
-                var legInfo = [relevantLeg.name,relevantLeg.phone,relevantLeg.email]; 
+
+                var legInfo; 
+                if (legislators.findOne({issue: d3IssueName}) != undefined) {
+                  var relevantLeg = legislators.findOne({issue: d3IssueName});
+                  var legInfo = [relevantLeg.name,relevantLeg.phone,relevantLeg.email]; 
+                } else {
+                  var legInfo = ["None yet!","None yet!","None yet!"]; 
+                }
                 var graphID = d3IssueName.replace(/\s*/g, '');
                 graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + d3IssueName, "", false, legInfo, "", "");
                 //console.log("clicked");  
