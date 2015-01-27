@@ -309,7 +309,7 @@ Meteor.methods({
   },*/
   cleanInput: function(str) {
 	//RegExp found on http://stackoverflow.com/questions/23187013/is-there-a-better-way-to-sanitize-input-with-javascript
-	newstr = str.replace(/[^a-z0-9@ '\.,_-]/gim,"");
+	newstr = str.replace(/[^a-z0-9@ '\!,._-]/gim,"");
 	if (newstr != "" && newstr != null && str == newstr) {
 		return str;
 	} else {
