@@ -25,7 +25,7 @@ Meteor.methods({
 	//Increases issue count by one
 	//For use when a user adds an issue that they now care about
 
-    console.log("increaseIssueCount executed"); 
+    //console.log("increaseIssueCount executed"); 
 	  issues.update({name: issueName}, {$inc: {count: 1}});
 
 
@@ -54,12 +54,12 @@ Meteor.methods({
     //actionItems.update({text: todoName}, {$set: {count: newCount}});
     actionItems.update({text: todoName}, {$inc: {count: 1}});
 
-    console.log("toDoId: ", toDoId); 
+    //console.log("toDoId: ", toDoId); 
 
-    console.log("issueId: ", issueId); 
+    //console.log("issueId: ", issueId); 
     var mostRecentAssociatedNotification = notifications.find({toDoId: toDoId}, {sort: {dateCompleted: -1}}).fetch()[0]
 
-    console.log(mostRecentAssociatedNotification);
+    //console.log(mostRecentAssociatedNotification);
 
     if (mostRecentAssociatedNotification != undefined) {
       var assocUserId = mostRecentAssociatedNotification.userId;
@@ -165,12 +165,12 @@ Meteor.methods({
 	Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.email":{address: myEmail, verified: false}}});
   },
   modifyUserPassword: function(myOPassword, myNPassword) {
-	  console.log("exec");
+	  //console.log("exec");
      
   },
 
   addNewAdmin: function(username) {
-  	console.log('addNewAdmin accessed');
+  	//console.log('addNewAdmin accessed');
 
   	
     //var username = template.find("#username-field").value;
@@ -215,7 +215,7 @@ Meteor.methods({
 
   addNewRegularUser: function(username) {
 
-  	console.log('addNewRegularUser accessed');
+  	//console.log('addNewRegularUser accessed');
 
   	
     //var username = template.find("#username-field").value;
@@ -366,7 +366,7 @@ Meteor.methods({
   }
 },*/
   assignUserDistrict: function() {
-    console.log("called in server"); 
+    //console.log("called in server"); 
 	  //legInfo = getUserLegislatorInfo();
 
     var legInfo; 
@@ -391,7 +391,7 @@ Meteor.methods({
 		}
 	   }
 
-    console.log(legInfo.data[0].district); 
+    //console.log(legInfo.data[0].district); 
 	  
     if (legInfo != "Error") {
       Meteor.users.update({_id:Meteor.userId()}, {$set :{"profile.district": legInfo.data[0].district}});
@@ -413,7 +413,7 @@ Meteor.methods({
 		}
 		return issues.find({name: {$in: userLegislators}});
 	} else {
-		console.log("Didn't get info");
+		//console.log("Didn't get info");
 		return [];
 	}
   },
@@ -449,7 +449,7 @@ Meteor.methods({
       }
     }
 
-    console.log(result); 
+    //console.log(result); 
     return result; 
   }, 
 
