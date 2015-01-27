@@ -345,6 +345,7 @@ Template.profileHome.rendered = function() {
 
 
       var graphID = issue.name.replace(/\s*/g, '');
+      console.log("graphID", graphID); 
       graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + issue.name, "", false, legInfo, "", "");
     }); 
   });
