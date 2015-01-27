@@ -43,6 +43,15 @@ Template.adminHome.helpers({
 			} 
 		}
 		return className;
+	}, 
+
+
+	issuesExist: function(){
+		//console.log()
+		if ((issues.find({}).fetch()).length !=0){
+			return true;
+		}
+		return false;
 	}
 
 
@@ -53,13 +62,6 @@ Template.adminIssueListView.helpers({
 	getUserIssues: function() {
 		return issues.find({});  
 	},
-
-	issuesExist: function(){
-		if ((issues.find({})).length !=0){
-			return true;
-		}
-		return false;
-	}
 })
 
 Template.adminIssuePanel.helpers({
