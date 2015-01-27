@@ -114,7 +114,7 @@ Template.login.events({
 				}
 			});
 		} else {
-			alert("There was a problem with the username");
+			alert("Please enter an alphanumeric username and a password to create an account.");
 		}
 	});
     
