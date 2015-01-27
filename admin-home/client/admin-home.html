@@ -52,16 +52,24 @@
 
   </div> 
 </div>
-    {{#if toggleListViewDefault}}
-      {{> adminIssueListView}}
+    {{#if issuesExist}}
+      {{#if toggleListViewDefault}}
+        {{> adminIssueListView}}
+      {{else}}
+        {{> adminIssueGraphView}}
+      {{/if}}
     {{else}}
-      {{> adminIssueGraphView}}
+      {{>pleaseMakeIssues}}
     {{/if}}
 
   
 
 </div>
 
+</template>
+
+<template name ="pleaseMakeIssues">
+  <div style="padding:100px;text-align:center"> <h2 style="color:white">Please go into settings and create issues. </h2></div>
 </template>
 
 <template name = "adminIssueListView"> 
