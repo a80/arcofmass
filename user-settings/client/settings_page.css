@@ -114,3 +114,7 @@ padding-left: 35px;
 #formProblem, .formProblem, #alertMessageWrong, #alertMessageMatch, #alertMessageBad, #savedSuccessfullyMessage, #alertName, #alertInspiration, #alertZip, #alertStory {
 	visibility: hidden;
 }
+
+#signedInUserSettings {
+	color: white;
+}
