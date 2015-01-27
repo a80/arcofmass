@@ -163,7 +163,7 @@ Template.adminLogin.events({
 
 
     document.getElementById('admin-login-button').style.visibility = "visible";
-    document.getElementById('new-admin-button').style.visibility = "visible";
+    //document.getElementById('new-admin-button').style.visibility = "visible";
   },
 
   'keypress #username-field': function() {
@@ -172,77 +172,12 @@ Template.adminLogin.events({
     passwordField.style.visibility = "visible";
 
     document.getElementById('admin-login-button').style.visibility = "visible";
-    document.getElementById('new-admin-button').style.visibility = "visible";
+    //document.getElementById('new-admin-button').style.visibility = "visible";
   },
   'click #userLoginLink': function() {
     Router.go('/');
   },
 
-  
-  'click #new-admin-button': function(event, template) {
-    event.preventDefault();
-    var username = template.find("#username-field").value;
-    var password = template.find("#password-field").value;
-	Meteor.call("cleanInput", username, function(error, username) {
-		if (username != false) {
-			Meteor.call("cleanInput", password, function(error, password) {
-				if (password != false) {	
-					Accounts.createUser({username: username, password: password}); 
-
-					Meteor.call("addNewAdmin", username, function(error) {
-					  if (error) {
-
-					  } else {
-						Meteor.loginWithPassword(username, password, function(error) {
-						  if (error) {
-							//console.log('admin login failed');
-							alert("Account creation failed. Please try again with a new username/password.");
-						  } else {
-								//console.log('admin-login-succeeded');
-								Router.go('/admin');
-							}
-						});
-					  }
-					}); 
-				} else {
-					alert("There was a problem with the password");
-				}
-			});
-		} else {
-			alert("There was a problem with the username");
-		}
-	});
-
-
-    
-    //var usernameField = document.getElementById('username-field');
-    //var username = usernameField.value; 
-
-    //console.log(username + "; " + password);
-    //console.log('executed');
-     
-
-
-    //var id = Meteor.users.find(); 
-
-    /*console.log("should get to here"); 
-
-    console.log(id); 
-
-    Roles.addUsersToRoles(id, ['admin']);
-
-    console.log("got here.");*/
-  
-    //customize user creation - delete for now. 
-    //Accounts.onCreateUser(function(options, user) {
-    //  user.issues = [];
-    //  if (options.profile) 
-    //    user.profile = options.profile;  
-    //  return user; 
-    //}); 
-
-    return false; 
-  },
 
   'click #admin-login-button': function(event, template) {
     event.preventDefault();

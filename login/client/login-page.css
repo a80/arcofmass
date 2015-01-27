@@ -226,15 +226,13 @@
 
 
 
-#new-admin-button {
+/*#new-admin-button {
 	font-family: 'Open Sans';
 	background: transparent;
 	font-size: 100%;
-	/*position: relative;
-	right: 25px;*/
+	
 	border: 2px solid white;
 	outline: none;
-  	/*border: none !important;*/
   	position: relative;
   	position: fixed;
   	top: 82%;
@@ -246,7 +244,7 @@
 
  #new-admin-button:hover {
 	background-color: white; 
-}
+}*/
 
 .navbar{
 	border: none !important;

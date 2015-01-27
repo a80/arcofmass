@@ -158,7 +158,7 @@
 				template.find(".saveLegislatorButton").style.visibility = "visible";
 				template.find(".nameInput").readOnly = false;
 				template.find(".emailInput").readOnly = false;
-				template.find(".addressInput").readOnly = false;
+				//template.find(".addressInput").readOnly = false;
 				template.find(".phoneInput").readOnly = false;
 
 		},
