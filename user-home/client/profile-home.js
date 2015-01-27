@@ -50,8 +50,8 @@ Template.profileHome.helpers({
 
   checkUserIssues: function(){
     var list = issues.find({name: {$in: Meteor.user().profile.issues}}).fetch();
-    console.log("AAAAAAAAAAAAAAAAYYYYYYYYYYYY");
-    console.log(list.length);
+    //console.log("AAAAAAAAAAAAAAAAYYYYYYYYYYYY");
+    //console.log(list.length);
     if ((list.length === 0) || (list.length===undefined)){
       return true;
     }
@@ -282,7 +282,7 @@ Template.toDoPanel.events({
 
                 var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
 
-                console.log(actionItems.findOne({_id: toDoId}).count); 
+                //console.log(actionItems.findOne({_id: toDoId}).count); 
                 graphs[graphIDtoChange] = progressBar("#" + graphIDtoChange, [actionItems.findOne({_id: toDoId}).count, actionItems.findOne({_id: toDoId}).goal], "to do: " + toDoName, inputNotifParam,  true, "", toDoOfInterestMessage, issueOfInterest);
             //console.log("de-executed"); 
             //var graphIDtoChange = issueOfInterest.replace(/\s*/g, ''); 
@@ -350,7 +350,7 @@ Template.profileHome.rendered = function() {
 
 
       var graphID = issue.name.replace(/\s*/g, '');
-      console.log("graphID", graphID); 
+      //console.log("graphID", graphID); 
       graphs[graphID] = progressBar("#" + graphID, [0,0], "what: " + issue.name, "", false, legInfo, "", "");
     }); 
   });
@@ -362,7 +362,7 @@ Template.profileHome.rendered = function() {
 
 function progressBar(el, data, label, notifications, showAxis, legInfo, toDoMessage, d3IssueName) {
 
-  console.log("counts, goal", data[0], data[1]); 
+  //console.log("counts, goal", data[0], data[1]); 
   //parse input notif. param:
   //parse the dict. 
   var keys = []; 

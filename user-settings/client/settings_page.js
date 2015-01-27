@@ -38,7 +38,7 @@ Meteor.subscribe("userSettingsData");
 			var story = document.getElementById("inputStory").value;
 			var storyReady = document.getElementById("inputStory").readOnly;
 			if (name != "" && nameReady == true && zip != "" && zipReady == true && insp != "" && inspReady == true && story != "" && storyReady == true && notReady==false) {
-				console.log("HEEERRRREEE");
+				//console.log("HEEERRRREEE");
 				Router.go('/profile');
 			} else {
 				document.getElementById("formProblem").style.visibility = "visible";
