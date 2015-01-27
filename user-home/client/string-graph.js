@@ -117,7 +117,7 @@ function stringGraph(el) {
   };
 
   var w = 700,
-  h = 400;
+  h = 350;
   var svg = d3.select(el)
     .append("svg:svg")
     .attr("width", w)
