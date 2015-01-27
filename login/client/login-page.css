@@ -78,6 +78,7 @@
 	text-decoration: underline;
    	animation: pulse 3s alternate infinite;
 	-webkit-animation: pulse 3s alternate infinite;
+	-moz-animation: pulse 3s alternate infinite;  
 
 
 }
@@ -85,7 +86,8 @@
 #username-field:-moz-placeholder { /* Firefox 18- */
 	text-decoration: underline;
    	animation: pulse 3s alternate infinite;
-	-webkit-animation: pulse 3s alternate infinite; 
+	-moz-animation: pulse 3s alternate infinite;
+	color: black;  
 }
 
 @keyframes pulse {
@@ -93,6 +95,11 @@
   to {color:DarkOrange}
 }
 @-webkit-keyframes pulse {
+  from {color: black}
+  to {color:DarkOrange}
+}
+
+@-moz-keyframes pulse {
   from {color: black}
   to {color:DarkOrange}
 }
@@ -131,7 +138,7 @@
 #password-field:-moz-placeholder { /* Firefox 18- */
 	text-decoration: underline;
    animation: pulse 3s alternate infinite;
-	-webkit-animation: pulse 3s alternate infinite; 
+	-moz-animation: pulse 3s alternate infinite;   
 }
 
 
@@ -153,6 +160,7 @@
 
   	animation: pulse 3s alternate infinite;
   	-webkit-animation: pulse 3s alternate infinite;
+  	-moz-animation: pulse 3s alternate infinite;  
   	position: fixed;
   	top: 68%;
   	left: 45%;
