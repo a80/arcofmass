@@ -48,13 +48,22 @@ Meteor.methods({
 	//Increases the todo count by one
 	//actionItems.find({text: todoName}).count += 1;
     //console.log("increaseToDoCount called.");
-    actionItems.update({text: todoName}, {$inc: {count: 1}});
+    var prevCount = actionItems.findOne({text: todoName}).count; 
+    //console.log(prevCount); 
+    actionItems.update({text: todoName}, {$set: {count: prevCount + 1}});
+
+
+
+    //actionItems.update({text: todoName}, {$inc: {count: 1}});
   },
   decreaseToDoCount: function(todoName) {
 	//TAKES THE NAME OF THE TODO
 	//Decreases the todo count by one
 	//actionItems.find({text: todoName}).count -= 1;
-    actionItems.update({text: todoName}, {$inc: {count: -1}});
+    //actionItems.update({text: todoName}, {$inc: {count: -1}});
+    var prevCount = actionItems.findOne({text: todoName}).count; 
+    //console.log(prevCount); 
+    actionItems.update({text: todoName}, {$set: {count: prevCount - 1}});
 
   },
   getIssueCount: function(issueName) {
